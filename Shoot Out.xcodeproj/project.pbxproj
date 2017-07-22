@@ -140,14 +140,10 @@
 			isa = PBXGroup;
 			children = (
 				73486E201F22FF06004C3333 /* AppDelegate.swift */,
-				73486E221F22FF06004C3333 /* GameScene.sks */,
-				73486E241F22FF06004C3333 /* Actions.sks */,
-				73486E261F22FF06004C3333 /* GameScene.swift */,
-				73486E281F22FF06004C3333 /* GameViewController.swift */,
-				73486E561F230A12004C3333 /* MultiplayerScene.swift */,
-				73486E541F2309F7004C3333 /* MultiplayerScene.sks */,
-				73486E581F230AB4004C3333 /* MultiplayerGameViewController.swift */,
 				73486E2A1F22FF06004C3333 /* Main.storyboard */,
+				73486E5B1F230BA4004C3333 /* Single Player */,
+				73486E5A1F230B8D004C3333 /* Multiplayer */,
+				73486E241F22FF06004C3333 /* Actions.sks */,
 				73486E2D1F22FF06004C3333 /* Assets.xcassets */,
 				73486E2F1F22FF06004C3333 /* LaunchScreen.storyboard */,
 				73486E321F22FF06004C3333 /* Info.plist */,
@@ -171,6 +167,26 @@
 				73486E481F22FF06004C3333 /* Info.plist */,
 			);
 			path = "Shoot OutUITests";
+			sourceTree = "<group>";
+		};
+		73486E5A1F230B8D004C3333 /* Multiplayer */ = {
+			isa = PBXGroup;
+			children = (
+				73486E541F2309F7004C3333 /* MultiplayerScene.sks */,
+				73486E581F230AB4004C3333 /* MultiplayerGameViewController.swift */,
+				73486E561F230A12004C3333 /* MultiplayerScene.swift */,
+			);
+			name = Multiplayer;
+			sourceTree = "<group>";
+		};
+		73486E5B1F230BA4004C3333 /* Single Player */ = {
+			isa = PBXGroup;
+			children = (
+				73486E221F22FF06004C3333 /* GameScene.sks */,
+				73486E281F22FF06004C3333 /* GameViewController.swift */,
+				73486E261F22FF06004C3333 /* GameScene.swift */,
+			);
+			name = "Single Player";
 			sourceTree = "<group>";
 		};
 		CA4549A0AF64058A363F79EF /* Frameworks */ = {

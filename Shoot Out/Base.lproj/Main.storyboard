@@ -89,7 +89,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="KbL-nC-q40">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="HKa-A7-nma"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="HKa-A7-nma">
+                            <connections>
+                                <segue destination="E0U-BE-BAH" kind="show" id="N8A-2A-DqM"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Connect" id="OlG-67-Xxz">
                             <connections>
                                 <segue destination="2Ww-N4-jw2" kind="show" id="iPP-8d-8nz"/>

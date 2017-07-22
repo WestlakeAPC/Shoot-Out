@@ -1,0 +1,6 @@
+framework module Pods_Shoot_Out {
+  umbrella header "Pods-Shoot Out-umbrella.h"
+
+  export *
+  module * { export * }
+}

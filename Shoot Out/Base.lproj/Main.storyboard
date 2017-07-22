@@ -41,7 +41,7 @@
                                 </constraints>
                                 <state key="normal" title="Multiplayer"/>
                                 <connections>
-                                    <segue destination="5Vw-T2-zwN" kind="show" id="PhH-aT-2p2"/>
+                                    <segue destination="L7j-cs-WYg" kind="show" id="VFg-bd-bHL"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -86,24 +86,40 @@
                     <view key="view" contentMode="scaleToFill" id="nfL-jN-VJW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BxW-UH-Hef">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <navigationItem id="dwZ-ly-Ly5">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="AUS-Cm-9Pz">
+                                            <connections>
+                                                <segue destination="E0U-BE-BAH" kind="show" id="Kmc-df-TbU"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Connect" id="6JD-RG-8Fy">
+                                            <connections>
+                                                <segue destination="2Ww-N4-jw2" kind="show" id="NON-37-kKj"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="BxW-UH-Hef" secondAttribute="trailing" id="3U5-rN-jqT"/>
+                            <constraint firstItem="BxW-UH-Hef" firstAttribute="top" secondItem="nfL-jN-VJW" secondAttribute="top" id="dno-Qw-r9s"/>
+                            <constraint firstItem="BxW-UH-Hef" firstAttribute="leading" secondItem="nfL-jN-VJW" secondAttribute="leading" id="i9f-De-tfJ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KbL-nC-q40">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="HKa-A7-nma">
-                            <connections>
-                                <segue destination="E0U-BE-BAH" kind="show" id="N8A-2A-DqM"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Connect" id="OlG-67-Xxz">
-                            <connections>
-                                <segue destination="2Ww-N4-jw2" kind="show" id="iPP-8d-8nz"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="HKa-A7-nma"/>
+                        <barButtonItem key="rightBarButtonItem" title="Connect" id="OlG-67-Xxz"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z1I-TX-ONU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="793" y="785"/>
+            <point key="canvasLocation" x="33" y="785"/>
         </scene>
         <!--Multiplayer Game View Controller-->
         <scene sceneID="9Eg-xW-TX6">
@@ -121,25 +137,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHP-gB-oOL" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1529" y="785"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="UEw-xE-Pna">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Vw-T2-zwN" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="laW-4N-nEH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="L7j-cs-WYg" kind="relationship" relationship="rootViewController" id="Zfv-lz-2GO"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kxz-fm-1di" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="784.85757121439292"/>
+            <point key="canvasLocation" x="809" y="785"/>
         </scene>
     </scenes>
 </document>

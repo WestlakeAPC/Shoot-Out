@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,12 +21,42 @@
                     <view key="view" contentMode="scaleToFill" id="6D0-t3-YfV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qw6-74-YmC">
+                                <rect key="frame" x="16" y="396" width="170" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="p5r-ok-oII"/>
+                                    <constraint firstAttribute="width" constant="170" id="pZ4-37-yfl"/>
+                                </constraints>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="show" id="cXT-ML-vW0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dj-GH-dZb">
+                                <rect key="frame" x="16" y="462" width="170" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="DU4-VC-4nY"/>
+                                    <constraint firstAttribute="width" constant="170" id="nfH-sd-X8U"/>
+                                </constraints>
+                                <state key="normal" title="Multiplayer"/>
+                                <connections>
+                                    <segue destination="5Vw-T2-zwN" kind="show" id="PhH-aT-2p2"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6dj-GH-dZb" firstAttribute="leading" secondItem="6D0-t3-YfV" secondAttribute="leadingMargin" id="2WU-dc-xXl"/>
+                            <constraint firstItem="Qw6-74-YmC" firstAttribute="leading" secondItem="6D0-t3-YfV" secondAttribute="leadingMargin" id="Kne-S6-a1w"/>
+                            <constraint firstItem="6dj-GH-dZb" firstAttribute="top" secondItem="Qw6-74-YmC" secondAttribute="bottom" constant="36" id="gSG-KJ-6U6"/>
+                            <constraint firstItem="LgR-Sd-QMT" firstAttribute="top" secondItem="6dj-GH-dZb" secondAttribute="bottom" constant="175" id="uHJ-24-ux7"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Euk-Hw-fIE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-475" y="426"/>
+            <point key="canvasLocation" x="-754" y="445"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -44,6 +75,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--Connect View Controller-->
+        <scene sceneID="s6w-6O-Kxw">
+            <objects>
+                <viewController id="L7j-cs-WYg" customClass="ConnectViewController" customModule="Shoot_Out" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tcH-sG-Db0"/>
+                        <viewControllerLayoutGuide type="bottom" id="Gvw-Kc-QVZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nfL-jN-VJW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="KbL-nC-q40"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z1I-TX-ONU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="972" y="784.85757121439292"/>
+        </scene>
         <!--Multiplayer Game View Controller-->
         <scene sceneID="9Eg-xW-TX6">
             <objects>
@@ -60,7 +110,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHP-gB-oOL" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="460" y="882"/>
+            <point key="canvasLocation" x="1700" y="784.85757121439292"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="UEw-xE-Pna">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Vw-T2-zwN" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="laW-4N-nEH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="L7j-cs-WYg" kind="relationship" relationship="rootViewController" id="Zfv-lz-2GO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kxz-fm-1di" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="784.85757121439292"/>
         </scene>
     </scenes>
 </document>

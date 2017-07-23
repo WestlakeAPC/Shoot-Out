@@ -48,12 +48,17 @@ class GameViewController: UIViewController {
     
     // MARK: Setting up the UILongPressGestureRecognizers
     func longPressGesture() {
-        let leftButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(GameViewController.moveLeft))
+        let leftButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.moveLeft))
         leftButton.addGestureRecognizer(leftButtonLPG)
-    }
-    
-    func moveLeft() {
-        print("Move left")
+        
+        let rightButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.moveRight))
+        rightButton.addGestureRecognizer(leftButtonLPG)
+        
+        let jumpButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.jump))
+        jumpButton.addGestureRecognizer(leftButtonLPG)
+        
+        let shootButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.shoot))
+        shootButton.addGestureRecognizer(leftButtonLPG)
     }
     
     

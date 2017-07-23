@@ -38,6 +38,23 @@ class GameScene: SKScene {
     }
     
     
+    func moveLeft() {
+        
+    }
+    
+    func moveRight() {
+        
+    }
+    
+    func jump() {
+        
+    }
+    
+    func shoot() {
+        
+    }
+    
+    
     func touchDown(atPoint pos : CGPoint) {
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
             n.position = pos

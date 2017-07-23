@@ -23,6 +23,11 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         longPressGesture()
+        loadSKS()
+    }
+
+    // MARK: Load Spritekit Scene
+    func loadSKS() {
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
@@ -40,7 +45,8 @@ class GameViewController: UIViewController {
             view.showsNodeCount = true
         }
     }
-
+    
+    // MARK: Setting up the UILongPressGestureRecognizers
     func longPressGesture() {
         let leftButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(GameViewController.moveLeft))
         leftButton.addGestureRecognizer(leftButtonLPG)

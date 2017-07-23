@@ -66,10 +66,6 @@ class GameViewController: UIViewController {
         shootButton.addGestureRecognizer(shootButtonLPG)
     }
     
-    func moveLeft() {
-        gameScene.moveLeft()
-    }
-    
     
 
     override var shouldAutorotate: Bool {

@@ -12,8 +12,17 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
+    var scene = SKScene()
+    
+    @IBOutlet var leftButton: UIButton!
+    @IBOutlet var rightButton: UIButton!
+    @IBOutlet var jumpButton: UIButton!
+    @IBOutlet var shootButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        longPressGesture()
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
@@ -32,10 +41,23 @@ class GameViewController: UIViewController {
         }
     }
 
+    func longPressGesture() {
+        let leftButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(GameViewController.moveLeft))
+        leftButton.addGestureRecognizer(leftButtonLPG)
+    }
+    
+    func moveLeft() {
+        print("Move left")
+    }
+    
+    
+    
+    
+
     override var shouldAutorotate: Bool {
         return true
     }
-
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return .allButUpsideDown

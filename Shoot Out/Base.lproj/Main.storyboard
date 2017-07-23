@@ -121,6 +121,12 @@
                             <constraint firstItem="qHh-Mt-9TT" firstAttribute="top" secondItem="ZvY-KD-C8D" secondAttribute="bottom" constant="4" id="qQ7-kt-cin"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="jumpButton" destination="ZvY-KD-C8D" id="InT-K7-9Iq"/>
+                        <outlet property="leftButton" destination="Tf9-Rq-uVn" id="OUY-dR-8Hp"/>
+                        <outlet property="rightButton" destination="xWY-9m-YgD" id="Vhd-wH-udH"/>
+                        <outlet property="shootButton" destination="gFE-qR-YL1" id="UpT-qu-5hu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>

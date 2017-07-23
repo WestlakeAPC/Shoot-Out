@@ -13,6 +13,7 @@ import GameplayKit
 class GameViewController: UIViewController {
 
     var scene = SKScene()
+    var gameScene = GameScene()
     
     @IBOutlet var leftButton: UIButton!
     @IBOutlet var rightButton: UIButton!
@@ -48,20 +49,26 @@ class GameViewController: UIViewController {
     
     // MARK: Setting up the UILongPressGestureRecognizers
     func longPressGesture() {
-        let leftButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.moveLeft))
+        let leftButtonLPG = UILongPressGestureRecognizer(target: gameScene, action: #selector(gameScene.moveLeft))
+        leftButtonLPG.minimumPressDuration = 0.1
         leftButton.addGestureRecognizer(leftButtonLPG)
         
-        let rightButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.moveRight))
-        rightButton.addGestureRecognizer(leftButtonLPG)
+        let rightButtonLPG = UILongPressGestureRecognizer(target: gameScene, action: #selector(gameScene.moveRight))
+        rightButtonLPG.minimumPressDuration = 0.1
+        rightButton.addGestureRecognizer(rightButtonLPG)
         
-        let jumpButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.jump))
-        jumpButton.addGestureRecognizer(leftButtonLPG)
+        let jumpButtonLPG = UILongPressGestureRecognizer(target: gameScene, action: #selector(gameScene.jump))
+        jumpButtonLPG.minimumPressDuration = 0.1
+        jumpButton.addGestureRecognizer(jumpButtonLPG)
         
-        let shootButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(GameScene.shoot))
-        shootButton.addGestureRecognizer(leftButtonLPG)
+        let shootButtonLPG = UILongPressGestureRecognizer(target: gameScene, action: #selector(gameScene.shoot))
+        shootButtonLPG.minimumPressDuration = 0.1
+        shootButton.addGestureRecognizer(shootButtonLPG)
     }
     
-    
+    func moveLeft() {
+        gameScene.moveLeft()
+    }
     
     
 

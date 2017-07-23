@@ -13,8 +13,39 @@ class GameScene: SKScene {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
+    private var screenHeight : CGFloat?
+    private var screenWidth : CGFloat?
     
     override func didMove(to view: SKView) {
+        spinnyStuff()
+        
+    }
+    
+    func getScreeenSize(heightOf height: CGFloat, widthOf width: CGFloat) {
+        self.screenHeight = height
+        self.screenWidth = width
+    }
+    
+    func moveLeft() {
+        print("moveLeft")
+    }
+    
+    func moveRight() {
+        print("moveRight")
+    }
+    
+    func jump() {
+        print("jump")
+    }
+    
+    func shoot() {
+        print("shoot")
+    }
+    
+    
+    
+    // MARK: Spinny stuff we may use for debugging
+    func spinnyStuff() {
         
         // Get label node from scene and store it for use later
         self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
@@ -36,24 +67,6 @@ class GameScene: SKScene {
                                               SKAction.removeFromParent()]))
         }
     }
-    
-    
-    func moveLeft() {
-        
-    }
-    
-    func moveRight() {
-        
-    }
-    
-    func jump() {
-        
-    }
-    
-    func shoot() {
-        
-    }
-    
     
     func touchDown(atPoint pos : CGPoint) {
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {

@@ -11,10 +11,10 @@ import MultipeerConnectivity
 
 class MPCHandler: NSObject, MCSessionDelegate {
     
-    var peerID:MCPeerID!
-    var session:MCSession!
-    var browser:MCBrowserViewController!
-    var advertiser:MCAdvertiserAssistant? = nil
+    var peerID: MCPeerID!
+    var session: MCSession!
+    var browser: MCBrowserViewController!
+    var advertiser: MCAdvertiserAssistant? = nil
     
     func setupPeerWithDisplayName(displayName:String) {
         peerID = MCPeerID(displayName: displayName)

@@ -145,10 +145,10 @@
 			children = (
 				73486E201F22FF06004C3333 /* AppDelegate.swift */,
 				73486E2A1F22FF06004C3333 /* Main.storyboard */,
+				73486E241F22FF06004C3333 /* Actions.sks */,
 				73486E5B1F230BA4004C3333 /* Single Player */,
 				73829BDD1F230DF4003AEF6F /* Connect */,
 				73486E5A1F230B8D004C3333 /* Multiplayer */,
-				73486E241F22FF06004C3333 /* Actions.sks */,
 				73486E2D1F22FF06004C3333 /* Assets.xcassets */,
 				73486E2F1F22FF06004C3333 /* LaunchScreen.storyboard */,
 				73486E321F22FF06004C3333 /* Info.plist */,

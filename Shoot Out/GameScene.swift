@@ -16,8 +16,11 @@ class GameScene: SKScene {
     private var screenHeight : CGFloat?
     private var screenWidth : CGFloat?
     
+    private var mainCharacter = SKSpriteNode()
+    
     override func didMove(to view: SKView) {
         spinnyStuff()
+        loadMainCharacter(withImage: "tempCharac.png")
         
     }
     
@@ -26,6 +29,16 @@ class GameScene: SKScene {
         self.screenWidth = width
     }
     
+    // MARK: Load Main Character
+    func loadMainCharacter (withImage image: String) {
+        self.mainCharacter = SKSpriteNode(texture: SKTexture(imageNamed: image))
+        self.mainCharacter.size.height = 170
+        self.mainCharacter.size.width = 120
+        self.addChild(mainCharacter)
+    }
+    
+    
+    // MARK: Character Movement
     func moveLeft() {
         print("moveLeft")
     }

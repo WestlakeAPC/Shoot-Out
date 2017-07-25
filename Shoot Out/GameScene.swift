@@ -25,6 +25,7 @@ class GameScene: SKScene {
     }
     
     func getScreeenSize(heightOf height: CGFloat, widthOf width: CGFloat) {
+        print("Recieved Screen Size. Height: \(height) Width: \(width)")
         self.screenHeight = height
         self.screenWidth = width
     }

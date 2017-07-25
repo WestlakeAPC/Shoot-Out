@@ -23,6 +23,7 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        gameScene.getScreeenSize(heightOf: UIScreen.main.bounds.height, widthOf: UIScreen.main.bounds.width)
         longPressGesture()
         loadSKS()
     }

@@ -25,7 +25,6 @@ class GameScene: SKScene {
         
         print("Recieved Screen Size. \nHeight: \(screenHeight!) Width: \(screenWidth!)")
         
-        spinnyStuff()
         loadMainCharacter(withImage: "tempCharac.png")
         
     }

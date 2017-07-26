@@ -53,24 +53,39 @@ class GameViewController: UIViewController {
     
     // MARK: Setting up the UILongPressGestureRecognizers
     func longPressGesture() {
-        let leftButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(GameViewController.gameScene.moveLeft))
+        
+        let leftButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(self.moveLeft))
         leftButtonLPG.minimumPressDuration = 0.1
         leftButton.addGestureRecognizer(leftButtonLPG)
         
-        let rightButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(GameViewController.gameScene.moveRight))
+        let rightButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(self.moveRight))
         rightButtonLPG.minimumPressDuration = 0.1
         rightButton.addGestureRecognizer(rightButtonLPG)
         
-        let jumpButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(GameViewController.gameScene.jump))
+        let jumpButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(self.jump))
         jumpButtonLPG.minimumPressDuration = 0.1
         jumpButton.addGestureRecognizer(jumpButtonLPG)
         
-        let shootButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(GameViewController.gameScene.shoot))
+        let shootButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(self.shoot))
         shootButtonLPG.minimumPressDuration = 0.1
         shootButton.addGestureRecognizer(shootButtonLPG)
     }
     
+    func moveLeft() {
+        GameViewController.gameScene.moveLeft()
+    }
     
+    func moveRight() {
+        GameViewController.gameScene.moveRight()
+    }
+    
+    func jump() {
+        GameViewController.gameScene.jump()
+    }
+    
+    func shoot() {
+        GameViewController.gameScene.shoot()
+    }
 
     override var shouldAutorotate: Bool {
         return true

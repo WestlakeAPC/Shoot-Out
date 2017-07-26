@@ -19,6 +19,8 @@ class GameScene: SKScene {
     private var mainCharacter = SKSpriteNode()
     
     override func didMove(to view: SKView) {
+        let vc = GameViewController()
+        vc.setGameScene(scene: self)
         spinnyStuff()
         loadMainCharacter(withImage: "tempCharac.png")
         
@@ -92,6 +94,7 @@ class GameScene: SKScene {
     }
     
     func touchMoved(toPoint pos : CGPoint) {
+        self.moveLeft()
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
             n.position = pos
             n.strokeColor = SKColor.blue

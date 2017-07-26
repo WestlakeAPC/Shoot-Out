@@ -44,11 +44,12 @@ class GameScene: SKScene {
     // MARK: Character Movement
     func moveLeft() {
         print("moveLeft")
-        self.mainCharacter.run(SKAction.moveBy(x: -10, y: 0, duration: 0.3))
+        self.mainCharacter.run(SKAction.moveBy(x: -100, y: 0, duration: 0.3))
     }
     
     func moveRight() {
         print("moveRight")
+        self.mainCharacter.run(SKAction.moveBy(x: 10, y: 0, duration: 0.3))
     }
     
     func jump() {
@@ -94,7 +95,6 @@ class GameScene: SKScene {
     }
     
     func touchMoved(toPoint pos : CGPoint) {
-        self.moveLeft()
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
             n.position = pos
             n.strokeColor = SKColor.blue

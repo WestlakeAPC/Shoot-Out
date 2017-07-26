@@ -51,23 +51,19 @@ class GameViewController: UIViewController {
         }
     }
     
-    // MARK: Setting up the UILongPressGestureRecognizers
+    // TODO: Continue method call as long as button is held
     func longPressGesture() {
         
-        let leftButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(self.moveLeft))
-        leftButtonLPG.minimumPressDuration = 0.1
+        let leftButtonLPG = UITapGestureRecognizer(target: self, action: #selector(self.moveLeft))
         leftButton.addGestureRecognizer(leftButtonLPG)
         
-        let rightButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(self.moveRight))
-        rightButtonLPG.minimumPressDuration = 0.1
+        let rightButtonLPG = UITapGestureRecognizer(target: self, action: #selector(self.moveRight))
         rightButton.addGestureRecognizer(rightButtonLPG)
         
-        let jumpButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(self.jump))
-        jumpButtonLPG.minimumPressDuration = 0.1
+        let jumpButtonLPG = UITapGestureRecognizer(target: self, action: #selector(self.jump))
         jumpButton.addGestureRecognizer(jumpButtonLPG)
         
-        let shootButtonLPG = UILongPressGestureRecognizer(target: self, action: #selector(self.shoot))
-        shootButtonLPG.minimumPressDuration = 0.1
+        let shootButtonLPG = UITapGestureRecognizer(target: self, action: #selector(self.shoot))
         shootButton.addGestureRecognizer(shootButtonLPG)
     }
     

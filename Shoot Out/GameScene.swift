@@ -42,6 +42,7 @@ class GameScene: SKScene {
     // MARK: Character Movement
     func moveLeft() {
         print("moveLeft")
+        self.mainCharacter.run(SKAction.moveBy(x: -10, y: 0, duration: 0.3))
     }
     
     func moveRight() {

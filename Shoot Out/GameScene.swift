@@ -13,30 +13,27 @@ class GameScene: SKScene {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
-    private var screenHeight : CGFloat?
-    private var screenWidth : CGFloat?
+    
+    private var screenHeight : CGFloat? = UIScreen.main.bounds.height
+    private var screenWidth : CGFloat? = UIScreen.main.bounds.width
     
     private var mainCharacter = SKSpriteNode()
     
     override func didMove(to view: SKView) {
         let vc = GameViewController()
         vc.setGameScene(scene: self)
+        
+        print("Recieved Screen Size. \nHeight: \(screenHeight!) Width: \(screenWidth!)")
+        
         spinnyStuff()
         loadMainCharacter(withImage: "tempCharac.png")
         
     }
     
-    func getScreeenSize(heightOf height: CGFloat, widthOf width: CGFloat) {
-        print("Recieved Screen Size. Height: \(height) Width: \(width)")
-        self.screenHeight = height
-        self.screenWidth = width
-    }
-    
     // MARK: Load Main Character
     func loadMainCharacter (withImage image: String) {
         self.mainCharacter = SKSpriteNode(texture: SKTexture(imageNamed: image))
-        self.mainCharacter.size.height = 170
-        self.mainCharacter.size.width = 120
+        self.mainCharacter.size = (self.view?.bounds.size)!
         self.addChild(mainCharacter)
     }
     
@@ -49,7 +46,7 @@ class GameScene: SKScene {
     
     func moveRight() {
         print("moveRight")
-        self.mainCharacter.run(SKAction.moveBy(x: 10, y: 0, duration: 0.3))
+        self.mainCharacter.run(SKAction.moveBy(x: 100, y: 0, duration: 0.3))
     }
     
     func jump() {
@@ -115,7 +112,8 @@ class GameScene: SKScene {
             label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
         }
         
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+        for t in touches { self.touchDown(atPoint: t.location(in: self))
+            print("Tapped \(t.location(in: self))")}
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {

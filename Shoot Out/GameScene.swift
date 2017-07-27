@@ -19,6 +19,7 @@ class GameScene: SKScene {
     
     private var leftRightMovementOfPercentOfScreenWidth: CGFloat = 0.15
     private var jumpImpulseToPercentOfScreenHeight: CGFloat = 0.1
+    private var leftRightImpulseToPercentOfScreenHeight: CGFloat = 0.1
     
     // MARK: Did Move to View
     override func didMove(to view: SKView) {
@@ -70,12 +71,12 @@ class GameScene: SKScene {
     // MARK: Character Movement
     func moveLeft() {
         print("moveLeft")
-        self.mainCharacter.run(SKAction.moveBy(x: self.frame.size.width * -leftRightMovementOfPercentOfScreenWidth, y: 0, duration: 0.3))
+        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * -0.3 * leftRightImpulseToPercentOfScreenHeight,dy: 0))
     }
     
     func moveRight() {
         print("moveRight")
-        self.mainCharacter.run(SKAction.moveBy(x: self.frame.size.width * leftRightMovementOfPercentOfScreenWidth, y: 0, duration: 0.3))
+        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * 0.3 * leftRightImpulseToPercentOfScreenHeight,dy: 0))
     }
     
     func jump() {

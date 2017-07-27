@@ -81,7 +81,6 @@ class GameScene: SKScene {
     
     func jump() {
         print("jump")
-        self.mainCharacter.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: self.frame.size.height * jumpImpulseToPercentOfScreenHeight))
     }
     

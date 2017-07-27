@@ -18,6 +18,7 @@ class GameScene: SKScene {
     private var theGround = SKNode()
     
     private var leftRightMovementOfPercentOfScreenWidth: CGFloat = 0.15
+    private var jumpImpulseToPercentOfScreenHeight: CGFloat = 0.1
     
     // MARK: Did Move to View
     override func didMove(to view: SKView) {
@@ -70,6 +71,8 @@ class GameScene: SKScene {
     
     func jump() {
         print("jump")
+        self.mainCharacter.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: self.frame.size.height * jumpImpulseToPercentOfScreenHeight))
     }
     
     func shoot() {

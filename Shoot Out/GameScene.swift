@@ -29,6 +29,8 @@ class GameScene: SKScene {
     // MARK: Load Main Character
     func loadMainCharacter (withImage image: String) {
         self.mainCharacter = SKSpriteNode(texture: SKTexture(imageNamed: image))
+        self.mainCharacter.anchorPoint = CGPoint.zero
+        self.mainCharacter.position = CGPoint(x: self.frame.size.width * 0.25, y: self.frame.size.height * 0.3)
         self.mainCharacter.size.width = self.frame.size.width * 0.05
         self.mainCharacter.size.height = self.mainCharacter.size.width * 8 / 5
         

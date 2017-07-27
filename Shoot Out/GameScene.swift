@@ -32,7 +32,7 @@ class GameScene: SKScene {
     }
     
     func loadGround() {
-        self.theGround.position = CGPoint(x: 0, y: self.frame.size.height * 0.25 - 1)
+        self.theGround.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height * 0.25 - 1)
         
         self.theGround.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.size.width, height: 1))
         self.theGround.physicsBody?.isDynamic = false

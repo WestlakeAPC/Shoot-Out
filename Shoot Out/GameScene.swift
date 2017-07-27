@@ -15,24 +15,41 @@ class GameScene: SKScene {
     private var spinnyNode : SKShapeNode?
     
     private var mainCharacter = SKSpriteNode()
+    private var theGround = SKNode()
     
+    // MARK: Did Move to View
     override func didMove(to view: SKView) {
         // Pass reference of self
         let vc = GameViewController()
         vc.setGameScene(scene: self)
         
-        // Load character
+        // Load elements
+        loadGround()
         loadMainCharacter(withImage: "tempCharac.png")
         
+    }
+    
+    func loadGround() {
+        self.theGround.position = CGPoint(x: 0, y: self.frame.size.height * 0.25 - 1)
+        
+        self.theGround.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.size.width, height: 1))
+        self.theGround.physicsBody?.isDynamic = false
+        
+        self.addChild(theGround)
     }
     
     // MARK: Load Main Character
     func loadMainCharacter (withImage image: String) {
         self.mainCharacter = SKSpriteNode(texture: SKTexture(imageNamed: image))
+        
         self.mainCharacter.anchorPoint = CGPoint.zero
-        self.mainCharacter.position = CGPoint(x: self.frame.size.width * 0.25, y: self.frame.size.height * 0.3)
+        self.mainCharacter.position = CGPoint(x: self.frame.size.width * 0.3, y: self.frame.size.height * 0.5)
+        
         self.mainCharacter.size.width = self.frame.size.width * 0.05
         self.mainCharacter.size.height = self.mainCharacter.size.width * 8 / 5
+        
+        self.mainCharacter.physicsBody = SKPhysicsBody(rectangleOf: self.mainCharacter.size)
+        self.mainCharacter.physicsBody?.isDynamic = true
         
         self.addChild(mainCharacter)
     }

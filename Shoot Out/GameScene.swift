@@ -27,11 +27,20 @@ class GameScene: SKScene {
         vc.setGameScene(scene: self)
         
         // Load elements
+        //loadBarrier()
         loadGround()
         loadMainCharacter(withImage: "tempCharac.png")
         
     }
     
+    // MARK: Load Barrier
+    func loadBarrier() {
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: 0,y: 0, width: self.frame.size.width,height: self.frame.size.height * 1.2))
+        self.physicsBody?.isDynamic = true
+        self.physicsWorld.gravity = CGVector(dx: 0,dy: 0)
+    }
+    
+    // MARK: Load the Ground
     func loadGround() {
         self.theGround.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height * 0.25 - 1)
         

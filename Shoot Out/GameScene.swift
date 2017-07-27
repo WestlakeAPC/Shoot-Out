@@ -17,6 +17,8 @@ class GameScene: SKScene {
     private var mainCharacter = SKSpriteNode()
     private var theGround = SKNode()
     
+    private var leftRightMovementOfPercentOfScreenWidth = 0.15
+    
     // MARK: Did Move to View
     override func didMove(to view: SKView) {
         // Pass reference of self
@@ -58,12 +60,12 @@ class GameScene: SKScene {
     // MARK: Character Movement
     func moveLeft() {
         print("moveLeft")
-        self.mainCharacter.run(SKAction.moveBy(x: -100, y: 0, duration: 0.3))
+        self.mainCharacter.run(SKAction.moveBy(x: self.frame.size.width * -leftRightMovementOfPercentOfScreenWidth, y: 0, duration: 0.3))
     }
     
     func moveRight() {
         print("moveRight")
-        self.mainCharacter.run(SKAction.moveBy(x: 100, y: 0, duration: 0.3))
+        self.mainCharacter.run(SKAction.moveBy(x: self.frame.size.width * leftRightMovementOfPercentOfScreenWidth, y: 0, duration: 0.3))
     }
     
     func jump() {

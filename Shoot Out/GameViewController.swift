@@ -27,6 +27,7 @@ class GameViewController: UIViewController {
         loadSKS()
     }
 
+    // MARK: Set Game Scene Reference
     func setGameScene(scene: GameScene) {
         GameViewController.gameScene = scene
     }
@@ -38,8 +39,8 @@ class GameViewController: UIViewController {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
                 // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
                 scene.size = self.view.bounds.size
+                scene.scaleMode = .aspectFill
                 // Present the scene
                 view.presentScene(scene)
             }
@@ -67,6 +68,7 @@ class GameViewController: UIViewController {
         shootButton.addGestureRecognizer(shootButtonLPG)
     }
     
+    // TODO: Replace method calls eventually
     func moveLeft() {
         GameViewController.gameScene.moveLeft()
     }

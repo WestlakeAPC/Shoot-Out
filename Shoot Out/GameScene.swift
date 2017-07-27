@@ -14,17 +14,14 @@ class GameScene: SKScene {
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
-    private var screenHeight : CGFloat? = UIScreen.main.bounds.height
-    private var screenWidth : CGFloat? = UIScreen.main.bounds.width
-    
     private var mainCharacter = SKSpriteNode()
     
     override func didMove(to view: SKView) {
+        // Pass reference of self
         let vc = GameViewController()
         vc.setGameScene(scene: self)
         
-        print("Recieved Screen Size. \nHeight: \(screenHeight!) Width: \(screenWidth!)")
-        
+        // Load character
         loadMainCharacter(withImage: "tempCharac.png")
         
     }

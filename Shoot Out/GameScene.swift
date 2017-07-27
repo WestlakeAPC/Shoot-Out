@@ -17,7 +17,7 @@ class GameScene: SKScene {
     private var mainCharacter = SKSpriteNode()
     private var theGround = SKNode()
     
-    private var leftRightMovementOfPercentOfScreenWidth = 0.15
+    private var leftRightMovementOfPercentOfScreenWidth: CGFloat = 0.15
     
     // MARK: Did Move to View
     override func didMove(to view: SKView) {

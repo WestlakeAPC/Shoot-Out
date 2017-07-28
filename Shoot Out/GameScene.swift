@@ -38,7 +38,7 @@ class GameScene: SKScene {
     
     // MARK: Load Barrier
     func loadBarrier() {
-        self.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: 0,y: self.frame.size.height * 0.25, width: self.frame.size.width,height: self.frame.size.height * 1.2))
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: 0,y: self.frame.size.height * 0.25, width: self.frame.size.width, height: self.frame.size.height))
         self.physicsBody?.isDynamic = false
         //self.physicsWorld.gravity = CGVector(dx: 0,dy: 0)
     }
@@ -75,8 +75,10 @@ class GameScene: SKScene {
     }
     
     func jump() {
-        print("jump")
-        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: self.frame.size.height * jumpImpulseToPercentOfScreenHeight))
+        if self.mainCharacter.position.y < self.frame.size.height * 0.5 {
+            print("jump")
+            self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: self.frame.size.height * jumpImpulseToPercentOfScreenHeight))
+        }
     }
     
     func shoot() {

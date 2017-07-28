@@ -117,6 +117,7 @@ class GameScene: SKScene {
 class SKBulletsNode: SKSpriteNode {
     
     var gameScene: GameScene?
+    var hasRemoved = false
     
     func setTextureSizeAndScene(withTexture texture: SKTexture, inScene scene: GameScene) {
         self.texture = texture
@@ -124,6 +125,7 @@ class SKBulletsNode: SKSpriteNode {
     }
     
     func shoot(from character: SKSpriteNode, to direction: String) {
+        
         self.anchorPoint = CGPoint.zero
         self.size.width = character.size.width / 10
         self.size.height = self.size.width
@@ -133,9 +135,21 @@ class SKBulletsNode: SKSpriteNode {
         scene?.addChild(self)
         
         if direction == "left" {
-            self.run(SKAction.moveTo(x: -(gameScene?.frame.size.width)!, duration: 2))
+            self.run(SKAction.moveTo(x: -(gameScene?.frame.size.width)!, duration: 2), completion: {
+                if !self.hasRemoved {
+                    self.remove()
+                    self.hasRemoved = true
+                }
+            })
+            
         } else if direction == "right" {
-            self.run(SKAction.moveTo(x: (gameScene?.frame.size.width)!, duration: 2))
+            self.run(SKAction.moveTo(x: (gameScene?.frame.size.width)!, duration: 2), completion: {
+                if !self.hasRemoved {
+                    self.remove()
+                    self.hasRemoved = true
+                }
+            })
+            
         } else {
             print("Invalid Direction")
         }
@@ -147,8 +161,13 @@ class SKBulletsNode: SKSpriteNode {
     }
     
     func remove() {
-        self.removeFromParent()
-        _ = gameScene?.bulletArray.remove(at: (gameScene?.bulletArray.index(where: { $0 == self }))!)
+        if !self.hasRemoved {
+            self.removeFromParent()
+            _ = gameScene?.bulletArray.remove(at: (gameScene?.bulletArray.index(where: { $0 == self }))!)
+            self.hasRemoved = true
+            
+        }
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

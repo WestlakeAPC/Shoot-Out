@@ -17,6 +17,9 @@ class GameScene: SKScene {
     private var mainCharacter = SKSpriteNode()
     private var theGround = SKNode()
     
+    private var jimFacingRightTexture = SKTexture(imageNamed: "jimCharacR.png")
+    private var jimFacingLeftTexture = SKTexture(imageNamed: "jimCharacL.png")
+    
     private var leftRightMovementOfPercentOfScreenWidth: CGFloat = 0.15
     private var jumpImpulseToPercentOfScreenHeight: CGFloat = 0.1
     private var leftRightImpulseToPercentOfScreenHeight: CGFloat = 0.1
@@ -29,7 +32,7 @@ class GameScene: SKScene {
         
         // Load elements
         loadBarrier()
-        loadMainCharacter(withImage: "tempCharac.png")
+        loadMainCharacter(withTexture: jimFacingRightTexture)
         
     }
     
@@ -41,8 +44,8 @@ class GameScene: SKScene {
     }
     
     // MARK: Load Main Character
-    func loadMainCharacter (withImage image: String) {
-        self.mainCharacter = SKSpriteNode(texture: SKTexture(imageNamed: image))
+    func loadMainCharacter (withTexture texture: SKTexture) {
+        self.mainCharacter = SKSpriteNode(texture: texture)
         
         self.mainCharacter.anchorPoint = CGPoint.zero
         self.mainCharacter.position = CGPoint(x: self.frame.size.width * 0.3, y: self.frame.size.height * 0.5)
@@ -62,11 +65,13 @@ class GameScene: SKScene {
     func moveLeft() {
         print("moveLeft")
         self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * -0.3 * leftRightImpulseToPercentOfScreenHeight,dy: 0))
+        self.mainCharacter.texture = jimFacingLeftTexture
     }
     
     func moveRight() {
         print("moveRight")
         self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * 0.3 * leftRightImpulseToPercentOfScreenHeight,dy: 0))
+        self.mainCharacter.texture = jimFacingRightTexture
     }
     
     func jump() {

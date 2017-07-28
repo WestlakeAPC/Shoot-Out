@@ -61,7 +61,8 @@ class GameScene: SKScene {
         self.mainCharacter.size.width = self.frame.size.width * 0.05
         self.mainCharacter.size.height = self.mainCharacter.size.width * 8 / 5
         
-        self.mainCharacter.physicsBody = SKPhysicsBody(rectangleOf: self.mainCharacter.size)
+        self.mainCharacter.physicsBody = SKPhysicsBody(rectangleOf: self.mainCharacter.size, center: CGPoint(x: self.mainCharacter.size.width * 0.5, y: self.mainCharacter.size.height * 0.5))
+        
         self.mainCharacter.physicsBody?.isDynamic = true
         
         self.addChild(mainCharacter)

@@ -138,7 +138,6 @@ class SKBulletsNode: SKSpriteNode {
             self.run(SKAction.moveTo(x: -(gameScene?.frame.size.width)!, duration: 2), completion: {
                 if !self.hasRemoved {
                     self.remove()
-                    self.hasRemoved = true
                 }
             })
             
@@ -146,7 +145,6 @@ class SKBulletsNode: SKSpriteNode {
             self.run(SKAction.moveTo(x: (gameScene?.frame.size.width)!, duration: 2), completion: {
                 if !self.hasRemoved {
                     self.remove()
-                    self.hasRemoved = true
                 }
             })
             
@@ -165,7 +163,6 @@ class SKBulletsNode: SKSpriteNode {
             self.removeFromParent()
             _ = gameScene?.bulletArray.remove(at: (gameScene?.bulletArray.index(where: { $0 == self }))!)
             self.hasRemoved = true
-            
         }
         
     }

@@ -87,7 +87,7 @@ class GameScene: SKScene {
     }
     
     func shoot() {
-        var bullet = SKBulletsNode(texture: bulletTexture)
+        let bullet = SKBulletsNode(texture: bulletTexture)
         
         if self.mainCharacter.texture == jimFacingLeftTexture {
             bullet.shoot(from: self.mainCharacter, to: "left", inScene: self)

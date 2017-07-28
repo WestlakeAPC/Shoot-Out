@@ -87,7 +87,13 @@ class GameScene: SKScene {
     }
     
     func shoot() {
-        var bullet = SKBulletsNode(withTexture: bulletTexture, inScene: self)
+        var bullet = SKBulletsNode(texture: bulletTexture)
+        
+        if self.mainCharacter.texture == jimFacingLeftTexture {
+            bullet.shoot(from: self.mainCharacter, to: "left", inScene: self)
+        } else if self.mainCharacter.texture == jimFacingRightTexture {
+            bullet.shoot(from: self.mainCharacter, to: "right", inScene: self)
+        }
         bulletArray.append(bullet)
     }
     
@@ -118,20 +124,18 @@ class SKBulletsNode: SKSpriteNode {
     var gameScene: GameScene?
     var hasRemoved = false
     
-    init(withTexture texture: SKTexture, inScene scene: GameScene) {
-        self.texture = texture
+    // Shoot
+    func shoot(from character: SKSpriteNode, to direction: String, inScene scene: GameScene) {
+        
         self.gameScene = scene
-    }
-    
-    func shoot(from character: SKSpriteNode, to direction: String) {
         
         self.anchorPoint = CGPoint.zero
         self.size.width = character.size.width / 10
         self.size.height = self.size.width
-        self.position = CGPoint(x: character.size.width / 2 , y: character.size.height * 0.75)
+        self.position = CGPoint(x: character.position.x + (character.size.width / 2) , y: character.position.y + (character.size.height * 0.65))
         self.zPosition = 1
         
-        scene?.addChild(self)
+        scene.addChild(self)
         
         if direction == "left" {
             self.run(SKAction.moveTo(x: -(gameScene?.frame.size.width)!, duration: 2), completion: {
@@ -153,10 +157,12 @@ class SKBulletsNode: SKSpriteNode {
         
     }
     
+    // Check intersection
     func doesIntersectWith(element object: SKSpriteNode) -> Bool {
         return self.intersects(object)
     }
     
+    // Remove from GameScene and bulletArray
     func remove() {
         if !self.hasRemoved {
             self.removeFromParent()
@@ -164,10 +170,6 @@ class SKBulletsNode: SKSpriteNode {
             self.hasRemoved = true
         }
         
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
 }

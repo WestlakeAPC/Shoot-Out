@@ -21,6 +21,7 @@ class GameScene: SKScene {
     // Textures
     private var jimFacingRightTexture = SKTexture(imageNamed: "jimCharacR.png")
     private var jimFacingLeftTexture = SKTexture(imageNamed: "jimCharacL.png")
+    private var bulletTexture = SKTexture(imageNamed: "bullet.png")
     
     // Movement proportion
     private var leftRightMovementOfPercentOfScreenWidth: CGFloat = 0.15
@@ -70,26 +71,24 @@ class GameScene: SKScene {
     
     // MARK: Character Movement
     func moveLeft() {
-        print("moveLeft")
         self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * -0.3 * leftRightImpulseToPercentOfScreenHeight,dy: 0))
         self.mainCharacter.texture = jimFacingLeftTexture
     }
     
     func moveRight() {
-        print("moveRight")
         self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * 0.3 * leftRightImpulseToPercentOfScreenHeight,dy: 0))
         self.mainCharacter.texture = jimFacingRightTexture
     }
     
     func jump() {
         if self.mainCharacter.position.y < self.frame.size.height * 0.5 {
-            print("jump")
             self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: self.frame.size.height * jumpImpulseToPercentOfScreenHeight))
         }
     }
     
     func shoot() {
-        print("shoot")
+        var bullet = SKBulletsNode(withTexture: bulletTexture, inScene: self)
+        bulletArray.append(bullet)
     }
     
     // MARK: Debugging
@@ -119,7 +118,7 @@ class SKBulletsNode: SKSpriteNode {
     var gameScene: GameScene?
     var hasRemoved = false
     
-    func setTextureSizeAndScene(withTexture texture: SKTexture, inScene scene: GameScene) {
+    init(withTexture texture: SKTexture, inScene scene: GameScene) {
         self.texture = texture
         self.gameScene = scene
     }

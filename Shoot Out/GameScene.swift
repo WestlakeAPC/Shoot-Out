@@ -117,19 +117,36 @@ class SKBulletsNode: SKSpriteNode {
     
     var gameScene: GameScene?
     
-    func setTextureAndSize(withTexture texture: SKTexture) {
+    func setTextureSizeAndScene(withTexture texture: SKTexture, inScene scene: GameScene) {
         self.texture = texture
+        self.gameScene = scene
     }
     
-    func shoot(from character: SKSpriteNode) {
+    func shoot(from character: SKSpriteNode, to direction: String) {
         self.anchorPoint = CGPoint.zero
         self.size.width = character.size.width / 10
         self.size.height = self.size.width
+        self.position = CGPoint(x: character.size.width / 2 , y: character.size.height * 0.75)
+        
+        scene?.addChild(self)
+        
+        if direction == "left" {
+            self.run(SKAction.moveTo(x: -(gameScene?.frame.size.width)!, duration: 2))
+        } else if direction == "right" {
+            self.run(SKAction.moveTo(x: (gameScene?.frame.size.width)!, duration: 2))
+        } else {
+            print("Invalid Direction")
+        }
+        
+    }
+    
+    func doesIntersectWith(element object: SKSpriteNode) -> Bool {
+        return self.intersects(object)
     }
     
     func remove() {
         self.removeFromParent()
-        gameScene?.bulletArray.remove(at: (gameScene?.bulletArray.index(where: { $0 == self }))!)
+        _ = gameScene?.bulletArray.remove(at: (gameScene?.bulletArray.index(where: { $0 == self }))!)
     }
     
     required init?(coder aDecoder: NSCoder) {

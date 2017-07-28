@@ -55,6 +55,7 @@ class GameScene: SKScene {
         
         self.mainCharacter.anchorPoint = CGPoint.zero
         self.mainCharacter.position = CGPoint(x: self.frame.size.width * 0.3, y: self.frame.size.height * 0.5)
+        self.mainCharacter.zPosition = 3
         
         self.mainCharacter.size.width = self.frame.size.width * 0.05
         self.mainCharacter.size.height = self.mainCharacter.size.width * 8 / 5
@@ -127,6 +128,7 @@ class SKBulletsNode: SKSpriteNode {
         self.size.width = character.size.width / 10
         self.size.height = self.size.width
         self.position = CGPoint(x: character.size.width / 2 , y: character.size.height * 0.75)
+        self.zPosition = 1
         
         scene?.addChild(self)
         

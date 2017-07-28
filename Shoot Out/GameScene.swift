@@ -138,14 +138,14 @@ class SKBulletsNode: SKSpriteNode {
         scene.addChild(self)
         
         if direction == "left" {
-            self.run(SKAction.moveTo(x: -(gameScene?.frame.size.width)!, duration: 2), completion: {
+            self.run(SKAction.moveTo(x: -(self.position.x + (gameScene?.frame.size.width)!), duration: 2), completion: {
                 if !self.hasRemoved {
                     self.remove()
                 }
             })
             
         } else if direction == "right" {
-            self.run(SKAction.moveTo(x: (gameScene?.frame.size.width)!, duration: 2), completion: {
+            self.run(SKAction.moveTo(x: (self.position.x + (gameScene?.frame.size.width)!), duration: 2), completion: {
                 if !self.hasRemoved {
                     self.remove()
                 }

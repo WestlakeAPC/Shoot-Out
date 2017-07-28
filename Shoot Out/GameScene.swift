@@ -14,15 +14,21 @@ class GameScene: SKScene {
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
+    // Spritekit nodes
     private var mainCharacter = SKSpriteNode()
     private var theGround = SKNode()
     
+    // Textures
     private var jimFacingRightTexture = SKTexture(imageNamed: "jimCharacR.png")
     private var jimFacingLeftTexture = SKTexture(imageNamed: "jimCharacL.png")
     
+    // Movement proportion
     private var leftRightMovementOfPercentOfScreenWidth: CGFloat = 0.15
     private var jumpImpulseToPercentOfScreenHeight: CGFloat = 0.1
     private var leftRightImpulseToPercentOfScreenHeight: CGFloat = 0.1
+    
+    // Bullet array
+    var bulletArray = [SKBulletsNode?](repeating: nil, count: 0)
     
     // MARK: Did Move to View
     override func didMove(to view: SKView) {
@@ -44,7 +50,7 @@ class GameScene: SKScene {
     }
     
     // MARK: Load Main Character
-    func loadMainCharacter (withTexture texture: SKTexture) {
+    func loadMainCharacter(withTexture texture: SKTexture) {
         self.mainCharacter = SKSpriteNode(texture: texture)
         
         self.mainCharacter.anchorPoint = CGPoint.zero
@@ -85,11 +91,8 @@ class GameScene: SKScene {
         print("shoot")
     }
     
-    
-    
     // MARK: Debugging
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
         for t in touches {
             print("Tapped \(t.location(in: self))")}
     }
@@ -107,4 +110,30 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
     }
+}
+
+// MARK: Bullet Clasee
+class SKBulletsNode: SKSpriteNode {
+    
+    var gameScene: GameScene?
+    
+    func setTextureAndSize(withTexture texture: SKTexture) {
+        self.texture = texture
+    }
+    
+    func shoot(from character: SKSpriteNode) {
+        self.anchorPoint = CGPoint.zero
+        self.size.width = character.size.width / 10
+        self.size.height = self.size.width
+    }
+    
+    func remove() {
+        self.removeFromParent()
+        gameScene?.bulletArray.remove(at: (gameScene?.bulletArray.index(where: { $0 == self }))!)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }

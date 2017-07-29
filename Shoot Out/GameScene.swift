@@ -63,6 +63,7 @@ class GameScene: SKScene {
         
         self.mainCharacter.physicsBody = SKPhysicsBody(rectangleOf: self.mainCharacter.size, center: CGPoint(x: self.mainCharacter.size.width * 0.5, y: self.mainCharacter.size.height * 0.5))
         
+        self.mainCharacter.physicsBody?.allowsRotation = false
         self.mainCharacter.physicsBody?.isDynamic = true
         
         self.addChild(mainCharacter)

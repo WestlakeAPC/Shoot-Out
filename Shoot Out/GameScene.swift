@@ -35,6 +35,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         // Load elements
         loadBarrier()
+        loadBackground()
         loadMainCharacter(withTexture: jimFacingRightTexture)
         
     }
@@ -46,6 +47,20 @@ class GameScene: SKScene {
                 textureMatrix[enemy-1][stage] = SKTexture(imageNamed: "spacesprite\(enemy)-\(stage).png")
             }
         }
+    }
+    
+    // MARK: Load Background
+    func loadBackground() {
+        var backGroundImage: SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "background.png"))
+        
+        backGroundImage.anchorPoint = CGPoint.zero
+        backGroundImage.position = CGPoint(x: 0, y: 0)
+        backGroundImage.zPosition = 0
+        backGroundImage.size.width = self.frame.size.width
+        backGroundImage.size.height = backGroundImage.size.width * 3/4
+        
+        
+        self.addChild(backGroundImage)
     }
     
     // MARK: Load Barrier

@@ -90,15 +90,15 @@ class GameScene: SKScene {
     // MARK: Shoot Function
     func shoot() {
         let bullet = SKBulletsNode(texture: bulletTexture)
+        playerBulletArray.append(bullet)
         
         if self.mainCharacter.texture == jimFacingLeftTexture {
             bullet.shoot(from:
-                self.mainCharacter, to: "left", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, addToArray: self.playerBulletArray as! [SKBulletsNode], inScene: self)
+                self.mainCharacter, to: "left", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, addToArray: playerBulletArray, inScene: self)
             
         } else if self.mainCharacter.texture == jimFacingRightTexture {
-            bullet.shoot(from: self.mainCharacter, to: "right", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, addToArray: self.playerBulletArray as! [SKBulletsNode], inScene: self)
+            bullet.shoot(from: self.mainCharacter, to: "right", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, addToArray: playerBulletArray, inScene: self)
         }
-        playerBulletArray.append(bullet)
     }
     
     // MARK: Debugging
@@ -126,16 +126,14 @@ class GameScene: SKScene {
 class SKBulletsNode: SKSpriteNode {
     
     var gameScene: GameScene?
-    var locatedInArray: [SKBulletsNode]?
+    var locatedInArray: [SKBulletsNode?] = []
     var hasRemoved = false
     
     // Shoot
-    func shoot(from character: SKSpriteNode, to direction: String, fromPercentOfWidth xPercent: CGFloat, fromPercentOfHeight yPercent: CGFloat, addToArray array: [SKBulletsNode], inScene scene: GameScene) {
+    func shoot(from character: SKSpriteNode, to direction: String, fromPercentOfWidth xPercent: CGFloat, fromPercentOfHeight yPercent: CGFloat, addToArray array: [SKBulletsNode?], inScene scene: GameScene) {
         
         self.gameScene = scene
         self.locatedInArray = array
-        
-        print("Located: \(array)")
         
         self.anchorPoint = CGPoint.zero
         self.size.width = character.size.width / 10
@@ -143,7 +141,10 @@ class SKBulletsNode: SKSpriteNode {
         self.position = CGPoint(x: character.position.x + (character.size.width * xPercent) , y: character.position.y + (character.size.height * yPercent))
         self.zPosition = 1
         
+        //self.locatedInArray.append(self)
         scene.addChild(self)
+        
+        print("Located: \n\n\(self.locatedInArray) \n\n\n\(gameScene?.playerBulletArray)!)")
         
         if direction == "left" {
             self.run(SKAction.moveTo(x: (self.position.x - (gameScene?.frame.size.width)!), duration: 1.5), completion: {

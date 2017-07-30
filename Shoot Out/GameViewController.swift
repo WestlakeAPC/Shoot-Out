@@ -13,7 +13,7 @@ import GameplayKit
 class GameViewController: UIViewController {
 
     var scene = SKScene()
-    static var gameScene: GameScene = GameScene()
+    var gameScene: GameScene = GameScene()
     
     @IBOutlet var leftButton: UIButton!
     @IBOutlet var rightButton: UIButton!
@@ -25,11 +25,6 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         longPressGesture()
         loadSKS()
-    }
-
-    // MARK: Set Game Scene Reference
-    func setGameScene(scene: GameScene) {
-        GameViewController.gameScene = scene
     }
     
     // MARK: Load Spritekit Scene
@@ -51,6 +46,8 @@ class GameViewController: UIViewController {
             view.showsNodeCount = true
             view.showsPhysics = true
         }
+        var convertGameScene : GameScene? { return (view as? SKView)?.scene as? GameScene}
+        self.gameScene = convertGameScene!
     }
     
     // TODO: Continue method call as long as button is held
@@ -71,19 +68,19 @@ class GameViewController: UIViewController {
     
     // TODO: Replace method calls eventually
     func moveLeft() {
-        GameViewController.gameScene.moveLeft()
+        self.gameScene.moveLeft()
     }
     
     func moveRight() {
-        GameViewController.gameScene.moveRight()
+        self.gameScene.moveRight()
     }
     
     func jump() {
-        GameViewController.gameScene.jump()
+        self.gameScene.jump()
     }
     
     func shoot() {
-        GameViewController.gameScene.shoot()
+        self.gameScene.shoot()
     }
 
     override var shouldAutorotate: Bool {

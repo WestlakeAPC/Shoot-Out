@@ -33,10 +33,6 @@ class GameScene: SKScene {
     
     // MARK: Did Move to View
     override func didMove(to view: SKView) {
-        // Pass reference of self
-        let vc = GameViewController()
-        vc.setGameScene(scene: self)
-        
         // Load elements
         loadBarrier()
         loadMainCharacter(withTexture: jimFacingRightTexture)

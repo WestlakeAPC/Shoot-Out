@@ -91,9 +91,9 @@ class GameScene: SKScene {
         let bullet = SKBulletsNode(texture: bulletTexture)
         
         if self.mainCharacter.texture == jimFacingLeftTexture {
-            bullet.shoot(from: self.mainCharacter, to: "left", inScene: self)
+            bullet.shoot(from: self.mainCharacter, to: "left", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, inScene: self)
         } else if self.mainCharacter.texture == jimFacingRightTexture {
-            bullet.shoot(from: self.mainCharacter, to: "right", inScene: self)
+            bullet.shoot(from: self.mainCharacter, to: "right", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, inScene: self)
         }
         bulletArray.append(bullet)
     }
@@ -126,14 +126,14 @@ class SKBulletsNode: SKSpriteNode {
     var hasRemoved = false
     
     // Shoot
-    func shoot(from character: SKSpriteNode, to direction: String, inScene scene: GameScene) {
+    func shoot(from character: SKSpriteNode, to direction: String, fromPercentOfWidth xPercent: CGFloat, fromPercentOfHeight yPercent: CGFloat, inScene scene: GameScene) {
         
         self.gameScene = scene
         
         self.anchorPoint = CGPoint.zero
         self.size.width = character.size.width / 10
         self.size.height = self.size.width
-        self.position = CGPoint(x: character.position.x + (character.size.width / 2) , y: character.position.y + (character.size.height * 0.65))
+        self.position = CGPoint(x: character.position.x + (character.size.width * xPercent) , y: character.position.y + (character.size.height * yPercent))
         self.zPosition = 1
         
         scene.addChild(self)

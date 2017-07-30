@@ -28,9 +28,10 @@ class GameScene: SKScene {
     private var jumpImpulseToPercentOfScreenHeight: CGFloat = 0.1
     private var leftRightImpulseToPercentOfScreenHeight: CGFloat = 0.1
     
-    // Bullet array
+    // Arrays
     var playerBulletArray: NSMutableArray = []
     var textureMatrix = [[SKTexture?]](repeating: [SKTexture?](repeating: nil, count: 4), count: 3)
+    
     // MARK: Did Move to View
     override func didMove(to view: SKView) {
         // Load elements
@@ -51,7 +52,7 @@ class GameScene: SKScene {
     
     // MARK: Load Background
     func loadBackground() {
-        var backGroundImage: SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "background.png"))
+        let backGroundImage: SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "background.png"))
         
         backGroundImage.anchorPoint = CGPoint.zero
         backGroundImage.position = CGPoint(x: 0, y: 0)
@@ -198,4 +199,55 @@ class SKBulletsNode: SKSpriteNode {
 }
 
 
-
+// MARK: SKSpriteNode extension to support deterioration.
+class SKEnemyNode: SKSpriteNode {
+    
+    // MARK: Deterioration stages
+    enum Deterioration {
+        case perfectShape
+        case goodShape
+        case badShape
+        case finishHim
+    }
+    
+    // MARK: Internal enemy state
+    var deteriorationStage: Deterioration = .perfectShape
+    let deteriorationRate: CGFloat = 0.994
+    let birthTime: Date = Date()
+    var health: CGFloat = 4.0
+    var textureArray: [SKTexture?]?
+    
+    // MARK: Sibling information
+    var gameScene: GameScene?
+    
+    // MARK: Spawn
+    func spawn(){
+        
+    }
+    
+    // MARK: Make enemy deteriorate.
+    func deteriorate() {
+        // If health will pass 3.0, 2.0, or 1.0
+        if (Int(health) > Int(health*deteriorationRate)) {
+            switch (deteriorationStage) {
+            case .perfectShape:
+                deteriorationStage = .goodShape
+                self.texture = textureArray?[1]
+            case .goodShape:
+                deteriorationStage = .badShape
+                self.texture = textureArray?[2]
+            case .badShape:
+                deteriorationStage = .finishHim
+                self.texture = textureArray?[3]
+            case .finishHim:
+                self.isHidden = false
+                _ = gameScene?.enemyArray.remove(at: (gameScene?.enemyArray.index(where: { $0 == self }))!)
+                gameScene?.spawnEnemies()
+                gameScene?.kills += 1
+                self.removeFromParent()
+            }
+        }
+        
+        health *= deteriorationRate
+    }
+}

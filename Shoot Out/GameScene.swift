@@ -43,7 +43,6 @@ class GameScene: SKScene {
     func loadBarrier() {
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: 0,y: self.frame.size.height * 0.25, width: self.frame.size.width, height: self.frame.size.height))
         self.physicsBody?.isDynamic = false
-        //self.physicsWorld.gravity = CGVector(dx: 0,dy: 0)
     }
     
     // MARK: Load Main Character
@@ -86,7 +85,6 @@ class GameScene: SKScene {
     // MARK: Shoot Function
     func shoot() {
         let bullet = SKBulletsNode(texture: bulletTexture)
-        playerBulletArray.adding(bullet)
         
         if self.mainCharacter.texture == jimFacingLeftTexture {
             bullet.shoot(from:
@@ -130,6 +128,7 @@ class SKBulletsNode: SKSpriteNode {
         
         self.gameScene = scene
         self.locatedInArray = array
+        self.locatedInArray.adding(self)
         
         self.anchorPoint = CGPoint.zero
         self.size.width = character.size.width / 10
@@ -137,7 +136,6 @@ class SKBulletsNode: SKSpriteNode {
         self.position = CGPoint(x: character.position.x + (character.size.width * xPercent) , y: character.position.y + (character.size.height * yPercent))
         self.zPosition = 1
         
-        //self.locatedInArray.append(self)
         scene.addChild(self)
         
         if direction == "left" {

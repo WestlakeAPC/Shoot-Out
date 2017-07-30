@@ -30,13 +30,22 @@ class GameScene: SKScene {
     
     // Bullet array
     var playerBulletArray: NSMutableArray = []
-    
+    var textureMatrix = [[SKTexture?]](repeating: [SKTexture?](repeating: nil, count: 4), count: 3)
     // MARK: Did Move to View
     override func didMove(to view: SKView) {
         // Load elements
         loadBarrier()
         loadMainCharacter(withTexture: jimFacingRightTexture)
         
+    }
+    
+    // MARK: Load Texture Matrix
+    func loadTextureArray() {
+        for enemy in 1...3 {
+            for stage in 0...3 {
+                textureMatrix[enemy-1][stage] = SKTexture(imageNamed: "spacesprite\(enemy)-\(stage).png")
+            }
+        }
     }
     
     // MARK: Load Barrier
@@ -171,5 +180,7 @@ class SKBulletsNode: SKSpriteNode {
         }
         
     }
-    
 }
+
+
+

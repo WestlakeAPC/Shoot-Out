@@ -29,7 +29,7 @@ class GameScene: SKScene {
     private var leftRightImpulseToPercentOfScreenHeight: CGFloat = 0.1
     
     // Bullet array
-    var bulletArray = [SKBulletsNode?](repeating: nil, count: 0)
+    var playerBulletArray = [SKBulletsNode?](repeating: nil, count: 0)
     
     // MARK: Did Move to View
     override func didMove(to view: SKView) {
@@ -87,15 +87,18 @@ class GameScene: SKScene {
         }
     }
     
+    // MARK: Shoot Function
     func shoot() {
         let bullet = SKBulletsNode(texture: bulletTexture)
         
         if self.mainCharacter.texture == jimFacingLeftTexture {
-            bullet.shoot(from: self.mainCharacter, to: "left", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, inScene: self)
+            bullet.shoot(from:
+                self.mainCharacter, to: "left", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, addToArray: self.playerBulletArray as! [SKBulletsNode], inScene: self)
+            
         } else if self.mainCharacter.texture == jimFacingRightTexture {
-            bullet.shoot(from: self.mainCharacter, to: "right", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, inScene: self)
+            bullet.shoot(from: self.mainCharacter, to: "right", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, addToArray: self.playerBulletArray as! [SKBulletsNode], inScene: self)
         }
-        bulletArray.append(bullet)
+        playerBulletArray.append(bullet)
     }
     
     // MARK: Debugging
@@ -126,7 +129,7 @@ class SKBulletsNode: SKSpriteNode {
     var hasRemoved = false
     
     // Shoot
-    func shoot(from character: SKSpriteNode, to direction: String, fromPercentOfWidth xPercent: CGFloat, fromPercentOfHeight yPercent: CGFloat, inScene scene: GameScene) {
+    func shoot(from character: SKSpriteNode, to direction: String, fromPercentOfWidth xPercent: CGFloat, fromPercentOfHeight yPercent: CGFloat, addToArray array: [SKBulletsNode], inScene scene: GameScene) {
         
         self.gameScene = scene
         
@@ -167,7 +170,7 @@ class SKBulletsNode: SKSpriteNode {
     func remove() {
         if !self.hasRemoved {
             self.removeFromParent()
-            _ = gameScene?.bulletArray.remove(at: (gameScene?.bulletArray.index(where: { $0 == self }))!)
+            _ = gameScene?.playerBulletArray.remove(at: (gameScene?.playerBulletArray.index(where: { $0 == self }))!)
             self.hasRemoved = true
         }
         

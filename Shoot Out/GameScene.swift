@@ -126,12 +126,16 @@ class GameScene: SKScene {
 class SKBulletsNode: SKSpriteNode {
     
     var gameScene: GameScene?
+    var locatedInArray: [SKBulletsNode]?
     var hasRemoved = false
     
     // Shoot
     func shoot(from character: SKSpriteNode, to direction: String, fromPercentOfWidth xPercent: CGFloat, fromPercentOfHeight yPercent: CGFloat, addToArray array: [SKBulletsNode], inScene scene: GameScene) {
         
         self.gameScene = scene
+        self.locatedInArray = array
+        
+        print("Located: \(array)")
         
         self.anchorPoint = CGPoint.zero
         self.size.width = character.size.width / 10

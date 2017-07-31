@@ -256,7 +256,7 @@ class SKAlienNode: SKSpriteNode {
         
         self.anchorPoint = CGPoint.zero
         
-        self.position = CGPoint(x: CGFloat(arc4random_uniform(UInt32(gameScene.size.width) - UInt32(self.size.width))), y: gameScene.frame.height - self.size.height)
+        self.position = CGPoint(x: CGFloat(arc4random_uniform(UInt32(gameScene.size.width) - UInt32(self.size.width))), y: gameScene.frame.height * 1.25 - self.size.height)
         self.zPosition = 3
         
         self.physicsBody = SKPhysicsBody(rectangleOf: self.size, center: CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.5))
@@ -283,8 +283,8 @@ class SKAlienNode: SKSpriteNode {
                 case .finishHim:
                     self.isHidden = false
                     _ = self.parentArray.remove(self)
-                    self.spawn(withTextureSeries: fullTextureArray, addToArray: self.parentArray, widthToScreenWidthOf: 0.1, inScene: gameScene!)
                     self.removeFromParent()
+                    gameScene?.spawnAlien()
         }
     }
 }

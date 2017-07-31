@@ -40,9 +40,12 @@ class GameScene: SKScene {
         loadBarrier()
         loadBackground()
         loadMainCharacter(withTexture: jimFacingRightTexture)
-        
-        let alien = SKAlienNode()
-        alien.spawn(withTextureSeries: textureMatrix, addToArray: alienArray, widthToScreenWidthOf: 0.1, inScene: self)
+        spawnAlien()
+    }
+    
+    // MARK: Update the Game
+    override func update(_ currentTime: TimeInterval) {
+        // Called before each frame is rendered
     }
     
     // MARK: Load Texture Matrix
@@ -52,6 +55,12 @@ class GameScene: SKScene {
                 textureMatrix[enemy-1][stage] = SKTexture(imageNamed: "spacesprite\(enemy)-\(stage).png")
             }
         }
+    }
+    
+    // MARK: Load Barrier
+    func loadBarrier() {
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: 0,y: self.frame.size.height * 0.25, width: self.frame.size.width, height: self.frame.size.height))
+        self.physicsBody?.isDynamic = false
     }
     
     // MARK: Load Background
@@ -66,12 +75,6 @@ class GameScene: SKScene {
         
         
         self.addChild(backGroundImage)
-    }
-    
-    // MARK: Load Barrier
-    func loadBarrier() {
-        self.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: 0,y: self.frame.size.height * 0.25, width: self.frame.size.width, height: self.frame.size.height))
-        self.physicsBody?.isDynamic = false
     }
     
     // MARK: Load Main Character
@@ -91,6 +94,13 @@ class GameScene: SKScene {
         self.mainCharacter.physicsBody?.isDynamic = true
         
         self.addChild(mainCharacter)
+    }
+    
+    
+    // MARK: Alien Spawning
+    func spawnAlien() {
+        let alien = SKAlienNode()
+        alien.spawn(withTextureSeries: textureMatrix, addToArray: alienArray, widthToScreenWidthOf: 0.1, inScene: self)
     }
     
     
@@ -134,20 +144,9 @@ class GameScene: SKScene {
             print("Tapped \(t.location(in: self))")}
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-    }
-    
-    
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-    }
 }
+
+
 
 
 

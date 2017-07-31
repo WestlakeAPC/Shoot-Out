@@ -210,7 +210,7 @@ class SKBulletsNode: SKSpriteNode {
 
 
 // MARK: SKSpriteNode extension to support deterioration.
-class : SKSpriteNode {
+class SKAlienNode: SKSpriteNode {
     
     // MARK: Deterioration stages
     enum Deterioration {

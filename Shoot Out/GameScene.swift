@@ -30,6 +30,7 @@ class GameScene: SKScene {
     
     // Arrays
     var playerBulletArray: NSMutableArray = []
+    var alienArray: NSMutableArray = []
     var textureMatrix = [[SKTexture?]](repeating: [SKTexture?](repeating: nil, count: 4), count: 3)
     
     // MARK: Did Move to View
@@ -90,6 +91,8 @@ class GameScene: SKScene {
     }
     
     
+    
+    
     // MARK: Character Movement
     func moveLeft() {
         self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * -0.3 * leftRightImpulseToPercentOfScreenHeight,dy: 0))
@@ -107,6 +110,7 @@ class GameScene: SKScene {
         }
     }
     
+    
     // MARK: Shoot Function
     func shoot() {
         let bullet = SKBulletsNode(texture: bulletTexture)
@@ -119,6 +123,7 @@ class GameScene: SKScene {
             bullet.shoot(from: self.mainCharacter, to: "right", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, addToArray: playerBulletArray, inScene: self)
         }
     }
+    
     
     // MARK: Debugging
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -141,19 +146,22 @@ class GameScene: SKScene {
     }
 }
 
+
+
+
 // MARK: Bullet Clasee
 class SKBulletsNode: SKSpriteNode {
     
     var gameScene: GameScene?
-    var locatedInArray: NSMutableArray = []
+    var parentArray: NSMutableArray = []
     var hasRemoved = false
     
     // Shoot
     func shoot(from character: SKSpriteNode, to direction: String, fromPercentOfWidth xPercent: CGFloat, fromPercentOfHeight yPercent: CGFloat, addToArray array: NSMutableArray, inScene scene: GameScene) {
         
         self.gameScene = scene
-        self.locatedInArray = array
-        self.locatedInArray.adding(self)
+        self.parentArray = array
+        self.parentArray.adding(self)
         
         self.anchorPoint = CGPoint.zero
         self.size.width = character.size.width / 10
@@ -191,7 +199,7 @@ class SKBulletsNode: SKSpriteNode {
     func remove() {
         if !self.hasRemoved {
             self.removeFromParent()
-            self.locatedInArray.remove(self)
+            self.parentArray.remove(self)
             self.hasRemoved = true
         }
         
@@ -199,8 +207,10 @@ class SKBulletsNode: SKSpriteNode {
 }
 
 
+
+
 // MARK: SKSpriteNode extension to support deterioration.
-class SKEnemyNode: SKSpriteNode {
+class : SKSpriteNode {
     
     // MARK: Deterioration stages
     enum Deterioration {
@@ -212,23 +222,22 @@ class SKEnemyNode: SKSpriteNode {
     
     // MARK: Internal enemy state
     var deteriorationStage: Deterioration = .perfectShape
-    let deteriorationRate: CGFloat = 0.994
-    let birthTime: Date = Date()
-    var health: CGFloat = 4.0
-    var textureArray: [SKTexture?]?
-    
-    // MARK: Sibling information
     var gameScene: GameScene?
+    var textureArray: [SKTexture?]?
+    var parentArray: NSMutableArray = []
     
     // MARK: Spawn
-    func spawn(){
+    func spawn(withTextureSeries textures: [SKTexture], addToArray inArray: NSMutableArray, inScene gameScene: GameScene){
+        
+        self.textureArray = textures
+        self.parentArray = inArray
+        self.gameScene = gameScene
         
     }
     
     // MARK: Make enemy deteriorate.
     func deteriorate() {
         // If health will pass 3.0, 2.0, or 1.0
-        if (Int(health) > Int(health*deteriorationRate)) {
             switch (deteriorationStage) {
             case .perfectShape:
                 deteriorationStage = .goodShape
@@ -241,13 +250,9 @@ class SKEnemyNode: SKSpriteNode {
                 self.texture = textureArray?[3]
             case .finishHim:
                 self.isHidden = false
-                _ = gameScene?.enemyArray.remove(at: (gameScene?.enemyArray.index(where: { $0 == self }))!)
-                gameScene?.spawnEnemies()
-                gameScene?.kills += 1
+                _ = self.parentArray.remove(self)
+                self.spawn(withTextureSeries: textureArray! as! [SKTexture], addToArray: self.parentArray, inScene: gameScene!)
                 self.removeFromParent()
-            }
         }
-        
-        health *= deteriorationRate
     }
 }

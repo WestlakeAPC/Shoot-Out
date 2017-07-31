@@ -260,6 +260,7 @@ class SKAlienNode: SKSpriteNode {
         self.zPosition = 3
         
         self.physicsBody = SKPhysicsBody(rectangleOf: self.size, center: CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.5))
+        self.physicsBody?.allowsRotation = false
         self.physicsBody?.isDynamic = true
         
         gameScene.addChild(self)

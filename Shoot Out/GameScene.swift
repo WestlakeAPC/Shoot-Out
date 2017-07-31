@@ -36,10 +36,13 @@ class GameScene: SKScene {
     // MARK: Did Move to View
     override func didMove(to view: SKView) {
         // Load elements
+        loadTextureArray()
         loadBarrier()
         loadBackground()
         loadMainCharacter(withTexture: jimFacingRightTexture)
         
+        let alien = SKAlienNode()
+        alien.spawn(withTextureSeries: textureMatrix, addToArray: alienArray, widthToScreenWidthOf: 0.1, inScene: self)
     }
     
     // MARK: Load Texture Matrix
@@ -223,15 +226,31 @@ class SKAlienNode: SKSpriteNode {
     // MARK: Internal enemy state
     var deteriorationStage: Deterioration = .perfectShape
     var gameScene: GameScene?
-    var textureArray: [SKTexture?]?
+    var textureArray: [SKTexture] = []
     var parentArray: NSMutableArray = []
     
     // MARK: Spawn
-    func spawn(withTextureSeries textures: [SKTexture], addToArray inArray: NSMutableArray, inScene gameScene: GameScene){
+    func spawn(withTextureSeries textures: [[SKTexture?]], addToArray inArray: NSMutableArray, widthToScreenWidthOf xProp: CGFloat, inScene gameScene: GameScene){
         
-        self.textureArray = textures
+        self.textureArray = textures[Int(arc4random_uniform(3))] as! [SKTexture]
+        self.texture = textureArray[0]
         self.parentArray = inArray
         self.gameScene = gameScene
+        
+        self.size.width = gameScene.frame.size.width * xProp
+        self.size.height = self.size.width * 2 / 3
+        
+        self.anchorPoint = CGPoint.zero
+        
+        self.position = CGPoint(x: CGFloat(arc4random_uniform(UInt32(gameScene.size.width) - UInt32(self.size.width))), y: gameScene.frame.height - self.size.height)
+        self.zPosition = 3
+        
+        self.physicsBody = SKPhysicsBody(rectangleOf: self.size, center: CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.5))
+        self.physicsBody?.isDynamic = true
+        
+        gameScene.addChild(self)
+        parentArray.add(self)
+        print("Spawned Your Mom")
         
     }
     
@@ -239,20 +258,20 @@ class SKAlienNode: SKSpriteNode {
     func deteriorate() {
         // If health will pass 3.0, 2.0, or 1.0
             switch (deteriorationStage) {
-            case .perfectShape:
-                deteriorationStage = .goodShape
-                self.texture = textureArray?[1]
-            case .goodShape:
-                deteriorationStage = .badShape
-                self.texture = textureArray?[2]
-            case .badShape:
-                deteriorationStage = .finishHim
-                self.texture = textureArray?[3]
-            case .finishHim:
-                self.isHidden = false
-                _ = self.parentArray.remove(self)
-                self.spawn(withTextureSeries: textureArray! as! [SKTexture], addToArray: self.parentArray, inScene: gameScene!)
-                self.removeFromParent()
+                case .perfectShape:
+                    deteriorationStage = .goodShape
+                    self.texture = textureArray[1]
+                case .goodShape:
+                    deteriorationStage = .badShape
+                    self.texture = textureArray[2]
+                case .badShape:
+                    deteriorationStage = .finishHim
+                    self.texture = textureArray[3]
+                case .finishHim:
+                    self.isHidden = false
+                    _ = self.parentArray.remove(self)
+                    //self.spawn(withTextureSeries: textureArray as! [SKTexture], addToArray: self.parentArray, inScene: gameScene!)
+                    self.removeFromParent()
         }
     }
 }

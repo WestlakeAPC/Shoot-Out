@@ -46,6 +46,7 @@ class GameScene: SKScene {
     // MARK: Update the Game
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        trackBulletToAlienCollision()
     }
     
     // MARK: Load Texture Matrix
@@ -103,7 +104,17 @@ class GameScene: SKScene {
         alien.spawn(withTextureSeries: textureMatrix, addToArray: alienArray, widthToScreenWidthOf: 0.1, inScene: self)
     }
     
-    
+    // MARK: Watching for Bullet to Alien Collision
+    func trackBulletToAlienCollision() {
+        for b in (playerBulletArray as NSArray as! [SKBulletsNode]) {
+            for a in (alienArray as NSArray as! [SKAlienNode]) {
+                if b.intersects(a) {
+                    b.remove()
+                    a.deteriorate()
+                }
+            }
+        }
+    }
     
     
     // MARK: Character Movement
@@ -172,6 +183,7 @@ class SKBulletsNode: SKSpriteNode {
         self.zPosition = 1
         
         scene.addChild(self)
+        parentArray.add(self)
         
         if direction == "left" {
             self.run(SKAction.moveTo(x: (self.position.x - (gameScene?.frame.size.width)!), duration: 1.5), completion: {
@@ -225,11 +237,14 @@ class SKAlienNode: SKSpriteNode {
     // MARK: Internal enemy state
     var deteriorationStage: Deterioration = .perfectShape
     var gameScene: GameScene?
+    var fullTextureArray: [[SKTexture?]] = []
     var textureArray: [SKTexture] = []
     var parentArray: NSMutableArray = []
     
     // MARK: Spawn
     func spawn(withTextureSeries textures: [[SKTexture?]], addToArray inArray: NSMutableArray, widthToScreenWidthOf xProp: CGFloat, inScene gameScene: GameScene){
+        
+        self.fullTextureArray = textures
         
         self.textureArray = textures[Int(arc4random_uniform(3))] as! [SKTexture]
         self.texture = textureArray[0]
@@ -249,7 +264,6 @@ class SKAlienNode: SKSpriteNode {
         
         gameScene.addChild(self)
         parentArray.add(self)
-        print("Spawned Your Mom")
         
     }
     
@@ -269,7 +283,7 @@ class SKAlienNode: SKSpriteNode {
                 case .finishHim:
                     self.isHidden = false
                     _ = self.parentArray.remove(self)
-                    //self.spawn(withTextureSeries: textureArray as! [SKTexture], addToArray: self.parentArray, inScene: gameScene!)
+                    self.spawn(withTextureSeries: fullTextureArray, addToArray: self.parentArray, widthToScreenWidthOf: 0.1, inScene: gameScene!)
                     self.removeFromParent()
         }
     }

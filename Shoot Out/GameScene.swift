@@ -320,7 +320,7 @@ class SKAlienNode: SKSpriteNode {
                 _ = self.parentArray.remove(self)
                 gameScene?.spawnAlien()
                 if (self.parentArray.count < 5) {
-                        self.gameScene?.spawnAlien()
+                    _ = Timer.scheduledTimer(timeInterval: TimeInterval(3 + arc4random_uniform(UInt32(5))), target: gameScene, selector: #selector(gameScene?.spawnAlien), userInfo: nil, repeats: false)
                 }
 
         }

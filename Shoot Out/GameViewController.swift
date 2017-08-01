@@ -44,7 +44,7 @@ class GameViewController: UIViewController {
             
             view.showsFPS = true
             view.showsNodeCount = true
-            view.showsPhysics = true
+            //view.showsPhysics = true
         }
         var convertGameScene : GameScene? { return (view as? SKView)?.scene as? GameScene}
         self.gameScene = convertGameScene!
@@ -84,7 +84,7 @@ class GameViewController: UIViewController {
     }
 
     override var shouldAutorotate: Bool {
-        return true
+        return false
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

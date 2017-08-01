@@ -223,7 +223,7 @@ class SKBulletsNode: SKSpriteNode {
 
 
 
-// MARK: SKSpriteNode extension to support deterioration.
+// MARK: Alien Class
 class SKAlienNode: SKSpriteNode {
     
     // MARK: Deterioration stages
@@ -265,6 +265,10 @@ class SKAlienNode: SKSpriteNode {
         
         gameScene.addChild(self)
         parentArray.add(self)
+        
+    }
+    
+    func trackCharacter(track character: SKSpriteNode) {
         
     }
     

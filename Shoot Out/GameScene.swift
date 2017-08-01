@@ -247,6 +247,7 @@ class SKAlienNode: SKSpriteNode {
     var fullTextureArray: [[SKTexture?]] = []
     var textureArray: [SKTexture] = []
     var parentArray: NSMutableArray = []
+    var allowMovement: Bool = false
     
     // MARK: Spawn
     func spawn(withTextureSeries textures: [[SKTexture?]], addToArray inArray: NSMutableArray, widthToScreenWidthOf xProp: CGFloat, inScene gameScene: GameScene){
@@ -266,16 +267,22 @@ class SKAlienNode: SKSpriteNode {
         self.position = CGPoint(x: CGFloat(arc4random_uniform(UInt32(gameScene.size.width) - UInt32(self.size.width))), y: gameScene.frame.height * 1.25 - self.size.height)
         self.zPosition = 3
         
-        self.physicsBody = SKPhysicsBody(rectangleOf: self.size, center: CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.5))
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width * 0.7, height: self.size.height * 0.8), center: CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.35))
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.isDynamic = true
         
         gameScene.addChild(self)
         parentArray.add(self)
         
+        self.run(SKAction.wait(forDuration: TimeInterval(1)), completion: {
+            self.allowMovement = true
+        })
+        
     }
     
     func trackCharacter(track character: SKSpriteNode) {
+        if !allowMovement {return}
+        
         // Move right if character is at right of self
         if (self.position.x + self.size.width) < character.position.x {
             self.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * 0.015, dy: 0.001))

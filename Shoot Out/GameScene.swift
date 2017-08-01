@@ -311,11 +311,11 @@ class SKAlienNode: SKSpriteNode {
             
             case .finishHim:
                 self.isHidden = false
+                _ = self.parentArray.remove(self)
                 gameScene?.spawnAlien()
                 if (self.parentArray.count < 5) {
                         self.gameScene?.spawnAlien()
                 }
-                _ = self.parentArray.remove(self)
                 self.removeFromParent()
 
         }

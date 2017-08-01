@@ -35,11 +35,15 @@ class GameScene: SKScene {
     
     // MARK: Did Move to View
     override func didMove(to view: SKView) {
-        // Load elements
+        // Load Texture Array
         loadTextureArray()
+        
+        // Load elements
         loadBarrier()
         loadBackground()
         loadMainCharacter(withTexture: jimFacingRightTexture)
+        
+        // Spawn Alien
         spawnAlien()
     }
     
@@ -47,6 +51,7 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         trackBulletToAlienCollision()
+        moveAliens()
     }
     
     // MARK: Load Texture Matrix
@@ -97,12 +102,12 @@ class GameScene: SKScene {
         self.addChild(mainCharacter)
     }
     
-    
     // MARK: Alien Spawning
     func spawnAlien() {
         let alien = SKAlienNode()
         alien.spawn(withTextureSeries: textureMatrix, addToArray: alienArray, widthToScreenWidthOf: 0.1, inScene: self)
     }
+    
     
     // MARK: Watching for Bullet to Alien Collision
     func trackBulletToAlienCollision() {
@@ -116,6 +121,12 @@ class GameScene: SKScene {
         }
     }
     
+    // MARK: Move Aliens
+    func moveAliens() {
+        for a in (alienArray as NSArray as! [SKAlienNode]) {
+            a.trackCharacter(track: self.mainCharacter)
+        }
+    }
     
     // MARK: Character Movement
     func moveLeft() {
@@ -147,7 +158,7 @@ class GameScene: SKScene {
             bullet.shoot(from: self.mainCharacter, to: "right", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, addToArray: playerBulletArray, inScene: self)
         }
     }
-    
+
     
     // MARK: Debugging
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -156,9 +167,6 @@ class GameScene: SKScene {
     }
     
 }
-
-
-
 
 
 
@@ -222,7 +230,6 @@ class SKBulletsNode: SKSpriteNode {
 
 
 
-
 // MARK: Alien Class
 class SKAlienNode: SKSpriteNode {
     
@@ -269,12 +276,19 @@ class SKAlienNode: SKSpriteNode {
     }
     
     func trackCharacter(track character: SKSpriteNode) {
-        
+        // Move right if character is at right of self
+        if (self.position.x + self.size.width) < character.position.x {
+            self.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * 0.015, dy: 0.001))
+            
+        // Move left if character is at left of self
+        } else if self.position.x > (character.position.x + character.size.width) {
+            self.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * -0.015, dy: 0.001))
+            
+        }
     }
     
     // MARK: Make enemy deteriorate.
     func deteriorate() {
-        // If health will pass 3.0, 2.0, or 1.0
             switch (deteriorationStage) {
                 case .perfectShape:
                     deteriorationStage = .goodShape

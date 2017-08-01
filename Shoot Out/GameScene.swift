@@ -24,9 +24,9 @@ class GameScene: SKScene {
     private var bulletTexture = SKTexture(imageNamed: "bullet.png")
     
     // Movement proportion
+    private var jumpImpulseToPercentOfScreenHeight: CGFloat = 0.08
+    private var leftRightImpulseToPercentOfScreenHeight: CGFloat = 0.028
     private var leftRightMovementOfPercentOfScreenWidth: CGFloat = 0.15
-    private var jumpImpulseToPercentOfScreenHeight: CGFloat = 0.1
-    private var leftRightImpulseToPercentOfScreenHeight: CGFloat = 0.1
     
     // Arrays
     var playerBulletArray: NSMutableArray = []
@@ -130,12 +130,12 @@ class GameScene: SKScene {
     
     // MARK: Character Movement
     func moveLeft() {
-        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * -0.3 * leftRightImpulseToPercentOfScreenHeight,dy: 0))
+        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * -leftRightImpulseToPercentOfScreenHeight,dy: 0))
         self.mainCharacter.texture = jimFacingLeftTexture
     }
     
     func moveRight() {
-        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * 0.3 * leftRightImpulseToPercentOfScreenHeight,dy: 0))
+        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * leftRightImpulseToPercentOfScreenHeight,dy: 0))
         self.mainCharacter.texture = jimFacingRightTexture
     }
     
@@ -296,21 +296,28 @@ class SKAlienNode: SKSpriteNode {
     
     // MARK: Make enemy deteriorate.
     func deteriorate() {
-            switch (deteriorationStage) {
-                case .perfectShape:
-                    deteriorationStage = .goodShape
-                    self.texture = textureArray[1]
-                case .goodShape:
-                    deteriorationStage = .badShape
-                    self.texture = textureArray[2]
-                case .badShape:
-                    deteriorationStage = .finishHim
-                    self.texture = textureArray[3]
-                case .finishHim:
-                    self.isHidden = false
-                    _ = self.parentArray.remove(self)
-                    self.removeFromParent()
-                    gameScene?.spawnAlien()
+        switch (deteriorationStage) {
+            case .perfectShape:
+                deteriorationStage = .goodShape
+                self.texture = textureArray[1]
+            
+            case .goodShape:
+                deteriorationStage = .badShape
+                self.texture = textureArray[2]
+                
+            case .badShape:
+                deteriorationStage = .finishHim
+                self.texture = textureArray[3]
+            
+            case .finishHim:
+                self.isHidden = false
+                gameScene?.spawnAlien()
+                if (self.parentArray.count < 5) {
+                        self.gameScene?.spawnAlien()
+                }
+                _ = self.parentArray.remove(self)
+                self.removeFromParent()
+
         }
     }
 }

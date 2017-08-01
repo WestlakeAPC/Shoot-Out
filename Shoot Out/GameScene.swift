@@ -28,6 +28,10 @@ class GameScene: SKScene {
     private var leftRightImpulseToPercentOfScreenHeight: CGFloat = 0.028
     private var leftRightMovementOfPercentOfScreenWidth: CGFloat = 0.15
     
+    // Score
+    var aliensKilled = 0
+    var score = 0
+    
     // Arrays
     var playerBulletArray: NSMutableArray = []
     var alienArray: NSMutableArray = []
@@ -312,6 +316,7 @@ class SKAlienNode: SKSpriteNode {
             case .finishHim:
                 self.isHidden = false
                 self.removeFromParent()
+                gameScene?.aliensKilled += 1
                 _ = self.parentArray.remove(self)
                 gameScene?.spawnAlien()
                 if (self.parentArray.count < 5) {

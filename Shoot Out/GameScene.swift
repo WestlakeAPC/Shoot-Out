@@ -284,12 +284,12 @@ class SKAlienNode: SKSpriteNode {
         if !allowMovement {return}
         
         // Move right if character is at right of self
-        if (self.position.x + self.size.width) < character.position.x {
-            self.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * 0.015, dy: 0.001))
+        if (self.position.x + self.size.width) < (character.position.x + character.size.width) {
+            self.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * 0.007, dy: 0))
             
         // Move left if character is at left of self
-        } else if self.position.x > (character.position.x + character.size.width) {
-            self.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * -0.015, dy: 0.001))
+        } else if (self.position.x - character.size.width * 0.2) > (character.position.x - character.size.width) {
+            self.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * -0.007, dy: 0))
             
         }
     }

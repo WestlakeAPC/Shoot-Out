@@ -11,13 +11,10 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
-    
     // Spritekit nodes
-    private var mainCharacter = SKSpriteNode()
-    private var theGround = SKNode()
-    private var scoreLabel = SKLabelNode()
+    var mainCharacter = SKSpriteNode()
+    var theGround = SKNode()
+    var scoreLabel = SKLabelNode()
     
     // Textures
     private var jimFacingRightTexture = SKTexture(imageNamed: "jimCharacR.png")
@@ -299,6 +296,7 @@ class SKAlienNode: SKSpriteNode {
         
     }
     
+    // MARK: Track Character
     func trackCharacter(track character: SKSpriteNode) {
         if !allowMovement {return}
         
@@ -313,7 +311,7 @@ class SKAlienNode: SKSpriteNode {
         }
     }
     
-    // MARK: Make enemy deteriorate.
+    // MARK: Make Enemy Deteriorate
     func deteriorate() {
         switch (deteriorationStage) {
             case .perfectShape:
@@ -331,6 +329,8 @@ class SKAlienNode: SKSpriteNode {
             case .finishHim:
                 self.isHidden = false
                 gameScene?.aliensKilled += 1
+                gameScene?.score += 1
+                gameScene?.scoreLabel.text = String(describing: (gameScene?.score)!)
                 
                 _ = self.parentArray.remove(self)
                 self.removeFromParent()

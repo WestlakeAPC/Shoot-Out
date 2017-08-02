@@ -17,6 +17,7 @@ class GameScene: SKScene {
     // Spritekit nodes
     private var mainCharacter = SKSpriteNode()
     private var theGround = SKNode()
+    private var scoreLabel = SKLabelNode()
     
     // Textures
     private var jimFacingRightTexture = SKTexture(imageNamed: "jimCharacR.png")
@@ -46,6 +47,7 @@ class GameScene: SKScene {
         loadBarrier()
         loadBackground()
         loadMainCharacter(withTexture: jimFacingRightTexture)
+        setUpScoreLabel()
         
         // Spawn Alien
         spawnAlien()
@@ -104,6 +106,16 @@ class GameScene: SKScene {
         self.mainCharacter.physicsBody?.isDynamic = true
         
         self.addChild(mainCharacter)
+    }
+    
+    // MARK: Load Score Display
+    func setUpScoreLabel() {
+        scoreLabel.fontName = "Iowan Old"
+        scoreLabel.fontSize = 40
+        scoreLabel.text = "0"
+        scoreLabel.zPosition = 8
+        scoreLabel.position = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height - 60)
+        self.addChild(scoreLabel)
     }
     
     // MARK: Alien Spawning

@@ -345,30 +345,25 @@ class SKAlienNode: SKSpriteNode {
     func spawnStrategically() {
         switch (parentArray.count) {
         case 1:
-            if (gameScene?.aliensKilled)! >= 4 {
-                self.addSpawn()
+            if (gameScene?.aliensKilled)! >= 10 {
+                gameScene?.spawnAlien()
             }
         case 2:
-            if (gameScene?.aliensKilled)! >= 10 {
-                self.addSpawn()
+            if (gameScene?.aliensKilled)! >= 30 {
+                gameScene?.spawnAlien()
             }
         case 3:
-            if (gameScene?.aliensKilled)! >= 15 {
-                self.addSpawn()
+            if (gameScene?.aliensKilled)! >= 45 {
+                gameScene?.spawnAlien()
             }
         case 4:
-            if (gameScene?.aliensKilled)! >= 17 {
-                self.addSpawn()
+            if (gameScene?.aliensKilled)! >= 60 {
+                gameScene?.spawnAlien()
             }
         default:
             return
         }
         
-    }
-    
-    // MARK: Spawn with random time
-    func addSpawn() {
-        _ = Timer.scheduledTimer(timeInterval: TimeInterval(2 + arc4random_uniform(UInt32(3))), target: gameScene ?? GameScene(), selector: #selector(gameScene?.spawnAlien), userInfo: nil, repeats: false)
     }
     
 }

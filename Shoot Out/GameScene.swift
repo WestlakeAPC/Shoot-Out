@@ -256,11 +256,13 @@ class SKAlienNode: SKSpriteNode {
     // MARK: Spawn
     func spawn(withTextureSeries textures: [[SKTexture?]], addToArray inArray: NSMutableArray, widthToScreenWidthOf xProp: CGFloat, inScene gameScene: GameScene){
         
+        self.parentArray = inArray
+        if self.parentArray.count >= 5 {return}
+        
         self.fullTextureArray = textures
         
         self.textureArray = textures[Int(arc4random_uniform(3))] as! [SKTexture]
         self.texture = textureArray[0]
-        self.parentArray = inArray
         self.gameScene = gameScene
         
         self.size.width = gameScene.frame.size.width * xProp
@@ -320,7 +322,7 @@ class SKAlienNode: SKSpriteNode {
                 _ = self.parentArray.remove(self)
                 gameScene?.spawnAlien()
                 if (self.parentArray.count < 5) {
-                    _ = Timer.scheduledTimer(timeInterval: TimeInterval(3 + arc4random_uniform(UInt32(5))), target: gameScene, selector: #selector(gameScene?.spawnAlien), userInfo: nil, repeats: false)
+                    _ = Timer.scheduledTimer(timeInterval: TimeInterval(2 + arc4random_uniform(UInt32(3))), target: gameScene ?? GameScene(), selector: #selector(gameScene?.spawnAlien), userInfo: nil, repeats: false)
                 }
 
         }

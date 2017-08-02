@@ -167,7 +167,8 @@ class GameScene: SKScene {
     // MARK: Debugging
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
-            print("Tapped \(t.location(in: self))")}
+            //print("Tapped \(t.location(in: self))")
+        }
     }
     
 }
@@ -317,14 +318,45 @@ class SKAlienNode: SKSpriteNode {
             
             case .finishHim:
                 self.isHidden = false
-                self.removeFromParent()
                 gameScene?.aliensKilled += 1
+                
                 _ = self.parentArray.remove(self)
+                self.removeFromParent()
+                
                 gameScene?.spawnAlien()
-                if (self.parentArray.count < 5) {
-                    _ = Timer.scheduledTimer(timeInterval: TimeInterval(2 + arc4random_uniform(UInt32(3))), target: gameScene ?? GameScene(), selector: #selector(gameScene?.spawnAlien), userInfo: nil, repeats: false)
-                }
+                self.spawnStrategically()
 
         }
     }
+    
+    // MARK: Spawn more enemies
+    func spawnStrategically() {
+        switch (parentArray.count) {
+        case 1:
+            if (gameScene?.aliensKilled)! >= 4 {
+                self.addSpawn()
+            }
+        case 2:
+            if (gameScene?.aliensKilled)! >= 10 {
+                self.addSpawn()
+            }
+        case 3:
+            if (gameScene?.aliensKilled)! >= 15 {
+                self.addSpawn()
+            }
+        case 4:
+            if (gameScene?.aliensKilled)! >= 17 {
+                self.addSpawn()
+            }
+        default:
+            return
+        }
+        
+    }
+    
+    // MARK: Spawn with random time
+    func addSpawn() {
+        _ = Timer.scheduledTimer(timeInterval: TimeInterval(2 + arc4random_uniform(UInt32(3))), target: gameScene ?? GameScene(), selector: #selector(gameScene?.spawnAlien), userInfo: nil, repeats: false)
+    }
+    
 }

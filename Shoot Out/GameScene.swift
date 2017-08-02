@@ -107,10 +107,10 @@ class GameScene: SKScene {
     
     // MARK: Load Score Display
     func setUpScoreLabel() {
-        scoreLabel.fontName = "Iowan Old"
+        scoreLabel.fontName = "04b_19"
         scoreLabel.fontSize = 40
         scoreLabel.text = "0"
-        scoreLabel.zPosition = 8
+        scoreLabel.zPosition = 1
         scoreLabel.position = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height - 60)
         self.addChild(scoreLabel)
     }

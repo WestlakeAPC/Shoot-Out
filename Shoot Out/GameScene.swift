@@ -55,6 +55,7 @@ class GameScene: SKScene {
         // Called before each frame is rendered
         trackBulletToAlienCollision()
         moveAliens()
+        testDeath()
     }
     
     // MARK: Load Texture Matrix
@@ -140,6 +141,16 @@ class GameScene: SKScene {
             a.trackCharacter(track: self.mainCharacter)
         }
     }
+    
+    // MARK: Test Death
+    func testDeath() {
+        for a in (alienArray as NSArray as! [SKAlienNode]) {
+            if a.intersects(self.mainCharacter) {
+                print("You Died \(Date())")
+            }
+        }
+    }
+    
     
     // MARK: Character Movement
     func moveLeft() {

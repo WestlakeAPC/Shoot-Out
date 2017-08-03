@@ -347,7 +347,7 @@ class SKAlienNode: SKSpriteNode {
     // MARK: Check for Contact
     func didContactPhysicsBody(with element: SKSpriteNode) -> Bool {
         
-        return (((self.position.x + self.size.width * 0.15) < (element.position.x + element.size.width)) && ((self.position.x + self.size.width * 0.85) > element.position.x)) && // Test X
+        return (((self.position.x + self.size.width * 0.12) < (element.position.x + element.size.width)) && ((self.position.x + self.size.width * 0.88) > element.position.x)) && // Test X
             ((self.position.y < (element.position.y + element.size.height * 0.8)) && ((self.position.y + self.size.height) > element.position.y)) // Test Y
     }
     

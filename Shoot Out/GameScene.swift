@@ -161,7 +161,7 @@ class GameScene: SKScene {
     func playerDamageByAlien () -> Bool {
         
         for a in (alienArray as NSArray as! [SKAlienNode]) {
-            if a.didContactPhysicsBody(with: self.mainCharacter) {
+            if a.didDamage(to: self.mainCharacter) {
                 return true
             }
         }
@@ -345,10 +345,23 @@ class SKAlienNode: SKSpriteNode {
     }
     
     // MARK: Check for Contact
-    func didContactPhysicsBody(with element: SKSpriteNode) -> Bool {
+    func didDamage(to element: SKSpriteNode) -> Bool {
+        
+        // If Head is Stepped
+        if (((self.position.x + self.size.width * 0.2) < (element.position.x + element.size.width)) && ((self.position.x + self.size.width * 0.8) > element.position.x)) &&
+            
+            (((self.position.y + self.size.height * 0.8) < (element.position.y + element.size.height)) && ((self.position.y + self.size.height * 0.85) > element.position.y)) {
+            
+            self.deteriorate()
+            gameScene?.jump()
+            return false
+            
+        }
         
         return (((self.position.x + self.size.width * 0.12) < (element.position.x + element.size.width)) && ((self.position.x + self.size.width * 0.88) > element.position.x)) && // Test X
-            ((self.position.y < (element.position.y + element.size.height * 0.8)) && ((self.position.y + self.size.height) > element.position.y)) // Test Y
+            
+            ((self.position.y < (element.position.y + element.size.height)) && ((self.position.y + self.size.height * 0.8) > element.position.y)) // Test Y
+        
     }
     
     // MARK: Make Enemy Deteriorate

@@ -144,20 +144,28 @@ class GameScene: SKScene {
     
     // MARK: Test Death
     func testDeath() {
-        for a in (alienArray as NSArray as! [SKAlienNode]) {
-            if a.intersects(self.mainCharacter) {
-                self.scoreLabel.text = "Dead"
-                print("You Died \(Date())")
-            }
-        }
-        
-        //if playerDamageByAlien() {
-        //    print("You Died \(Date())")
+        //for a in (alienArray as NSArray as! [SKAlienNode]) {
+        //    if a.intersects(self.mainCharacter) {
+        //        self.scoreLabel.text = "Dead"
+        //        print("You Died \(Date())")
+        //    }
         //}
+        
+        if playerDamageByAlien() {
+            print("You Died \(Date())")
+            self.scoreLabel.text = "Dead"
+        }
     }
     
     // MARK: Player to Alien Collision
     func playerDamageByAlien () -> Bool {
+        
+        for a in (alienArray as NSArray as! [SKAlienNode]) {
+            if a.didContactPhysicsBody(with: self.mainCharacter) {
+                return true
+            }
+        }
+        
         return false
     }
     
@@ -336,6 +344,13 @@ class SKAlienNode: SKSpriteNode {
         }
     }
     
+    // MARK: Check for Contact
+    func didContactPhysicsBody(with element: SKSpriteNode) -> Bool {
+        
+        return (((self.position.x + self.size.width * 0.15) < (element.position.x + element.size.width)) && ((self.position.x + self.size.width * 0.85) > element.position.x)) && // Test X
+            ((self.position.y < (element.position.y + element.size.height * 0.8)) && ((self.position.y + self.size.height) > element.position.y)) // Test Y
+    }
+    
     // MARK: Make Enemy Deteriorate
     func deteriorate() {
         switch (deteriorationStage) {
@@ -364,11 +379,6 @@ class SKAlienNode: SKSpriteNode {
                 self.spawnStrategically()
 
         }
-    }
-    
-    func didContactPhysicsBody(with element: SKSpriteNode) -> Bool {
-        return ((self.position.x < (element.position.x + element.size.width)) && ((self.position.x + self.size.width) > element.position.x)) && // Test X
-            ((self.position.y < (element.position.y + element.size.height)) && ((self.position.y + self.size.height) > element.position.y)) // Test Y
     }
     
     // MARK: Spawn more enemies

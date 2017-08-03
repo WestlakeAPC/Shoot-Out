@@ -146,9 +146,19 @@ class GameScene: SKScene {
     func testDeath() {
         for a in (alienArray as NSArray as! [SKAlienNode]) {
             if a.intersects(self.mainCharacter) {
+                self.scoreLabel.text = "Dead"
                 print("You Died \(Date())")
             }
         }
+        
+        //if playerDamageByAlien() {
+        //    print("You Died \(Date())")
+        //}
+    }
+    
+    // MARK: Player to Alien Collision
+    func playerDamageByAlien () -> Bool {
+        return false
     }
     
     
@@ -354,6 +364,11 @@ class SKAlienNode: SKSpriteNode {
                 self.spawnStrategically()
 
         }
+    }
+    
+    func didContactPhysicsBody(with element: SKSpriteNode) -> Bool {
+        return ((self.position.x < (element.position.x + element.size.width)) && ((self.position.x + self.size.width) > element.position.x)) && // Test X
+            ((self.position.y < (element.position.y + element.size.height)) && ((self.position.y + self.size.height) > element.position.y)) // Test Y
     }
     
     // MARK: Spawn more enemies

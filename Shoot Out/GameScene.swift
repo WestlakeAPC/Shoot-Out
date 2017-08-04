@@ -117,14 +117,15 @@ class GameScene: SKScene {
         
         self.overScreen.zPosition = 5
         self.overScreen.fillColor = UIColor.white
+        self.overScreen.strokeColor = UIColor.black
+        self.overScreen.isHidden = true
         self.addChild(overScreen)
         
         let deathLabel = SKLabelNode()
         deathLabel.text = "Tap to Restart"
-        deathLabel.fontSize = 30;
-        deathLabel.setScale(0.33);
+        deathLabel.fontSize = self.frame.size.height / 20
         deathLabel.fontColor = UIColor.black
-        deathLabel.position = CGPoint(x: 0,y: -10)
+        deathLabel.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 3)
         deathLabel.zPosition = 15
         
         self.overScreen.addChild(deathLabel)

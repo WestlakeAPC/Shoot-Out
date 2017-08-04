@@ -118,10 +118,10 @@ class GameScene: SKScene {
         self.overScreen.zPosition = 5
         self.overScreen.fillColor = UIColor.white
         self.overScreen.strokeColor = UIColor.black
-        self.overScreen.isHidden = true
         self.overScreen.setScale(0)
+        
         self.addChild(overScreen)
-        self.overScreen.run(SKAction.fadeOut(withDuration: 0.1))
+        self.overScreen.run(SKAction.fadeOut(withDuration: 0))
         
         let deathLabel = SKLabelNode()
         deathLabel.text = "Tap to Restart"
@@ -222,7 +222,6 @@ class GameScene: SKScene {
 
     // MARK: Player Did Die
     func playerDidDie() {
-        self.overScreen.isHidden = false
         self.overScreen.run(SKAction.scale(to: 1.0, duration: 1.5))
         self.overScreen.run(SKAction.fadeIn(withDuration: 1.5))
     }

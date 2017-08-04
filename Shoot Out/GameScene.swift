@@ -348,7 +348,7 @@ class SKAlienNode: SKSpriteNode {
     func didDamage(to element: SKSpriteNode) -> Bool {
         
         // If Head is Stepped
-        if (((self.position.x + self.size.width * 0.15) < (element.position.x + element.size.width)) && ((self.position.x + self.size.width * 0.85) > element.position.x)) &&
+        if (((self.position.x + self.size.width * 0.18) < (element.position.x + element.size.width)) && ((self.position.x + self.size.width * 0.82) > element.position.x)) &&
             
             (((self.position.y + self.size.height * 0.8) < (element.position.y + element.size.height)) && ((self.position.y + self.size.height * 0.85) > element.position.y)) {
             

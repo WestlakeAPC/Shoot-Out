@@ -119,7 +119,9 @@ class GameScene: SKScene {
         self.overScreen.fillColor = UIColor.white
         self.overScreen.strokeColor = UIColor.black
         self.overScreen.isHidden = true
+        self.overScreen.setScale(0)
         self.addChild(overScreen)
+        self.overScreen.run(SKAction.fadeOut(withDuration: 0.1))
         
         let deathLabel = SKLabelNode()
         deathLabel.text = "Tap to Restart"
@@ -167,16 +169,10 @@ class GameScene: SKScene {
     
     // MARK: Test Death
     func testDeath() {
-        //for a in (alienArray as NSArray as! [SKAlienNode]) {
-        //    if a.intersects(self.mainCharacter) {
-        //        self.scoreLabel.text = "Dead"
-        //        print("You Died \(Date())")
-        //    }
-        //}
-        
         if playerDamageByAlien() {
             print("You Died \(Date())")
             self.scoreLabel.text = "Dead"
+            self.playerDidDie()
         }
     }
     
@@ -224,6 +220,13 @@ class GameScene: SKScene {
         }
     }
 
+    // MARK: Player Did Die
+    func playerDidDie() {
+        self.overScreen.isHidden = false
+        self.overScreen.run(SKAction.scale(to: 1.0, duration: 1.5))
+        self.overScreen.run(SKAction.fadeIn(withDuration: 1.5))
+    }
+    
     
     // MARK: Debugging
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

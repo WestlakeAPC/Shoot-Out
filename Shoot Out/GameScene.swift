@@ -15,6 +15,7 @@ class GameScene: SKScene {
     var mainCharacter = SKSpriteNode()
     var theGround = SKNode()
     var scoreLabel = SKLabelNode()
+    var overScreen = SKShapeNode()
     
     // Textures
     private var jimFacingRightTexture = SKTexture(imageNamed: "jimCharacR.png")
@@ -45,17 +46,10 @@ class GameScene: SKScene {
         loadBackground()
         loadMainCharacter(withTexture: jimFacingRightTexture)
         setUpScoreLabel()
+        setOverScreen()
         
         // Spawn Alien
         spawnAlien()
-    }
-    
-    // MARK: Update the Game
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-        trackBulletToAlienCollision()
-        moveAliens()
-        testDeath()
     }
     
     // MARK: Load Texture Matrix
@@ -116,12 +110,40 @@ class GameScene: SKScene {
         self.addChild(scoreLabel)
     }
     
+    // MARK: Setup Death Screen
+    func setOverScreen() {
+        
+        self.overScreen = SKShapeNode(rect: CGRect(origin: CGPoint(x: self.frame.size.width / 4, y: self.frame.size.height / 4), size: CGSize(width: self.frame.size.width / 2, height: self.frame.height / 2)))
+        
+        self.overScreen.zPosition = 5
+        self.overScreen.fillColor = UIColor.white
+        self.addChild(overScreen)
+        
+        let deathLabel = SKLabelNode()
+        deathLabel.text = "Tap to Restart"
+        deathLabel.fontSize = 30;
+        deathLabel.setScale(0.33);
+        deathLabel.fontColor = UIColor.black
+        deathLabel.position = CGPoint(x: 0,y: -10)
+        deathLabel.zPosition = 15
+        
+        self.overScreen.addChild(deathLabel)
+    }
+    
     // MARK: Alien Spawning
     func spawnAlien() {
         let alien = SKAlienNode()
         alien.spawn(withTextureSeries: textureMatrix, addToArray: alienArray, widthToScreenWidthOf: 0.1, avoidElement: self.mainCharacter, inScene: self)
     }
     
+    
+    // MARK: Update the Game
+    override func update(_ currentTime: TimeInterval) {
+        // Called before each frame is rendered
+        trackBulletToAlienCollision()
+        moveAliens()
+        testDeath()
+    }
     
     // MARK: Watching for Bullet to Alien Collision
     func trackBulletToAlienCollision() {

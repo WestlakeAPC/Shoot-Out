@@ -247,7 +247,7 @@ class GameScene: SKScene {
     // MARK: Reinitialize
     func restartGame() {
         // Reset Variables
-        self.scoreLabel.color = UIColor.white
+        self.scoreLabel.fontColor = UIColor.white
         self.scoreLabel.text = "0"
         
         self.aliensKilled = 0
@@ -255,8 +255,10 @@ class GameScene: SKScene {
         
         self.playerIsDead = false
         
-        // Reset Player Position
+        // Reset Player Properties
         self.mainCharacter.position = CGPoint(x: self.frame.size.width * 0.3, y: self.frame.size.height * 0.5)
+        self.mainCharacter.texture = jimFacingRightTexture
+        
         
         // Remove All Aliens
         for a in (alienArray as NSArray as! [SKAlienNode]) {
@@ -269,7 +271,7 @@ class GameScene: SKScene {
         }
         
         // Hide OverScreen
-        self.overScreen.run(SKAction.fadeOut(withDuration: 0.5))
+        self.overScreen.run(SKAction.fadeOut(withDuration: 0.5), completion: {self.spawnAlien()})
     }
     
     

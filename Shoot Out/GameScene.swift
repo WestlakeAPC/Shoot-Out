@@ -176,6 +176,8 @@ class GameScene: SKScene {
     
     // MARK: Test Death
     func testDeath() {
+        if playerIsDead {return}
+        
         if playerDamageByAlien() {
             print("You Died \(Date())") 
             self.playerDidDie()

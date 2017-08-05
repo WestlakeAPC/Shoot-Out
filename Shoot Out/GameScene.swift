@@ -19,6 +19,7 @@ class GameScene: SKScene {
     var theGround = SKNode()
     var scoreLabel = SKLabelNode()
     var overScreen = SKShapeNode()
+    var deathScore = SKLabelNode()
     
     // Textures
     private var jimFacingRightTexture = SKTexture(imageNamed: "jimCharacR.png")
@@ -138,6 +139,15 @@ class GameScene: SKScene {
         deathLabel.zPosition = 15
         
         self.overScreen.addChild(deathLabel)
+        
+        deathScore.text = "Points"
+        deathScore.fontName = "kenpixel"
+        deathScore.fontSize = self.frame.size.height / 10
+        deathScore.fontColor = UIColor.black
+        deathScore.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
+        deathScore.zPosition = 15
+        
+        self.overScreen.addChild(deathScore)
     }
     
     // MARK: Alien Spawning
@@ -234,11 +244,12 @@ class GameScene: SKScene {
 
     // MARK: Player Did Die
     func playerDidDie() {
-        self.scoreLabel.text = "Dead"
+        self.scoreLabel.text = "Game Over"
         self.scoreLabel.fontColor = UIColor.red
         
         self.playerIsDead = true
         
+        self.deathScore.text = "\(self.score) points"
         self.overScreen.run(SKAction.fadeIn(withDuration: 1))
 
         

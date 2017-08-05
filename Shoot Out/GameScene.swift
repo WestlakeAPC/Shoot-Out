@@ -244,6 +244,8 @@ class GameScene: SKScene {
 
     // MARK: Player Did Die
     func playerDidDie() {
+        self.mainCharacter.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        
         self.scoreLabel.text = "Game Over"
         self.scoreLabel.fontColor = UIColor.red
         

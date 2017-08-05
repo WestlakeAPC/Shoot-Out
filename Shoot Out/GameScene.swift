@@ -110,10 +110,10 @@ class GameScene: SKScene {
     // MARK: Load Score Display
     func setUpScoreLabel() {
         scoreLabel.fontName = "kenpixel"
-        scoreLabel.fontSize = 40
+        scoreLabel.fontSize = self.frame.size.height / 10
         scoreLabel.text = "0"
         scoreLabel.zPosition = 1
-        scoreLabel.position = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height - 60)
+        scoreLabel.position = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height * 0.85)
         self.addChild(scoreLabel)
     }
     

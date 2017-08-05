@@ -124,6 +124,7 @@ class GameScene: SKScene {
         self.overScreen.zPosition = 5
         self.overScreen.fillColor = UIColor.white
         self.overScreen.strokeColor = UIColor.black
+        self.overScreen.name = "overScreen"
         
         self.addChild(overScreen)
         self.overScreen.run(SKAction.fadeOut(withDuration: 0))
@@ -254,10 +255,19 @@ class GameScene: SKScene {
     }
     
     
-    // MARK: Debugging
+    // MARK: When Touches Begin
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
-            //print("Tapped \(t.location(in: self))")
+            print("Tapped \(t.location(in: self))")
+            
+            if !playerIsDead {return}
+                
+            for i in self.nodes(at: t.location(in: self)) {
+                if i.name == "overScreen" {
+                    self.restartGame()
+                }
+            }
+            
         }
     }
     

@@ -250,7 +250,7 @@ class GameScene: SKScene {
         self.playerIsDead = true
         
         self.deathScore.text = "\(self.score) points"
-        self.overScreen.run(SKAction.fadeIn(withDuration: 1))
+        self.overScreen.run(SKAction.fadeIn(withDuration: 0.5))
 
         
     }

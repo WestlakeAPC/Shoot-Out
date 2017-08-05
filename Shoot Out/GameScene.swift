@@ -232,7 +232,6 @@ class GameScene: SKScene {
 
     // MARK: Player Did Die
     func playerDidDie() {
-        
         self.scoreLabel.text = "Dead"
         self.scoreLabel.fontColor = UIColor.red
         
@@ -245,12 +244,29 @@ class GameScene: SKScene {
     
     // MARK: Reinitialize
     func restartGame() {
+        // Reset Variables
         self.scoreLabel.color = UIColor.white
-        
         self.scoreLabel.text = "0"
+        
         self.aliensKilled = 0
         self.score = 0
         
+        self.playerIsDead = false
+        
+        // Reset Player Position
+        self.mainCharacter.position = CGPoint(x: self.frame.size.width * 0.3, y: self.frame.size.height * 0.5)
+        
+        // Remove All Aliens
+        for a in (alienArray as NSArray as! [SKAlienNode]) {
+            a.remove()
+        }
+        
+        // Remove All Bullets
+        for b in (playerBulletArray as NSArray as! [SKBulletsNode]) {
+            b.remove()
+        }
+        
+        // Hide OverScreen
         self.overScreen.run(SKAction.fadeOut(withDuration: 0.5))
     }
     
@@ -447,8 +463,7 @@ class SKAlienNode: SKSpriteNode {
                 gameScene?.score += 1
                 gameScene?.scoreLabel.text = String(describing: (gameScene?.score)!)
                 
-                _ = self.parentArray.remove(self)
-                self.removeFromParent()
+                self.remove()
                 
                 gameScene?.spawnAlien()
                 self.spawnStrategically()
@@ -479,6 +494,12 @@ class SKAlienNode: SKSpriteNode {
             return
         }
         
+    }
+    
+    // MARK: Delete Alien
+    func remove() {
+        self.parentArray.remove(self)
+        self.removeFromParent()
     }
     
 }

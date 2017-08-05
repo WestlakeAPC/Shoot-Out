@@ -108,7 +108,7 @@ class GameScene: SKScene {
     
     // MARK: Load Score Display
     func setUpScoreLabel() {
-        scoreLabel.fontName = "04b_19"
+        scoreLabel.fontName = "kenpixel"
         scoreLabel.fontSize = 40
         scoreLabel.text = "0"
         scoreLabel.zPosition = 1
@@ -130,6 +130,7 @@ class GameScene: SKScene {
         
         let deathLabel = SKLabelNode()
         deathLabel.text = "Tap to Restart"
+        deathLabel.fontName = "kenpixel"
         deathLabel.fontSize = self.frame.size.height / 20
         deathLabel.fontColor = UIColor.black
         deathLabel.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 3)
@@ -175,8 +176,7 @@ class GameScene: SKScene {
     // MARK: Test Death
     func testDeath() {
         if playerDamageByAlien() {
-            print("You Died \(Date())")
-            self.scoreLabel.text = "Dead"
+            print("You Died \(Date())") 
             self.playerDidDie()
         }
     }
@@ -231,11 +231,26 @@ class GameScene: SKScene {
 
     // MARK: Player Did Die
     func playerDidDie() {
+        
+        self.scoreLabel.text = "Dead"
+        self.scoreLabel.fontColor = UIColor.red
+        
         self.playerIsDead = true
         
         self.overScreen.run(SKAction.fadeIn(withDuration: 1))
 
         
+    }
+    
+    // MARK: Reinitialize
+    func restartGame() {
+        self.scoreLabel.color = UIColor.white
+        
+        self.scoreLabel.text = "0"
+        self.aliensKilled = 0
+        self.score = 0
+        
+        self.overScreen.run(SKAction.fadeOut(withDuration: 0.5))
     }
     
     

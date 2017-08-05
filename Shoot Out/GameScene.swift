@@ -11,6 +11,9 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    // View Controller
+    var viewController: UIViewController?
+    
     // Spritekit nodes
     var mainCharacter = SKSpriteNode()
     var theGround = SKNode()
@@ -30,6 +33,9 @@ class GameScene: SKScene {
     // Score
     var aliensKilled = 0
     var score = 0
+    
+    // Death
+    var playerIsDead = false
     
     // Arrays
     var playerBulletArray: NSMutableArray = []
@@ -190,16 +196,19 @@ class GameScene: SKScene {
     
     // MARK: Character Movement
     func moveLeft() {
+        if playerIsDead {return}
         self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * -leftRightImpulseToPercentOfScreenHeight,dy: 0))
         self.mainCharacter.texture = jimFacingLeftTexture
     }
     
     func moveRight() {
+        if playerIsDead {return}
         self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * leftRightImpulseToPercentOfScreenHeight,dy: 0))
         self.mainCharacter.texture = jimFacingRightTexture
     }
     
     func jump() {
+        if playerIsDead {return}
         if self.mainCharacter.position.y < self.frame.size.height * 0.5 {
             self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: self.frame.size.height * jumpImpulseToPercentOfScreenHeight))
         }
@@ -208,6 +217,7 @@ class GameScene: SKScene {
     
     // MARK: Shoot Function
     func shoot() {
+        if playerIsDead {return}
         let bullet = SKBulletsNode(texture: bulletTexture)
         
         if self.mainCharacter.texture == jimFacingLeftTexture {
@@ -221,7 +231,11 @@ class GameScene: SKScene {
 
     // MARK: Player Did Die
     func playerDidDie() {
+        self.playerIsDead = true
+        
         self.overScreen.run(SKAction.fadeIn(withDuration: 1))
+
+        
     }
     
     

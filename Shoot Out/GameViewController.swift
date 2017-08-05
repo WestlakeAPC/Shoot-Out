@@ -13,7 +13,7 @@ import GameplayKit
 class GameViewController: UIViewController {
 
     var scene = SKScene()
-    var gameScene: GameScene = GameScene()
+    var gameScene: GameScene?
     
     @IBOutlet var leftButton: UIButton!
     @IBOutlet var rightButton: UIButton!
@@ -48,6 +48,7 @@ class GameViewController: UIViewController {
         }
         var convertGameScene : GameScene? { return (view as? SKView)?.scene as? GameScene}
         self.gameScene = convertGameScene!
+        self.gameScene?.viewController = self
     }
     
     // TODO: Continue method call as long as button is held
@@ -68,19 +69,19 @@ class GameViewController: UIViewController {
     
     // TODO: Replace method calls eventually
     func moveLeft() {
-        self.gameScene.moveLeft()
+        self.gameScene?.moveLeft()
     }
     
     func moveRight() {
-        self.gameScene.moveRight()
+        self.gameScene?.moveRight()
     }
     
     func jump() {
-        self.gameScene.jump()
+        self.gameScene?.jump()
     }
     
     func shoot() {
-        self.gameScene.shoot()
+        self.gameScene?.shoot()
     }
 
     override var shouldAutorotate: Bool {

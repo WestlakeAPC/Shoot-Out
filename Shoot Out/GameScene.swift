@@ -63,7 +63,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Did Move to View
     override func didMove(to view: SKView) {
-        print(self)
         //Setup Contact Delegate
         self.physicsWorld.contactDelegate = self
         
@@ -73,6 +72,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Load elements
         loadBarrier()
         loadBackground()
+        setUpSound()
         loadMainCharacter(withTexture: jimFacingRightTexture)
         setUpScoreLabel()
         setOverScreen()
@@ -119,8 +119,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.mainCharacter.position = CGPoint(x: self.frame.size.width * 0.3, y: self.frame.size.height * 0.5)
         self.mainCharacter.zPosition = 3
         
-        self.mainCharacter.size.width = self.frame.size.width * 0.05
-        self.mainCharacter.size.height = self.mainCharacter.size.width * 8 / 5
+        self.mainCharacter.size.width = 46.7
+        self.mainCharacter.size.height = self.mainCharacter.size.width * #imageLiteral(resourceName: "jimCharacR").size.height / #imageLiteral(resourceName: "jimCharacR").size.width
         
         self.mainCharacter.physicsBody = SKPhysicsBody(rectangleOf: self.mainCharacter.size, center: CGPoint(x: self.mainCharacter.size.width * 0.5, y: self.mainCharacter.size.height * 0.5))
         
@@ -139,16 +139,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.mainCharacter.addChild(bloodParticle!)
     }
     
-    // MARK: Load Score Display
-    func setUpScoreLabel() {
-        scoreLabel.fontName = "kenpixel"
-        scoreLabel.fontSize = self.frame.size.height / 10
-        scoreLabel.text = "0"
-        scoreLabel.zPosition = 1
-        scoreLabel.position = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height * 0.85)
-        self.addChild(scoreLabel)
-    }
-    
     // MARK: Audio Components
     func setUpSound() {
         let punchSound = URL(fileURLWithPath: Bundle.main.path(forResource: "punch", ofType: "wav")!)
@@ -164,7 +154,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         backgroundMusic?.play()
     }
     
-
+    // MARK: Load Score Display
+    func setUpScoreLabel() {
+        scoreLabel.fontName = "kenpixel"
+        scoreLabel.fontSize = self.frame.size.height / 10
+        scoreLabel.text = "0"
+        scoreLabel.zPosition = 1
+        scoreLabel.position = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height * 0.85)
+        self.addChild(scoreLabel)
+    }
 
     // MARK: Setup Death Screen
     func setOverScreen() {
@@ -212,7 +210,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Dispatch Enemy Cowboys
     func dispatchEnemyCowboys() {
         let enemyCowboy = SKEnemyCowboyNode()
-        enemyCowboy.dispatch(withWidthComparedToScreen: 0.05, withLeftTexture: enemyCowboyLeftTexture, withRightTexture: enemyCowboyRightTexture, toArray: enemyCowboyArray, storyBulletsIn: enemyBulletArray, avoid: self.mainCharacter, inScene: self)
+        enemyCowboy.dispatch(withWidthComparedToScreen: 0.07, withLeftTexture: enemyCowboyLeftTexture, withRightTexture: enemyCowboyRightTexture, toArray: enemyCowboyArray, storyBulletsIn: enemyBulletArray, avoid: self.mainCharacter, inScene: self)
     }
     
     
@@ -278,20 +276,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Character Movement
     func moveLeft() {
         if playerIsDead {return}
-        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * -leftRightImpulseToPercentOfScreenHeight,dy: 0))
+        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: -19, dy: 0))
         self.mainCharacter.texture = jimFacingLeftTexture
     }
     
     func moveRight() {
         if playerIsDead {return}
-        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * leftRightImpulseToPercentOfScreenHeight,dy: 0))
+        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 19, dy: 0))
         self.mainCharacter.texture = jimFacingRightTexture
     }
     
     func jump() {
         if playerIsDead {return}
         if self.mainCharacter.position.y < self.frame.size.height * 0.5 {
-            self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: self.frame.size.height * jumpImpulseToPercentOfScreenHeight))
+            self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: 55))
         }
     }
     
@@ -303,10 +301,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if self.mainCharacter.texture == jimFacingLeftTexture {
             bullet.shoot(from:
-                self.mainCharacter, to: "left", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, addToArray: playerBulletArray, inScene: self)
+                self.mainCharacter, to: "left", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: playerBulletArray, inScene: self)
             
         } else if self.mainCharacter.texture == jimFacingRightTexture {
-            bullet.shoot(from: self.mainCharacter, to: "right", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, addToArray: playerBulletArray, inScene: self)
+            bullet.shoot(from: self.mainCharacter, to: "right", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: playerBulletArray, inScene: self)
         }
     }
     
@@ -388,14 +386,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if contact.bodyA.categoryBitMask == ColliderType.aliens.rawValue && contact.bodyB.categoryBitMask == ColliderType.mainCharacter.rawValue {
             
-            print("Contact Case A")
-            
             alien = contact.bodyA.node as? SKAlienNode
             player = contact.bodyB.node as? SKSpriteNode
             
         } else if contact.bodyA.categoryBitMask == ColliderType.mainCharacter.rawValue && contact.bodyB.categoryBitMask == ColliderType.aliens.rawValue {
-            
-            print("Contact Case B")
             
             player = contact.bodyA.node as? SKSpriteNode
             alien = contact.bodyB.node as? SKAlienNode
@@ -426,7 +420,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    
+    deinit {
+        print("Deallocating SKScene Memory")
+    }
 }
 
 
@@ -446,7 +442,7 @@ class SKBulletsNode: SKSpriteNode {
         self.parentArray.adding(self)
         
         self.anchorPoint = CGPoint.zero
-        self.size.width = character.size.width / 10
+        self.size.width = character.size.width / 12
         self.size.height = self.size.width
         self.position = CGPoint(x: character.position.x + (character.size.width * xPercent) , y: character.position.y + (character.size.height * yPercent))
         self.zPosition = 1
@@ -523,7 +519,7 @@ class SKAlienNode: SKSpriteNode {
         self.texture = textureArray[0]
         self.gameScene = gameScene
         
-        self.size.width = gameScene.frame.size.width * xProp
+        self.size.width = 67
         self.size.height = self.size.width * 2 / 3
         
         self.anchorPoint = CGPoint.zero
@@ -554,11 +550,11 @@ class SKAlienNode: SKSpriteNode {
         
         // Move right if character is at right of self
         if (self.position.x + self.size.width) < (character.position.x + character.size.width) {
-            self.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * 0.007, dy: 0))
+            self.physicsBody?.applyImpulse(CGVector(dx: 0.47, dy: 0))
             
         // Move left if character is at left of self
         } else if (self.position.x - character.size.width * 0.2) > (character.position.x - character.size.width) {
-            self.physicsBody?.applyImpulse(CGVector(dx: self.frame.size.width * -0.007, dy: 0))
+            self.physicsBody?.applyImpulse(CGVector(dx: -0.47, dy: 0))
             
         }
     }
@@ -681,7 +677,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
         
         self.texture = self.rightTexture
         
-        self.size.width = self.gameScene!.frame.size.width * widthScale
+        self.size.width = 46.7
         self.size.height = self.size.width * (self.rightTexture?.size().height)! / (self.rightTexture?.size().width)!
         
         self.anchorPoint = CGPoint.zero
@@ -723,10 +719,10 @@ class SKEnemyCowboyNode: SKSpriteNode {
         let enemyBullet = SKBulletsNode(texture: gameScene?.bulletTexture)
             
         if self.texture == self.leftTexture {
-            enemyBullet.shoot(from: self, to: "left", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, addToArray: bulletsArray, inScene: self.gameScene!)
+            enemyBullet.shoot(from: self, to: "left", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: bulletsArray, inScene: self.gameScene!)
                 
         } else if self.texture == self.rightTexture {
-            enemyBullet.shoot(from: self, to: "right", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, addToArray: bulletsArray, inScene: self.gameScene!)
+            enemyBullet.shoot(from: self, to: "right", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: bulletsArray, inScene: self.gameScene!)
         }
     }
     

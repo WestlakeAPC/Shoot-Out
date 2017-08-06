@@ -34,7 +34,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var jimFacingLeftTexture = SKTexture(imageNamed: "jimCharacL.png")
     private var enemyCowboyRightTexture = SKTexture(imageNamed: "jimCharacR.png")
     private var enemyCowboyLeftTexture = SKTexture(imageNamed: "jimCharacL.png")
-    private var bulletTexture = SKTexture(imageNamed: "bullet.png")
+    var bulletTexture = SKTexture(imageNamed: "bullet.png")
     
     // Movement proportion
     private var jumpImpulseToPercentOfScreenHeight: CGFloat = 0.08
@@ -51,11 +51,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Arrays
     var playerBulletArray: NSMutableArray = []
     var alienArray: NSMutableArray = []
-    var enemyCowboysArray: NSMutableArray = []
+    var enemyCowboyArray: NSMutableArray = []
+    var enemyBulletArray: NSMutableArray = []
     var textureMatrix = [[SKTexture?]](repeating: [SKTexture?](repeating: nil, count: 4), count: 3)
     
     // MARK: Did Move to View
     override func didMove(to view: SKView) {
+        print(self)
         //Setup Contact Delegate
         self.physicsWorld.contactDelegate = self
         
@@ -187,7 +189,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Dispatch Enemy Cowboys
     func dispatchEnemyCowboys() {
         let enemyCowboy = SKEnemyCowboyNode()
-        enemyCowboy.dispatch(withWidthComparedToScreen: 0.05, withLeftTexture: enemyCowboyLeftTexture, withRightTexture: enemyCowboyRightTexture, toArray: enemyCowboysArray, inScene: self)
+        enemyCowboy.dispatch(withWidthComparedToScreen: 0.05, withLeftTexture: enemyCowboyLeftTexture, withRightTexture: enemyCowboyRightTexture, toArray: enemyCowboyArray, storyBulletsIn: enemyBulletArray, inScene: self)
     }
     
     
@@ -221,7 +223,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Make Enemy Cowboys Aim at Player
     func enemyCowboysAim() {
-        for c in (enemyCowboysArray as NSArray as! [SKEnemyCowboyNode]) {
+        for c in (enemyCowboyArray as NSArray as! [SKEnemyCowboyNode]) {
             c.aim(at: self.mainCharacter)
         }
     }
@@ -303,7 +305,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // Remove All Enemy Cowboys
-        for c in (enemyCowboysArray as NSArray as! [SKEnemyCowboyNode]) {
+        for c in (enemyCowboyArray as NSArray as! [SKEnemyCowboyNode]) {
             c.remove()
         }
         
@@ -590,14 +592,19 @@ class SKEnemyCowboyNode: SKSpriteNode {
     
     var gameScene: GameScene?
     var parentArray: NSMutableArray = []
+    var bulletsArray: NSMutableArray = []
     var leftTexture: SKTexture?
     var rightTexture: SKTexture?
     var hasLanded = false
+    var canShoot = true
     
-    func dispatch(withWidthComparedToScreen widthScale: CGFloat, withLeftTexture left: SKTexture, withRightTexture right: SKTexture, toArray parentArray: NSMutableArray, inScene scene: GameScene) {
+    // Dispatch EnemyCowboy
+    func dispatch(withWidthComparedToScreen widthScale: CGFloat, withLeftTexture left: SKTexture, withRightTexture right: SKTexture, toArray parentArray: NSMutableArray, storyBulletsIn bulletsArray: NSMutableArray, inScene scene: GameScene) {
         
         self.gameScene = scene
         self.parentArray = parentArray
+        self.bulletsArray = bulletsArray
+        
         self.leftTexture = left
         self.rightTexture = right
         
@@ -616,11 +623,20 @@ class SKEnemyCowboyNode: SKSpriteNode {
         
         self.run(SKAction.moveTo(y: (self.gameScene?.frame.size.height)! * 0.25, duration: 0.5), completion: {
             self.hasLanded = true
-            print("\((self.gameScene?.frame.size.height)! * 0.25)")
+            self.shootMainCharacter()
+            
+            let waitBeforeShot = SKAction.wait(forDuration: 0.2)
+            let shootAndWait = SKAction.repeat(SKAction.sequence([waitBeforeShot,SKAction.run({self.shootMainCharacter()})]), count: 3)
+            let waitBeforeSeries = SKAction.wait(forDuration: 2)
+            
+            self.run(SKAction.repeatForever(
+                SKAction.sequence([waitBeforeSeries, shootAndWait])
+            ))
         })
         
     }
     
+    // Aim at MainCharacter
     func aim(at Character: SKSpriteNode) {
         if Character.position.x > (self.position.x + self.size.width) {
             self.texture = self.rightTexture
@@ -629,6 +645,19 @@ class SKEnemyCowboyNode: SKSpriteNode {
         }
     }
     
+    // Shoot
+    func shootMainCharacter() {
+        let enemyBullet = SKBulletsNode(texture: gameScene?.bulletTexture)
+            
+        if self.texture == self.leftTexture {
+            enemyBullet.shoot(from: self, to: "left", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, addToArray: bulletsArray, inScene: self.gameScene!)
+                
+        } else if self.texture == self.rightTexture {
+            enemyBullet.shoot(from: self, to: "right", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, addToArray: bulletsArray, inScene: self.gameScene!)
+        }
+    }
+    
+    // Remove EnemyCowboy
     func remove() {
         self.parentArray.remove(self)
         self.removeFromParent()

@@ -32,8 +32,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Textures
     private var jimFacingRightTexture = SKTexture(imageNamed: "jimCharacR.png")
     private var jimFacingLeftTexture = SKTexture(imageNamed: "jimCharacL.png")
-    private var enemyCowboyRightTexture = SKTexture(imageNamed: "jimCharacR.png")
-    private var enemyCowboyLeftTexture = SKTexture(imageNamed: "jimCharacL.png")
+    private var enemyCowboyRightTexture = SKTexture(imageNamed: "jimCharac2R.png")
+    private var enemyCowboyLeftTexture = SKTexture(imageNamed: "jimCharac2L.png")
     var bulletTexture = SKTexture(imageNamed: "bullet.png")
     
     // Movement proportion

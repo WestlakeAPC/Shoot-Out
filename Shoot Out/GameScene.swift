@@ -661,6 +661,8 @@ class SKEnemyCowboyNode: SKSpriteNode {
     
     // Shoot
     func shootMainCharacter() {
+        if !canShoot {return}
+        
         let enemyBullet = SKBulletsNode(texture: gameScene?.bulletTexture)
             
         if self.texture == self.leftTexture {
@@ -673,6 +675,8 @@ class SKEnemyCowboyNode: SKSpriteNode {
     
     // Getting Shot
     func didGetShot() {
+        canShoot = false
+        
         let particle = SKEmitterNode(fileNamed: "Blood")
         particle?.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
         particle?.zPosition = 1

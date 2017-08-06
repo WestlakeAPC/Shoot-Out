@@ -44,7 +44,7 @@ class GameViewController: UIViewController {
             
             view.showsFPS = true
             view.showsNodeCount = true
-            view.showsPhysics = true
+            view.showsPhysics = false
         }
         var convertGameScene : GameScene? { return (view as? SKView)?.scene as? GameScene}
         self.gameScene = convertGameScene!

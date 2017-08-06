@@ -11,6 +11,8 @@
 		51D117B3DF6893AB534E5625 /* Pods_Shoot_Out.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 267E46FB207CACBFC883BF64 /* Pods_Shoot_Out.framework */; };
 		625422DEB163B0A214478C3A /* Pods_Shoot_OutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F429D1C829B5792172ECD4 /* Pods_Shoot_OutTests.framework */; };
 		730D8CD21F351B7F002072EE /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 730D8CD11F351B7E002072EE /* kenpixel.ttf */; };
+		730D8CD61F36B299002072EE /* Blood.sks in Resources */ = {isa = PBXBuildFile; fileRef = 730D8CD51F36B299002072EE /* Blood.sks */; };
+		730D8CD81F36B2D1002072EE /* justAWhiteCube.png in Resources */ = {isa = PBXBuildFile; fileRef = 730D8CD71F36B2D1002072EE /* justAWhiteCube.png */; };
 		73486E211F22FF06004C3333 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73486E201F22FF06004C3333 /* AppDelegate.swift */; };
 		73486E231F22FF06004C3333 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 73486E221F22FF06004C3333 /* GameScene.sks */; };
 		73486E251F22FF06004C3333 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 73486E241F22FF06004C3333 /* Actions.sks */; };
@@ -53,6 +55,8 @@
 		47AD165EB11F34BB5286A3E0 /* Pods-Shoot Out.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot Out.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot Out/Pods-Shoot Out.debug.xcconfig"; sourceTree = "<group>"; };
 		5771846E02BD247E3E348FAD /* Pods-Shoot OutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot OutTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot OutTests/Pods-Shoot OutTests.debug.xcconfig"; sourceTree = "<group>"; };
 		730D8CD11F351B7E002072EE /* kenpixel.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = kenpixel.ttf; sourceTree = "<group>"; };
+		730D8CD51F36B299002072EE /* Blood.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Blood.sks; sourceTree = "<group>"; };
+		730D8CD71F36B2D1002072EE /* justAWhiteCube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = justAWhiteCube.png; sourceTree = "<group>"; };
 		73486E1D1F22FF06004C3333 /* Shoot Out.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shoot Out.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		73486E201F22FF06004C3333 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73486E221F22FF06004C3333 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -128,6 +132,15 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		730D8CD91F36B35D002072EE /* Blood Files */ = {
+			isa = PBXGroup;
+			children = (
+				730D8CD51F36B299002072EE /* Blood.sks */,
+				730D8CD71F36B2D1002072EE /* justAWhiteCube.png */,
+			);
+			name = "Blood Files";
+			sourceTree = "<group>";
+		};
 		73486E141F22FF05004C3333 = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +169,7 @@
 				73486E201F22FF06004C3333 /* AppDelegate.swift */,
 				73486E2A1F22FF06004C3333 /* Main.storyboard */,
 				73486E241F22FF06004C3333 /* Actions.sks */,
+				730D8CD91F36B35D002072EE /* Blood Files */,
 				73486E5B1F230BA4004C3333 /* Single Player */,
 				73829BDD1F230DF4003AEF6F /* Connect */,
 				73486E5A1F230B8D004C3333 /* Multiplayer */,
@@ -343,7 +357,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				730D8CD61F36B299002072EE /* Blood.sks in Resources */,
 				730D8CD21F351B7F002072EE /* kenpixel.ttf in Resources */,
+				730D8CD81F36B2D1002072EE /* justAWhiteCube.png in Resources */,
 				73486E2C1F22FF06004C3333 /* Main.storyboard in Resources */,
 				73486E231F22FF06004C3333 /* GameScene.sks in Resources */,
 				73486E2E1F22FF06004C3333 /* Assets.xcassets in Resources */,

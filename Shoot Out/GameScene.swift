@@ -27,6 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var scoreLabel = SKLabelNode()
     var overScreen = SKShapeNode()
     var deathScore = SKLabelNode()
+    var bloodParticle = SKEmitterNode(fileNamed: "Blood")
     
     // Textures
     private var jimFacingRightTexture = SKTexture(imageNamed: "jimCharacR.png")
@@ -119,6 +120,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.mainCharacter.physicsBody?.collisionBitMask = ColliderType.aliens.rawValue
         
         self.addChild(mainCharacter)
+        
+        self.bloodParticle?.particleBirthRate = 0
+        self.bloodParticle?.position = CGPoint(x: self.mainCharacter.size.width / 2, y: self.mainCharacter.size.height / 2)
+        self.bloodParticle?.zPosition = -1
+        self.mainCharacter.addChild(bloodParticle!)
     }
     
     // MARK: Load Score Display
@@ -196,6 +202,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Move Aliens
     func moveAliens() {
+        if playerIsDead {return}
         for a in (alienArray as NSArray as! [SKAlienNode]) {
             a.trackCharacter(track: self.mainCharacter)
         }
@@ -240,6 +247,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Player Did Die
     func playerDidDie() {
         self.mainCharacter.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        self.bloodParticle?.particleBirthRate = 750
         
         self.scoreLabel.text = "Game Over"
         self.scoreLabel.fontColor = UIColor.red
@@ -249,8 +257,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.deathScore.text = "\(self.score) points"
         if self.score == 1 {self.deathScore.text = "1 point"}
         self.overScreen.run(SKAction.fadeIn(withDuration: 0.5))
-
-        
     }
     
     // MARK: Reinitialize
@@ -263,11 +269,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.score = 0
         
         self.playerIsDead = false
+        self.bloodParticle?.particleBirthRate = 0
         
         // Reset Player Properties
         self.mainCharacter.position = CGPoint(x: self.frame.size.width * 0.3, y: self.frame.size.height * 0.5)
         self.mainCharacter.texture = jimFacingRightTexture
-        
         
         // Remove All Aliens
         for a in (alienArray as NSArray as! [SKAlienNode]) {

@@ -53,6 +53,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Sound
     var punchSoundEffect : AVAudioPlayer?
     var backgroundMusic : AVAudioPlayer?
+    var bulletSoundEffect : AVAudioPlayer?
     
     // Arrays
     var playerBulletArray: NSMutableArray = []
@@ -143,6 +144,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func setUpSound() {
         let punchSound = URL(fileURLWithPath: Bundle.main.path(forResource: "punch", ofType: "wav")!)
         let music = URL(fileURLWithPath: Bundle.main.path(forResource: "Crazy", ofType: "wav")!)
+        
+        bulletSoundEffect = try! AVAudioPlayer.init(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "DesertEagleShot", ofType: "mp3")!))
+        bulletSoundEffect?.prepareToPlay()
+        bulletSoundEffect?.numberOfLoops = 0
+        bulletSoundEffect?.play()
         
         punchSoundEffect = try! AVAudioPlayer.init(contentsOf: punchSound)
         punchSoundEffect?.prepareToPlay()
@@ -439,15 +445,13 @@ class SKBulletsNode: SKSpriteNode {
     // Shoot
     func shoot(from character: SKSpriteNode, to direction: String, fromPercentOfWidth xPercent: CGFloat, fromPercentOfHeight yPercent: CGFloat, addToArray array: NSMutableArray, inScene scene: GameScene) {
         
-        bulletSoundEffect = try! AVAudioPlayer.init(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "DesertEagleShot", ofType: "mp3")!))
-        bulletSoundEffect?.prepareToPlay()
-        bulletSoundEffect?.numberOfLoops = 0
-        bulletSoundEffect?.play()
-
-        
         self.gameScene = scene
         self.parentArray = array
         self.parentArray.adding(self)
+        
+        gameScene?.bulletSoundEffect?.currentTime = 0
+        gameScene?.bulletSoundEffect?.play()
+        
         
         self.anchorPoint = CGPoint.zero
         self.size.width = character.size.width / 12

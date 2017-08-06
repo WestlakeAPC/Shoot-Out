@@ -201,28 +201,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    // MARK: Test Death
-    func testDeath() {
-        if playerIsDead {return}
-        
-        if playerDamageByAlien() {
-            print("You Died \(Date())") 
-            self.playerDidDie()
-        }
-    }
-    
-    // MARK: Player to Alien Collision
-    func playerDamageByAlien () -> Bool {
-        
-        for a in (alienArray as NSArray as! [SKAlienNode]) {
-            if a.didDamage(to: self.mainCharacter) {
-                return true
-            }
-        }
-        
-        return false
-    }
-    
     
     // MARK: Character Movement
     func moveLeft() {
@@ -307,7 +285,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Detect Player to Alien Collision
     func didBegin(_ contact: SKPhysicsContact) {
-        //testDeath()
         var player: SKSpriteNode?
         var alien: SKAlienNode?
         

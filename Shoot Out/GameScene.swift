@@ -200,6 +200,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         trackBulletToAlienCollision()
         enemyCowboysAim()
         trackBulletToEnemyCowboyCollision()
+        trackEnemyBulletToPlayerCollision()
     }
     
     // MARK: Move Aliens
@@ -229,7 +230,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    // MARK: Player Bullet to Cowboy Collision
+    // MARK: Player Bullet to Enemy Cowboy Collision
     func trackBulletToEnemyCowboyCollision() {
         for b in (playerBulletArray as NSArray as! [SKBulletsNode]) {
             for c in (enemyCowboyArray as NSArray as! [SKEnemyCowboyNode]) {
@@ -238,6 +239,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     c.didGetShot()
                     score += 2
                 }
+            }
+        }
+    }
+    
+    // MARK: Track Enemy Bullets to Player Collision
+    func trackEnemyBulletToPlayerCollision() {
+        for b in (enemyBulletArray as NSArray as! [SKBulletsNode]) {
+            if b.intersects(self.mainCharacter) {
+                playerDidDie()
             }
         }
     }
@@ -563,7 +573,7 @@ class SKAlienNode: SKSpriteNode {
     
     // MARK: Spawn more enemies
     func spawnStrategically() {
-        if (gameScene?.aliensKilled)! % 8 == 0 {
+        if (gameScene?.score)! % 8 == 0 {
             gameScene?.dispatchEnemyCowboys()
         }
         
@@ -617,6 +627,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
     var rightTexture: SKTexture?
     var hasLanded = false
     var canShoot = true
+    var shot = false
     
     // Dispatch EnemyCowboy
     func dispatch(withWidthComparedToScreen widthScale: CGFloat, withLeftTexture left: SKTexture, withRightTexture right: SKTexture, toArray parentArray: NSMutableArray, storyBulletsIn bulletsArray: NSMutableArray, inScene scene: GameScene) {
@@ -680,6 +691,9 @@ class SKEnemyCowboyNode: SKSpriteNode {
     
     // Getting Shot
     func didGetShot() {
+        if shot {return}
+        
+        shot = true
         canShoot = false
         
         let particle = SKEmitterNode(fileNamed: "Blood")

@@ -563,6 +563,10 @@ class SKAlienNode: SKSpriteNode {
     
     // MARK: Spawn more enemies
     func spawnStrategically() {
+        if (gameScene?.aliensKilled)! % 8 == 0 {
+            gameScene?.dispatchEnemyCowboys()
+        }
+        
         switch (parentArray.count) {
         case 1:
             if (gameScene?.aliensKilled)! >= 5 {

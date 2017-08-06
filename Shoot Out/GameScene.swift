@@ -196,9 +196,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Update the Game
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        trackBulletToAlienCollision()
         moveAliens()
+        trackBulletToAlienCollision()
         enemyCowboysAim()
+        trackBulletToEnemyCowboyCollision()
     }
     
     // MARK: Move Aliens
@@ -225,6 +226,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func enemyCowboysAim() {
         for c in (enemyCowboyArray as NSArray as! [SKEnemyCowboyNode]) {
             c.aim(at: self.mainCharacter)
+        }
+    }
+    
+    // MARK: Player Bullet to Cowboy Collision
+    func trackBulletToEnemyCowboyCollision() {
+        for b in (playerBulletArray as NSArray as! [SKBulletsNode]) {
+            for c in (enemyCowboyArray as NSArray as! [SKEnemyCowboyNode]) {
+                if b.intersects(c) {
+                    b.remove()
+                    c.didGetShot()
+                }
+            }
         }
     }
     
@@ -319,6 +332,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Detect Player to Alien Collision
     func didBegin(_ contact: SKPhysicsContact) {
+        if playerIsDead {return}
+        
         var player: SKSpriteNode?
         var alien: SKAlienNode?
         
@@ -654,6 +669,17 @@ class SKEnemyCowboyNode: SKSpriteNode {
         } else if self.texture == self.rightTexture {
             enemyBullet.shoot(from: self, to: "right", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, addToArray: bulletsArray, inScene: self.gameScene!)
         }
+    }
+    
+    // Getting Shot
+    func didGetShot() {
+        let particle = SKEmitterNode(fileNamed: "Blood")
+        particle?.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
+        particle?.zPosition = 1
+        particle?.particleBirthRate = 100
+        self.addChild(particle!)
+        
+        self.run(SKAction.moveTo(y: (gameScene?.frame.size.height)! * -0.5, duration: 0.5), completion: {self.remove()})
     }
     
     // Remove EnemyCowboy

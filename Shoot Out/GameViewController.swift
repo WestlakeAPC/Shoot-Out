@@ -12,7 +12,7 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
-    var scene = SKScene()
+    var scene: SKScene?
     var gameScene: GameScene?
     
     @IBOutlet var leftButton: UIButton!
@@ -49,6 +49,11 @@ class GameViewController: UIViewController {
         var convertGameScene : GameScene? { return (view as? SKView)?.scene as? GameScene}
         self.gameScene = convertGameScene!
         self.gameScene?.viewController = self
+    }
+    
+    // MARK: View Will Disappear
+    override func viewWillDisappear(_ animated: Bool) {
+        self.scene?.removeFromParent()
     }
     
     // TODO: Continue method call as long as button is held

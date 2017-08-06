@@ -57,7 +57,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Did Move to View
     override func didMove(to view: SKView) {
-        print(self)
         //Setup Contact Delegate
         self.physicsWorld.contactDelegate = self
         
@@ -355,14 +354,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if contact.bodyA.categoryBitMask == ColliderType.aliens.rawValue && contact.bodyB.categoryBitMask == ColliderType.mainCharacter.rawValue {
             
-            print("Contact Case A")
-            
             alien = contact.bodyA.node as? SKAlienNode
             player = contact.bodyB.node as? SKSpriteNode
             
         } else if contact.bodyA.categoryBitMask == ColliderType.mainCharacter.rawValue && contact.bodyB.categoryBitMask == ColliderType.aliens.rawValue {
-            
-            print("Contact Case B")
             
             player = contact.bodyA.node as? SKSpriteNode
             alien = contact.bodyB.node as? SKAlienNode
@@ -393,7 +388,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    
+    deinit {
+        print("Deallocating SKScene Memory")
+    }
 }
 
 

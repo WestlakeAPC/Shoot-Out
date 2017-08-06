@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     // Collider Type Enumeration
@@ -29,6 +30,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var deathScore = SKLabelNode()
     var bloodParticle = SKEmitterNode(fileNamed: "Blood")
     
+    
     // Textures
     private var jimFacingRightTexture = SKTexture(imageNamed: "jimCharacR.png")
     private var jimFacingLeftTexture = SKTexture(imageNamed: "jimCharacL.png")
@@ -47,6 +49,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Death
     var playerIsDead = false
+    
+    // Sound
+    var punchSoundEffect : AVAudioPlayer?
     
     // Arrays
     var playerBulletArray: NSMutableArray = []
@@ -142,6 +147,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(scoreLabel)
     }
     
+    // MARK: Audio Components
+    func setUpSound() {
+        let punchSound = URL(fileURLWithPath: Bundle.main.path(forResource: "punch", ofType: "wav")!)
+        
+        punchSoundEffect = try! AVAudioPlayer.init(contentsOf: punchSound)
+        punchSoundEffect?.prepareToPlay()
+        punchSoundEffect?.numberOfLoops = 0
+    }
+    
+
+
     // MARK: Setup Death Screen
     func setOverScreen() {
         
@@ -288,6 +304,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Player Did Die
     func playerDidDie() {
+        punchSoundEffect?.play()
+        
         self.mainCharacter.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         self.bloodParticle?.particleBirthRate = 750
         
@@ -299,6 +317,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.deathScore.text = "\(self.score) points"
         if self.score == 1 {self.deathScore.text = "1 point"}
         self.overScreen.run(SKAction.fadeIn(withDuration: 0.5))
+        
     }
     
     // MARK: Reinitialize

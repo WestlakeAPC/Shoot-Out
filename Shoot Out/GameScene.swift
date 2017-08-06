@@ -699,6 +699,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
     
     // Getting Shot
     func didGetShot() {
+        if !hasLanded {return}
         if shot {return}
         
         shot = true

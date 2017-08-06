@@ -282,7 +282,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func jump() {
         if playerIsDead {return}
         if self.mainCharacter.position.y < self.frame.size.height * 0.5 {
-            self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: 50))
+            self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: 30))
         }
     }
     

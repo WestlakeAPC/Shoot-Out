@@ -333,6 +333,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             c.remove()
         }
         
+        // Remove All Enemy Bullets
+        for eb in (enemyBulletArray as NSArray as! [SKBulletsNode]) {
+            eb.remove()
+        }
+        
         // Hide OverScreen
         self.overScreen.run(SKAction.fadeOut(withDuration: 0.5), completion: {
             self.spawnAlien()

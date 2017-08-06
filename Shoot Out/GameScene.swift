@@ -247,6 +247,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.playerIsDead = true
         
         self.deathScore.text = "\(self.score) points"
+        if self.score == 1 {self.deathScore.text = "1 point"}
         self.overScreen.run(SKAction.fadeIn(withDuration: 0.5))
 
         

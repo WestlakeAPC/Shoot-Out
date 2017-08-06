@@ -18,7 +18,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    
     // View Controller
     var viewController: UIViewController?
     
@@ -53,6 +52,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Did Move to View
     override func didMove(to view: SKView) {
+        //Setup Contact Delegate
+        self.physicsWorld.contactDelegate = self
+        
         // Load Texture Array
         loadTextureArray()
         
@@ -113,8 +115,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.mainCharacter.physicsBody?.isDynamic = true
         
         self.mainCharacter.physicsBody?.categoryBitMask = ColliderType.mainCharacter.rawValue
-        self.mainCharacter.physicsBody?.contactTestBitMask = ColliderType.mainCharacter.rawValue
-        self.mainCharacter.physicsBody?.collisionBitMask = ColliderType.mainCharacter.rawValue
+        self.mainCharacter.physicsBody?.contactTestBitMask = ColliderType.aliens.rawValue
+        self.mainCharacter.physicsBody?.collisionBitMask = ColliderType.aliens.rawValue
         
         self.addChild(mainCharacter)
     }
@@ -166,6 +168,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func spawnAlien() {
         let alien = SKAlienNode()
         alien.spawn(withTextureSeries: textureMatrix, addToArray: alienArray, widthToScreenWidthOf: 0.1, avoidElement: self.mainCharacter, inScene: self)
+        
+        alien.physicsBody?.categoryBitMask = ColliderType.aliens.rawValue
+        alien.physicsBody?.contactTestBitMask = ColliderType.mainCharacter.rawValue
+        alien.physicsBody?.collisionBitMask = ColliderType.mainCharacter.rawValue
     }
     
     
@@ -174,7 +180,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Called before each frame is rendered
         trackBulletToAlienCollision()
         moveAliens()
-        testDeath()
+        //testDeath()
     }
     
     // MARK: Watching for Bullet to Alien Collision
@@ -253,7 +259,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             bullet.shoot(from: self.mainCharacter, to: "right", fromPercentOfWidth: 0.5, fromPercentOfHeight: 0.65, addToArray: playerBulletArray, inScene: self)
         }
     }
-
+    
     // MARK: Player Did Die
     func playerDidDie() {
         self.mainCharacter.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
@@ -300,6 +306,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
+    // MARK: Detect Player to Alien Collision
+    func didBegin(_ contact: SKPhysicsContact) {
+        testDeath()
+    }
+    
     // MARK: When Touches Begin
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
@@ -315,6 +326,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
     }
+    
     
 }
 
@@ -426,10 +438,6 @@ class SKAlienNode: SKSpriteNode {
         self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width * 0.7, height: self.size.height * 0.8), center: CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.35))
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.isDynamic = true
-        
-        self.physicsBody?.categoryBitMask = UInt32(2)
-        self.physicsBody?.contactTestBitMask = UInt32(2)
-        self.physicsBody?.collisionBitMask = CUInt32(1)
         
         gameScene.addChild(self)
         parentArray.add(self)

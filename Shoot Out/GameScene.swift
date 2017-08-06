@@ -302,8 +302,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             b.remove()
         }
         
+        // Remove All Enemy Cowboys
+        for c in (enemyCowboysArray as NSArray as! [SKEnemyCowboyNode]) {
+            c.remove()
+        }
+        
         // Hide OverScreen
-        self.overScreen.run(SKAction.fadeOut(withDuration: 0.5), completion: {self.spawnAlien()})
+        self.overScreen.run(SKAction.fadeOut(withDuration: 0.5), completion: {
+            self.spawnAlien()
+            self.dispatchEnemyCowboys()
+        })
     }
     
     
@@ -601,7 +609,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
         self.size.height = self.size.width * (self.rightTexture?.size().height)! / (self.rightTexture?.size().width)!
         
         self.anchorPoint = CGPoint.zero
-        self.position = CGPoint(x: CGFloat(arc4random_uniform(UInt32((gameScene?.size.width)! - self.size.width))), y: (gameScene?.size.height)! - self.size.height)
+        self.position = CGPoint(x: CGFloat(arc4random_uniform(UInt32((gameScene?.size.width)! - self.size.width))), y: (gameScene?.size.height)! * 1.25 - self.size.height)
         self.zPosition = 2
         
         self.gameScene?.addChild(self)

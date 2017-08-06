@@ -529,11 +529,11 @@ class SKAlienNode: SKSpriteNode {
                 gameScene?.spawnAlien()
             }
         case 3:
-            if (gameScene?.aliensKilled)! >= 22 {
+            if (gameScene?.aliensKilled)! >= 25 {
                 gameScene?.spawnAlien()
             }
         case 4:
-            if (gameScene?.aliensKilled)! >= 30 {
+            if (gameScene?.aliensKilled)! >= 40 {
                 gameScene?.spawnAlien()
             }
         default:

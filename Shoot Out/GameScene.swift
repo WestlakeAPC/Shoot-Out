@@ -654,7 +654,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
         self.anchorPoint = CGPoint.zero
         repeat {
             self.position = CGPoint(x: CGFloat(arc4random_uniform(UInt32((gameScene?.size.width)! - self.size.width))), y: (gameScene?.size.height)! * 1.25 - self.size.height)
-        } while self.position.x < (character.position.x + character.size.width + (gameScene?.frame.size.width)! / 10) && (self.position.x + self.size.width) > (character.position.x - character.size.width - (gameScene?.frame.size.width)! / 10)
+        } while self.position.x < (character.position.x + character.size.width) && (self.position.x + self.size.width) > (character.position.x - character.size.width)
         
         self.zPosition = 2
         

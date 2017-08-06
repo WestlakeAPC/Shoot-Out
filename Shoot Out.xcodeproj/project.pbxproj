@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22F734E01F37BC6600AA52C5 /* punch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22F734DF1F37BC6600AA52C5 /* punch.wav */; };
 		41EB00E7752F4C634F287593 /* Pods_Shoot_OutUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5B01B9EC0F8E179B8CBEEA9 /* Pods_Shoot_OutUITests.framework */; };
 		51D117B3DF6893AB534E5625 /* Pods_Shoot_Out.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 267E46FB207CACBFC883BF64 /* Pods_Shoot_Out.framework */; };
 		625422DEB163B0A214478C3A /* Pods_Shoot_OutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F429D1C829B5792172ECD4 /* Pods_Shoot_OutTests.framework */; };
@@ -50,6 +51,7 @@
 /* Begin PBXFileReference section */
 		1798F94B710741F60B145977 /* Pods-Shoot OutUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot OutUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot OutUITests/Pods-Shoot OutUITests.release.xcconfig"; sourceTree = "<group>"; };
 		18F429D1C829B5792172ECD4 /* Pods_Shoot_OutTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shoot_OutTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		22F734DF1F37BC6600AA52C5 /* punch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = punch.wav; sourceTree = "<group>"; };
 		267E46FB207CACBFC883BF64 /* Pods_Shoot_Out.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shoot_Out.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E81CE78F2C96F5CBEABBB35 /* Pods-Shoot Out.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot Out.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot Out/Pods-Shoot Out.release.xcconfig"; sourceTree = "<group>"; };
 		47AD165EB11F34BB5286A3E0 /* Pods-Shoot Out.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot Out.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot Out/Pods-Shoot Out.debug.xcconfig"; sourceTree = "<group>"; };
@@ -111,6 +113,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22F734E11F37BC8500AA52C5 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				22F734DF1F37BC6600AA52C5 /* punch.wav */,
+			);
+			name = Sound;
+			sourceTree = "<group>";
+		};
 		2FBC177484B4A90D919DBC08 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +176,7 @@
 		73486E1F1F22FF06004C3333 /* Shoot Out */ = {
 			isa = PBXGroup;
 			children = (
+				22F734E11F37BC8500AA52C5 /* Sound */,
 				73486E201F22FF06004C3333 /* AppDelegate.swift */,
 				73486E2A1F22FF06004C3333 /* Main.storyboard */,
 				73486E241F22FF06004C3333 /* Actions.sks */,
@@ -358,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				730D8CD61F36B299002072EE /* Blood.sks in Resources */,
+				22F734E01F37BC6600AA52C5 /* punch.wav in Resources */,
 				730D8CD21F351B7F002072EE /* kenpixel.ttf in Resources */,
 				730D8CD81F36B2D1002072EE /* justAWhiteCube.png in Resources */,
 				73486E2C1F22FF06004C3333 /* Main.storyboard in Resources */,

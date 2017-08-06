@@ -307,7 +307,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Detect Player to Alien Collision
     func didBegin(_ contact: SKPhysicsContact) {
-        testDeath()
+        //testDeath()
+        var player: SKSpriteNode?
+        var alien: SKAlienNode?
+        
+        if contact.bodyA.categoryBitMask == ColliderType.aliens.rawValue && contact.bodyB.categoryBitMask == ColliderType.mainCharacter.rawValue {
+            
+            print("Contact Case A")
+            
+            alien = contact.bodyA.node as? SKAlienNode
+            player = contact.bodyB.node as? SKSpriteNode
+            
+        } else if contact.bodyA.categoryBitMask == ColliderType.mainCharacter.rawValue && contact.bodyB.categoryBitMask == ColliderType.aliens.rawValue {
+            
+            print("Contact Case B")
+            
+            player = contact.bodyA.node as? SKSpriteNode
+            alien = contact.bodyB.node as? SKAlienNode
+            
+        } else {
+            return
+        }
+        
+        if (alien?.didDamage(to: player!))! {
+            playerDidDie()
+        }
+        
     }
     
     // MARK: When Touches Begin
@@ -466,9 +491,7 @@ class SKAlienNode: SKSpriteNode {
     func didDamage(to element: SKSpriteNode) -> Bool {
         
         // If Head is Stepped
-        if (((self.position.x + self.size.width * 0.18) < (element.position.x + element.size.width)) && ((self.position.x + self.size.width * 0.82) > element.position.x)) &&
-            
-            (((self.position.y + self.size.height * 0.8) < (element.position.y + element.size.height)) && ((self.position.y + self.size.height * 0.85) > element.position.y)) {
+        if ((self.position.y + self.size.height * 0.6) < element.position.y) {
             
             self.deteriorate()
             gameScene?.jump()
@@ -476,9 +499,7 @@ class SKAlienNode: SKSpriteNode {
             
         }
         
-        return (((self.position.x + self.size.width * 0.12) < (element.position.x + element.size.width)) && ((self.position.x + self.size.width * 0.88) > element.position.x)) && // Test X
-            
-            ((self.position.y < (element.position.y + element.size.height)) && ((self.position.y + self.size.height * 0.8) > element.position.y)) // Test Y
+        return true
         
     }
     

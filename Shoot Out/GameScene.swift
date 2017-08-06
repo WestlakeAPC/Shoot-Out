@@ -521,19 +521,19 @@ class SKAlienNode: SKSpriteNode {
     func spawnStrategically() {
         switch (parentArray.count) {
         case 1:
-            if (gameScene?.aliensKilled)! >= 10 {
+            if (gameScene?.aliensKilled)! >= 5 {
                 gameScene?.spawnAlien()
             }
         case 2:
-            if (gameScene?.aliensKilled)! >= 30 {
+            if (gameScene?.aliensKilled)! >= 15 {
                 gameScene?.spawnAlien()
             }
         case 3:
-            if (gameScene?.aliensKilled)! >= 45 {
+            if (gameScene?.aliensKilled)! >= 22 {
                 gameScene?.spawnAlien()
             }
         case 4:
-            if (gameScene?.aliensKilled)! >= 60 {
+            if (gameScene?.aliensKilled)! >= 30 {
                 gameScene?.spawnAlien()
             }
         default:

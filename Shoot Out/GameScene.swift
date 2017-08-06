@@ -439,7 +439,7 @@ class SKBulletsNode: SKSpriteNode {
     // Shoot
     func shoot(from character: SKSpriteNode, to direction: String, fromPercentOfWidth xPercent: CGFloat, fromPercentOfHeight yPercent: CGFloat, addToArray array: NSMutableArray, inScene scene: GameScene) {
         
-        bulletSoundEffect = try! AVAudioPlayer.init(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "punch2", ofType: "wav")!))
+        bulletSoundEffect = try! AVAudioPlayer.init(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "DesertEagleShot", ofType: "mp3")!))
         bulletSoundEffect?.prepareToPlay()
         bulletSoundEffect?.numberOfLoops = 0
         bulletSoundEffect?.play()

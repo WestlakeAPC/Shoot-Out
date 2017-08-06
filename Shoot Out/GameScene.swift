@@ -246,7 +246,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Track Enemy Bullets to Player Collision
     func trackEnemyBulletToPlayerCollision() {
         for b in (enemyBulletArray as NSArray as! [SKBulletsNode]) {
-            if b.intersects(self.mainCharacter) {
+            if b.intersects(self.mainCharacter) && !playerIsDead {
                 playerDidDie()
             }
         }

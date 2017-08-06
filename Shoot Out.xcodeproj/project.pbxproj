@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		22F734E01F37BC6600AA52C5 /* punch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22F734DF1F37BC6600AA52C5 /* punch.wav */; };
+		22F734E31F37C3FB00AA52C5 /* Crazy.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22F734E21F37C3FB00AA52C5 /* Crazy.wav */; };
 		41EB00E7752F4C634F287593 /* Pods_Shoot_OutUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5B01B9EC0F8E179B8CBEEA9 /* Pods_Shoot_OutUITests.framework */; };
 		51D117B3DF6893AB534E5625 /* Pods_Shoot_Out.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 267E46FB207CACBFC883BF64 /* Pods_Shoot_Out.framework */; };
 		625422DEB163B0A214478C3A /* Pods_Shoot_OutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F429D1C829B5792172ECD4 /* Pods_Shoot_OutTests.framework */; };
@@ -52,6 +53,7 @@
 		1798F94B710741F60B145977 /* Pods-Shoot OutUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot OutUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot OutUITests/Pods-Shoot OutUITests.release.xcconfig"; sourceTree = "<group>"; };
 		18F429D1C829B5792172ECD4 /* Pods_Shoot_OutTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shoot_OutTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F734DF1F37BC6600AA52C5 /* punch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = punch.wav; sourceTree = "<group>"; };
+		22F734E21F37C3FB00AA52C5 /* Crazy.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Crazy.wav; sourceTree = "<group>"; };
 		267E46FB207CACBFC883BF64 /* Pods_Shoot_Out.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shoot_Out.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E81CE78F2C96F5CBEABBB35 /* Pods-Shoot Out.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot Out.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot Out/Pods-Shoot Out.release.xcconfig"; sourceTree = "<group>"; };
 		47AD165EB11F34BB5286A3E0 /* Pods-Shoot Out.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot Out.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot Out/Pods-Shoot Out.debug.xcconfig"; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 		22F734E11F37BC8500AA52C5 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				22F734E21F37C3FB00AA52C5 /* Crazy.wav */,
 				22F734DF1F37BC6600AA52C5 /* punch.wav */,
 			);
 			name = Sound;
@@ -375,6 +378,7 @@
 				73486E2C1F22FF06004C3333 /* Main.storyboard in Resources */,
 				73486E231F22FF06004C3333 /* GameScene.sks in Resources */,
 				73486E2E1F22FF06004C3333 /* Assets.xcassets in Resources */,
+				22F734E31F37C3FB00AA52C5 /* Crazy.wav in Resources */,
 				73486E551F2309F7004C3333 /* MultiplayerScene.sks in Resources */,
 				73486E311F22FF06004C3333 /* LaunchScreen.storyboard in Resources */,
 				73486E251F22FF06004C3333 /* Actions.sks in Resources */,

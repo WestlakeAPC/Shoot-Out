@@ -52,6 +52,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Sound
     var punchSoundEffect : AVAudioPlayer?
+    var backgroundMusic : AVAudioPlayer?
     
     // Arrays
     var playerBulletArray: NSMutableArray = []
@@ -151,10 +152,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Audio Components
     func setUpSound() {
         let punchSound = URL(fileURLWithPath: Bundle.main.path(forResource: "punch", ofType: "wav")!)
+        let music = URL(fileURLWithPath: Bundle.main.path(forResource: "Crazy", ofType: "wav")!)
         
         punchSoundEffect = try! AVAudioPlayer.init(contentsOf: punchSound)
         punchSoundEffect?.prepareToPlay()
         punchSoundEffect?.numberOfLoops = 0
+        
+        backgroundMusic = try! AVAudioPlayer.init(contentsOf: music)
+        backgroundMusic?.prepareToPlay()
+        backgroundMusic?.numberOfLoops = -1
+        backgroundMusic?.play()
     }
     
 
@@ -305,7 +312,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Player Did Die
     func playerDidDie() {
+        backgroundMusic?.stop()
+        backgroundMusic?.currentTime = 0.0
+        
         punchSoundEffect?.play()
+        
         
         self.mainCharacter.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         self.bloodParticle?.particleBirthRate = 750
@@ -361,6 +372,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.overScreen.run(SKAction.fadeOut(withDuration: 0.5), completion: {
             self.spawnAlien()
             self.dispatchEnemyCowboys()
+            
+        // Start Music
+            backgroundMusic?.play()
         })
     }
     

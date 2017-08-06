@@ -503,7 +503,7 @@ class SKAlienNode: SKSpriteNode {
                 self.texture = textureArray[3]
             
             case .finishHim:
-                if gameScene?.playerIsDead {return}
+                if (gameScene?.playerIsDead)! {return}
                 self.isHidden = false
                 gameScene?.aliensKilled += 1
                 gameScene?.score += 1

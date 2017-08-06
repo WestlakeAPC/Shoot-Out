@@ -9,7 +9,15 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
+    // Collider Type Enumeration
+    enum ColliderType: UInt32 {
+        
+        case mainCharacter = 1
+        case aliens = 2
+        
+    }
+    
     
     // View Controller
     var viewController: UIViewController?
@@ -103,6 +111,10 @@ class GameScene: SKScene {
         
         self.mainCharacter.physicsBody?.allowsRotation = false
         self.mainCharacter.physicsBody?.isDynamic = true
+        
+        self.mainCharacter.physicsBody?.categoryBitMask = ColliderType.mainCharacter.rawValue
+        self.mainCharacter.physicsBody?.contactTestBitMask = ColliderType.mainCharacter.rawValue
+        self.mainCharacter.physicsBody?.collisionBitMask = ColliderType.mainCharacter.rawValue
         
         self.addChild(mainCharacter)
     }
@@ -414,6 +426,10 @@ class SKAlienNode: SKSpriteNode {
         self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width * 0.7, height: self.size.height * 0.8), center: CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.35))
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.isDynamic = true
+        
+        self.physicsBody?.categoryBitMask = UInt32(2)
+        self.physicsBody?.contactTestBitMask = UInt32(2)
+        self.physicsBody?.collisionBitMask = CUInt32(1)
         
         gameScene.addChild(self)
         parentArray.add(self)

@@ -236,6 +236,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if b.intersects(c) {
                     b.remove()
                     c.didGetShot()
+                    score += 2
                 }
             }
         }

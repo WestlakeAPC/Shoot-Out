@@ -71,6 +71,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Load elements
         loadBarrier()
         loadBackground()
+        setUpSound()
         loadMainCharacter(withTexture: jimFacingRightTexture)
         setUpScoreLabel()
         setOverScreen()
@@ -137,16 +138,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.mainCharacter.addChild(bloodParticle!)
     }
     
-    // MARK: Load Score Display
-    func setUpScoreLabel() {
-        scoreLabel.fontName = "kenpixel"
-        scoreLabel.fontSize = self.frame.size.height / 10
-        scoreLabel.text = "0"
-        scoreLabel.zPosition = 1
-        scoreLabel.position = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height * 0.85)
-        self.addChild(scoreLabel)
-    }
-    
     // MARK: Audio Components
     func setUpSound() {
         let punchSound = URL(fileURLWithPath: Bundle.main.path(forResource: "punch", ofType: "wav")!)
@@ -156,7 +147,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         punchSoundEffect?.numberOfLoops = 0
     }
     
-
+    // MARK: Load Score Display
+    func setUpScoreLabel() {
+        scoreLabel.fontName = "kenpixel"
+        scoreLabel.fontSize = self.frame.size.height / 10
+        scoreLabel.text = "0"
+        scoreLabel.zPosition = 1
+        scoreLabel.position = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height * 0.85)
+        self.addChild(scoreLabel)
+    }
 
     // MARK: Setup Death Screen
     func setOverScreen() {

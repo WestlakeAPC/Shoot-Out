@@ -439,7 +439,7 @@ class SKAlienNode: SKSpriteNode {
         // Avoid Landing on Player's Head
         repeat {
             self.position = CGPoint(x: CGFloat(arc4random_uniform(UInt32(gameScene.size.width) - UInt32(self.size.width))), y: gameScene.frame.height * 1.25 - self.size.height)
-        } while self.position.x < (character.position.x + character.size.width * 1.5) && (self.position.x + self.size.width) > (character.position.x - character.size.width * 0.5)
+        } while self.position.x < (character.position.x + character.size.width + gameScene.frame.size.width / 6) && (self.position.x + self.size.width) > (character.position.x - character.size.width - gameScene.frame.size.width / 6)
         
         self.zPosition = 3
         

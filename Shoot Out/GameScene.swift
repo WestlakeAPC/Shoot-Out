@@ -171,7 +171,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         alien.physicsBody?.categoryBitMask = ColliderType.aliens.rawValue
         alien.physicsBody?.contactTestBitMask = ColliderType.mainCharacter.rawValue
-        alien.physicsBody?.collisionBitMask = ColliderType.mainCharacter.rawValue
+        alien.physicsBody?.collisionBitMask = ColliderType.aliens.rawValue
     }
     
     
@@ -180,7 +180,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Called before each frame is rendered
         trackBulletToAlienCollision()
         moveAliens()
-        //testDeath()
     }
     
     // MARK: Watching for Bullet to Alien Collision

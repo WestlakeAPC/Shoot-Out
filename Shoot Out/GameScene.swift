@@ -32,6 +32,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Textures
     private var jimFacingRightTexture = SKTexture(imageNamed: "jimCharacR.png")
     private var jimFacingLeftTexture = SKTexture(imageNamed: "jimCharacL.png")
+    private var enemyCowboyRightTexture = SKTexture(imageNamed: "jimCharacR.png")
+    private var enemyCowboyLeftTexture = SKTexture(imageNamed: "jimCharacL.png")
     private var bulletTexture = SKTexture(imageNamed: "bullet.png")
     
     // Movement proportion
@@ -49,6 +51,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Arrays
     var playerBulletArray: NSMutableArray = []
     var alienArray: NSMutableArray = []
+    var enemyCowboysArray: NSMutableArray = []
     var textureMatrix = [[SKTexture?]](repeating: [SKTexture?](repeating: nil, count: 4), count: 3)
     
     // MARK: Did Move to View
@@ -66,8 +69,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         setUpScoreLabel()
         setOverScreen()
         
-        // Spawn Alien
+        // Spawn Enemies
         spawnAlien()
+        dispatchEnemyCowboys()
     }
     
     // MARK: Load Texture Matrix
@@ -180,12 +184,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         alien.physicsBody?.collisionBitMask = ColliderType.aliens.rawValue
     }
     
+    // MARK: Dispatch Enemy Cowboys
+    func dispatchEnemyCowboys() {
+        let enemyCowboy = SKEnemyCowboyNode()
+        enemyCowboy.dispatch(withWidthComparedToScreen: 0.05, withLeftTexture: enemyCowboyLeftTexture, withRightTexture: enemyCowboyRightTexture, toArray: enemyCowboysArray, inScene: self)
+    }
+    
     
     // MARK: Update the Game
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         trackBulletToAlienCollision()
         moveAliens()
+        enemyCowboysAim()
+    }
+    
+    // MARK: Move Aliens
+    func moveAliens() {
+        if playerIsDead {return}
+        for a in (alienArray as NSArray as! [SKAlienNode]) {
+            a.trackCharacter(track: self.mainCharacter)
+        }
     }
     
     // MARK: Watching for Bullet to Alien Collision
@@ -200,14 +219,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    // MARK: Move Aliens
-    func moveAliens() {
-        if playerIsDead {return}
-        for a in (alienArray as NSArray as! [SKAlienNode]) {
-            a.trackCharacter(track: self.mainCharacter)
+    // MARK: Make Enemy Cowboys Aim at Player
+    func enemyCowboysAim() {
+        for c in (enemyCowboysArray as NSArray as! [SKEnemyCowboyNode]) {
+            c.aim(at: self.mainCharacter)
         }
     }
-    
     
     // MARK: Character Movement
     func moveLeft() {
@@ -340,7 +357,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
 
 
-// MARK: Bullet Clasee
+// MARK: Bullet Class
 class SKBulletsNode: SKSpriteNode {
     
     var gameScene: GameScene?
@@ -552,6 +569,58 @@ class SKAlienNode: SKSpriteNode {
     }
     
     // MARK: Delete Alien
+    func remove() {
+        self.parentArray.remove(self)
+        self.removeFromParent()
+    }
+    
+}
+
+
+// MARK: Enemy Cowboy Class
+class SKEnemyCowboyNode: SKSpriteNode {
+    
+    var gameScene: GameScene?
+    var parentArray: NSMutableArray = []
+    var leftTexture: SKTexture?
+    var rightTexture: SKTexture?
+    var hasLanded = false
+    
+    func dispatch(withWidthComparedToScreen widthScale: CGFloat, withLeftTexture left: SKTexture, withRightTexture right: SKTexture, toArray parentArray: NSMutableArray, inScene scene: GameScene) {
+        
+        self.gameScene = scene
+        self.parentArray = parentArray
+        self.leftTexture = left
+        self.rightTexture = right
+        
+        self.parentArray.add(self)
+        
+        self.texture = self.rightTexture
+        
+        self.size.width = self.gameScene!.frame.size.width * widthScale
+        self.size.height = self.size.width * (self.rightTexture?.size().height)! / (self.rightTexture?.size().width)!
+        
+        self.anchorPoint = CGPoint.zero
+        self.position = CGPoint(x: CGFloat(arc4random_uniform(UInt32((gameScene?.size.width)! - self.size.width))), y: (gameScene?.size.height)! - self.size.height)
+        self.zPosition = 2
+        
+        self.gameScene?.addChild(self)
+        
+        self.run(SKAction.moveTo(y: (self.gameScene?.frame.size.height)! * 0.25, duration: 0.5), completion: {
+            self.hasLanded = true
+            print("\((self.gameScene?.frame.size.height)! * 0.25)")
+        })
+        
+    }
+    
+    func aim(at Character: SKSpriteNode) {
+        if Character.position.x > (self.position.x + self.size.width) {
+            self.texture = self.rightTexture
+        } else if (Character.position.x + Character.size.width) < self.position.x {
+            self.texture = self.leftTexture
+        }
+    }
+    
     func remove() {
         self.parentArray.remove(self)
         self.removeFromParent()

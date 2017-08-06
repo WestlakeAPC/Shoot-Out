@@ -118,7 +118,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.mainCharacter.position = CGPoint(x: self.frame.size.width * 0.3, y: self.frame.size.height * 0.5)
         self.mainCharacter.zPosition = 3
         
-        self.mainCharacter.size.width = self.frame.size.width * 0.07
+        self.mainCharacter.size.width = 46.7
         self.mainCharacter.size.height = self.mainCharacter.size.width * #imageLiteral(resourceName: "jimCharacR").size.height / #imageLiteral(resourceName: "jimCharacR").size.width
         
         self.mainCharacter.physicsBody = SKPhysicsBody(rectangleOf: self.mainCharacter.size, center: CGPoint(x: self.mainCharacter.size.width * 0.5, y: self.mainCharacter.size.height * 0.5))
@@ -282,7 +282,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func jump() {
         if playerIsDead {return}
         if self.mainCharacter.position.y < self.frame.size.height * 0.5 {
-            self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: 30))
+            self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: 55))
         }
     }
     
@@ -505,7 +505,7 @@ class SKAlienNode: SKSpriteNode {
         self.texture = textureArray[0]
         self.gameScene = gameScene
         
-        self.size.width = gameScene.frame.size.width * xProp
+        self.size.width = 67
         self.size.height = self.size.width * 2 / 3
         
         self.anchorPoint = CGPoint.zero
@@ -663,7 +663,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
         
         self.texture = self.rightTexture
         
-        self.size.width = self.gameScene!.frame.size.width * widthScale
+        self.size.width = 46.7
         self.size.height = self.size.width * (self.rightTexture?.size().height)! / (self.rightTexture?.size().width)!
         
         self.anchorPoint = CGPoint.zero

@@ -372,7 +372,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.dispatchEnemyCowboys()
             
         // Start Music
-            backgroundMusic?.play()
+            self.backgroundMusic?.play()
         })
     }
     

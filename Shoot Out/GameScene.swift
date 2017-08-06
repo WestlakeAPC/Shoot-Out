@@ -623,7 +623,6 @@ class SKEnemyCowboyNode: SKSpriteNode {
         
         self.run(SKAction.moveTo(y: (self.gameScene?.frame.size.height)! * 0.25, duration: 0.5), completion: {
             self.hasLanded = true
-            self.shootMainCharacter()
             
             let waitBeforeShot = SKAction.wait(forDuration: 0.2)
             let shootAndWait = SKAction.repeat(SKAction.sequence([waitBeforeShot,SKAction.run({self.shootMainCharacter()})]), count: 3)

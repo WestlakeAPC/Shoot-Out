@@ -423,7 +423,8 @@ class SKAlienNode: SKSpriteNode {
     func spawn(withTextureSeries textures: [[SKTexture?]], addToArray inArray: NSMutableArray, widthToScreenWidthOf xProp: CGFloat, avoidElement character: SKSpriteNode, inScene gameScene: GameScene){
         
         self.parentArray = inArray
-        if self.parentArray.count >= 5 {return}
+        // Set Max Aliens At Any Given Time
+        if self.parentArray.count >= 7 {return}
         
         self.fullTextureArray = textures
         
@@ -534,6 +535,14 @@ class SKAlienNode: SKSpriteNode {
             }
         case 4:
             if (gameScene?.aliensKilled)! >= 40 {
+                gameScene?.spawnAlien()
+            }
+        case 5:
+            if (gameScene?.aliensKilled)! >= 55 {
+                gameScene?.spawnAlien()
+            }
+        case 6:
+            if (gameScene?.aliensKilled)! >= 75 {
                 gameScene?.spawnAlien()
             }
         default:

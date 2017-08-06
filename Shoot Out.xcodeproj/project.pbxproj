@@ -10,7 +10,6 @@
 		41EB00E7752F4C634F287593 /* Pods_Shoot_OutUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5B01B9EC0F8E179B8CBEEA9 /* Pods_Shoot_OutUITests.framework */; };
 		51D117B3DF6893AB534E5625 /* Pods_Shoot_Out.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 267E46FB207CACBFC883BF64 /* Pods_Shoot_Out.framework */; };
 		625422DEB163B0A214478C3A /* Pods_Shoot_OutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F429D1C829B5792172ECD4 /* Pods_Shoot_OutTests.framework */; };
-		730D8CCC1F317058002072EE /* 04B_19__.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 730D8CCB1F317058002072EE /* 04B_19__.TTF */; };
 		730D8CD21F351B7F002072EE /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 730D8CD11F351B7E002072EE /* kenpixel.ttf */; };
 		73486E211F22FF06004C3333 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73486E201F22FF06004C3333 /* AppDelegate.swift */; };
 		73486E231F22FF06004C3333 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 73486E221F22FF06004C3333 /* GameScene.sks */; };
@@ -53,7 +52,6 @@
 		3E81CE78F2C96F5CBEABBB35 /* Pods-Shoot Out.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot Out.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot Out/Pods-Shoot Out.release.xcconfig"; sourceTree = "<group>"; };
 		47AD165EB11F34BB5286A3E0 /* Pods-Shoot Out.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot Out.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot Out/Pods-Shoot Out.debug.xcconfig"; sourceTree = "<group>"; };
 		5771846E02BD247E3E348FAD /* Pods-Shoot OutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot OutTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot OutTests/Pods-Shoot OutTests.debug.xcconfig"; sourceTree = "<group>"; };
-		730D8CCB1F317058002072EE /* 04B_19__.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = 04B_19__.TTF; sourceTree = "<group>"; };
 		730D8CD11F351B7E002072EE /* kenpixel.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = kenpixel.ttf; sourceTree = "<group>"; };
 		73486E1D1F22FF06004C3333 /* Shoot Out.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shoot Out.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		73486E201F22FF06004C3333 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,7 +124,6 @@
 			isa = PBXGroup;
 			children = (
 				730D8CD11F351B7E002072EE /* kenpixel.ttf */,
-				730D8CCB1F317058002072EE /* 04B_19__.TTF */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -350,7 +347,6 @@
 				73486E2C1F22FF06004C3333 /* Main.storyboard in Resources */,
 				73486E231F22FF06004C3333 /* GameScene.sks in Resources */,
 				73486E2E1F22FF06004C3333 /* Assets.xcassets in Resources */,
-				730D8CCC1F317058002072EE /* 04B_19__.TTF in Resources */,
 				73486E551F2309F7004C3333 /* MultiplayerScene.sks in Resources */,
 				73486E311F22FF06004C3333 /* LaunchScreen.storyboard in Resources */,
 				73486E251F22FF06004C3333 /* Actions.sks in Resources */,

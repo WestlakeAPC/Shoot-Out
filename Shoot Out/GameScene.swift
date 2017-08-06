@@ -189,7 +189,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Dispatch Enemy Cowboys
     func dispatchEnemyCowboys() {
         let enemyCowboy = SKEnemyCowboyNode()
-        enemyCowboy.dispatch(withWidthComparedToScreen: 0.05, withLeftTexture: enemyCowboyLeftTexture, withRightTexture: enemyCowboyRightTexture, toArray: enemyCowboyArray, storyBulletsIn: enemyBulletArray, inScene: self)
+        enemyCowboy.dispatch(withWidthComparedToScreen: 0.05, withLeftTexture: enemyCowboyLeftTexture, withRightTexture: enemyCowboyRightTexture, toArray: enemyCowboyArray, storyBulletsIn: enemyBulletArray, avoid: self.mainCharacter, inScene: self)
     }
     
     
@@ -635,7 +635,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
     var shot = false
     
     // Dispatch EnemyCowboy
-    func dispatch(withWidthComparedToScreen widthScale: CGFloat, withLeftTexture left: SKTexture, withRightTexture right: SKTexture, toArray parentArray: NSMutableArray, storyBulletsIn bulletsArray: NSMutableArray, inScene scene: GameScene) {
+    func dispatch(withWidthComparedToScreen widthScale: CGFloat, withLeftTexture left: SKTexture, withRightTexture right: SKTexture, toArray parentArray: NSMutableArray, storyBulletsIn bulletsArray: NSMutableArray, avoid character: SKSpriteNode, inScene scene: GameScene) {
         
         self.gameScene = scene
         self.parentArray = parentArray
@@ -652,7 +652,10 @@ class SKEnemyCowboyNode: SKSpriteNode {
         self.size.height = self.size.width * (self.rightTexture?.size().height)! / (self.rightTexture?.size().width)!
         
         self.anchorPoint = CGPoint.zero
-        self.position = CGPoint(x: CGFloat(arc4random_uniform(UInt32((gameScene?.size.width)! - self.size.width))), y: (gameScene?.size.height)! * 1.25 - self.size.height)
+        repeat {
+            self.position = CGPoint(x: CGFloat(arc4random_uniform(UInt32((gameScene?.size.width)! - self.size.width))), y: (gameScene?.size.height)! * 1.25 - self.size.height)
+        } while self.position.x < (character.position.x + character.size.width + (gameScene?.frame.size.width)! / 10) && (self.position.x + self.size.width) > (character.position.x - character.size.width - (gameScene?.frame.size.width)! / 10)
+        
         self.zPosition = 2
         
         self.gameScene?.addChild(self)

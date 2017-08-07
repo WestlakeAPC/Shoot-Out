@@ -425,6 +425,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    // MARK: End All Activity
+    func endAll() {
+        self.backgroundMusic?.stop()
+        self.punchSoundEffect?.stop()
+        self.removeAllActions()
+        self.removeAllChildren()
+    }
+    
     deinit {
         print("Deinit GameScene")
     }

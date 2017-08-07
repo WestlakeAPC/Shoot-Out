@@ -39,7 +39,7 @@ class GameViewController: UIViewController {
         skView = (self.view as! SKView)
         skView!.presentScene(scene)  
         
-        self.gameScene = scene as! GameScene?
+        //self.gameScene = scene as! GameScene?
         
         skView!.ignoresSiblingOrder = true
         skView?.showsFPS = true
@@ -49,20 +49,15 @@ class GameViewController: UIViewController {
 
     }
     
-    // MARK: View Will Disappear
-    override func viewWillDisappear(_ animated: Bool) {
-        //self.scene = nil
-    }
-    
     // MARK: Return to Menu
     @IBAction func exitView(_ sender: Any) {
+        print("\nAttempting to deallocate \(self.skView?.scene)\n")
+        self.gameScene?.endAll()
         self.scene = nil
         self.gameScene?.viewController = nil
         self.gameScene = nil
         self.skView = nil
         self.skView?.presentScene(nil)
-        
-        print("\nAttempting to deallocate \(self.skView?.scene)\n")
         
         self.dismiss(animated: true, completion: nil)
     }

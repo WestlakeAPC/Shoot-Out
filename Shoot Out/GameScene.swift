@@ -447,10 +447,7 @@ class SKBulletsNode: SKSpriteNode {
         self.gameScene = scene
         self.parentArray = array
         self.parentArray.adding(self)
-        
-        gameScene?.bulletSoundEffect?.currentTime = 0
-        gameScene?.bulletSoundEffect?.play()
-        
+    self.run(SKAction.playSoundFileNamed("DesertEagleShot.mp3", waitForCompletion: false))
         
         self.anchorPoint = CGPoint.zero
         self.size.width = character.size.width / 12

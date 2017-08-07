@@ -32,6 +32,7 @@
 		73829BDC1F230DDB003AEF6F /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73829BDB1F230DDB003AEF6F /* ConnectViewController.swift */; };
 		73829BDF1F231050003AEF6F /* MPCHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73829BDE1F231050003AEF6F /* MPCHandler.swift */; };
 		738B0FCD1F37D9AF006D6C80 /* DesertEagleShot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 738B0FCC1F37D9AF006D6C80 /* DesertEagleShot.mp3 */; };
+		738B0FCF1F37E0C3006D6C80 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738B0FCE1F37E0C3006D6C80 /* InitialViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		73829BDB1F230DDB003AEF6F /* ConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
 		73829BDE1F231050003AEF6F /* MPCHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCHandler.swift; sourceTree = "<group>"; };
 		738B0FCC1F37D9AF006D6C80 /* DesertEagleShot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DesertEagleShot.mp3; sourceTree = "<group>"; };
+		738B0FCE1F37E0C3006D6C80 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		94F576C725E3FE6496540B8E /* Pods-Shoot OutUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot OutUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot OutUITests/Pods-Shoot OutUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8B79C560DDD5275858FAE3A /* Pods-Shoot OutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot OutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot OutTests/Pods-Shoot OutTests.release.xcconfig"; sourceTree = "<group>"; };
 		F5B01B9EC0F8E179B8CBEEA9 /* Pods_Shoot_OutUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shoot_OutUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,15 +187,16 @@
 		73486E1F1F22FF06004C3333 /* Shoot Out */ = {
 			isa = PBXGroup;
 			children = (
+				730D8CD91F36B35D002072EE /* Blood Files */,
+				730D8CCA1F316D23002072EE /* Fonts */,
 				22F734E11F37BC8500AA52C5 /* Sound */,
 				73486E201F22FF06004C3333 /* AppDelegate.swift */,
-				73486E2A1F22FF06004C3333 /* Main.storyboard */,
 				73486E241F22FF06004C3333 /* Actions.sks */,
-				730D8CD91F36B35D002072EE /* Blood Files */,
+				73486E2A1F22FF06004C3333 /* Main.storyboard */,
+				738B0FD01F37E0CB006D6C80 /* Initial View */,
 				73486E5B1F230BA4004C3333 /* Single Player */,
 				73829BDD1F230DF4003AEF6F /* Connect */,
 				73486E5A1F230B8D004C3333 /* Multiplayer */,
-				730D8CCA1F316D23002072EE /* Fonts */,
 				73486E2D1F22FF06004C3333 /* Assets.xcassets */,
 				73486E2F1F22FF06004C3333 /* LaunchScreen.storyboard */,
 				73486E321F22FF06004C3333 /* Info.plist */,
@@ -246,6 +249,14 @@
 				73829BDB1F230DDB003AEF6F /* ConnectViewController.swift */,
 			);
 			name = Connect;
+			sourceTree = "<group>";
+		};
+		738B0FD01F37E0CB006D6C80 /* Initial View */ = {
+			isa = PBXGroup;
+			children = (
+				738B0FCE1F37E0C3006D6C80 /* InitialViewController.swift */,
+			);
+			name = "Initial View";
 			sourceTree = "<group>";
 		};
 		CA4549A0AF64058A363F79EF /* Frameworks */ = {
@@ -559,6 +570,7 @@
 				73486E591F230AB4004C3333 /* MultiplayerGameViewController.swift in Sources */,
 				73829BDF1F231050003AEF6F /* MPCHandler.swift in Sources */,
 				73486E571F230A12004C3333 /* MultiplayerScene.swift in Sources */,
+				738B0FCF1F37E0C3006D6C80 /* InitialViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

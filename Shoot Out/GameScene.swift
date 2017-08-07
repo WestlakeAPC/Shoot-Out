@@ -427,7 +427,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     deinit {
-        print("Deallocating SKScene Memory")
+        print("Deallocating GameScene")
     }
 }
 

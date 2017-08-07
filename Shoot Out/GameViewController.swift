@@ -12,7 +12,7 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
-    var scene: SKScene?
+    weak var scene: SKScene?
     var gameScene: GameScene?
     
     @IBOutlet var leftButton: UIButton!
@@ -20,7 +20,7 @@ class GameViewController: UIViewController {
     @IBOutlet var jumpButton: UIButton!
     @IBOutlet var shootButton: UIButton!
     
-    
+    // MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
         longPressGesture()
@@ -32,13 +32,13 @@ class GameViewController: UIViewController {
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.size = self.view.bounds.size
-                scene.scaleMode = .aspectFill
-                // Present the scene
-                view.presentScene(scene)
-            }
+            self.scene = SKScene(fileNamed: "GameScene")!
+            // Set the scale mode to scale to fit the window
+            scene?.size = self.view.bounds.size
+            scene?.scaleMode = .aspectFill
+            // Present the scene
+            view.presentScene(scene)
+            
             
             view.ignoresSiblingOrder = true
             
@@ -53,8 +53,15 @@ class GameViewController: UIViewController {
     
     // MARK: View Will Disappear
     override func viewWillDisappear(_ animated: Bool) {
-        self.scene?.removeFromParent()
+        //self.scene = nil
     }
+    
+    // MARK: Return to Menu
+    @IBAction func exitView(_ sender: Any) {
+        self.scene = nil
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
     // TODO: Continue method call as long as button is held
     func longPressGesture() {
@@ -109,4 +116,9 @@ class GameViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    
+    deinit {
+        print("GameViewController.swift Deallocated")
+    }
+    
 }

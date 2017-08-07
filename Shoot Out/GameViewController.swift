@@ -51,7 +51,7 @@ class GameViewController: UIViewController {
     
     // MARK: Return to Menu
     @IBAction func exitView(_ sender: Any) {
-        print("\nAttempting to deallocate \(self.skView?.scene)\n")
+        print("\nAttempting to deallocate \(String(describing: self.skView?.scene))\n")
         self.gameScene?.endAll()
         self.scene = nil
         self.gameScene?.viewController = nil

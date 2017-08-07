@@ -431,7 +431,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.punchSoundEffect?.stop()
         self.removeAllActions()
         self.removeAllChildren()
-        for a in (alienArray as NSArray as! [SKAlienNode]) {a.remove()}
+        for a in (alienArray as NSArray as! [SKAlienNode]) {a.gameScene = nil
+            a.remove()}
         for b in (playerBulletArray as NSArray as! [SKBulletsNode]) {b.remove()}
         for c in (enemyCowboyArray as NSArray as! [SKEnemyCowboyNode]) {c.remove()}
         for eb in (enemyBulletArray as NSArray as! [SKBulletsNode]) {eb.remove()}
@@ -667,7 +668,6 @@ class SKAlienNode: SKSpriteNode {
     func remove() {
         self.parentArray.remove(self)
         self.removeFromParent()
-        self.gameScene = nil
     }
     
 }

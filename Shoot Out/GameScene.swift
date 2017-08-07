@@ -148,7 +148,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bulletSoundEffect = try! AVAudioPlayer.init(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "DesertEagleShot", ofType: "mp3")!))
         bulletSoundEffect?.prepareToPlay()
         bulletSoundEffect?.numberOfLoops = 0
-        bulletSoundEffect?.play()
         
         punchSoundEffect = try! AVAudioPlayer.init(contentsOf: punchSound)
         punchSoundEffect?.prepareToPlay()
@@ -427,7 +426,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     deinit {
-        print("Deallocating GameScene")
+        print("Deinit GameScene")
     }
 }
 

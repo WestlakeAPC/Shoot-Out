@@ -58,7 +58,12 @@ class GameViewController: UIViewController {
     
     // MARK: Return to Menu
     @IBAction func exitView(_ sender: Any) {
+        let view = self.view as! SKView?
+        view?.presentScene(nil)
+        
         self.scene = nil
+        self.gameScene = nil
+        
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -118,7 +123,7 @@ class GameViewController: UIViewController {
     }
     
     deinit {
-        print("GameViewController.swift Deallocated")
+        print("Deinit GameViewController.swift")
     }
     
 }

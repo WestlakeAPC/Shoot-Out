@@ -264,6 +264,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     b.remove()
                     c.didGetShot()
                     score += 2
+                    self.scoreLabel.text = "\(score)"
                 }
             }
         }

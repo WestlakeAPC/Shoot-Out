@@ -25,31 +25,28 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         longPressGesture()
-        loadSKS()
+        loadGameScene()
     }
     
-    // MARK: Load Spritekit Scene
-    func loadSKS() {
-        
-        self.skView = self.view as! SKView?
-        // Load the SKScene from 'GameScene.sks'
-        self.scene = SKScene(fileNamed: "GameScene")!
-        // Set the scale mode to scale to fit the window
+    // MARK: Load Game Scene
+    func loadGameScene() {
+        // Create GameScene object
+        scene = GameScene(fileNamed:"GameScene")
         scene?.size = self.view.bounds.size
-        scene?.scaleMode = .aspectFill
-        // Present the scene
-        skView?.presentScene(scene)
-            
-            
-        skView?.ignoresSiblingOrder = true
-            
+        scene!.scaleMode = .aspectFill
+        
+        // Present current scene
+        skView = (self.view as! SKView)
+        skView!.presentScene(scene)  
+        
+        self.gameScene = scene as! GameScene?
+        
+        skView!.ignoresSiblingOrder = true
         skView?.showsFPS = true
         skView?.showsNodeCount = true
         skView?.showsPhysics = false
         
-        var convertGameScene : GameScene? { return (view as? SKView)?.scene as? GameScene}
-        self.gameScene = convertGameScene!
-        //self.gameScene?.viewController = self
+
     }
     
     // MARK: View Will Disappear
@@ -63,8 +60,8 @@ class GameViewController: UIViewController {
         self.gameScene?.viewController = nil
         self.gameScene = nil
         self.skView = nil
-        
         self.skView?.presentScene(nil)
+        
         print("\nAttempting to deallocate \(self.skView?.scene)\n")
         
         self.dismiss(animated: true, completion: nil)

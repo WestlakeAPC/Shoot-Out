@@ -119,7 +119,6 @@
                                 <state key="normal" title="&lt;-"/>
                                 <connections>
                                     <action selector="exitView:" destination="BV1-FR-VrT" eventType="touchUpInside" id="BXH-bj-x2Q"/>
-                                    <segue destination="E0U-BE-BAH" kind="show" id="Vls-qw-ym0"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -216,7 +215,4 @@
     <resources>
         <image name="initialBackground" width="299" height="168"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Vls-qw-ym0"/>
-    </inferredMetricsTieBreakers>
 </document>

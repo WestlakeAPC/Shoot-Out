@@ -13,7 +13,8 @@ import GameplayKit
 class GameViewController: UIViewController {
 
     weak var scene: SKScene?
-    var gameScene: GameScene?
+    weak var gameScene: GameScene?
+    weak var skView : SKView?
     
     @IBOutlet var leftButton: UIButton!
     @IBOutlet var rightButton: UIButton!
@@ -30,25 +31,25 @@ class GameViewController: UIViewController {
     // MARK: Load Spritekit Scene
     func loadSKS() {
         
-        if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            self.scene = SKScene(fileNamed: "GameScene")!
-            // Set the scale mode to scale to fit the window
-            scene?.size = self.view.bounds.size
-            scene?.scaleMode = .aspectFill
-            // Present the scene
-            view.presentScene(scene)
+        self.skView = self.view as! SKView?
+        // Load the SKScene from 'GameScene.sks'
+        self.scene = SKScene(fileNamed: "GameScene")!
+        // Set the scale mode to scale to fit the window
+        scene?.size = self.view.bounds.size
+        scene?.scaleMode = .aspectFill
+        // Present the scene
+        skView?.presentScene(scene)
             
             
-            view.ignoresSiblingOrder = true
+        skView?.ignoresSiblingOrder = true
             
-            view.showsFPS = true
-            view.showsNodeCount = true
-            view.showsPhysics = false
-        }
+        skView?.showsFPS = true
+        skView?.showsNodeCount = true
+        skView?.showsPhysics = false
+        
         var convertGameScene : GameScene? { return (view as? SKView)?.scene as? GameScene}
         self.gameScene = convertGameScene!
-        self.gameScene?.viewController = self
+        //self.gameScene?.viewController = self
     }
     
     // MARK: View Will Disappear
@@ -58,11 +59,13 @@ class GameViewController: UIViewController {
     
     // MARK: Return to Menu
     @IBAction func exitView(_ sender: Any) {
-        let view = self.view as! SKView?
-        view?.presentScene(nil)
-        
         self.scene = nil
+        self.gameScene?.viewController = nil
         self.gameScene = nil
+        self.skView = nil
+        
+        self.skView?.presentScene(nil)
+        print("\nAttempting to deallocate \(self.skView?.scene)\n")
         
         self.dismiss(animated: true, completion: nil)
     }

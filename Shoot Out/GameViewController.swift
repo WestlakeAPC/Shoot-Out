@@ -39,7 +39,7 @@ class GameViewController: UIViewController {
         skView = (self.view as! SKView)
         skView!.presentScene(scene)  
         
-        //self.gameScene = scene as! GameScene?
+        self.gameScene = scene as! GameScene?
         
         skView!.ignoresSiblingOrder = true
         skView?.showsFPS = true

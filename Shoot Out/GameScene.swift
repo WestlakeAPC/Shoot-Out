@@ -9,6 +9,7 @@
 import SpriteKit
 import GameplayKit
 import AVFoundation
+import AudioToolbox
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     // Collider Type Enumeration
@@ -60,7 +61,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var alienArray: NSMutableArray = []
     var enemyCowboyArray: NSMutableArray = []
     var enemyBulletArray: NSMutableArray = []
-    var textureMatrix = [[SKTexture?]](repeating: [SKTexture?](repeating: nil, count: 4), count: 3)
+    var textureMatrix: [[SKTexture?]]? = [[SKTexture?]](repeating: [SKTexture?](repeating: nil, count: 4), count: 3)
     
     // MARK: Did Move to View
     override func didMove(to view: SKView) {
@@ -87,7 +88,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func loadTextureArray() {
         for enemy in 1...3 {
             for stage in 0...3 {
-                textureMatrix[enemy-1][stage] = SKTexture(imageNamed: "spacesprite\(enemy)-\(stage).png")
+                textureMatrix?[enemy-1][stage] = SKTexture(imageNamed: "spacesprite\(enemy)-\(stage).png")
             }
         }
     }
@@ -205,7 +206,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Alien Spawning
     func spawnAlien() {
         let alien = SKAlienNode()
-        alien.spawn(withTextureSeries: textureMatrix, addToArray: alienArray, widthToScreenWidthOf: 0.1, avoidElement: self.mainCharacter, inScene: self)
+        alien.spawn(withTextureSeries: textureMatrix!, addToArray: alienArray, widthToScreenWidthOf: 0.1, avoidElement: self.mainCharacter, inScene: self)
         
         alien.physicsBody?.categoryBitMask = ColliderType.aliens.rawValue
         alien.physicsBody?.contactTestBitMask = ColliderType.mainCharacter.rawValue
@@ -430,6 +431,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func endAll() {
         self.backgroundMusic?.stop()
         self.punchSoundEffect?.stop()
+        self.textureMatrix = nil
         self.removeAllActions()
         self.removeAllChildren()
         for a in (alienArray as NSArray as! [SKAlienNode]) {a.gameScene = nil
@@ -460,7 +462,19 @@ class SKBulletsNode: SKSpriteNode {
         self.gameScene = scene
         self.parentArray = array
         self.parentArray?.adding(self)
-        self.run(SKAction.playSoundFileNamed("DesertEagleShot.mp3", waitForCompletion: false))
+        
+        // Play Sound
+        /*if let soundUrl = Bundle.main.url(forResource: "DesertEagleShot", withExtension: "mp3") {
+            var soundId: SystemSoundID = 0
+            
+            AudioServicesCreateSystemSoundID(soundUrl as CFURL, &soundId)
+            
+            AudioServicesAddSystemSoundCompletion(soundId, nil, nil, { (soundId, clientData) -> Void in
+                AudioServicesDisposeSystemSoundID(soundId)
+            }, nil)
+            
+            AudioServicesPlaySystemSound(soundId)
+        }*/
         
         self.anchorPoint = CGPoint.zero
         self.size.width = character.size.width / 12
@@ -500,6 +514,7 @@ class SKBulletsNode: SKSpriteNode {
         if !self.hasRemoved {
             self.parentArray?.remove(self)
             
+            self.texture = nil
             self.parentArray = nil
             self.hasRemoved = true
             self.gameScene = nil

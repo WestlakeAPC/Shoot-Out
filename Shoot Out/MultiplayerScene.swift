@@ -8,83 +8,170 @@
 
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
 class MultiplayerScene: SKScene {
+    // ViewController reference
+    var viewController: UIViewController?
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    // SpriteKit nodes
+    var mainCharacter = SKSpriteNode()
+    var theGround = SKNode()
+    var scoreLabel = SKLabelNode()
+    var overScreen = SKShapeNode()
+    var deathScore = SKLabelNode()
+    var bloodParticle = SKEmitterNode(fileNamed: "Blood")
     
+    
+    // Textures
+    private var jimFacingRightTexture = SKTexture(imageNamed: "jimCharacR.png")
+    private var jimFacingLeftTexture = SKTexture(imageNamed: "jimCharacL.png")
+    private var enemyCowboyRightTexture = SKTexture(imageNamed: "jimCharac2R.png")
+    private var enemyCowboyLeftTexture = SKTexture(imageNamed: "jimCharac2L.png")
+    var bulletTexture = SKTexture(imageNamed: "bullet.png")
+    
+    // Score
+    var aliensKilled = 0
+    var score = 0
+    
+    // Death
+    var playerIsDead = false
+    
+    // Sound
+    var punchSoundEffect : AVAudioPlayer?
+    var backgroundMusic : AVAudioPlayer?
+    var bulletSoundEffect : AVAudioPlayer?
+    
+    // Arrays
+    var playerBulletArray: NSMutableArray = []
+    var enemyBulletArray: NSMutableArray = []
+    
+    // MARK: Did Move to View
     override func didMove(to view: SKView) {
+        // Load elements
+        loadBarrier()
+        loadBackground()
+        setUpSound()
+        loadMainCharacter(withTexture: jimFacingRightTexture)
+    }
         
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.text = "TRORLORLROL"
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
+        
+    // MARK: Load Barrier
+    func loadBarrier() {
+            self.physicsBody = SKPhysicsBody(
+                edgeLoopFrom: CGRect(x: 0, y: self.frame.size.height / 4, width: self.frame.size.width, height: self.frame.size.height))
+            self.physicsBody?.isDynamic = false
         }
         
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-        
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
+    // MARK: Load Background
+    func loadBackground() {
+            let backGroundImage: SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "background.png"))
             
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: .pi, duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
-        }
-    }
-    
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
+            backGroundImage.anchorPoint = .zero
+            backGroundImage.position = .zero
+            backGroundImage.zPosition = 0
+            backGroundImage.size.width = self.frame.size.width
+            backGroundImage.size.height = backGroundImage.size.width * 3/4
+            
+            
+            self.addChild(backGroundImage)
         }
         
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+    // MARK: Load Main Character
+    func loadMainCharacter(withTexture texture: SKTexture) {
+            self.mainCharacter = SKSpriteNode(texture: texture)
+            
+            self.mainCharacter.anchorPoint = CGPoint.zero
+            self.mainCharacter.position = CGPoint(x: self.frame.size.width * 0.3, y: self.frame.size.height / 2)
+            self.mainCharacter.zPosition = 3
+            
+            self.mainCharacter.size.width = 46.7
+            self.mainCharacter.size.height = self.mainCharacter.size.width * #imageLiteral(resourceName: "jimCharacR").size.height / #imageLiteral(resourceName: "jimCharacR").size.width
+            
+            let characterCenter = CGPoint(x: self.mainCharacter.size.width / 2, y: self.mainCharacter.size.height / 2)
+            
+            self.mainCharacter.physicsBody = SKPhysicsBody(rectangleOf: self.mainCharacter.size,
+                                                           center: characterCenter)
+            
+            self.mainCharacter.physicsBody?.allowsRotation = false
+            self.mainCharacter.physicsBody?.isDynamic = true
+            
+            self.addChild(mainCharacter)
+            
+            self.bloodParticle?.particleBirthRate = 0
+            self.bloodParticle?.position = characterCenter
+            self.bloodParticle?.zPosition = -1
+            self.mainCharacter.addChild(bloodParticle!)
+        }
+        
+    // MARK: Audio Components
+    func setUpSound() {
+            let punchSound = URL(fileURLWithPath: Bundle.main.path(forResource: "punch", ofType: "wav")!)
+            let music = URL(fileURLWithPath: Bundle.main.path(forResource: "Crazy", ofType: "wav")!)
+            
+            bulletSoundEffect = try! AVAudioPlayer.init(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "DesertEagleShot", ofType: "mp3")!))
+            bulletSoundEffect?.prepareToPlay()
+            bulletSoundEffect?.numberOfLoops = 0
+            
+            punchSoundEffect = try! AVAudioPlayer.init(contentsOf: punchSound)
+            punchSoundEffect?.prepareToPlay()
+            punchSoundEffect?.numberOfLoops = 0
+            
+            backgroundMusic = try! AVAudioPlayer.init(contentsOf: music)
+            backgroundMusic?.prepareToPlay()
+            backgroundMusic?.numberOfLoops = -1
+            backgroundMusic?.play()
+        }
+
+    // MARK: Character Movement
+    func moveLeft() {
+        if playerIsDead {return}
+        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: -19, dy: 0))
+        self.mainCharacter.texture = jimFacingLeftTexture
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+    func moveRight() {
+        if playerIsDead {return}
+        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 19, dy: 0))
+        self.mainCharacter.texture = jimFacingRightTexture
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+    func jump() {
+        if playerIsDead {return}
+        if self.mainCharacter.position.y < self.frame.size.height * 0.5 {
+            self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: 55))
+        }
     }
     
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+    
+    // MARK: Shoot Function
+    func shoot() {
+        if playerIsDead {return}
+        let bullet = SKBulletsNode(texture: bulletTexture)
+        
+        if self.mainCharacter.texture == jimFacingLeftTexture {
+            bullet.shoot(from:
+                self.mainCharacter, to: "left", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: playerBulletArray, inScene: self)
+            
+        } else if self.mainCharacter.texture == jimFacingRightTexture {
+            bullet.shoot(from: self.mainCharacter, to: "right", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: playerBulletArray, inScene: self)
+        }
     }
     
+    // MARK: When Touches Begin
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for t in touches {
+            print("Tapped \(t.location(in: self))")
+        }
+    }
+        
+    // MARK: End All Activity
+    func endAll() {
+        self.removeAllActions()
+        self.removeAllChildren()
+    }
     
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+    deinit {
+        print("Deinit MultiplayerScene")
     }
 }

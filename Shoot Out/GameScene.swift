@@ -762,7 +762,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
     
     // Shoot
     func shootMainCharacter() {
-        if !canShoot {return}
+        if !canShoot || (gameScene?.playerIsDead)! {return}
         
         let enemyBullet = SKBulletsNode(texture: gameScene?.bulletTexture)
             

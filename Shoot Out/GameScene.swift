@@ -450,9 +450,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 class SKBulletsNode: SKSpriteNode {
     
     var gameScene: GameScene?
-    var parentArray: NSMutableArray = []
+    var parentArray: NSMutableArray? = []
     var hasRemoved = false
-    var bulletSoundEffect : AVAudioPlayer?
     
     
     // Shoot
@@ -460,8 +459,8 @@ class SKBulletsNode: SKSpriteNode {
         
         self.gameScene = scene
         self.parentArray = array
-        self.parentArray.adding(self)
-    self.run(SKAction.playSoundFileNamed("DesertEagleShot.mp3", waitForCompletion: false))
+        self.parentArray?.adding(self)
+        self.run(SKAction.playSoundFileNamed("DesertEagleShot.mp3", waitForCompletion: false))
         
         self.anchorPoint = CGPoint.zero
         self.size.width = character.size.width / 12
@@ -470,7 +469,7 @@ class SKBulletsNode: SKSpriteNode {
         self.zPosition = 1
         
         scene.addChild(self)
-        parentArray.add(self)
+        parentArray?.add(self)
         
         if direction == "left" {
             self.run(SKAction.moveTo(x: (self.position.x - (gameScene?.frame.size.width)!), duration: 1.5), completion: {
@@ -499,13 +498,23 @@ class SKBulletsNode: SKSpriteNode {
     // Remove from GameScene and bulletArray
     func remove() {
         if !self.hasRemoved {
-            self.removeFromParent()
-            self.parentArray.remove(self)
+            self.parentArray?.remove(self)
+            
+            self.parentArray = nil
             self.hasRemoved = true
             self.gameScene = nil
+            self.removeAllActions()
+            
+            self.removeFromParent()
         }
         
     }
+    
+    
+    deinit {
+        print("Deinit Bullet at \(Date())")
+    }
+    
 }
 
 
@@ -524,9 +533,9 @@ class SKAlienNode: SKSpriteNode {
     // MARK: Internal enemy state
     var deteriorationStage: Deterioration = .perfectShape
     var gameScene: GameScene?
-    var fullTextureArray: [[SKTexture?]] = []
-    var textureArray: [SKTexture] = []
-    var parentArray: NSMutableArray = []
+    var fullTextureArray: [[SKTexture?]]? = []
+    var textureArray: [SKTexture]? = []
+    var parentArray: NSMutableArray? = []
     var allowMovement: Bool = false
     
     // MARK: Spawn
@@ -534,12 +543,15 @@ class SKAlienNode: SKSpriteNode {
         
         self.parentArray = inArray
         // Set Max Aliens At Any Given Time
-        if self.parentArray.count >= 7 {return}
+        if (self.parentArray?.count)! >= 7 {
+            self.remove()
+            return
+        }
         
         self.fullTextureArray = textures
         
-        self.textureArray = textures[Int(arc4random_uniform(3))] as! [SKTexture]
-        self.texture = textureArray[0]
+        self.textureArray = textures[Int(arc4random_uniform(3))] as? [SKTexture]
+        self.texture = textureArray?[0]
         self.gameScene = gameScene
         
         self.size.width = 67
@@ -559,7 +571,7 @@ class SKAlienNode: SKSpriteNode {
         self.physicsBody?.isDynamic = true
         
         gameScene.addChild(self)
-        parentArray.add(self)
+        parentArray?.add(self)
         
         self.run(SKAction.wait(forDuration: TimeInterval(1)), completion: {
             self.allowMovement = true
@@ -603,15 +615,15 @@ class SKAlienNode: SKSpriteNode {
         switch (deteriorationStage) {
             case .perfectShape:
                 deteriorationStage = .goodShape
-                self.texture = textureArray[1]
+                self.texture = textureArray?[1]
             
             case .goodShape:
                 deteriorationStage = .badShape
-                self.texture = textureArray[2]
+                self.texture = textureArray?[2]
                 
             case .badShape:
                 deteriorationStage = .finishHim
-                self.texture = textureArray[3]
+                self.texture = textureArray?[3]
             
             case .finishHim:
                 if (gameScene?.playerIsDead)! {return}
@@ -620,10 +632,11 @@ class SKAlienNode: SKSpriteNode {
                 gameScene?.score += 1
                 gameScene?.scoreLabel.text = String(describing: (gameScene?.score)!)
                 
-                self.remove()
                 
                 gameScene?.spawnAlien()
                 self.spawnStrategically()
+                
+                self.remove()
 
         }
     }
@@ -634,7 +647,7 @@ class SKAlienNode: SKSpriteNode {
             gameScene?.dispatchEnemyCowboys()
         }
         
-        switch (parentArray.count) {
+        switch ((parentArray?.count)!) {
         case 1:
             if (gameScene?.aliensKilled)! >= 5 {
                 gameScene?.spawnAlien()
@@ -667,19 +680,31 @@ class SKAlienNode: SKSpriteNode {
     
     // MARK: Delete Alien
     func remove() {
-        self.parentArray.remove(self)
+        self.parentArray?.remove(self)
+        
+        self.fullTextureArray = nil
+        self.textureArray = nil
+        self.parentArray = nil
+        
+        self.removeAllActions()
+        
         self.removeFromParent()
     }
     
+    deinit {
+        print("Deinit Alien at \(Date())")
+    }
+    
 }
+
 
 
 // MARK: Enemy Cowboy Class
 class SKEnemyCowboyNode: SKSpriteNode {
     
     var gameScene: GameScene?
-    var parentArray: NSMutableArray = []
-    var bulletsArray: NSMutableArray = []
+    var parentArray: NSMutableArray? = []
+    var bulletsArray: NSMutableArray? = []
     var leftTexture: SKTexture?
     var rightTexture: SKTexture?
     var hasLanded = false
@@ -696,7 +721,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
         self.leftTexture = left
         self.rightTexture = right
         
-        self.parentArray.add(self)
+        self.parentArray?.add(self)
         
         self.texture = self.rightTexture
         
@@ -742,10 +767,10 @@ class SKEnemyCowboyNode: SKSpriteNode {
         let enemyBullet = SKBulletsNode(texture: gameScene?.bulletTexture)
             
         if self.texture == self.leftTexture {
-            enemyBullet.shoot(from: self, to: "left", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: bulletsArray, inScene: self.gameScene!)
+            enemyBullet.shoot(from: self, to: "left", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: bulletsArray!, inScene: self.gameScene!)
                 
         } else if self.texture == self.rightTexture {
-            enemyBullet.shoot(from: self, to: "right", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: bulletsArray, inScene: self.gameScene!)
+            enemyBullet.shoot(from: self, to: "right", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: bulletsArray!, inScene: self.gameScene!)
         }
     }
     
@@ -768,9 +793,22 @@ class SKEnemyCowboyNode: SKSpriteNode {
     
     // Remove EnemyCowboy
     func remove() {
-        self.parentArray.remove(self)
-        self.removeFromParent()
+        self.parentArray?.remove(self)
+        
         self.gameScene = nil
+        self.parentArray = nil
+        self.bulletsArray = nil
+        self.leftTexture = nil
+        self.rightTexture = nil
+        
+        self.removeAllChildren()
+        self.removeAllActions()
+        
+        self.removeFromParent()
+    }
+    
+    deinit {
+        print("Deinit Enemy Cowboy at \(Date())")
     }
     
 }

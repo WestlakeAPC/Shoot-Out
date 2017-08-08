@@ -25,22 +25,25 @@ class SKAlienNode: SKSpriteNode {
     // MARK: Internal enemy state
     var deteriorationStage: Deterioration = .perfectShape
     var gameScene: GameScene?
-    var fullTextureArray: [[SKTexture?]] = []
-    var textureArray: [SKTexture] = []
-    var parentArray: NSMutableArray = []
+    var fullTextureArray: [[SKTexture?]]? = []
+    var textureArray: [SKTexture]? = []
+    var parentArray: NSMutableArray? = []
     var allowMovement: Bool = false
     
     // MARK: Spawn
     func spawn(withTextureSeries textures: [[SKTexture?]], addToArray inArray: NSMutableArray, widthToScreenWidthOf xProp: CGFloat, avoidElement character: SKSpriteNode, inScene gameScene: GameScene){
         
         self.parentArray = inArray
-        // Set Max Aliens At Any Given Time
-        if self.parentArray.count >= 7 {return}
+        // Remove yourself if too many aliens.
+        if self.parentArray!.count >= 7 {
+            self.remove()
+            return
+        }
         
         self.fullTextureArray = textures
         
-        self.textureArray = textures[Int(arc4random_uniform(3))] as! [SKTexture]
-        self.texture = textureArray[0]
+        self.textureArray = textures[Int(arc4random_uniform(3))] as? [SKTexture]
+        self.texture = textureArray?[0]
         self.gameScene = gameScene
         
         self.size.width = 67
@@ -60,7 +63,7 @@ class SKAlienNode: SKSpriteNode {
         self.physicsBody?.isDynamic = true
         
         gameScene.addChild(self)
-        parentArray.add(self)
+        parentArray?.add(self)
         
         self.run(SKAction.wait(forDuration: TimeInterval(1)), completion: {
             self.allowMovement = true
@@ -104,15 +107,15 @@ class SKAlienNode: SKSpriteNode {
         switch (deteriorationStage) {
         case .perfectShape:
             deteriorationStage = .goodShape
-            self.texture = textureArray[1]
+            self.texture = textureArray?[1]
             
         case .goodShape:
             deteriorationStage = .badShape
-            self.texture = textureArray[2]
+            self.texture = textureArray?[2]
             
         case .badShape:
             deteriorationStage = .finishHim
-            self.texture = textureArray[3]
+            self.texture = textureArray?[3]
             
         case .finishHim:
             if (gameScene?.playerIsDead)! {return}
@@ -135,7 +138,7 @@ class SKAlienNode: SKSpriteNode {
             gameScene?.dispatchEnemyCowboys()
         }
         
-        switch (parentArray.count) {
+        switch (parentArray!.count) {
         case 1:
             if (gameScene?.aliensKilled)! >= 5 {
                 gameScene?.spawnAlien()
@@ -163,13 +166,20 @@ class SKAlienNode: SKSpriteNode {
         default:
             return
         }
-        
     }
     
     // MARK: Delete Alien
     func remove() {
-        self.parentArray.remove(self)
+        self.parentArray?.remove(self)
+        self.fullTextureArray = nil
+        self.textureArray = nil
+        self.parentArray = nil
+        
+        self.removeAllActions()
         self.removeFromParent()
     }
     
+    deinit {
+        print("Deinitialized alien at \(Date())")
+    }
 }

@@ -6,9 +6,8 @@ import AVFoundation
 class SKBulletsNode: SKSpriteNode {
     
     var gameScene: GameScene?
-    var parentArray: NSMutableArray = []
+    var parentArray: NSMutableArray? = []
     var hasRemoved = false
-    var bulletSoundEffect : AVAudioPlayer?
     
     
     // Shoot
@@ -21,8 +20,7 @@ class SKBulletsNode: SKSpriteNode {
         
         self.gameScene = scene
         self.parentArray = array
-        self.parentArray.adding(self)
-        self.run(SKAction.playSoundFileNamed("DesertEagleShot.mp3", waitForCompletion: false))
+        self.parentArray?.adding(self)
         
         self.anchorPoint = CGPoint.zero
         self.size.width = character.size.width / 12
@@ -31,7 +29,7 @@ class SKBulletsNode: SKSpriteNode {
         self.zPosition = 1
         
         scene.addChild(self)
-        parentArray.add(self)
+        parentArray?.add(self)
         
         if direction == "left" {
             self.run(SKAction.moveTo(x: (self.position.x - (gameScene?.frame.size.width)!), duration: 1.5), completion: {
@@ -60,12 +58,19 @@ class SKBulletsNode: SKSpriteNode {
     // Remove from GameScene and bulletArray
     func remove() {
         if !self.hasRemoved {
-            self.removeFromParent()
-            self.parentArray.remove(self)
+            self.parentArray?.remove(self)
+            
+            self.texture = nil
+            self.parentArray = nil
             self.hasRemoved = true
             self.gameScene = nil
+            
+            self.removeAllActions()
+            self.removeFromParent()
         }
-        
+    }
+    
+    deinit {
+        print("Deinitialized bullet at \(Date())")
     }
 }
-

@@ -31,11 +31,15 @@ class SKAlienNode: SKSpriteNode {
     var allowMovement: Bool = false
     
     // MARK: Spawn
-    func spawn(withTextureSeries textures: [[SKTexture?]], addToArray inArray: NSMutableArray, widthToScreenWidthOf xProp: CGFloat, avoidElement character: SKSpriteNode, inScene gameScene: GameScene){
+    func spawn(withTextureSeries textures: [[SKTexture?]],
+               addToArray inArray: NSMutableArray,
+               widthToScreenWidthOf xProp: CGFloat,
+               avoidElement character: SKSpriteNode,
+               inScene gameScene: GameScene){
         
         self.parentArray = inArray
-        // Remove yourself if too many aliens.
-        if self.parentArray!.count >= 7 {
+        // Set Max Aliens At Any Given Time
+        if (self.parentArray?.count)! >= 7 {
             self.remove()
             return
         }
@@ -124,10 +128,11 @@ class SKAlienNode: SKSpriteNode {
             gameScene?.score += 1
             gameScene?.scoreLabel.text = String(describing: (gameScene?.score)!)
             
-            self.remove()
             
             gameScene?.spawnAlien()
             self.spawnStrategically()
+            
+            self.remove()
             
         }
     }
@@ -138,7 +143,7 @@ class SKAlienNode: SKSpriteNode {
             gameScene?.dispatchEnemyCowboys()
         }
         
-        switch (parentArray!.count) {
+        switch ((parentArray?.count)!) {
         case 1:
             if (gameScene?.aliensKilled)! >= 5 {
                 gameScene?.spawnAlien()
@@ -166,20 +171,24 @@ class SKAlienNode: SKSpriteNode {
         default:
             return
         }
+        
     }
     
     // MARK: Delete Alien
     func remove() {
         self.parentArray?.remove(self)
+        
         self.fullTextureArray = nil
         self.textureArray = nil
         self.parentArray = nil
         
         self.removeAllActions()
+        
         self.removeFromParent()
     }
     
     deinit {
-        print("Deinitialized alien at \(Date())")
+        print("Deinit Alien at \(Date())")
     }
+    
 }

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17124FD21F39166600C417A0 /* SKBulletsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17124FD11F39166600C417A0 /* SKBulletsNode.swift */; };
+		17124FD41F3916B600C417A0 /* SKEnemyCowboyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17124FD31F3916B600C417A0 /* SKEnemyCowboyNode.swift */; };
+		17124FD61F39171100C417A0 /* SKAlienNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17124FD51F39171100C417A0 /* SKAlienNode.swift */; };
 		22F734E01F37BC6600AA52C5 /* punch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22F734DF1F37BC6600AA52C5 /* punch.wav */; };
 		22F734E31F37C3FB00AA52C5 /* Crazy.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22F734E21F37C3FB00AA52C5 /* Crazy.wav */; };
 		22F734E61F37CE4A00AA52C5 /* punch2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22F734E51F37CE4A00AA52C5 /* punch2.wav */; };
@@ -53,6 +56,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17124FD11F39166600C417A0 /* SKBulletsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKBulletsNode.swift; sourceTree = "<group>"; };
+		17124FD31F3916B600C417A0 /* SKEnemyCowboyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKEnemyCowboyNode.swift; sourceTree = "<group>"; };
+		17124FD51F39171100C417A0 /* SKAlienNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKAlienNode.swift; sourceTree = "<group>"; };
 		1798F94B710741F60B145977 /* Pods-Shoot OutUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot OutUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot OutUITests/Pods-Shoot OutUITests.release.xcconfig"; sourceTree = "<group>"; };
 		18F429D1C829B5792172ECD4 /* Pods_Shoot_OutTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shoot_OutTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F734DF1F37BC6600AA52C5 /* punch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = punch.wav; sourceTree = "<group>"; };
@@ -238,6 +244,9 @@
 				73486E281F22FF06004C3333 /* GameViewController.swift */,
 				73486E261F22FF06004C3333 /* GameScene.swift */,
 				73486E221F22FF06004C3333 /* GameScene.sks */,
+				17124FD11F39166600C417A0 /* SKBulletsNode.swift */,
+				17124FD31F3916B600C417A0 /* SKEnemyCowboyNode.swift */,
+				17124FD51F39171100C417A0 /* SKAlienNode.swift */,
 			);
 			name = "Single Player";
 			sourceTree = "<group>";
@@ -341,7 +350,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Westlake APC";
 				TargetAttributes = {
 					73486E1C1F22FF05004C3333 = {
@@ -568,6 +577,9 @@
 				73486E211F22FF06004C3333 /* AppDelegate.swift in Sources */,
 				73829BDC1F230DDB003AEF6F /* ConnectViewController.swift in Sources */,
 				73486E591F230AB4004C3333 /* MultiplayerGameViewController.swift in Sources */,
+				17124FD41F3916B600C417A0 /* SKEnemyCowboyNode.swift in Sources */,
+				17124FD61F39171100C417A0 /* SKAlienNode.swift in Sources */,
+				17124FD21F39166600C417A0 /* SKBulletsNode.swift in Sources */,
 				73829BDF1F231050003AEF6F /* MPCHandler.swift in Sources */,
 				73486E571F230A12004C3333 /* MultiplayerScene.swift in Sources */,
 				738B0FCF1F37E0C3006D6C80 /* InitialViewController.swift in Sources */,
@@ -634,7 +646,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -642,7 +656,12 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -684,7 +703,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -692,7 +713,12 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

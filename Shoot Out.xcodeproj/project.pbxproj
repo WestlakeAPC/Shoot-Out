@@ -36,6 +36,7 @@
 		73829BDF1F231050003AEF6F /* MPCHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73829BDE1F231050003AEF6F /* MPCHandler.swift */; };
 		738B0FCD1F37D9AF006D6C80 /* DesertEagleShot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 738B0FCC1F37D9AF006D6C80 /* DesertEagleShot.mp3 */; };
 		738B0FCF1F37E0C3006D6C80 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738B0FCE1F37E0C3006D6C80 /* InitialViewController.swift */; };
+		73ADDAF51F3A98E600563B6F /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73ADDAF41F3A98E600563B6F /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		73829BDE1F231050003AEF6F /* MPCHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCHandler.swift; sourceTree = "<group>"; };
 		738B0FCC1F37D9AF006D6C80 /* DesertEagleShot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DesertEagleShot.mp3; sourceTree = "<group>"; };
 		738B0FCE1F37E0C3006D6C80 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		73ADDAF41F3A98E600563B6F /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		94F576C725E3FE6496540B8E /* Pods-Shoot OutUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot OutUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot OutUITests/Pods-Shoot OutUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8B79C560DDD5275858FAE3A /* Pods-Shoot OutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot OutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot OutTests/Pods-Shoot OutTests.release.xcconfig"; sourceTree = "<group>"; };
 		F5B01B9EC0F8E179B8CBEEA9 /* Pods_Shoot_OutUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shoot_OutUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +107,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51D117B3DF6893AB534E5625 /* Pods_Shoot_Out.framework in Frameworks */,
+				73ADDAF51F3A98E600563B6F /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +274,7 @@
 		CA4549A0AF64058A363F79EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				73ADDAF41F3A98E600563B6F /* GameKit.framework */,
 				267E46FB207CACBFC883BF64 /* Pods_Shoot_Out.framework */,
 				18F429D1C829B5792172ECD4 /* Pods_Shoot_OutTests.framework */,
 				F5B01B9EC0F8E179B8CBEEA9 /* Pods_Shoot_OutUITests.framework */,
@@ -357,6 +361,11 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 9SR8L2XE3A;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 					73486E361F22FF06004C3333 = {
 						CreatedOnToolsVersion = 8.1;

@@ -109,7 +109,6 @@ class SKEnemyCowboyNode: SKSpriteNode {
     // Remove EnemyCowboy
     func remove() {
         self.parentArray?.remove(self)
-        self.removeFromParent()
 
         self.gameScene = nil
         self.parentArray = nil

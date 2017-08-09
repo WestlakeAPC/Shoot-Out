@@ -232,6 +232,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Update the Game
     override func update(_ currentTime: TimeInterval) {
+        if playerIsDead {return}
         // Called before each frame is rendered
         moveAliens()
         trackBulletToAlienCollision()
@@ -242,7 +243,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Move Aliens
     func moveAliens() {
-        if playerIsDead {return}
         for a in (alienArray as NSArray as! [SKAlienNode]) {
             a.trackCharacter(track: self.mainCharacter)
         }
@@ -284,7 +284,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Track Enemy Bullets to Player Collision
     func trackEnemyBulletToPlayerCollision() {
         for b in (enemyBulletArray as! [SKBulletsNode]) {
-            if b.intersects(self.mainCharacter) && !playerIsDead {
+            if b.intersects(self.mainCharacter) {
                 playerDidDie()
             }
         }

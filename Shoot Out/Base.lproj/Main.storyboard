@@ -231,9 +231,6 @@
                                     <constraint firstAttribute="width" constant="92" id="pHb-F1-udv"/>
                                 </constraints>
                                 <state key="normal" title=" ︻┳═一"/>
-                                <connections>
-                                    <action selector="exitView:" destination="2Ww-N4-jw2" eventType="touchUpInside" id="5Pq-DO-1vB"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDh-vY-Uyp">
                                 <rect key="frame" x="175" y="579" width="92" height="63"/>
@@ -254,6 +251,7 @@
                                 </constraints>
                                 <state key="normal" title="&lt;-"/>
                                 <connections>
+                                    <action selector="exitView:" destination="2Ww-N4-jw2" eventType="touchUpInside" id="mNn-Zo-ck5"/>
                                     <action selector="exitView:" destination="BV1-FR-VrT" eventType="touchUpInside" id="t97-aa-zGb"/>
                                 </connections>
                             </button>

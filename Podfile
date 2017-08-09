@@ -6,8 +6,8 @@ target 'Shoot Out' do
   use_frameworks!
 
   # Pods for Shoot Out
-
   pod 'Toaster', '~> 2.0'
+  pod 'GCHelper', '~> 0.3'
 
   target 'Shoot OutTests' do
     inherit! :search_paths

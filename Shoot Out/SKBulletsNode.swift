@@ -5,7 +5,7 @@ import AVFoundation
 // MARK: Bullet Class
 class SKBulletsNode: SKSpriteNode {
     
-    var gameScene: SKScene?
+    var gameScene: GameScene?
     var parentArray: NSMutableArray? = []
     var hasRemoved = false
     
@@ -16,24 +16,11 @@ class SKBulletsNode: SKSpriteNode {
                fromPercentOfWidth xPercent: CGFloat,
                fromPercentOfHeight yPercent: CGFloat,
                addToArray array: NSMutableArray,
-               inScene scene: SKScene) {
+               inScene scene: GameScene) {
         
         self.gameScene = scene
         self.parentArray = array
         self.parentArray?.adding(self)
-        
-        // Play Sound
-        /*if let soundUrl = Bundle.main.url(forResource: "DesertEagleShot", withExtension: "mp3") {
-         var soundId: SystemSoundID = 0
-         
-         AudioServicesCreateSystemSoundID(soundUrl as CFURL, &soundId)
-         
-         AudioServicesAddSystemSoundCompletion(soundId, nil, nil, { (soundId, clientData) -> Void in
-         AudioServicesDisposeSystemSoundID(soundId)
-         }, nil)
-         
-         AudioServicesPlaySystemSound(soundId)
-         }*/
         
         self.anchorPoint = CGPoint.zero
         self.size.width = character.size.width / 12
@@ -77,16 +64,13 @@ class SKBulletsNode: SKSpriteNode {
             self.parentArray = nil
             self.hasRemoved = true
             self.gameScene = nil
-            self.removeAllActions()
             
+            self.removeAllActions()
             self.removeFromParent()
         }
-        
     }
-    
     
     deinit {
-        print("Deinit Bullet at \(Date())")
+        print("Deinitialized bullet at \(Date())")
     }
-    
 }

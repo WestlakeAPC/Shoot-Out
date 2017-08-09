@@ -15,13 +15,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
     var shot = false
     
     // Dispatch EnemyCowboy
-    func dispatch(withWidthComparedToScreen widthScale: CGFloat,
-                  withLeftTexture left: SKTexture,
-                  withRightTexture right: SKTexture,
-                  toArray parentArray: NSMutableArray,
-                  storyBulletsIn bulletsArray: NSMutableArray,
-                  avoid character: SKSpriteNode,
-                  inScene scene: GameScene) {
+    func dispatch(withWidthComparedToScreen widthScale: CGFloat, withLeftTexture left: SKTexture, withRightTexture right: SKTexture, toArray parentArray: NSMutableArray, storyBulletsIn bulletsArray: NSMutableArray, avoid character: SKSpriteNode, inScene scene: GameScene) {
         
         self.gameScene = scene
         self.parentArray = parentArray
@@ -39,8 +33,10 @@ class SKEnemyCowboyNode: SKSpriteNode {
         
         self.anchorPoint = CGPoint.zero
         repeat {
-            self.position = CGPoint(x: CGFloat(arc4random_uniform(UInt32((gameScene?.size.width)! - self.size.width))), y: (gameScene?.size.height)! * 1.25 - self.size.height)
-        } while self.position.x < (character.position.x + character.size.width) && (self.position.x + self.size.width) > (character.position.x - character.size.width)
+            self.position = CGPoint(x: CGFloat(arc4random_uniform(UInt32((gameScene?.size.width)! - self.size.width))),
+                                    y: (gameScene?.size.height)! * 1.25 - self.size.height)
+        } while self.position.x < (character.position.x + character.size.width)
+            && (self.position.x + self.size.width) > (character.position.x - character.size.width)
         
         self.zPosition = 2
         
@@ -71,15 +67,25 @@ class SKEnemyCowboyNode: SKSpriteNode {
     
     // Shoot
     func shootMainCharacter() {
-        if !canShoot || (gameScene?.playerIsDead)! {return}
+        if !canShoot || gameScene!.playerIsDead {return}
         
         let enemyBullet = SKBulletsNode(texture: gameScene?.bulletTexture)
         
         if self.texture == self.leftTexture {
-            enemyBullet.shoot(from: self, to: "left", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: bulletsArray!, inScene: self.gameScene!)
+            enemyBullet.shoot(from: self,
+                              to: "left",
+                              fromPercentOfWidth: 0.8,
+                              fromPercentOfHeight: 0.35,
+                              addToArray: bulletsArray!,
+                              inScene: self.gameScene!)
             
         } else if self.texture == self.rightTexture {
-            enemyBullet.shoot(from: self, to: "right", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: bulletsArray!, inScene: self.gameScene!)
+            enemyBullet.shoot(from: self,
+                              to: "right",
+                              fromPercentOfWidth: 0.8,
+                              fromPercentOfHeight: 0.35,
+                              addToArray: bulletsArray!,
+                              inScene: self.gameScene!)
         }
     }
     
@@ -103,7 +109,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
     // Remove EnemyCowboy
     func remove() {
         self.parentArray?.remove(self)
-        
+
         self.gameScene = nil
         self.parentArray = nil
         self.bulletsArray = nil
@@ -117,7 +123,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
     }
     
     deinit {
-        print("Deinit Enemy Cowboy at \(Date())")
+        print("Deinitialized Enemy Cowboy at \(Date())")
     }
-    
 }
+

@@ -31,9 +31,14 @@ class SKAlienNode: SKSpriteNode {
     var allowMovement: Bool = false
     
     // MARK: Spawn
-    func spawn(withTextureSeries textures: [[SKTexture?]], addToArray inArray: NSMutableArray, widthToScreenWidthOf xProp: CGFloat, avoidElement character: SKSpriteNode, inScene gameScene: GameScene){
+    func spawn(withTextureSeries textures: [[SKTexture?]],
+               addToArray inArray: NSMutableArray,
+               widthToScreenWidthOf xProp: CGFloat,
+               avoidElement character: SKSpriteNode,
+               inScene gameScene: GameScene) {
         
         self.parentArray = inArray
+        
         // Remove yourself if too many aliens.
         if self.parentArray!.count >= 7 {
             self.remove()

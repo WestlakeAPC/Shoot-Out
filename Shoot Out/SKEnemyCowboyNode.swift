@@ -15,7 +15,13 @@ class SKEnemyCowboyNode: SKSpriteNode {
     var shot = false
     
     // Dispatch EnemyCowboy
-    func dispatch(withWidthComparedToScreen widthScale: CGFloat, withLeftTexture left: SKTexture, withRightTexture right: SKTexture, toArray parentArray: NSMutableArray, storyBulletsIn bulletsArray: NSMutableArray, avoid character: SKSpriteNode, inScene scene: GameScene) {
+    func dispatch(withWidthComparedToScreen widthScale: CGFloat,
+                  withLeftTexture left: SKTexture,
+                  withRightTexture right: SKTexture,
+                  toArray parentArray: NSMutableArray,
+                  storyBulletsIn bulletsArray: NSMutableArray,
+                  avoid character: SKSpriteNode,
+                  inScene scene: GameScene) {
         
         self.gameScene = scene
         self.parentArray = parentArray
@@ -109,7 +115,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
     // Remove EnemyCowboy
     func remove() {
         self.parentArray?.remove(self)
-
+        
         self.gameScene = nil
         self.parentArray = nil
         self.bulletsArray = nil

@@ -5,7 +5,7 @@ import AVFoundation
 // MARK: Bullet Class
 class SKBulletsNode: SKSpriteNode {
     
-    var gameScene: GameScene?
+    var gameScene: SKScene?
     var parentArray: NSMutableArray? = []
     var hasRemoved = false
     
@@ -16,7 +16,7 @@ class SKBulletsNode: SKSpriteNode {
                fromPercentOfWidth xPercent: CGFloat,
                fromPercentOfHeight yPercent: CGFloat,
                addToArray array: NSMutableArray,
-               inScene scene: GameScene) {
+               inScene scene: SKScene) {
         
         self.gameScene = scene
         self.parentArray = array

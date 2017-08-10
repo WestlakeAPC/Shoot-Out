@@ -252,16 +252,29 @@
                                 <state key="normal" title="&lt;-"/>
                                 <connections>
                                     <action selector="exitView:" destination="2Ww-N4-jw2" eventType="touchUpInside" id="mNn-Zo-ck5"/>
-                                    <action selector="exitView:" destination="BV1-FR-VrT" eventType="touchUpInside" id="t97-aa-zGb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cOo-6l-BOc">
+                                <rect key="frame" x="301" y="4" width="70" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="91c-Jm-SCp"/>
+                                    <constraint firstAttribute="width" constant="70" id="rze-Bo-rtQ"/>
+                                </constraints>
+                                <state key="normal" title="Connect"/>
+                                <connections>
+                                    <action selector="connectToPlayer:" destination="2Ww-N4-jw2" eventType="touchUpInside" id="Z7z-gy-I5U"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="cOo-6l-BOc" firstAttribute="top" secondItem="D6X-d5-aQD" secondAttribute="top" constant="4" id="9Qh-dm-3lw"/>
                             <constraint firstItem="1hR-x2-zqF" firstAttribute="top" secondItem="v3T-ud-2Am" secondAttribute="bottom" constant="25" id="Amr-O4-hz1"/>
                             <constraint firstItem="v3T-ud-2Am" firstAttribute="leading" secondItem="tDh-vY-Uyp" secondAttribute="trailing" constant="10" id="Aq6-Wt-7kY"/>
                             <constraint firstItem="iSV-km-S5P" firstAttribute="leading" secondItem="lMJ-Y6-3h4" secondAttribute="trailing" constant="10" id="EBV-PB-s5A"/>
                             <constraint firstItem="1hR-x2-zqF" firstAttribute="top" secondItem="tDh-vY-Uyp" secondAttribute="bottom" constant="25" id="IDN-1C-qjn"/>
+                            <constraint firstAttribute="trailing" secondItem="cOo-6l-BOc" secondAttribute="trailing" constant="4" id="X8F-59-XkZ"/>
                             <constraint firstItem="KDb-yX-gEf" firstAttribute="top" secondItem="D6X-d5-aQD" secondAttribute="top" constant="4" id="fd1-Xr-AqX"/>
                             <constraint firstItem="v3T-ud-2Am" firstAttribute="trailing" secondItem="D6X-d5-aQD" secondAttribute="trailingMargin" constant="10" id="gCE-Ry-BMZ"/>
                             <constraint firstItem="KDb-yX-gEf" firstAttribute="leading" secondItem="D6X-d5-aQD" secondAttribute="leading" constant="4" id="lwu-MP-4JG"/>
@@ -279,7 +292,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHP-gB-oOL" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="809" y="785"/>
+            <point key="canvasLocation" x="884" y="821.73913043478262"/>
         </scene>
     </scenes>
     <resources>

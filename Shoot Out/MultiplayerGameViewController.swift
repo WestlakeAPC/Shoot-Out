@@ -8,9 +8,10 @@
 
 import UIKit
 import SpriteKit
-import GameplayKit
+import GameKit
+import GCHelper
 
-class MultiplayerGameViewController: UIViewController {
+class MultiplayerGameViewController: UIViewController, GCHelperDelegate {
     
     weak var scene: SKScene?
     weak var gameScene: MultiplayerScene?
@@ -49,7 +50,7 @@ class MultiplayerGameViewController: UIViewController {
         
     }
     
-    // MARK: Return to Menu
+    // Return to Menu
     @IBAction func exitView(_ sender: Any) {
         print("\nAttempting to deallocate \(String(describing: self.skView?.scene))\n")
         self.gameScene?.endAll()
@@ -60,6 +61,27 @@ class MultiplayerGameViewController: UIViewController {
         self.skView?.presentScene(nil)
         
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    // Connect to player
+    @IBAction func connectToPlayer(_ sender: Any) {
+        GCHelper.sharedInstance.findMatchWithMinPlayers(2, maxPlayers: 2, viewController: self, delegate: self)
+    }
+    
+    
+    /// Method called when a match has been initiated.
+    func matchStarted() {
+        
+    }
+    
+    /// Method called when the match has ended.
+    func matchEnded() {
+        
+    }
+    
+    /// Method called when the device received data about the match from another device in the match.
+    func match(_ match: GKMatch, didReceiveData: Data, fromPlayer: String) {
+        
     }
     
     
@@ -118,7 +140,7 @@ class MultiplayerGameViewController: UIViewController {
     }
     
     deinit {
-        print("Deinit GameViewController.swift")
+        print("Deinit MultiplayerGameViewController.swift")
     }
     
 }

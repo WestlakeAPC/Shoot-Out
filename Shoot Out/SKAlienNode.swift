@@ -129,8 +129,8 @@ class SKAlienNode: SKSpriteNode {
             gameScene?.score += 1
             gameScene?.scoreLabel.text = String(describing: (gameScene?.score)!)
             
-            gameScene?.spawnAlien()
             self.spawnStrategically()
+            gameScene?.spawnAlien()
             
             self.remove()
         }

@@ -27,6 +27,8 @@ class GlobalMultiplayerGameViewController: UIViewController, GCHelperDelegate {
         super.viewDidLoad()
         longPressGesture()
         loadGameScene()
+        
+        GCHelper.sharedInstance.findMatchWithMinPlayers(2, maxPlayers: 2, viewController: self, delegate: self)
     }
     
     // MARK: Load Game Scene
@@ -41,12 +43,12 @@ class GlobalMultiplayerGameViewController: UIViewController, GCHelperDelegate {
         skView!.presentScene(scene)
         
         self.gameScene = scene as! MultiplayerScene?
+        self.gameScene?.viewController = self
         
         skView!.ignoresSiblingOrder = true
         skView?.showsFPS = true
         skView?.showsNodeCount = true
         skView?.showsPhysics = false
-        
         
     }
     
@@ -62,12 +64,6 @@ class GlobalMultiplayerGameViewController: UIViewController, GCHelperDelegate {
         
         self.dismiss(animated: true, completion: nil)
     }
-    
-    // Connect to player
-    @IBAction func connectToPlayer(_ sender: Any) {
-        GCHelper.sharedInstance.findMatchWithMinPlayers(2, maxPlayers: 2, viewController: self, delegate: self)
-    }
-    
     
     /// Method called when a match has been initiated.
     func matchStarted() {

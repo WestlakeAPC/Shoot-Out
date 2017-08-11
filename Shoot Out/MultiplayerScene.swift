@@ -169,6 +169,7 @@ class MultiplayerScene: SKScene {
     func endAll() {
         self.removeAllActions()
         self.removeAllChildren()
+        self.viewController = nil
     }
     
     deinit {

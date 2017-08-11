@@ -9,9 +9,8 @@
 import UIKit
 import SpriteKit
 import GameKit
-import GCHelper
 
-class LocalMultiplayerGameController: UIViewController, GCHelperDelegate {
+class LocalMultiplayerGameController: UIViewController {
 
     weak var scene: SKScene?
     weak var gameScene: MultiplayerScene?
@@ -41,6 +40,7 @@ class LocalMultiplayerGameController: UIViewController, GCHelperDelegate {
         skView!.presentScene(scene)
         
         self.gameScene = scene as! MultiplayerScene?
+        self.gameScene?.viewController = self
         
         skView!.ignoresSiblingOrder = true
         skView?.showsFPS = true
@@ -61,27 +61,6 @@ class LocalMultiplayerGameController: UIViewController, GCHelperDelegate {
         self.skView?.presentScene(nil)
         
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    // Connect to player
-    @IBAction func connectToPlayer(_ sender: Any) {
-        GCHelper.sharedInstance.findMatchWithMinPlayers(2, maxPlayers: 2, viewController: self, delegate: self)
-    }
-    
-    
-    /// Method called when a match has been initiated.
-    func matchStarted() {
-        
-    }
-    
-    /// Method called when the match has ended.
-    func matchEnded() {
-        
-    }
-    
-    /// Method called when the device received data about the match from another device in the match.
-    func match(_ match: GKMatch, didReceiveData: Data, fromPlayer: String) {
-        
     }
     
     

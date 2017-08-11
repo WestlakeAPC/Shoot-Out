@@ -11,7 +11,7 @@ import SpriteKit
 import GameKit
 import GCHelper
 
-class MultiplayerGameViewController: UIViewController, GCHelperDelegate {
+class GlobalMultiplayerGameViewController: UIViewController, GCHelperDelegate {
     
     weak var scene: SKScene?
     weak var gameScene: MultiplayerScene?
@@ -140,7 +140,7 @@ class MultiplayerGameViewController: UIViewController, GCHelperDelegate {
     }
     
     deinit {
-        print("Deinit MultiplayerGameViewController.swift")
+        print("Deinit GlobalMultiplayerGameViewController.swift")
     }
     
 }

@@ -31,7 +31,8 @@
 		73486E471F22FF06004C3333 /* Shoot_OutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73486E461F22FF06004C3333 /* Shoot_OutUITests.swift */; };
 		73486E551F2309F7004C3333 /* MultiplayerScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 73486E541F2309F7004C3333 /* MultiplayerScene.sks */; };
 		73486E571F230A12004C3333 /* MultiplayerScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73486E561F230A12004C3333 /* MultiplayerScene.swift */; };
-		73486E591F230AB4004C3333 /* MultiplayerGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73486E581F230AB4004C3333 /* MultiplayerGameViewController.swift */; };
+		73486E591F230AB4004C3333 /* GlobalMultiplayerGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73486E581F230AB4004C3333 /* GlobalMultiplayerGameViewController.swift */; };
+		736F58581F3D447E00C065EE /* LocalMultiplayerGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736F58571F3D447E00C065EE /* LocalMultiplayerGameController.swift */; };
 		73829BDC1F230DDB003AEF6F /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73829BDB1F230DDB003AEF6F /* ConnectViewController.swift */; };
 		73829BDF1F231050003AEF6F /* MPCHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73829BDE1F231050003AEF6F /* MPCHandler.swift */; };
 		738B0FCD1F37D9AF006D6C80 /* DesertEagleShot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 738B0FCC1F37D9AF006D6C80 /* DesertEagleShot.mp3 */; };
@@ -90,7 +91,8 @@
 		73486E481F22FF06004C3333 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73486E541F2309F7004C3333 /* MultiplayerScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MultiplayerScene.sks; sourceTree = "<group>"; };
 		73486E561F230A12004C3333 /* MultiplayerScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerScene.swift; sourceTree = "<group>"; };
-		73486E581F230AB4004C3333 /* MultiplayerGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerGameViewController.swift; sourceTree = "<group>"; };
+		73486E581F230AB4004C3333 /* GlobalMultiplayerGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalMultiplayerGameViewController.swift; sourceTree = "<group>"; };
+		736F58571F3D447E00C065EE /* LocalMultiplayerGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalMultiplayerGameController.swift; sourceTree = "<group>"; };
 		73829BDB1F230DDB003AEF6F /* ConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
 		73829BDE1F231050003AEF6F /* MPCHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCHandler.swift; sourceTree = "<group>"; };
 		738B0FCC1F37D9AF006D6C80 /* DesertEagleShot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DesertEagleShot.mp3; sourceTree = "<group>"; };
@@ -205,7 +207,9 @@
 				738B0FD01F37E0CB006D6C80 /* Initial View */,
 				73486E5B1F230BA4004C3333 /* Single Player */,
 				73829BDD1F230DF4003AEF6F /* Connect */,
-				73486E5A1F230B8D004C3333 /* Multiplayer */,
+				736F58561F3D436600C065EE /* Local Multiplayer */,
+				73486E5A1F230B8D004C3333 /* Global Multiplayer */,
+				73486E561F230A12004C3333 /* MultiplayerScene.swift */,
 				73486E2D1F22FF06004C3333 /* Assets.xcassets */,
 				73486E2F1F22FF06004C3333 /* LaunchScreen.storyboard */,
 				73486E321F22FF06004C3333 /* Info.plist */,
@@ -231,14 +235,13 @@
 			path = "Shoot OutUITests";
 			sourceTree = "<group>";
 		};
-		73486E5A1F230B8D004C3333 /* Multiplayer */ = {
+		73486E5A1F230B8D004C3333 /* Global Multiplayer */ = {
 			isa = PBXGroup;
 			children = (
-				73486E581F230AB4004C3333 /* MultiplayerGameViewController.swift */,
-				73486E561F230A12004C3333 /* MultiplayerScene.swift */,
+				73486E581F230AB4004C3333 /* GlobalMultiplayerGameViewController.swift */,
 				73486E541F2309F7004C3333 /* MultiplayerScene.sks */,
 			);
-			name = Multiplayer;
+			name = "Global Multiplayer";
 			sourceTree = "<group>";
 		};
 		73486E5B1F230BA4004C3333 /* Single Player */ = {
@@ -252,6 +255,14 @@
 				17124FD51F39171100C417A0 /* SKAlienNode.swift */,
 			);
 			name = "Single Player";
+			sourceTree = "<group>";
+		};
+		736F58561F3D436600C065EE /* Local Multiplayer */ = {
+			isa = PBXGroup;
+			children = (
+				736F58571F3D447E00C065EE /* LocalMultiplayerGameController.swift */,
+			);
+			name = "Local Multiplayer";
 			sourceTree = "<group>";
 		};
 		73829BDD1F230DF4003AEF6F /* Connect */ = {
@@ -595,11 +606,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				736F58581F3D447E00C065EE /* LocalMultiplayerGameController.swift in Sources */,
 				73486E271F22FF06004C3333 /* GameScene.swift in Sources */,
 				73486E291F22FF06004C3333 /* GameViewController.swift in Sources */,
 				73486E211F22FF06004C3333 /* AppDelegate.swift in Sources */,
 				73829BDC1F230DDB003AEF6F /* ConnectViewController.swift in Sources */,
-				73486E591F230AB4004C3333 /* MultiplayerGameViewController.swift in Sources */,
+				73486E591F230AB4004C3333 /* GlobalMultiplayerGameViewController.swift in Sources */,
 				17124FD41F3916B600C417A0 /* SKEnemyCowboyNode.swift in Sources */,
 				17124FD61F39171100C417A0 /* SKAlienNode.swift in Sources */,
 				17124FD21F39166600C417A0 /* SKBulletsNode.swift in Sources */,

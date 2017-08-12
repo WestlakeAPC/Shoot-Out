@@ -207,8 +207,6 @@
 				738B0FD01F37E0CB006D6C80 /* Initial View */,
 				73486E5B1F230BA4004C3333 /* Single Player */,
 				73829BDD1F230DF4003AEF6F /* Connect */,
-				736F58561F3D436600C065EE /* Local Multiplayer */,
-				73486E5A1F230B8D004C3333 /* Global Multiplayer */,
 				736F58591F3E623E00C065EE /* Multiplayer Game Files */,
 				73486E2D1F22FF06004C3333 /* Assets.xcassets */,
 				73486E2F1F22FF06004C3333 /* LaunchScreen.storyboard */,
@@ -235,14 +233,6 @@
 			path = "Shoot OutUITests";
 			sourceTree = "<group>";
 		};
-		73486E5A1F230B8D004C3333 /* Global Multiplayer */ = {
-			isa = PBXGroup;
-			children = (
-				73486E581F230AB4004C3333 /* GlobalMultiplayerGameViewController.swift */,
-			);
-			name = "Global Multiplayer";
-			sourceTree = "<group>";
-		};
 		73486E5B1F230BA4004C3333 /* Single Player */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,17 +246,11 @@
 			name = "Single Player";
 			sourceTree = "<group>";
 		};
-		736F58561F3D436600C065EE /* Local Multiplayer */ = {
-			isa = PBXGroup;
-			children = (
-				736F58571F3D447E00C065EE /* LocalMultiplayerGameController.swift */,
-			);
-			name = "Local Multiplayer";
-			sourceTree = "<group>";
-		};
 		736F58591F3E623E00C065EE /* Multiplayer Game Files */ = {
 			isa = PBXGroup;
 			children = (
+				73486E581F230AB4004C3333 /* GlobalMultiplayerGameViewController.swift */,
+				736F58571F3D447E00C065EE /* LocalMultiplayerGameController.swift */,
 				73486E561F230A12004C3333 /* MultiplayerScene.swift */,
 				73486E541F2309F7004C3333 /* MultiplayerScene.sks */,
 			);

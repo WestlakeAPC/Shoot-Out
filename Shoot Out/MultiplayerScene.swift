@@ -48,6 +48,7 @@ class MultiplayerScene: SKScene {
     
     // MARK: Did Move to View
     override func didMove(to view: SKView) {
+        print("Multiplayer Game View Size: \(self.frame.size)")
         // Load elements
         loadBarrier()
         loadBackground()
@@ -85,7 +86,7 @@ class MultiplayerScene: SKScene {
             self.mainCharacter.position = CGPoint(x: self.frame.size.width * 0.3, y: self.frame.size.height / 2)
             self.mainCharacter.zPosition = 3
             
-            self.mainCharacter.size.width = 46.7
+            self.mainCharacter.size.width = self.frame.size.width * 0.05
             self.mainCharacter.size.height = self.mainCharacter.size.width * #imageLiteral(resourceName: "jimCharacR").size.height / #imageLiteral(resourceName: "jimCharacR").size.width
             
             let characterCenter = CGPoint(x: self.mainCharacter.size.width / 2, y: self.mainCharacter.size.height / 2)
@@ -126,20 +127,20 @@ class MultiplayerScene: SKScene {
     // MARK: Character Movement
     func moveLeft() {
         if playerIsDead {return}
-        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: -19, dy: 0))
+        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: -45, dy: 0))
         self.mainCharacter.texture = jimFacingLeftTexture
     }
     
     func moveRight() {
         if playerIsDead {return}
-        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 19, dy: 0))
+        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 45, dy: 0))
         self.mainCharacter.texture = jimFacingRightTexture
     }
     
     func jump() {
         if playerIsDead {return}
         if self.mainCharacter.position.y < self.frame.size.height * 0.5 {
-            self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: 55))
+            self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: 95))
         }
     }
     

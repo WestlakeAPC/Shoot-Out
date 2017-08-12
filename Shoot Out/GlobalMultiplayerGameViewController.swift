@@ -35,8 +35,21 @@ class GlobalMultiplayerGameViewController: UIViewController, GCHelperDelegate {
     func loadGameScene() {
         // Create GameScene object
         scene = MultiplayerScene(fileNamed:"MultiplayerScene")
-        scene?.size = self.view.bounds.size
-        scene!.scaleMode = .aspectFill
+        
+        // Make game display on different devices
+        if (UIDevice.current.model == "iPhone"){
+            print("Displaying on Device: iPhone")
+            scene?.scaleMode = .aspectFill
+            
+        } else if (UIDevice.current.model == "iPad"){
+            print("Displaying on Device: iPad")
+            scene?.scaleMode = .aspectFit
+            
+        } else {
+            print("Displaying on Device: Other Device")
+            scene?.scaleMode = .aspectFill
+            
+        }
         
         // Present current scene
         skView = (self.view as! SKView)

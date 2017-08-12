@@ -33,7 +33,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qw6-74-YmC">
                                 <rect key="frame" x="16" y="494" width="145" height="38"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
-                                <state key="normal" title="Singleplayer"/>
+                                <state key="normal" title="Singleplayer">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="BV1-FR-VrT" kind="show" id="cXT-ML-vW0"/>
                                 </connections>
@@ -41,7 +43,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dj-GH-dZb">
                                 <rect key="frame" x="16" y="568" width="136" height="38"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
-                                <state key="normal" title="Multiplayer"/>
+                                <state key="normal" title="Multiplayer">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="L7j-cs-WYg" kind="show" id="VFg-bd-bHL"/>
                                 </connections>

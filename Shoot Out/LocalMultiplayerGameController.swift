@@ -70,16 +70,16 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     // TODO: Continue method call as long as button is held
     func longPressGesture() {
         
-        let leftButtonLPG = UITapGestureRecognizer(target: self, action: #selector(self.moveLeft))
+        let leftButtonLPG = UITapGestureRecognizer(target: self, action: #selector(moveLeft))
         leftButton.addGestureRecognizer(leftButtonLPG)
         
-        let rightButtonLPG = UITapGestureRecognizer(target: self, action: #selector(self.moveRight))
+        let rightButtonLPG = UITapGestureRecognizer(target: self, action: #selector(moveRight))
         rightButton.addGestureRecognizer(rightButtonLPG)
         
-        let jumpButtonLPG = UITapGestureRecognizer(target: self, action: #selector(self.jump))
+        let jumpButtonLPG = UITapGestureRecognizer(target: self, action: #selector(jump))
         jumpButton.addGestureRecognizer(jumpButtonLPG)
         
-        let shootButtonLPG = UITapGestureRecognizer(target: self, action: #selector(self.shoot))
+        let shootButtonLPG = UITapGestureRecognizer(target: self, action: #selector(shoot))
         shootButton.addGestureRecognizer(shootButtonLPG)
     }
     
@@ -99,7 +99,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
                                                selector: #selector(handleReceivedDataWithNotification(_:)),
                                                name: NSNotification.Name(rawValue: "MPC_DidReceiveDataNotification"),
                                                object: nil)
-        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(LocalMultiplayerGameController.connectToPlayers), userInfo: nil, repeats: false)
+        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(connectToPlayers), userInfo: nil, repeats: false)
     }
     
     // MARK: Display connection ViewController

@@ -93,6 +93,8 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         NotificationCenter.default.addObserver(self, selector: #selector(LocalMultiplayerGameController.peerChangedStateWithNotification(_:)), name: NSNotification.Name(rawValue: "MPC_DidChangeStateNotification"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(LocalMultiplayerGameController.handleReceivedDataWithNotification(_:)), name: NSNotification.Name(rawValue: "MPC_DidReceiveDataNotification"), object: nil)
+        
+        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(LocalMultiplayerGameController.connectToPlayers), userInfo: nil, repeats: false)
     }
     
     // MARK: Display Connection View Controller

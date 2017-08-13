@@ -299,7 +299,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHP-gB-oOL" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="814" y="1158"/>
+            <point key="canvasLocation" x="813.60000000000002" y="1157.2713643178411"/>
         </scene>
         <!--Local Multiplayer Game Controller-->
         <scene sceneID="J7I-Ll-2FB">
@@ -362,16 +362,30 @@
                                     <action selector="exitView:" destination="TgT-ZV-HBA" eventType="touchUpInside" id="ans-pG-ir5"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abm-6m-rpn">
+                                <rect key="frame" x="301" y="4" width="70" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="6gR-1X-zDV"/>
+                                    <constraint firstAttribute="width" constant="70" id="VQh-7n-XLy"/>
+                                </constraints>
+                                <state key="normal" title="Connect"/>
+                                <connections>
+                                    <action selector="connectWithPlayers:" destination="TgT-ZV-HBA" eventType="touchUpInside" id="oYh-4A-5ge"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="daE-s6-WW3" firstAttribute="leading" secondItem="ybf-Ar-Ay3" secondAttribute="leading" constant="4" id="3Iu-oN-9Ng"/>
                             <constraint firstItem="kog-hf-FOL" firstAttribute="top" secondItem="Voy-uQ-W7y" secondAttribute="bottom" constant="25" id="5EY-nA-3Y9"/>
                             <constraint firstItem="kog-hf-FOL" firstAttribute="top" secondItem="aZU-eO-0Ka" secondAttribute="bottom" constant="25" id="9FU-fR-frk"/>
+                            <constraint firstAttribute="trailing" secondItem="abm-6m-rpn" secondAttribute="trailing" constant="4" id="C5q-TM-pee"/>
                             <constraint firstItem="kog-hf-FOL" firstAttribute="top" secondItem="Rpt-E1-38V" secondAttribute="bottom" constant="25" id="HBO-ls-c6v"/>
                             <constraint firstItem="kog-hf-FOL" firstAttribute="top" secondItem="shz-r4-cPq" secondAttribute="bottom" constant="25" id="Ouy-7J-fxY"/>
                             <constraint firstItem="aZU-eO-0Ka" firstAttribute="trailing" secondItem="ybf-Ar-Ay3" secondAttribute="trailingMargin" constant="10" id="Pt9-1T-bua"/>
                             <constraint firstItem="aZU-eO-0Ka" firstAttribute="leading" secondItem="shz-r4-cPq" secondAttribute="trailing" constant="10" id="Q5c-Ty-utZ"/>
+                            <constraint firstItem="abm-6m-rpn" firstAttribute="top" secondItem="ybf-Ar-Ay3" secondAttribute="top" constant="4" id="b7V-nN-lY2"/>
                             <constraint firstItem="daE-s6-WW3" firstAttribute="top" secondItem="ybf-Ar-Ay3" secondAttribute="top" constant="4" id="fga-dj-fe8"/>
                             <constraint firstItem="Rpt-E1-38V" firstAttribute="leading" secondItem="ybf-Ar-Ay3" secondAttribute="leading" constant="10" id="nWt-q5-5AP"/>
                             <constraint firstItem="Voy-uQ-W7y" firstAttribute="leading" secondItem="Rpt-E1-38V" secondAttribute="trailing" constant="10" id="nsC-Pi-MKi"/>
@@ -386,7 +400,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xrF-la-dHf" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="814" y="445"/>
+            <point key="canvasLocation" x="813.60000000000002" y="444.82758620689657"/>
         </scene>
     </scenes>
     <resources>

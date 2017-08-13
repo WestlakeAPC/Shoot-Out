@@ -140,7 +140,7 @@ class MultiplayerScene: SKScene {
     func jump() {
         if playerIsDead {return}
         if self.mainCharacter.position.y < self.frame.size.height * 0.5 {
-            self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: 95))
+            self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: 140))
         }
     }
     

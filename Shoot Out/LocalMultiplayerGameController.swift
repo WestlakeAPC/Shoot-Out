@@ -9,12 +9,15 @@
 import UIKit
 import SpriteKit
 import GameKit
+import MultipeerConnectivity
 
-class LocalMultiplayerGameController: UIViewController {
+class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerDelegate {
 
     weak var scene: SKScene?
-    weak var gameScene: MultiplayerScene?
     weak var skView : SKView?
+    weak var gameScene: MultiplayerScene?
+    
+    var appDelegate: AppDelegate!
     
     @IBOutlet var leftButton: UIButton!
     @IBOutlet var rightButton: UIButton!
@@ -24,8 +27,9 @@ class LocalMultiplayerGameController: UIViewController {
     // MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
-        longPressGesture()
         loadGameScene()
+        longPressGesture()
+        setupMPC()
     }
     
     // MARK: Load Game Scene
@@ -63,20 +67,6 @@ class LocalMultiplayerGameController: UIViewController {
         
     }
     
-    // Return to Menu
-    @IBAction func exitView(_ sender: Any) {
-        print("\nAttempting to deallocate \(String(describing: self.skView?.scene))\n")
-        self.gameScene?.endAll()
-        self.scene = nil
-        self.gameScene?.viewController = nil
-        self.gameScene = nil
-        self.skView = nil
-        self.skView?.presentScene(nil)
-        
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    
     // TODO: Continue method call as long as button is held
     func longPressGesture() {
         
@@ -91,6 +81,77 @@ class LocalMultiplayerGameController: UIViewController {
         
         let shootButtonLPG = UITapGestureRecognizer(target: self, action: #selector(self.shoot))
         shootButton.addGestureRecognizer(shootButtonLPG)
+    }
+    
+    // MARK: Setup MPC
+    func setupMPC() {
+        appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.mpcHandler.setupPeerWithDisplayName(displayName: UIDevice.current.name)
+        appDelegate.mpcHandler.setupSession()
+        appDelegate.mpcHandler.adertiseSelf(advertise: true)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(LocalMultiplayerGameController.peerChangedStateWithNotification(_:)), name: NSNotification.Name(rawValue: "MPC_DidChangeStateNotification"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(LocalMultiplayerGameController.handleReceivedDataWithNotification(_:)), name: NSNotification.Name(rawValue: "MPC_DidReceiveDataNotification"), object: nil)
+    }
+    
+    // MARK: Display Connection View Controller
+    func connectToPlayers() {
+        if appDelegate.mpcHandler.session != nil {
+            appDelegate.mpcHandler.setupBrowser()
+            appDelegate.mpcHandler.browser.delegate = self
+            
+            self.present(appDelegate.mpcHandler.browser, animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: Check Peer Connection
+    func peerChangedStateWithNotification(_ notification: NSNotification) {
+        print("Changed State:")
+        
+        let userInfo = NSDictionary(dictionary: notification.userInfo!)
+        let state = userInfo.object(forKey: "state") as! Int
+        
+        if state == MCSessionState.connected.rawValue {
+            print("Connected")
+        } else if state == MCSessionState.connecting.rawValue {
+            print("Connecting")
+        } else if state == MCSessionState.notConnected.rawValue {
+            print("Disconnected")
+        }
+    }
+    
+    // MARK: Handle Received Data
+    func handleReceivedDataWithNotification(_ notification: NSNotification) {
+        let userInfo = notification.userInfo!  as Dictionary
+        let receivedData: NSData = userInfo["data"] as! NSData
+        
+        do {
+            let message = try JSONSerialization.jsonObject(with: receivedData as Data, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
+            print("Received:")
+            print(message)
+            
+        } catch {
+            print("R.I.P. When receiving data, you encountered: " + error.localizedDescription)
+        }
+    }
+    
+    // Connect
+    @IBAction func connectWithPlayers(_ sender: Any) {
+        self.connectToPlayers()
+    }
+    
+    // Return to Menu
+    @IBAction func exitView(_ sender: Any) {
+        print("\nAttempting to deallocate \(String(describing: self.skView?.scene))\n")
+        self.gameScene?.endAll()
+        self.scene = nil
+        self.gameScene?.viewController = nil
+        self.gameScene = nil
+        self.skView = nil
+        self.skView?.presentScene(nil)
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
     // TODO: Replace method calls eventually
@@ -112,6 +173,15 @@ class LocalMultiplayerGameController: UIViewController {
     
     override var shouldAutorotate: Bool {
         return false
+    }
+    
+    // MARK: Delegate Protocal Methods
+    func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
+        appDelegate.mpcHandler.browser.dismiss(animated: true, completion: nil)
+    }
+    
+    func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
+        appDelegate.mpcHandler.browser.dismiss(animated: true, completion: nil)
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

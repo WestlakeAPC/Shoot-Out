@@ -90,14 +90,17 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         appDelegate.mpcHandler.setupSession()
         appDelegate.mpcHandler.adertiseSelf(advertise: true)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(LocalMultiplayerGameController.peerChangedStateWithNotification(_:)), name: NSNotification.Name(rawValue: "MPC_DidChangeStateNotification"), object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(peerChangedStateWithNotification(_:)),
+                                               name: NSNotification.Name(rawValue: "MPC_DidChangeStateNotification"),
+                                               object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(LocalMultiplayerGameController.handleReceivedDataWithNotification(_:)), name: NSNotification.Name(rawValue: "MPC_DidReceiveDataNotification"), object: nil)
         
         _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(LocalMultiplayerGameController.connectToPlayers), userInfo: nil, repeats: false)
     }
     
-    // MARK: Display Connection View Controller
+    // MARK: Display connection ViewController
     func connectToPlayers() {
         if appDelegate.mpcHandler.session != nil {
             appDelegate.mpcHandler.setupBrowser()
@@ -107,29 +110,33 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         }
     }
     
-    // MARK: Check Peer Connection
+    // MARK: Check peer connection
     func peerChangedStateWithNotification(_ notification: NSNotification) {
         print("Changed State:")
         
         let userInfo = NSDictionary(dictionary: notification.userInfo!)
         let state = userInfo.object(forKey: "state") as! Int
+        guard let sessionState = MCSessionState(rawValue: state) else {
+            return
+        }
         
-        if state == MCSessionState.connected.rawValue {
+        switch (sessionState) {
+        case .connected:
             print("Connected")
-        } else if state == MCSessionState.connecting.rawValue {
+        case .connecting:
             print("Connecting")
-        } else if state == MCSessionState.notConnected.rawValue {
+        case .notConnected:
             print("Disconnected")
         }
     }
     
-    // MARK: Handle Received Data
+    // MARK: Handle received data
     func handleReceivedDataWithNotification(_ notification: NSNotification) {
         let userInfo = notification.userInfo!  as Dictionary
         let receivedData: NSData = userInfo["data"] as! NSData
         
         do {
-            let message = try JSONSerialization.jsonObject(with: receivedData as Data, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
+            let message = try JSONSerialization.jsonObject(with: receivedData as Data, options: .allowFragments) as! NSDictionary
             print("Received:")
             print(message)
             

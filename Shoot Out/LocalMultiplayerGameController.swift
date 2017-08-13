@@ -213,7 +213,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     }
     
     deinit {
-        print("Deinit LocalMultiplayerGameViewController.swift")
+        print("Deinitialized LocalMultiplayerGameViewController")
     }
 
 }

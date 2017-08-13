@@ -149,7 +149,7 @@ class GlobalMultiplayerGameViewController: UIViewController, GCHelperDelegate {
     }
     
     deinit {
-        print("Deinit GlobalMultiplayerGameViewController.swift")
+        print("Deinitialized GlobalMultiplayerGameViewController")
     }
     
 }

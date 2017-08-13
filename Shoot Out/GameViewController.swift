@@ -118,7 +118,7 @@ class GameViewController: UIViewController {
     }
     
     deinit {
-        print("Deinit GameViewController.swift")
+        print("Deinitialized GameViewController")
     }
     
 }

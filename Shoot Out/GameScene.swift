@@ -452,6 +452,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     deinit {
-        print("Deinit GameScene.swift")
+        print("Deinitialized GameScene")
     }
 }

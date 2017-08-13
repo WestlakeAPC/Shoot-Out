@@ -174,6 +174,6 @@ class MultiplayerScene: SKScene {
     }
     
     deinit {
-        print("Deinit MultiplayerScene.swift")
+        print("Deinitialized MultiplayerScene")
     }
 }

@@ -57,11 +57,12 @@ class MultiplayerScene: SKScene {
         
         // Load elements
         loadBarrier()
-        loadBackground()
         setUpSound()
         loadAlphaCharacter(withTexture: jimFacingRightTexture)
         loadBetaCharacter(withTexture: enemyCowboyLeftTexture)
         assignCharacters()
+        
+        self.backgroundColor = .clear
     }
         
         
@@ -71,20 +72,6 @@ class MultiplayerScene: SKScene {
                 edgeLoopFrom: CGRect(x: 0, y: self.frame.size.height / 4, width: self.frame.size.width, height: self.frame.size.height))
             self.physicsBody?.isDynamic = false
         }
-        
-    // Load Background
-    func loadBackground() {
-            let backGroundImage: SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "background.png"))
-            
-            backGroundImage.anchorPoint = .zero
-            backGroundImage.position = .zero
-            backGroundImage.zPosition = 0
-            backGroundImage.size.width = self.frame.size.width
-            backGroundImage.size.height = backGroundImage.size.width * 3/4
-            
-            
-            self.addChild(backGroundImage)
-    }
     
     // Audio Components
     func setUpSound() {

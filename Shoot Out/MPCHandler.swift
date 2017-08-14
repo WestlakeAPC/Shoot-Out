@@ -27,6 +27,8 @@ class MPCHandler: NSObject, MCSessionDelegate {
 
     func setupBrowser() {
         browser = MCBrowserViewController(serviceType: "my-game", session: session)
+        
+        browser.maximumNumberOfPeers = 2
     }
     
     func adertiseSelf(advertise:Bool) {
@@ -43,7 +45,7 @@ class MPCHandler: NSObject, MCSessionDelegate {
         let userInfo = ["peerID":peerID,"state":state.rawValue] as [String : Any]
         
         DispatchQueue.main.async(execute: { () -> Void in
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "MPC_DidChangeStateNotification"), object: nil, userInfo: userInfo)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "MPC_DidChangeStateNotification"), object: nil, userInfo: userInfo)
         })
     }
     

@@ -17,6 +17,9 @@ class MultiplayerScene: SKScene {
     // SpriteKit nodes
     var alphaCharacter = SKSpriteNode()
     var betaCharacter = SKSpriteNode()
+    var mainCharacter: SKSpriteNode?
+    var opposingCharacter: SKSpriteNode?
+    
     var theGround = SKNode()
     var scoreLabel = SKLabelNode()
     var overScreen = SKShapeNode()
@@ -57,6 +60,7 @@ class MultiplayerScene: SKScene {
         setUpSound()
         loadAlphaCharacter(withTexture: jimFacingRightTexture)
         loadBetaCharacter(withTexture: enemyCowboyLeftTexture)
+        assignCharacters()
     }
         
         
@@ -81,7 +85,7 @@ class MultiplayerScene: SKScene {
             self.addChild(backGroundImage)
         }
         
-    // MARK: Load Main Character
+    // MARK: Load Alpha Character
     func loadAlphaCharacter(withTexture texture: SKTexture) {
             self.alphaCharacter = SKSpriteNode(texture: texture)
             
@@ -107,7 +111,7 @@ class MultiplayerScene: SKScene {
             self.alphaCharacter.addChild(alphaBloodParticle!)
     }
     
-    // MARK: Load Enemy Character
+    // MARK: Load Beta Character
     func loadBetaCharacter(withTexture texture: SKTexture) {
         self.betaCharacter = SKSpriteNode(texture: texture)
         
@@ -133,6 +137,13 @@ class MultiplayerScene: SKScene {
         self.betaCharacter.addChild(betaBloodParticle!)
     }
     
+    // MARK: Assign Characters
+    func assignCharacters() {
+        // Will be worked on later
+        self.mainCharacter = self.alphaCharacter
+        self.opposingCharacter = self.betaCharacter
+    }
+    
     // MARK: Audio Components
     func setUpSound() {
             let punchSound = URL(fileURLWithPath: Bundle.main.path(forResource: "punch", ofType: "wav")!)
@@ -155,20 +166,20 @@ class MultiplayerScene: SKScene {
     // MARK: Character Movement
     func moveLeft() {
         if playerIsDead {return}
-        self.alphaCharacter.physicsBody?.applyImpulse(CGVector(dx: -45, dy: 0))
-        self.alphaCharacter.texture = jimFacingLeftTexture
+        self.mainCharacter?.physicsBody?.applyImpulse(CGVector(dx: -30, dy: 0))
+        self.mainCharacter?.texture = jimFacingLeftTexture
     }
     
     func moveRight() {
         if playerIsDead {return}
-        self.alphaCharacter.physicsBody?.applyImpulse(CGVector(dx: 45, dy: 0))
-        self.alphaCharacter.texture = jimFacingRightTexture
+        self.mainCharacter?.physicsBody?.applyImpulse(CGVector(dx: 30, dy: 0))
+        self.mainCharacter?.texture = jimFacingRightTexture
     }
     
     func jump() {
         if playerIsDead {return}
-        if self.alphaCharacter.position.y < self.frame.size.height * 0.5 {
-            self.alphaCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: 140))
+        if (self.mainCharacter?.position.y)! < self.frame.size.height * 0.5 {
+            self.mainCharacter?.physicsBody?.applyImpulse(CGVector(dx: 0,dy: 80))
         }
     }
     
@@ -178,12 +189,12 @@ class MultiplayerScene: SKScene {
         if playerIsDead {return}
         let bullet = SKBulletsNode(texture: bulletTexture)
         
-        if self.alphaCharacter.texture == jimFacingLeftTexture {
+        if self.mainCharacter?.texture == jimFacingLeftTexture {
             bullet.shoot(from:
-                self.alphaCharacter, to: "left", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: playerBulletArray, inScene: self)
+                self.mainCharacter!, to: "left", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: playerBulletArray, inScene: self)
             
-        } else if self.alphaCharacter.texture == jimFacingRightTexture {
-            bullet.shoot(from: self.alphaCharacter, to: "right", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: playerBulletArray, inScene: self)
+        } else if self.mainCharacter?.texture == jimFacingRightTexture {
+            bullet.shoot(from: self.mainCharacter!, to: "right", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: playerBulletArray, inScene: self)
         }
     }
     

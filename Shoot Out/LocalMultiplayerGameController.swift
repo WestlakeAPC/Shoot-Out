@@ -14,7 +14,6 @@ import MultipeerConnectivity
 class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerDelegate {
 
     weak var scene: SKScene?
-    weak var skView : SKView?
     weak var gameScene: MultiplayerScene?
     
     var appDelegate: AppDelegate!
@@ -23,6 +22,8 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     @IBOutlet var rightButton: UIButton!
     @IBOutlet var jumpButton: UIButton!
     @IBOutlet var shootButton: UIButton!
+    
+    @IBOutlet var skView: SKView!
     
     // MARK: View Did Load
     override func viewDidLoad() {
@@ -37,24 +38,11 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         // Create GameScene object
         scene = MultiplayerScene(fileNamed:"MultiplayerScene")
         
-        // Make game display on different devices
-        if (UIDevice.current.model == "iPhone"){
-            print("Displaying on Device: iPhone")
-            scene?.scaleMode = .aspectFill
-            
-        } else if (UIDevice.current.model == "iPad"){
-            print("Displaying on Device: iPad")
-            scene?.scaleMode = .aspectFit
-            
-        } else {
-            print("Displaying on Device: Other Device")
-            scene?.scaleMode = .aspectFill
-            
-        }
+        scene?.scaleMode = .aspectFit
         
         // Present current scene
-        skView = (self.view as! SKView)
         skView!.presentScene(scene)
+        skView?.allowsTransparency = true
         
         self.gameScene = scene as! MultiplayerScene?
         self.gameScene?.viewController = self
@@ -123,12 +111,12 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         }
         
         switch (sessionState) {
-        case .connected:
-            print("Connected")
-        case .connecting:
-            print("Connecting")
-        case .notConnected:
-            print("Disconnected")
+            case .connected:
+                print("Connected")
+            case .connecting:
+                print("Connecting")
+            case .notConnected:
+                print("Disconnected")
         }
     }
     

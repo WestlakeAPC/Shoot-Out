@@ -49,6 +49,7 @@ class MultiplayerScene: SKScene {
     // MARK: Did Move to View
     override func didMove(to view: SKView) {
         print("Multiplayer Game View Size: \(self.frame.size)")
+        
         // Load elements
         loadBarrier()
         loadBackground()

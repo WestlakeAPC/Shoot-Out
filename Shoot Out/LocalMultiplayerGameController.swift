@@ -50,7 +50,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         skView!.ignoresSiblingOrder = true
         skView?.showsFPS = true
         skView?.showsNodeCount = true
-        skView?.showsPhysics = false
+        skView?.showsPhysics = true
         
         
     }

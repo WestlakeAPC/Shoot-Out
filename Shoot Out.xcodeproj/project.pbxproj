@@ -38,6 +38,7 @@
 		738B0FCD1F37D9AF006D6C80 /* DesertEagleShot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 738B0FCC1F37D9AF006D6C80 /* DesertEagleShot.mp3 */; };
 		738B0FCF1F37E0C3006D6C80 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738B0FCE1F37E0C3006D6C80 /* InitialViewController.swift */; };
 		73ADDAF51F3A98E600563B6F /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73ADDAF41F3A98E600563B6F /* GameKit.framework */; };
+		73CB34B11F4150750008BA9E /* MultiplayerGameHandlerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CB34B01F4150750008BA9E /* MultiplayerGameHandlerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		738B0FCC1F37D9AF006D6C80 /* DesertEagleShot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DesertEagleShot.mp3; sourceTree = "<group>"; };
 		738B0FCE1F37E0C3006D6C80 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		73ADDAF41F3A98E600563B6F /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		73CB34B01F4150750008BA9E /* MultiplayerGameHandlerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerGameHandlerDelegate.swift; sourceTree = "<group>"; };
 		94F576C725E3FE6496540B8E /* Pods-Shoot OutUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot OutUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot OutUITests/Pods-Shoot OutUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8B79C560DDD5275858FAE3A /* Pods-Shoot OutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot OutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot OutTests/Pods-Shoot OutTests.release.xcconfig"; sourceTree = "<group>"; };
 		F5B01B9EC0F8E179B8CBEEA9 /* Pods_Shoot_OutUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shoot_OutUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -249,6 +251,7 @@
 		736F58591F3E623E00C065EE /* Multiplayer Game Files */ = {
 			isa = PBXGroup;
 			children = (
+				73CB34B01F4150750008BA9E /* MultiplayerGameHandlerDelegate.swift */,
 				73486E581F230AB4004C3333 /* GlobalMultiplayerGameViewController.swift */,
 				736F58571F3D447E00C065EE /* LocalMultiplayerGameController.swift */,
 				73486E561F230A12004C3333 /* MultiplayerScene.swift */,
@@ -608,6 +611,7 @@
 				17124FD61F39171100C417A0 /* SKAlienNode.swift in Sources */,
 				17124FD21F39166600C417A0 /* SKBulletsNode.swift in Sources */,
 				73829BDF1F231050003AEF6F /* MPCHandler.swift in Sources */,
+				73CB34B11F4150750008BA9E /* MultiplayerGameHandlerDelegate.swift in Sources */,
 				73486E571F230A12004C3333 /* MultiplayerScene.swift in Sources */,
 				738B0FCF1F37E0C3006D6C80 /* InitialViewController.swift in Sources */,
 			);

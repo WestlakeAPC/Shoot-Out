@@ -151,6 +151,7 @@ class MultiplayerScene: SKScene {
         // Will be worked on later
         self.mainCharacter = self.alphaCharacter
         self.opposingCharacter = self.betaCharacter
+        
     }
 
     // MARK: Character Actions

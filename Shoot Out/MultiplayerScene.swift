@@ -40,7 +40,7 @@ class MultiplayerScene: SKScene {
     var score = 0
     
     // Death
-    var playerIsDead = false
+    var gameIsOver = false
     
     // Sound
     var punchSoundEffect : AVAudioPlayer?
@@ -51,7 +51,7 @@ class MultiplayerScene: SKScene {
     var playerBulletArray: NSMutableArray = []
     var enemyBulletArray: NSMutableArray = []
     
-    // MARK: Did Move to View
+    // MARK: Did Move to View Setup
     override func didMove(to view: SKView) {
         print("Multiplayer Game View Size: \(self.frame.size)")
         // Load elements
@@ -64,14 +64,14 @@ class MultiplayerScene: SKScene {
     }
         
         
-    // MARK: Load Barrier
+    // Load Barrier
     func loadBarrier() {
             self.physicsBody = SKPhysicsBody(
                 edgeLoopFrom: CGRect(x: 0, y: self.frame.size.height / 4, width: self.frame.size.width, height: self.frame.size.height))
             self.physicsBody?.isDynamic = false
         }
         
-    // MARK: Load Background
+    // Load Background
     func loadBackground() {
             let backGroundImage: SKSpriteNode = SKSpriteNode(texture: SKTexture(imageNamed: "background.png"))
             
@@ -83,9 +83,28 @@ class MultiplayerScene: SKScene {
             
             
             self.addChild(backGroundImage)
-        }
+    }
+    
+    // Audio Components
+    func setUpSound() {
+        let punchSound = URL(fileURLWithPath: Bundle.main.path(forResource: "punch", ofType: "wav")!)
+        let music = URL(fileURLWithPath: Bundle.main.path(forResource: "Crazy", ofType: "wav")!)
         
-    // MARK: Load Alpha Character
+        bulletSoundEffect = try! AVAudioPlayer.init(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "DesertEagleShot", ofType: "mp3")!))
+        bulletSoundEffect?.prepareToPlay()
+        bulletSoundEffect?.numberOfLoops = 0
+        
+        punchSoundEffect = try! AVAudioPlayer.init(contentsOf: punchSound)
+        punchSoundEffect?.prepareToPlay()
+        punchSoundEffect?.numberOfLoops = 0
+        
+        backgroundMusic = try! AVAudioPlayer.init(contentsOf: music)
+        backgroundMusic?.prepareToPlay()
+        backgroundMusic?.numberOfLoops = -1
+        backgroundMusic?.play()
+    }
+    
+    // Load Alpha Character
     func loadAlphaCharacter(withTexture texture: SKTexture) {
             self.alphaCharacter = SKSpriteNode(texture: texture)
             
@@ -108,10 +127,11 @@ class MultiplayerScene: SKScene {
             self.alphaBloodParticle?.particleBirthRate = 0
             self.alphaBloodParticle?.position = characterCenter
             self.alphaBloodParticle?.zPosition = -1
+            self.alphaBloodParticle?.name = "Blood"
             self.alphaCharacter.addChild(alphaBloodParticle!)
     }
     
-    // MARK: Load Beta Character
+    // Load Beta Character
     func loadBetaCharacter(withTexture texture: SKTexture) {
         self.betaCharacter = SKSpriteNode(texture: texture)
         
@@ -134,59 +154,40 @@ class MultiplayerScene: SKScene {
         self.betaBloodParticle?.particleBirthRate = 0
         self.betaBloodParticle?.position = characterCenter
         self.betaBloodParticle?.zPosition = -1
+        self.betaBloodParticle?.name = "Blood"
         self.betaCharacter.addChild(betaBloodParticle!)
     }
     
-    // MARK: Assign Characters
+    // Assign Characters
     func assignCharacters() {
         // Will be worked on later
         self.mainCharacter = self.alphaCharacter
         self.opposingCharacter = self.betaCharacter
     }
-    
-    // MARK: Audio Components
-    func setUpSound() {
-            let punchSound = URL(fileURLWithPath: Bundle.main.path(forResource: "punch", ofType: "wav")!)
-            let music = URL(fileURLWithPath: Bundle.main.path(forResource: "Crazy", ofType: "wav")!)
-            
-            bulletSoundEffect = try! AVAudioPlayer.init(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "DesertEagleShot", ofType: "mp3")!))
-            bulletSoundEffect?.prepareToPlay()
-            bulletSoundEffect?.numberOfLoops = 0
-            
-            punchSoundEffect = try! AVAudioPlayer.init(contentsOf: punchSound)
-            punchSoundEffect?.prepareToPlay()
-            punchSoundEffect?.numberOfLoops = 0
-            
-            backgroundMusic = try! AVAudioPlayer.init(contentsOf: music)
-            backgroundMusic?.prepareToPlay()
-            backgroundMusic?.numberOfLoops = -1
-            backgroundMusic?.play()
-        }
 
-    // MARK: Character Movement
+    // MARK: Character Actions
     func moveLeft() {
-        if playerIsDead {return}
+        if gameIsOver {return}
         self.mainCharacter?.physicsBody?.applyImpulse(CGVector(dx: -30, dy: 0))
         self.mainCharacter?.texture = jimFacingLeftTexture
     }
     
     func moveRight() {
-        if playerIsDead {return}
+        if gameIsOver {return}
         self.mainCharacter?.physicsBody?.applyImpulse(CGVector(dx: 30, dy: 0))
         self.mainCharacter?.texture = jimFacingRightTexture
     }
     
     func jump() {
-        if playerIsDead {return}
+        if gameIsOver {return}
         if (self.mainCharacter?.position.y)! < self.frame.size.height * 0.5 {
             self.mainCharacter?.physicsBody?.applyImpulse(CGVector(dx: 0,dy: 80))
         }
     }
     
-    
-    // MARK: Shoot Function
+    // Shoot Function
     func shoot() {
-        if playerIsDead {return}
+        if gameIsOver {return}
         let bullet = SKBulletsNode(texture: bulletTexture)
         
         if self.mainCharacter?.texture == jimFacingLeftTexture {
@@ -198,13 +199,33 @@ class MultiplayerScene: SKScene {
         }
     }
     
+    // MARK: Game System Processing
+    func gameDidEnd(withDeathOf victim: SKSpriteNode) {
+        (victim.childNode(withName: "blood") as! SKEmitterNode).particleBirthRate = 750
+        
+        self.gameIsOver = true
+    }
+    
+    func gameRestart() {
+        (self.alphaCharacter.childNode(withName: "blood") as! SKEmitterNode).particleBirthRate = 0
+        (self.betaCharacter.childNode(withName: "blood") as! SKEmitterNode).particleBirthRate = 0
+        
+        self.mainCharacter?.position = CGPoint(x: self.frame.size.width * 0.3, y: self.frame.size.height * 0.5)
+        self.mainCharacter?.texture = jimFacingRightTexture
+        
+        self.opposingCharacter?.position = CGPoint(x: self.frame.size.width * 0.7, y: self.frame.size.height * 0.5)
+        self.opposingCharacter?.texture = enemyCowboyLeftTexture
+        
+        self.gameIsOver = false
+    }
+    
     // MARK: When Touches Begin
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
             print("Tapped \(t.location(in: self))")
         }
     }
-        
+    
     // MARK: End All Activity
     func endAll() {
         self.removeAllActions()

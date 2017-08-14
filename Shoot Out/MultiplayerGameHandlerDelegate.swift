@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Protocol that can be implemented for the view controllers displaying games
 protocol MultiplayerGameHandlerDelegate {
     func assignPlayers() -> String
     func updateOpposingCharacter()

@@ -15,12 +15,14 @@ class MultiplayerScene: SKScene {
     var viewController: UIViewController?
     
     // SpriteKit nodes
-    var mainCharacter = SKSpriteNode()
+    var alphaCharacter = SKSpriteNode()
+    var betaCharacter = SKSpriteNode()
     var theGround = SKNode()
     var scoreLabel = SKLabelNode()
     var overScreen = SKShapeNode()
     var deathScore = SKLabelNode()
-    var bloodParticle = SKEmitterNode(fileNamed: "Blood")
+    var alphaBloodParticle = SKEmitterNode(fileNamed: "Blood")
+    var betaBloodParticle = SKEmitterNode(fileNamed: "Blood")
     
     
     // Textures
@@ -53,7 +55,8 @@ class MultiplayerScene: SKScene {
         loadBarrier()
         loadBackground()
         setUpSound()
-        loadMainCharacter(withTexture: jimFacingRightTexture)
+        loadAlphaCharacter(withTexture: jimFacingRightTexture)
+        loadBetaCharacter(withTexture: enemyCowboyLeftTexture)
     }
         
         
@@ -79,32 +82,57 @@ class MultiplayerScene: SKScene {
         }
         
     // MARK: Load Main Character
-    func loadMainCharacter(withTexture texture: SKTexture) {
-            self.mainCharacter = SKSpriteNode(texture: texture)
+    func loadAlphaCharacter(withTexture texture: SKTexture) {
+            self.alphaCharacter = SKSpriteNode(texture: texture)
             
-            self.mainCharacter.anchorPoint = CGPoint.zero
-            self.mainCharacter.position = CGPoint(x: self.frame.size.width * 0.3, y: self.frame.size.height / 2)
-            self.mainCharacter.zPosition = 3
+            self.alphaCharacter.anchorPoint = CGPoint.zero
+            self.alphaCharacter.position = CGPoint(x: self.frame.size.width * 0.3, y: self.frame.size.height / 2)
+            self.alphaCharacter.zPosition = 3
             
-            self.mainCharacter.size.width = self.frame.size.width * 0.05
-            self.mainCharacter.size.height = self.mainCharacter.size.width * #imageLiteral(resourceName: "jimCharacR").size.height / #imageLiteral(resourceName: "jimCharacR").size.width
+            self.alphaCharacter.size.width = self.frame.size.width * 0.05
+            self.alphaCharacter.size.height = self.alphaCharacter.size.width * #imageLiteral(resourceName: "jimCharacR").size.height / #imageLiteral(resourceName: "jimCharacR").size.width
             
-            let characterCenter = CGPoint(x: self.mainCharacter.size.width / 2, y: self.mainCharacter.size.height / 2)
+            let characterCenter = CGPoint(x: self.alphaCharacter.size.width / 2, y: self.alphaCharacter.size.height / 2)
             
-            self.mainCharacter.physicsBody = SKPhysicsBody(rectangleOf: self.mainCharacter.size,
-                                                           center: characterCenter)
+            self.alphaCharacter.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.alphaCharacter.size.width * 0.65, height: self.alphaCharacter.size.height), center: characterCenter)
             
-            self.mainCharacter.physicsBody?.allowsRotation = false
-            self.mainCharacter.physicsBody?.isDynamic = true
+            self.alphaCharacter.physicsBody?.allowsRotation = false
+            self.alphaCharacter.physicsBody?.isDynamic = true
             
-            self.addChild(mainCharacter)
+            self.addChild(alphaCharacter)
             
-            self.bloodParticle?.particleBirthRate = 0
-            self.bloodParticle?.position = characterCenter
-            self.bloodParticle?.zPosition = -1
-            self.mainCharacter.addChild(bloodParticle!)
-        }
+            self.alphaBloodParticle?.particleBirthRate = 0
+            self.alphaBloodParticle?.position = characterCenter
+            self.alphaBloodParticle?.zPosition = -1
+            self.alphaCharacter.addChild(alphaBloodParticle!)
+    }
+    
+    // MARK: Load Enemy Character
+    func loadBetaCharacter(withTexture texture: SKTexture) {
+        self.betaCharacter = SKSpriteNode(texture: texture)
         
+        self.betaCharacter.anchorPoint = CGPoint.zero
+        self.betaCharacter.position = CGPoint(x: self.frame.size.width * 0.7, y: self.frame.size.height / 2)
+        self.betaCharacter.zPosition = 3
+        
+        self.betaCharacter.size.width = self.frame.size.width * 0.05
+        self.betaCharacter.size.height = self.alphaCharacter.size.width * #imageLiteral(resourceName: "jimCharacR").size.height / #imageLiteral(resourceName: "jimCharacR").size.width
+        
+        let characterCenter = CGPoint(x: self.betaCharacter.size.width / 2, y: self.betaCharacter.size.height / 2)
+        
+        self.betaCharacter.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.betaCharacter.size.width * 0.65, height: self.betaCharacter.size.height), center: characterCenter)
+        
+        self.betaCharacter.physicsBody?.allowsRotation = false
+        self.betaCharacter.physicsBody?.isDynamic = true
+        
+        self.addChild(betaCharacter)
+        
+        self.betaBloodParticle?.particleBirthRate = 0
+        self.betaBloodParticle?.position = characterCenter
+        self.betaBloodParticle?.zPosition = -1
+        self.betaCharacter.addChild(betaBloodParticle!)
+    }
+    
     // MARK: Audio Components
     func setUpSound() {
             let punchSound = URL(fileURLWithPath: Bundle.main.path(forResource: "punch", ofType: "wav")!)
@@ -127,20 +155,20 @@ class MultiplayerScene: SKScene {
     // MARK: Character Movement
     func moveLeft() {
         if playerIsDead {return}
-        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: -45, dy: 0))
-        self.mainCharacter.texture = jimFacingLeftTexture
+        self.alphaCharacter.physicsBody?.applyImpulse(CGVector(dx: -45, dy: 0))
+        self.alphaCharacter.texture = jimFacingLeftTexture
     }
     
     func moveRight() {
         if playerIsDead {return}
-        self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 45, dy: 0))
-        self.mainCharacter.texture = jimFacingRightTexture
+        self.alphaCharacter.physicsBody?.applyImpulse(CGVector(dx: 45, dy: 0))
+        self.alphaCharacter.texture = jimFacingRightTexture
     }
     
     func jump() {
         if playerIsDead {return}
-        if self.mainCharacter.position.y < self.frame.size.height * 0.5 {
-            self.mainCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: 140))
+        if self.alphaCharacter.position.y < self.frame.size.height * 0.5 {
+            self.alphaCharacter.physicsBody?.applyImpulse(CGVector(dx: 0,dy: 140))
         }
     }
     
@@ -150,12 +178,12 @@ class MultiplayerScene: SKScene {
         if playerIsDead {return}
         let bullet = SKBulletsNode(texture: bulletTexture)
         
-        if self.mainCharacter.texture == jimFacingLeftTexture {
+        if self.alphaCharacter.texture == jimFacingLeftTexture {
             bullet.shoot(from:
-                self.mainCharacter, to: "left", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: playerBulletArray, inScene: self)
+                self.alphaCharacter, to: "left", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: playerBulletArray, inScene: self)
             
-        } else if self.mainCharacter.texture == jimFacingRightTexture {
-            bullet.shoot(from: self.mainCharacter, to: "right", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: playerBulletArray, inScene: self)
+        } else if self.alphaCharacter.texture == jimFacingRightTexture {
+            bullet.shoot(from: self.alphaCharacter, to: "right", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: playerBulletArray, inScene: self)
         }
     }
     

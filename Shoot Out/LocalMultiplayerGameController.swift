@@ -140,6 +140,23 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         self.connectToPlayers()
     }
     
+    // MARK: Send Data to Other Players
+    func sendAssignmentNumber() {
+        // True for alpha, false for beta
+        
+        // Send Random Number Message
+        let messageDict = ["event": "Character Assigment", "Random Number": arc4random_uniform(UInt32(10000))] as [String : Any]
+        
+        do {
+            let messageData = try JSONSerialization.data(withJSONObject: messageDict, options: JSONSerialization.WritingOptions.prettyPrinted)
+            
+            try appDelegate.mpcHandler.session.send(messageData, toPeers: appDelegate.mpcHandler.session.connectedPeers, with: .reliable)
+            
+        } catch {
+            print("R.I.P. When tapping field, you encountered: " + error.localizedDescription)
+        }
+    }
+    
     // Return to Menu
     @IBAction func exitView(_ sender: Any) {
         print("\nAttempting to deallocate \(String(describing: self.skView?.scene))\n")

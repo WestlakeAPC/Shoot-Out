@@ -48,8 +48,8 @@ class MultiplayerScene: SKScene {
     var bulletSoundEffect : AVAudioPlayer?
     
     // Arrays
-    var playerBulletArray: NSMutableArray = []
-    var enemyBulletArray: NSMutableArray = []
+    var playerBulletArray: [SKBulletsNode] = []
+    var enemyBulletArray: [SKBulletsNode] = []
     
     // MARK: Did Move to View Setup
     override func didMove(to view: SKView) {

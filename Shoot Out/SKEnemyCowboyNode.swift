@@ -6,8 +6,8 @@ import AVFoundation
 class SKEnemyCowboyNode: SKSpriteNode {
     
     var gameScene: GameScene?
-    var parentArray: NSMutableArray? = []
-    var bulletsArray: NSMutableArray? = []
+    var parentArray: [SKEnemyCowboyNode] = []
+    var bulletsArray: [SKBulletsNode] = []
     var leftTexture: SKTexture?
     var rightTexture: SKTexture?
     var hasLanded = false
@@ -18,8 +18,8 @@ class SKEnemyCowboyNode: SKSpriteNode {
     func dispatch(withWidthComparedToScreen widthScale: CGFloat,
                   withLeftTexture left: SKTexture,
                   withRightTexture right: SKTexture,
-                  toArray parentArray: NSMutableArray,
-                  storyBulletsIn bulletsArray: NSMutableArray,
+                  toArray parentArray: [SKEnemyCowboyNode],
+                  storyBulletsIn bulletsArray: [SKBulletsNode],
                   avoid character: SKSpriteNode,
                   inScene scene: GameScene) {
         
@@ -30,7 +30,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
         self.leftTexture = left
         self.rightTexture = right
         
-        self.parentArray?.add(self)
+        self.parentArray.append(self)
         
         self.texture = self.rightTexture
         
@@ -82,7 +82,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
                               to: "left",
                               fromPercentOfWidth: 0.8,
                               fromPercentOfHeight: 0.35,
-                              addToArray: bulletsArray!,
+                              addToArray: bulletsArray,
                               inScene: self.gameScene!)
             
         } else if self.texture == self.rightTexture {
@@ -90,7 +90,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
                               to: "right",
                               fromPercentOfWidth: 0.8,
                               fromPercentOfHeight: 0.35,
-                              addToArray: bulletsArray!,
+                              addToArray: bulletsArray,
                               inScene: self.gameScene!)
         }
     }
@@ -114,11 +114,9 @@ class SKEnemyCowboyNode: SKSpriteNode {
     
     // Remove EnemyCowboy
     func remove() {
-        self.parentArray?.remove(self)
+        self.parentArray.remove(at: parentArray.index(of: self)!)
         
         self.gameScene = nil
-        self.parentArray = nil
-        self.bulletsArray = nil
         self.leftTexture = nil
         self.rightTexture = nil
         

@@ -55,10 +55,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var bulletSoundEffect : AVAudioPlayer?
     
     // Arrays
-    var playerBulletArray: NSMutableArray = []
-    var alienArray: NSMutableArray = []
-    var enemyCowboyArray: NSMutableArray = []
-    var enemyBulletArray: NSMutableArray = []
+    var playerBulletArray: [SKBulletsNode] = []
+    var alienArray: [SKAlienNode] = []
+    var enemyCowboyArray: [SKEnemyCowboyNode] = []
+    var enemyBulletArray: [SKBulletsNode] = []
     var textureMatrix: [[SKTexture?]]? = [[SKTexture?]](repeating: [SKTexture?](repeating: nil, count: 4), count: 3)
     
     // MARK: Did Move to View
@@ -209,7 +209,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Alien Spawning
     func spawnAlien() {
         let alien = SKAlienNode()
-        alien.spawn(withTextureSeries: textureMatrix!, addToArray: alienArray, widthToScreenWidthOf: 0.1, avoidElement: self.mainCharacter, inScene: self)
+        alien.spawn(withTextureSeries: textureMatrix!,
+                    addToArray: alienArray,
+                    widthToScreenWidthOf: 0.1,
+                    avoidElement: self.mainCharacter,
+                    inScene: self)
         
         alien.physicsBody?.categoryBitMask = ColliderType.aliens.rawValue
         alien.physicsBody?.contactTestBitMask = ColliderType.mainCharacter.rawValue
@@ -250,7 +254,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Watching for Bullet to Alien Collision
     func trackBulletToAlienCollision() {
-        for b in (playerBulletArray as NSArray as! [SKBulletsNode]) {
+        for b in (playerBulletArray) {
             for a in (alienArray as NSArray as! [SKAlienNode]) {
                 if b.intersects(a) {
                     b.remove()
@@ -262,15 +266,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Make Enemy Cowboys Aim at Player
     func enemyCowboysAim() {
-        for c in (enemyCowboyArray as! [SKEnemyCowboyNode]) {
+        for c in (enemyCowboyArray) {
             c.aim(at: self.mainCharacter)
         }
     }
     
     // MARK: Player Bullet to Enemy Cowboy Collision
     func trackBulletToEnemyCowboyCollision() {
-        for b in (playerBulletArray as! [SKBulletsNode]) {
-            for c in (enemyCowboyArray as! [SKEnemyCowboyNode]) {
+        for b in (playerBulletArray) {
+            for c in (enemyCowboyArray) {
                 if b.intersects(c) {
                     b.remove()
                     c.didGetShot()
@@ -283,7 +287,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Track Enemy Bullets to Player Collision
     func trackEnemyBulletToPlayerCollision() {
-        for b in (enemyBulletArray as! [SKBulletsNode]) {
+        for b in (enemyBulletArray) {
             if b.intersects(self.mainCharacter) {
                 playerDidDie()
             }
@@ -444,11 +448,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.textureMatrix = nil
         self.removeAllActions()
         self.removeAllChildren()
-        for a in (alienArray as NSArray as! [SKAlienNode]) {a.gameScene = nil
-            a.remove()}
-        for b in (playerBulletArray as NSArray as! [SKBulletsNode]) {b.remove()}
-        for c in (enemyCowboyArray as NSArray as! [SKEnemyCowboyNode]) {c.remove()}
-        for eb in (enemyBulletArray as NSArray as! [SKBulletsNode]) {eb.remove()}
+        for a in (alienArray) {
+            a.gameScene = nil
+            a.remove()
+        }
+        for b in (playerBulletArray) {
+            b.remove()
+        }
+        for c in (enemyCowboyArray) {
+            c.remove()
+        }
+        for eb in (enemyBulletArray) {
+            eb.remove()
+        }
     }
     
     deinit {

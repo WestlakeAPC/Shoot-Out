@@ -6,7 +6,7 @@ import AVFoundation
 class SKBulletsNode: SKSpriteNode {
     
     var gameScene: SKScene?
-    var parentArray: [SKBulletsNode] = []
+    var parentArray: ArrayReference<SKBulletsNode> = ArrayReference()
     var hasRemoved = false
     
     enum BulletDirection {
@@ -19,7 +19,7 @@ class SKBulletsNode: SKSpriteNode {
                to direction: BulletDirection,
                fromPercentOfWidth xPercent: CGFloat,
                fromPercentOfHeight yPercent: CGFloat,
-               toArray array: [SKBulletsNode],
+               toArray array: ArrayReference<SKBulletsNode>,
                inScene scene: SKScene) {
         
         self.gameScene = scene
@@ -33,7 +33,7 @@ class SKBulletsNode: SKSpriteNode {
         self.zPosition = 1
         
         scene.addChild(self)
-        parentArray.append(self)
+        parentArray.array.append(self)
         
         if direction == .left {
             self.run(SKAction.moveTo(x: (self.position.x - (gameScene?.frame.size.width)!), duration: 1.5), completion: {
@@ -41,14 +41,12 @@ class SKBulletsNode: SKSpriteNode {
                     self.remove()
                 }
             })
-            
         } else if direction == .right {
             self.run(SKAction.moveTo(x: (self.position.x + (gameScene?.frame.size.width)!), duration: 1.5), completion: {
                 if !self.hasRemoved {
                     self.remove()
                 }
             })
-            
         } else {
             print("Invalid Direction")
         }
@@ -62,7 +60,7 @@ class SKBulletsNode: SKSpriteNode {
     // Remove from GameScene and bulletArray
     func remove() {
         if !self.hasRemoved {
-            self.parentArray.remove(at: parentArray.index(of: self)!)
+            self.parentArray.array.remove(at: parentArray.array.index(of: self)!)
             
             self.texture = nil
             self.hasRemoved = true

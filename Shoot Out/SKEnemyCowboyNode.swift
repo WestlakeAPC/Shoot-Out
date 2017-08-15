@@ -6,8 +6,8 @@ import AVFoundation
 class SKEnemyCowboyNode: SKSpriteNode {
     
     var gameScene: GameScene?
-    var parentArray: [SKEnemyCowboyNode] = []
-    var bulletsArray: [SKBulletsNode] = []
+    var parentArray: ArrayReference<SKEnemyCowboyNode> = ArrayReference()
+    var bulletsArray: ArrayReference<SKBulletsNode> = ArrayReference()
     var leftTexture: SKTexture?
     var rightTexture: SKTexture?
     var hasLanded = false
@@ -18,8 +18,8 @@ class SKEnemyCowboyNode: SKSpriteNode {
     func dispatch(withWidthComparedToScreen widthScale: CGFloat,
                   withLeftTexture left: SKTexture,
                   withRightTexture right: SKTexture,
-                  toArray parentArray: [SKEnemyCowboyNode],
-                  withBulletsIn bulletsArray: [SKBulletsNode],
+                  toArray parentArray: ArrayReference<SKEnemyCowboyNode>,
+                  withBulletsIn bulletsArray: ArrayReference<SKBulletsNode>,
                   avoiding character: SKSpriteNode,
                   inScene scene: GameScene) {
         
@@ -30,14 +30,14 @@ class SKEnemyCowboyNode: SKSpriteNode {
         self.leftTexture = left
         self.rightTexture = right
         
-        self.parentArray.append(self)
+        self.parentArray.array.append(self)
         
         self.texture = self.rightTexture
         
         self.size.width = 46.7
         self.size.height = self.size.width * (self.rightTexture?.size().height)! / (self.rightTexture?.size().width)!
         
-        self.anchorPoint = CGPoint.zero
+        self.anchorPoint = .zero
         repeat {
             self.position = CGPoint(x: CGFloat(arc4random_uniform(UInt32((gameScene?.size.width)! - self.size.width))),
                                     y: (gameScene?.size.height)! * 1.25 - self.size.height)
@@ -114,7 +114,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
     
     // Remove EnemyCowboy
     func remove() {
-        self.parentArray.remove(at: parentArray.index(of: self)!)
+        self.parentArray.array.remove(at: parentArray.array.index(of: self)!)
         
         self.gameScene = nil
         self.leftTexture = nil

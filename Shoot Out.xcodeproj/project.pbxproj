@@ -11,6 +11,7 @@
 		17124FD41F3916B600C417A0 /* SKEnemyCowboyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17124FD31F3916B600C417A0 /* SKEnemyCowboyNode.swift */; };
 		17124FD61F39171100C417A0 /* SKAlienNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17124FD51F39171100C417A0 /* SKAlienNode.swift */; };
 		179CCB5A1F42839B00AB01B6 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179CCB591F42839B00AB01B6 /* Event.swift */; };
+		17B4A03B1F429F73000DED13 /* ArrayReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B4A03A1F429F73000DED13 /* ArrayReference.swift */; };
 		22F734E01F37BC6600AA52C5 /* punch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22F734DF1F37BC6600AA52C5 /* punch.wav */; };
 		22F734E31F37C3FB00AA52C5 /* Crazy.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22F734E21F37C3FB00AA52C5 /* Crazy.wav */; };
 		22F734E61F37CE4A00AA52C5 /* punch2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22F734E51F37CE4A00AA52C5 /* punch2.wav */; };
@@ -65,6 +66,7 @@
 		17124FD51F39171100C417A0 /* SKAlienNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKAlienNode.swift; sourceTree = "<group>"; };
 		1798F94B710741F60B145977 /* Pods-Shoot OutUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot OutUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot OutUITests/Pods-Shoot OutUITests.release.xcconfig"; sourceTree = "<group>"; };
 		179CCB591F42839B00AB01B6 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		17B4A03A1F429F73000DED13 /* ArrayReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayReference.swift; sourceTree = "<group>"; };
 		18F429D1C829B5792172ECD4 /* Pods_Shoot_OutTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shoot_OutTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F734DF1F37BC6600AA52C5 /* punch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = punch.wav; sourceTree = "<group>"; };
 		22F734E21F37C3FB00AA52C5 /* Crazy.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Crazy.wav; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				73486E2D1F22FF06004C3333 /* Assets.xcassets */,
 				73486E2F1F22FF06004C3333 /* LaunchScreen.storyboard */,
 				73486E321F22FF06004C3333 /* Info.plist */,
+				17B4A03A1F429F73000DED13 /* ArrayReference.swift */,
 			);
 			path = "Shoot Out";
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				736F58581F3D447E00C065EE /* LocalMultiplayerGameController.swift in Sources */,
+				17B4A03B1F429F73000DED13 /* ArrayReference.swift in Sources */,
 				73486E271F22FF06004C3333 /* GameScene.swift in Sources */,
 				73486E291F22FF06004C3333 /* GameViewController.swift in Sources */,
 				73486E211F22FF06004C3333 /* AppDelegate.swift in Sources */,

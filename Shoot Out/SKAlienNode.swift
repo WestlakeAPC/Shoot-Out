@@ -27,12 +27,12 @@ class SKAlienNode: SKSpriteNode {
     var gameScene: GameScene?
     var fullTextureArray: [[SKTexture?]]? = []
     var textureArray: [SKTexture]? = []
-    var parentArray: [SKAlienNode] = []
+    var parentArray: ArrayReference<SKAlienNode> = ArrayReference()
     var allowMovement: Bool = false
     
     // MARK: Spawn
     func spawn(withTextureSeries textures: [[SKTexture?]],
-               inArray array: [SKAlienNode],
+               inArray array: ArrayReference<SKAlienNode>,
                withWidthRatioOf xProp: CGFloat,
                avoidingNode character: SKSpriteNode,
                inScene gameScene: GameScene) {
@@ -40,7 +40,7 @@ class SKAlienNode: SKSpriteNode {
         self.parentArray = array
         
         // Remove yourself if too many aliens.
-        if self.parentArray.count >= 7 {
+        if self.parentArray.array.count >= 7 {
             self.remove()
             return
         }
@@ -71,12 +71,11 @@ class SKAlienNode: SKSpriteNode {
         self.physicsBody?.isDynamic = true
         
         gameScene.addChild(self)
-        parentArray.append(self)
+        parentArray.array.append(self)
         
         self.run(SKAction.wait(forDuration: TimeInterval(1)), completion: {
             self.allowMovement = true
         })
-        
     }
     
     // MARK: Track Character
@@ -145,7 +144,7 @@ class SKAlienNode: SKSpriteNode {
             gameScene?.dispatchEnemyCowboys()
         }
         
-        switch (parentArray.count) {
+        switch (parentArray.array.count) {
         case 1:
             if (gameScene?.aliensKilled)! >= 5 {
                 gameScene?.spawnAlien()
@@ -177,7 +176,7 @@ class SKAlienNode: SKSpriteNode {
     
     // MARK: Delete Alien
     func remove() {
-        self.parentArray.remove(at: parentArray.index(of: self)!)
+        self.parentArray.array.remove(at: parentArray.array.index(of: self)!)
         self.fullTextureArray = nil
         self.textureArray = nil
         

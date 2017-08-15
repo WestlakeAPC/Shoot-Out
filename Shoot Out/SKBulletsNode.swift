@@ -6,7 +6,7 @@ import AVFoundation
 class SKBulletsNode: SKSpriteNode {
     
     var gameScene: SKScene?
-    var parentArray: ArrayReference<SKBulletsNode> = ArrayReference()
+    var parentArray: ArrayReference<SKBulletsNode>? = ArrayReference()
     var hasRemoved = false
     
     enum BulletDirection {
@@ -33,7 +33,7 @@ class SKBulletsNode: SKSpriteNode {
         self.zPosition = 1
         
         scene.addChild(self)
-        parentArray.array.append(self)
+        parentArray!.array!.append(self)
         
         if direction == .left {
             self.run(SKAction.moveTo(x: (self.position.x - (gameScene?.frame.size.width)!), duration: 1.5), completion: {
@@ -60,11 +60,14 @@ class SKBulletsNode: SKSpriteNode {
     // Remove from GameScene and bulletArray
     func remove() {
         if !self.hasRemoved {
-            self.parentArray.array.remove(at: parentArray.array.index(of: self)!)
+            self.parentArray!.array!.remove(at: parentArray!.array!.index(of: self)!)
             
             self.texture = nil
             self.hasRemoved = true
             self.gameScene = nil
+            
+            self.parentArray?.array = nil
+            self.parentArray = nil
             
             self.removeAllActions()
             self.removeFromParent()

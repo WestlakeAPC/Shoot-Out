@@ -10,9 +10,15 @@ import Foundation
 import SpriteKit
 
 enum GameEvent {
+    enum Character: Int {
+        case main = 0
+        case other
+    }
+    
     case characterAssignment(Int)
     case shot
-    case gameOver(player0Won: Bool)
+    case gameOver(playerWon: Character)
+    case hit(player: Character)
     case restart
     case terminated
     case propertyUpdate(Properties)
@@ -20,14 +26,7 @@ enum GameEvent {
 
 struct Properties {
     // SpriteKit physics bodies
-    var alphaCharacterPhysics: SKPhysicsBody
-    var betaCharacterPhysics: SKPhysicsBody
-    var mainCharacterPhysics: SKPhysicsBody
-    var opposingCharacterPhysics: SKPhysicsBody
-    
-    // Score
-    var aliensKilled = 0
-    var score = 0
+    var ourCharacterPhysics: SKPhysicsBody
     
     // Arrays
     var playerBulletArray: [SKPhysicsBody] = []

@@ -9,9 +9,13 @@
 import Foundation
 
 class ArrayReference<Element> {
-    var array: [Element]
+    var array: [Element]?
     
     init() {
         array = []
+    }
+    
+    deinit {
+        array = nil
     }
 }

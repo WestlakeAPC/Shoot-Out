@@ -247,15 +247,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Move Aliens
     func moveAliens() {
-        for a in alienArray.array {
+        for a in alienArray.array! {
             a.trackCharacter(track: self.mainCharacter)
         }
     }
     
     // MARK: Watching for Bullet to Alien Collision
     func trackBulletToAlienCollision() {
-        for b in playerBulletArray.array {
-            for a in alienArray.array {
+        for b in playerBulletArray.array! {
+            for a in alienArray.array! {
                 if b.intersects(a) {
                     b.remove()
                     a.deteriorate()
@@ -266,15 +266,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Make Enemy Cowboys Aim at Player
     func enemyCowboysAim() {
-        for c in enemyCowboyArray.array {
+        for c in enemyCowboyArray.array! {
             c.aim(at: self.mainCharacter)
         }
     }
     
     // MARK: Player Bullet to Enemy Cowboy Collision
     func trackBulletToEnemyCowboyCollision() {
-        for b in playerBulletArray.array {
-            for c in enemyCowboyArray.array {
+        for b in playerBulletArray.array! {
+            for c in enemyCowboyArray.array! {
                 if b.intersects(c) {
                     b.remove()
                     c.didGetShot()
@@ -287,7 +287,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Track Enemy Bullets to Player Collision
     func trackEnemyBulletToPlayerCollision() {
-        for b in enemyBulletArray.array {
+        for b in enemyBulletArray.array! {
             if b.intersects(self.mainCharacter) {
                 playerDidDie()
             }
@@ -377,22 +377,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.mainCharacter.texture = jimFacingRightTexture
         
         // Remove All Aliens
-        for a in (alienArray.array) {
+        for a in alienArray.array! {
             a.remove()
         }
         
         // Remove All Bullets
-        for b in (playerBulletArray.array) {
+        for b in playerBulletArray.array! {
             b.remove()
         }
         
         // Remove All Enemy Cowboys
-        for c in (enemyCowboyArray.array) {
+        for c in enemyCowboyArray.array! {
             c.remove()
         }
         
         // Remove All Enemy Bullets
-        for eb in (enemyBulletArray.array) {
+        for eb in enemyBulletArray.array! {
             eb.remove()
         }
         
@@ -457,17 +457,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.textureMatrix = nil
         self.removeAllActions()
         self.removeAllChildren()
-        for a in (alienArray.array) {
+        for a in alienArray.array! {
             a.gameScene = nil
             a.remove()
         }
-        for b in (playerBulletArray.array) {
+        for b in playerBulletArray.array! {
             b.remove()
         }
-        for c in (enemyCowboyArray.array) {
+        for c in enemyCowboyArray.array! {
             c.remove()
         }
-        for eb in (enemyBulletArray.array) {
+        for eb in enemyBulletArray.array! {
             eb.remove()
         }
     }

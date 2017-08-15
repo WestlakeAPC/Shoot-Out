@@ -6,8 +6,8 @@ import AVFoundation
 class SKEnemyCowboyNode: SKSpriteNode {
     
     var gameScene: GameScene?
-    var parentArray: ArrayReference<SKEnemyCowboyNode> = ArrayReference()
-    var bulletsArray: ArrayReference<SKBulletsNode> = ArrayReference()
+    var parentArray: ArrayReference<SKEnemyCowboyNode>? = ArrayReference()
+    var bulletsArray: ArrayReference<SKBulletsNode>? = ArrayReference()
     var leftTexture: SKTexture?
     var rightTexture: SKTexture?
     var hasLanded = false
@@ -30,7 +30,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
         self.leftTexture = left
         self.rightTexture = right
         
-        self.parentArray.array.append(self)
+        self.parentArray!.array!.append(self)
         
         self.texture = self.rightTexture
         
@@ -82,7 +82,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
                               to: .left,
                               fromPercentOfWidth: 0.8,
                               fromPercentOfHeight: 0.35,
-                              toArray: bulletsArray,
+                              toArray: bulletsArray!,
                               inScene: self.gameScene!)
             
         } else if self.texture == self.rightTexture {
@@ -90,7 +90,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
                               to: .right,
                               fromPercentOfWidth: 0.8,
                               fromPercentOfHeight: 0.35,
-                              toArray: bulletsArray,
+                              toArray: bulletsArray!,
                               inScene: self.gameScene!)
         }
     }
@@ -114,11 +114,16 @@ class SKEnemyCowboyNode: SKSpriteNode {
     
     // Remove EnemyCowboy
     func remove() {
-        self.parentArray.array.remove(at: parentArray.array.index(of: self)!)
+        self.parentArray!.array!.remove(at: parentArray!.array!.index(of: self)!)
         
         self.gameScene = nil
         self.leftTexture = nil
         self.rightTexture = nil
+        
+        self.parentArray?.array = nil
+        self.bulletsArray?.array = nil
+        self.parentArray = nil
+        self.bulletsArray = nil
         
         self.removeAllChildren()
         self.removeAllActions()

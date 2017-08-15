@@ -120,7 +120,6 @@ class SKEnemyCowboyNode: SKSpriteNode {
         self.leftTexture = nil
         self.rightTexture = nil
         
-        self.parentArray?.array = nil
         self.bulletsArray?.array = nil
         self.parentArray = nil
         self.bulletsArray = nil

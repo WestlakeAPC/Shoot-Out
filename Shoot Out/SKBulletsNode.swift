@@ -66,7 +66,6 @@ class SKBulletsNode: SKSpriteNode {
             self.hasRemoved = true
             self.gameScene = nil
             
-            self.parentArray?.array = nil
             self.parentArray = nil
             
             self.removeAllActions()

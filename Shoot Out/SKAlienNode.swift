@@ -180,7 +180,6 @@ class SKAlienNode: SKSpriteNode {
         self.fullTextureArray = nil
         self.textureArray = nil
         
-        self.parentArray?.array = nil
         self.parentArray = nil
         
         self.removeAllActions()

@@ -180,11 +180,20 @@ class MultiplayerScene: SKScene {
         let bullet = SKBulletsNode(texture: bulletTexture)
         
         if self.mainCharacter?.texture == jimFacingLeftTexture {
-            bullet.shoot(from:
-                self.mainCharacter!, to: "left", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: playerBulletArray, inScene: self)
+            bullet.shoot(from: self.mainCharacter!,
+                         to: .left,
+                         fromPercentOfWidth: 0.8,
+                         fromPercentOfHeight: 0.35,
+                         toArray: playerBulletArray,
+                         inScene: self)
             
         } else if self.mainCharacter?.texture == jimFacingRightTexture {
-            bullet.shoot(from: self.mainCharacter!, to: "right", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: playerBulletArray, inScene: self)
+            bullet.shoot(from: self.mainCharacter!,
+                         to: .right,
+                         fromPercentOfWidth: 0.8,
+                         fromPercentOfHeight: 0.35,
+                         toArray: playerBulletArray,
+                         inScene: self)
         }
     }
     

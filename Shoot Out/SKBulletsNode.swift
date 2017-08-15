@@ -9,12 +9,17 @@ class SKBulletsNode: SKSpriteNode {
     var parentArray: [SKBulletsNode] = []
     var hasRemoved = false
     
+    enum BulletDirection {
+        case left
+        case right
+    }
+    
     // Shoot
     func shoot(from character: SKSpriteNode,
-               to direction: String,
+               to direction: BulletDirection,
                fromPercentOfWidth xPercent: CGFloat,
                fromPercentOfHeight yPercent: CGFloat,
-               addToArray array: [SKBulletsNode],
+               toArray array: [SKBulletsNode],
                inScene scene: SKScene) {
         
         self.gameScene = scene
@@ -23,20 +28,21 @@ class SKBulletsNode: SKSpriteNode {
         self.anchorPoint = CGPoint.zero
         self.size.width = character.size.width / 12
         self.size.height = self.size.width
-        self.position = CGPoint(x: character.position.x + (character.size.width * xPercent) , y: character.position.y + (character.size.height * yPercent))
+        self.position = CGPoint(x: character.position.x + (character.size.width * xPercent),
+                                y: character.position.y + (character.size.height * yPercent))
         self.zPosition = 1
         
         scene.addChild(self)
         parentArray.append(self)
         
-        if direction == "left" {
+        if direction == .left {
             self.run(SKAction.moveTo(x: (self.position.x - (gameScene?.frame.size.width)!), duration: 1.5), completion: {
                 if !self.hasRemoved {
                     self.remove()
                 }
             })
             
-        } else if direction == "right" {
+        } else if direction == .right {
             self.run(SKAction.moveTo(x: (self.position.x + (gameScene?.frame.size.width)!), duration: 1.5), completion: {
                 if !self.hasRemoved {
                     self.remove()

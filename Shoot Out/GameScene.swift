@@ -210,9 +210,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func spawnAlien() {
         let alien = SKAlienNode()
         alien.spawn(withTextureSeries: textureMatrix!,
-                    addToArray: alienArray,
-                    widthToScreenWidthOf: 0.1,
-                    avoidElement: self.mainCharacter,
+                    inArray: alienArray,
+                    withWidthRatioOf: 0.1,
+                    avoidingNode: self.mainCharacter,
                     inScene: self)
         
         alien.physicsBody?.categoryBitMask = ColliderType.aliens.rawValue
@@ -228,8 +228,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             withLeftTexture: enemyCowboyLeftTexture,
             withRightTexture: enemyCowboyRightTexture,
             toArray: enemyCowboyArray,
-            storyBulletsIn: enemyBulletArray,
-            avoid: self.mainCharacter,
+            withBulletsIn: enemyBulletArray,
+            avoiding: self.mainCharacter,
             inScene: self)
     }
     
@@ -321,11 +321,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let bullet = SKBulletsNode(texture: bulletTexture)
         
         if self.mainCharacter.texture == jimFacingLeftTexture {
-            bullet.shoot(from:
-                self.mainCharacter, to: "left", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: playerBulletArray, inScene: self)
+            bullet.shoot(from: self.mainCharacter,
+                         to: .left,
+                         fromPercentOfWidth: 0.8,
+                         fromPercentOfHeight: 0.35,
+                         toArray: playerBulletArray,
+                         inScene: self)
             
         } else if self.mainCharacter.texture == jimFacingRightTexture {
-            bullet.shoot(from: self.mainCharacter, to: "right", fromPercentOfWidth: 0.8, fromPercentOfHeight: 0.35, addToArray: playerBulletArray, inScene: self)
+            bullet.shoot(from: self.mainCharacter,
+                         to: .right,
+                         fromPercentOfWidth: 0.8,
+                         fromPercentOfHeight: 0.35,
+                         toArray: playerBulletArray,
+                         inScene: self)
         }
     }
     

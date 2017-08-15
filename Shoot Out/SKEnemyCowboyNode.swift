@@ -19,8 +19,8 @@ class SKEnemyCowboyNode: SKSpriteNode {
                   withLeftTexture left: SKTexture,
                   withRightTexture right: SKTexture,
                   toArray parentArray: [SKEnemyCowboyNode],
-                  storyBulletsIn bulletsArray: [SKBulletsNode],
-                  avoid character: SKSpriteNode,
+                  withBulletsIn bulletsArray: [SKBulletsNode],
+                  avoiding character: SKSpriteNode,
                   inScene scene: GameScene) {
         
         self.gameScene = scene
@@ -79,18 +79,18 @@ class SKEnemyCowboyNode: SKSpriteNode {
         
         if self.texture == self.leftTexture {
             enemyBullet.shoot(from: self,
-                              to: "left",
+                              to: .left,
                               fromPercentOfWidth: 0.8,
                               fromPercentOfHeight: 0.35,
-                              addToArray: bulletsArray,
+                              toArray: bulletsArray,
                               inScene: self.gameScene!)
             
         } else if self.texture == self.rightTexture {
             enemyBullet.shoot(from: self,
-                              to: "right",
+                              to: .right,
                               fromPercentOfWidth: 0.8,
                               fromPercentOfHeight: 0.35,
-                              addToArray: bulletsArray,
+                              toArray: bulletsArray,
                               inScene: self.gameScene!)
         }
     }

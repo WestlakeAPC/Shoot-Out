@@ -32,9 +32,9 @@ class SKAlienNode: SKSpriteNode {
     
     // MARK: Spawn
     func spawn(withTextureSeries textures: [[SKTexture?]],
-               addToArray array: [SKAlienNode],
-               widthToScreenWidthOf xProp: CGFloat,
-               avoidElement character: SKSpriteNode,
+               inArray array: [SKAlienNode],
+               withWidthRatioOf xProp: CGFloat,
+               avoidingNode character: SKSpriteNode,
                inScene gameScene: GameScene) {
         
         self.parentArray = array
@@ -58,12 +58,15 @@ class SKAlienNode: SKSpriteNode {
         
         // Avoid Landing on Player's Head
         repeat {
-            self.position = CGPoint(x: CGFloat(arc4random_uniform(UInt32(gameScene.size.width) - UInt32(self.size.width))), y: gameScene.frame.height * 1.25 - self.size.height)
-        } while self.position.x < (character.position.x + character.size.width + gameScene.frame.size.width / 6) && (self.position.x + self.size.width) > (character.position.x - character.size.width - gameScene.frame.size.width / 6)
+            self.position = CGPoint(x: CGFloat(arc4random_uniform(UInt32(gameScene.size.width) - UInt32(self.size.width))),
+                                    y: gameScene.frame.height * 1.25 - self.size.height)
+        } while self.position.x < (character.position.x + character.size.width + gameScene.frame.size.width / 6) &&
+            (self.position.x + self.size.width) > (character.position.x - character.size.width - gameScene.frame.size.width / 6)
         
         self.zPosition = 3
         
-        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width * 0.7, height: self.size.height * 0.8), center: CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.35))
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width * 0.7, height: self.size.height * 0.8),
+                                         center: CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.35))
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.isDynamic = true
         

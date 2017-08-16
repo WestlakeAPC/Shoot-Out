@@ -160,12 +160,14 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     }
     
     // MARK: Send Data to Other Players
+    
+    // Character Assignment
     func sendAssignmentNumber() {
         // Send Random Number Message
         self.characterAssignmentNumber = Int(arc4random_uniform(UInt32(99999999)))
         
         let messageDict = ["Event": "characterAssignment", "Event Value": self.characterAssignmentNumber] as [String : Any]
-        print("Sending Message: \(messageDict)")
+        //print("Sending Message: \(messageDict)")
         
         do {
             let messageData = try JSONSerialization.data(withJSONObject: messageDict, options: JSONSerialization.WritingOptions.prettyPrinted)
@@ -175,6 +177,13 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         } catch {
             print("R.I.P. When assigning characters, you encountered: " + error.localizedDescription)
         }
+    }
+    
+    // Sending Character State
+    func sendCharacterState(physicsOf physics: SKPhysicsBody, positionOf position: CGPoint, directionOf direction: String) {
+        
+        let properties = ["Physics": physics, "Position": position, "Direction": direction] as [String : Any]
+        let messageDict = ["Event": "propertyUpdate", "Event Value": properties] as [String : Any]
     }
     
     // Return to Menu

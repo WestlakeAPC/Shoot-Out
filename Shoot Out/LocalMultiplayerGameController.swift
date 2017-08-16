@@ -137,7 +137,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
             let message = try JSONSerialization.jsonObject(with: receivedData, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
             
             let Event = message["Event"] as! String
-            print("Received: \n\(String(describing: Event))")
+            print("Received Event: \n\(String(describing: Event))")
             
             // Interpret and Process Received Information
             switch Event {
@@ -160,13 +160,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     }
     
     // MARK: Send Data to Other Players
-    
-    // Character Assignment
-    func sendAssignmentNumber() {
-        // Send Random Number Message
-        self.characterAssignmentNumber = Int(arc4random_uniform(UInt32(99999999)))
-        
-        let messageDict = ["Event": "characterAssignment", "Event Value": self.characterAssignmentNumber] as [String : Any]
+    func sendData(OfInformation messageDict: Dictionary<String, Any>) {
         //print("Sending Message: \(messageDict)")
         
         do {
@@ -175,8 +169,19 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
             try appDelegate.mpcHandler.session.send(messageData, toPeers: appDelegate.mpcHandler.session.connectedPeers, with: .reliable)
             
         } catch {
-            print("R.I.P. When assigning characters, you encountered: " + error.localizedDescription)
+            print("R.I.P. When sending data, you encountered: " + error.localizedDescription)
         }
+    }
+    
+    
+    // Character Assignment
+    func sendAssignmentNumber() {
+        // Send Random Number Message
+        self.characterAssignmentNumber = Int(arc4random_uniform(UInt32(99999999)))
+        
+        let messageDict = ["Event": "characterAssignment", "Event Value": self.characterAssignmentNumber] as [String : Any]
+        
+        sendData(OfInformation: messageDict)
     }
     
     // Sending Character State
@@ -184,6 +189,8 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         
         let properties = ["Physics": physics, "Position": position, "Direction": direction] as [String : Any]
         let messageDict = ["Event": "propertyUpdate", "Event Value": properties] as [String : Any]
+        
+        sendData(OfInformation: messageDict)
     }
     
     // Return to Menu

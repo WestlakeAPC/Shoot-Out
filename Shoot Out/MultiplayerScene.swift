@@ -60,7 +60,6 @@ class MultiplayerScene: SKScene {
         setUpSound()
         loadAlphaCharacter(withTexture: jimFacingRightTexture)
         loadBetaCharacter(withTexture: enemyCowboyLeftTexture)
-        assignCharacters()
         
         self.backgroundColor = .clear
     }

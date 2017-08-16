@@ -18,7 +18,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     
     var appDelegate: AppDelegate!
     
-    var assignmentNumber: Int = 0
+    var characterAssignmentNumber: Int = 0
     var receivedAssignmentNumber: Int = 0
     
     @IBOutlet var leftButton: UIButton!
@@ -142,7 +142,9 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
             // Interpret and Process Received Information
             switch Event {
             case "characterAssignment":
-                print(message["Event Value"] ?? nil)
+                self.receivedAssignmentNumber = message["Event Value"] as! Int
+                gameScene?.assignCharacters()
+                
             default:
                 print("Received Other Event Options")
             }
@@ -160,8 +162,9 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     // MARK: Send Data to Other Players
     func sendAssignmentNumber() {
         // Send Random Number Message
-        //let message = GameEvent.characterAssignment(Int(arc4random_uniform(UInt32(99999999))))
-        let messageDict = ["Event": "characterAssignment", "Event Value": Int(arc4random_uniform(UInt32(99999999)))] as [String : Any]
+        self.characterAssignmentNumber = Int(arc4random_uniform(UInt32(99999999)))
+        
+        let messageDict = ["Event": "characterAssignment", "Event Value": self.characterAssignmentNumber] as [String : Any]
         print("Sending Message: \(messageDict)")
         
         do {

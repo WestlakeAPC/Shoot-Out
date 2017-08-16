@@ -68,8 +68,10 @@ class MultiplayerScene: SKScene {
         
     // Load Barrier
     func loadBarrier() {
-            self.physicsBody = SKPhysicsBody(
-                edgeLoopFrom: CGRect(x: 0, y: self.frame.size.height / 4, width: self.frame.size.width, height: self.frame.size.height))
+            self.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: 0,
+                                                                  y: self.frame.size.height / 4,
+                                                                  width: self.frame.size.width,
+                                                                  height: self.frame.size.height))
             self.physicsBody?.isDynamic = false
         }
     
@@ -78,7 +80,8 @@ class MultiplayerScene: SKScene {
         let punchSound = URL(fileURLWithPath: Bundle.main.path(forResource: "punch", ofType: "wav")!)
         let music = URL(fileURLWithPath: Bundle.main.path(forResource: "Crazy", ofType: "wav")!)
         
-        bulletSoundEffect = try! AVAudioPlayer.init(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "DesertEagleShot", ofType: "mp3")!))
+        bulletSoundEffect = try! AVAudioPlayer.init(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "DesertEagleShot",
+                                                                                                      ofType: "mp3")!))
         bulletSoundEffect?.prepareToPlay()
         bulletSoundEffect?.numberOfLoops = 0
         
@@ -105,7 +108,9 @@ class MultiplayerScene: SKScene {
             
             let characterCenter = CGPoint(x: self.alphaCharacter.size.width / 2, y: self.alphaCharacter.size.height / 2)
             
-            self.alphaCharacter.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.alphaCharacter.size.width * 0.65, height: self.alphaCharacter.size.height), center: characterCenter)
+            self.alphaCharacter.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.alphaCharacter.size.width * 0.65,
+                                                                                height: self.alphaCharacter.size.height),
+                                                            center: characterCenter)
             
             self.alphaCharacter.physicsBody?.allowsRotation = false
             self.alphaCharacter.physicsBody?.isDynamic = true
@@ -132,7 +137,9 @@ class MultiplayerScene: SKScene {
         
         let characterCenter = CGPoint(x: self.betaCharacter.size.width / 2, y: self.betaCharacter.size.height / 2)
         
-        self.betaCharacter.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.betaCharacter.size.width * 0.65, height: self.betaCharacter.size.height), center: characterCenter)
+        self.betaCharacter.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.betaCharacter.size.width * 0.65,
+                                                                           height: self.betaCharacter.size.height),
+                                                       center: characterCenter)
         
         self.betaCharacter.physicsBody?.allowsRotation = false
         self.betaCharacter.physicsBody?.isDynamic = true

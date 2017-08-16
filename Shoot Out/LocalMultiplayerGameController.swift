@@ -43,6 +43,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         // Present current scene
         skView!.presentScene(scene)
         skView?.allowsTransparency = true
+        skView?.backgroundColor = .clear
         
         self.gameScene = scene as! MultiplayerScene?
         self.gameScene?.viewController = self
@@ -51,8 +52,6 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         skView?.showsFPS = true
         skView?.showsNodeCount = true
         skView?.showsPhysics = true
-        
-        
     }
     
     // TODO: Continue method call as long as button is held

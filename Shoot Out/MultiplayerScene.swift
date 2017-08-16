@@ -55,6 +55,7 @@ class MultiplayerScene: SKScene {
     // MARK: Did Move to View Setup
     override func didMove(to view: SKView) {
         print("Multiplayer Game View Size: \(self.frame.size)")
+        self.backgroundColor = .clear
         
         // Load elements
         loadBarrier()
@@ -62,7 +63,6 @@ class MultiplayerScene: SKScene {
         loadAlphaCharacter(withTexture: jimFacingRightTexture)
         loadBetaCharacter(withTexture: bobFacingLeftTexture)
         
-        self.backgroundColor = .clear
     }
         
         
@@ -213,6 +213,33 @@ class MultiplayerScene: SKScene {
                          toArray: playerBulletArray,
                          inScene: self)
         }
+    }
+    
+    // MARK: Update the Game
+    override func update(_ currentTime: TimeInterval) {
+        // Called before each frame is rendered
+        sendPlayerProperties()
+        
+    }
+    
+    // MARK: Sending/Processing Character Data
+    func sendPlayerProperties() {
+        // Pass true if using MultipeerConnectivity, false if using Game Center
+        
+        if gameIsOver || !gameIsActive {return}
+        
+        if let vc = viewController as! LocalMultiplayerGameController? {
+            
+            vc.sendCharacterState(physicsOf: (self.mainCharacter?.physicsBody)!, positionOf: (self.mainCharacter?.position)!, directionOf: "right")
+            
+        } else {
+            // Do casting and method calling for Game Center View Controller
+        }
+    }
+    
+    // Process Received Character Properties
+    func receivedPlayerProperties() {
+        
     }
     
     // MARK: Game System Processing

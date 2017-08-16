@@ -113,22 +113,27 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         switch (sessionState) {
             case .connected:
                 print("Connected")
+                sendAssignmentNumber()
+            
             case .connecting:
                 print("Connecting")
+            
             case .notConnected:
                 print("Disconnected")
+            
         }
     }
     
     // MARK: Handle received data
     func handleReceivedDataWithNotification(_ notification: NSNotification) {
-        let userInfo = notification.userInfo!  as Dictionary
-        let receivedData: NSData = userInfo["data"] as! NSData
+        let userInfo = notification.userInfo! as Dictionary
+        let receivedData: Data = userInfo["data"] as! Data
         
         do {
-            let message = try JSONSerialization.jsonObject(with: receivedData as Data, options: .allowFragments) as! NSDictionary
-            print("Received:")
-            print(message)
+            let message = try JSONSerialization.jsonObject(with: receivedData, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
+            
+            let Event = message["Event"]
+            print("Received: \n\(Event)")
             
         } catch {
             print("R.I.P. When receiving data, you encountered: " + error.localizedDescription)
@@ -142,10 +147,9 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     
     // MARK: Send Data to Other Players
     func sendAssignmentNumber() {
-        // True for alpha, false for beta
-        
         // Send Random Number Message
-        let messageDict = ["event": "Character Assigment", "Random Number": arc4random_uniform(UInt32(10000))] as [String : Any]
+        let message = GameEvent.characterAssignment(Int(arc4random_uniform(UInt32(99999999))))
+        let messageDict = ["Event": "Your Mom"]
         
         do {
             let messageData = try JSONSerialization.data(withJSONObject: messageDict, options: JSONSerialization.WritingOptions.prettyPrinted)
@@ -153,7 +157,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
             try appDelegate.mpcHandler.session.send(messageData, toPeers: appDelegate.mpcHandler.session.connectedPeers, with: .reliable)
             
         } catch {
-            print("R.I.P. When tapping field, you encountered: " + error.localizedDescription)
+            print("R.I.P. When assigning characters, you encountered: " + error.localizedDescription)
         }
     }
     

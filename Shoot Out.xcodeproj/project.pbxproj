@@ -217,7 +217,6 @@
 				73486E2D1F22FF06004C3333 /* Assets.xcassets */,
 				73486E2F1F22FF06004C3333 /* LaunchScreen.storyboard */,
 				73486E321F22FF06004C3333 /* Info.plist */,
-				17B4A03A1F429F73000DED13 /* ArrayReference.swift */,
 			);
 			path = "Shoot Out";
 			sourceTree = "<group>";
@@ -246,6 +245,7 @@
 				73486E281F22FF06004C3333 /* GameViewController.swift */,
 				73486E261F22FF06004C3333 /* GameScene.swift */,
 				73486E221F22FF06004C3333 /* GameScene.sks */,
+				17B4A03A1F429F73000DED13 /* ArrayReference.swift */,
 				17124FD11F39166600C417A0 /* SKBulletsNode.swift */,
 				17124FD31F3916B600C417A0 /* SKEnemyCowboyNode.swift */,
 				17124FD51F39171100C417A0 /* SKAlienNode.swift */,
@@ -256,11 +256,12 @@
 		736F58591F3E623E00C065EE /* Multiplayer Game Files */ = {
 			isa = PBXGroup;
 			children = (
-				73CB34B01F4150750008BA9E /* MultiplayerGameHandlerDelegate.swift */,
-				73486E581F230AB4004C3333 /* GlobalMultiplayerGameViewController.swift */,
 				736F58571F3D447E00C065EE /* LocalMultiplayerGameController.swift */,
+				73486E581F230AB4004C3333 /* GlobalMultiplayerGameViewController.swift */,
 				73486E561F230A12004C3333 /* MultiplayerScene.swift */,
 				73486E541F2309F7004C3333 /* MultiplayerScene.sks */,
+				73829BDE1F231050003AEF6F /* MPCHandler.swift */,
+				73CB34B01F4150750008BA9E /* MultiplayerGameHandlerDelegate.swift */,
 				179CCB591F42839B00AB01B6 /* Event.swift */,
 			);
 			name = "Multiplayer Game Files";
@@ -269,7 +270,6 @@
 		73829BDD1F230DF4003AEF6F /* Connect */ = {
 			isa = PBXGroup;
 			children = (
-				73829BDE1F231050003AEF6F /* MPCHandler.swift */,
 				73829BDB1F230DDB003AEF6F /* ConnectViewController.swift */,
 			);
 			name = Connect;

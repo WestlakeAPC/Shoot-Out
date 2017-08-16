@@ -46,6 +46,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         // Present current scene
         skView!.presentScene(scene)
         skView?.allowsTransparency = true
+        skView?.backgroundColor = .clear
         
         self.gameScene = scene as! MultiplayerScene?
         self.gameScene?.viewController = self
@@ -54,8 +55,6 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         skView?.showsFPS = true
         skView?.showsNodeCount = true
         skView?.showsPhysics = true
-        
-        
     }
     
     // TODO: Continue method call as long as button is held
@@ -137,11 +136,11 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
             // Obtain Dictionary Sent Out By Other Players
             let message = try JSONSerialization.jsonObject(with: receivedData, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
             
-            let Event = message["Event"] as! String
-            print("Received Event: \n\(String(describing: Event))")
+            let event = message["Event"] as! String
+            print("Received Event: \n\(String(describing: event))")
             
             // Interpret and Process Received Information
-            switch Event {
+            switch event {
             case "characterAssignment":
                 self.receivedAssignmentNumber = message["Event Value"] as! Int
                 gameScene?.assignCharacters(localValue: self.characterAssignmentNumber, remoteValue: self.receivedAssignmentNumber)

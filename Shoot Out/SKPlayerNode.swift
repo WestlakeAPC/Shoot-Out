@@ -23,4 +23,14 @@ class SKPlayerNode: SKSpriteNode {
         self.textures = [.left: lTexture, .right: rTexture]
     }
     
+    func updateTexture() {
+        switch self.facingDirection {
+        case .left:
+            self.texture = textures?[.left]
+            
+        case .right:
+            self.texture = textures?[.right]
+        }
+    }
+    
 }

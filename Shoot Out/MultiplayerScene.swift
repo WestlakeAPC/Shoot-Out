@@ -175,16 +175,16 @@ class MultiplayerScene: SKScene {
     func moveLeft() {
         if gameIsOver || !gameIsActive {return}
         self.mainCharacter?.physicsBody?.applyImpulse(CGVector(dx: -30, dy: 0))
-        self.mainCharacter?.texture = self.mainCharacter?.textures?[.left]
         self.mainCharacter?.facingDirection = .left
+        self.mainCharacter?.updateTexture()
     }
     
     func moveRight() {
         if gameIsOver || !gameIsActive {return}
         self.mainCharacter?.physicsBody?.applyImpulse(CGVector(dx: 30, dy: 0))
         self.mainCharacter?.texture = jimFacingRightTexture
-        self.mainCharacter?.texture = self.mainCharacter?.textures?[.right]
         self.mainCharacter?.facingDirection = .right
+        self.mainCharacter?.updateTexture()
     }
     
     func jump() {
@@ -200,20 +200,20 @@ class MultiplayerScene: SKScene {
         let bullet = SKBulletsNode(texture: bulletTexture)
         
         switch self.mainCharacter!.facingDirection {
-            case .left:
-                bullet.shoot(from: self.mainCharacter!,
-                         to: .left,
-                         fromPercentOfWidth: 0.8,
-                         fromPercentOfHeight: 0.35,
-                         toArray: playerBulletArray,
-                         inScene: self)
-            case .right:
-                bullet.shoot(from: self.mainCharacter!,
-                         to: .right,
-                         fromPercentOfWidth: 0.8,
-                         fromPercentOfHeight: 0.35,
-                         toArray: playerBulletArray,
-                         inScene: self)
+        case .left:
+            bullet.shoot(from: self.mainCharacter!,
+                     to: .left,
+                     fromPercentOfWidth: 0.8,
+                     fromPercentOfHeight: 0.35,
+                     toArray: playerBulletArray,
+                     inScene: self)
+        case .right:
+            bullet.shoot(from: self.mainCharacter!,
+                     to: .right,
+                     fromPercentOfWidth: 0.8,
+                     fromPercentOfHeight: 0.35,
+                     toArray: playerBulletArray,
+                     inScene: self)
             
         }
     }
@@ -237,12 +237,12 @@ class MultiplayerScene: SKScene {
             let position = ["x": self.mainCharacter?.position.x, "y": self.mainCharacter?.position.y] as! Dictionary<String, CGFloat>
             
             switch self.mainCharacter!.facingDirection {
-                case .left:
-                    vc.sendCharacterState(physicsVelocityOf: velocity,
+            case .left:
+                vc.sendCharacterState(physicsVelocityOf: velocity,
                                       positionOf: position,
                                       directionOf: "left")
-                case .right:
-                    vc.sendCharacterState(physicsVelocityOf: velocity,
+            case .right:
+                vc.sendCharacterState(physicsVelocityOf: velocity,
                                       positionOf: position,
                                       directionOf: "right")
             }
@@ -253,7 +253,22 @@ class MultiplayerScene: SKScene {
     }
     
     // Process Received Character Properties
-    func receivedPlayerProperties(physicsVelocityOf physicsVelocity: Dictionary<String, CGFloat>, positionOf position: CGPoint, directionOf direction: String) {
+    func receivedPlayerProperties(velocityDx dx: CGFloat, velocityDx dy: CGFloat, positionX x: CGFloat, positionY y: CGFloat,  directionOf direction: String) {
+        
+        self.opposingCharacter?.physicsBody?.velocity = CGVector(dx: dx, dy: dy)
+        self.position = CGPoint(x: x, y: y)
+        
+        switch direction {
+        case "right":
+            self.opposingCharacter?.facingDirection = .right
+            
+        case "left":
+            self.opposingCharacter?.facingDirection = .left
+            
+        default:
+            print("")
+        }
+        self.opposingCharacter?.updateTexture()
         
     }
     

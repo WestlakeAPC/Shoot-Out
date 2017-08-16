@@ -141,12 +141,12 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
             
             // Interpret and Process Received Information
             switch event {
-            case "characterAssignment":
-                self.receivedAssignmentNumber = message["Event Value"] as! Int
-                gameScene?.assignCharacters(localValue: self.characterAssignmentNumber, remoteValue: self.receivedAssignmentNumber)
+                case "characterAssignment":
+                    self.receivedAssignmentNumber = message["Event Value"] as! Int
+                    gameScene?.assignCharacters(localValue: self.characterAssignmentNumber, remoteValue: self.receivedAssignmentNumber)
                 
-            default:
-                print("Received Other Event Options")
+                default:
+                    print("Received Other Event Options")
             }
             
         } catch {
@@ -161,7 +161,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     
     // MARK: Send Data to Other Players
     func sendData(OfInformation messageDict: Dictionary<String, Any>) {
-        //print("Sending Message: \(messageDict)")
+        print("Sending Message: \n\(messageDict)")
         
         do {
             let messageData = try JSONSerialization.data(withJSONObject: messageDict, options: JSONSerialization.WritingOptions.prettyPrinted)
@@ -185,9 +185,9 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     }
     
     // Sending Character State
-    func sendCharacterState(physicsOf physics: SKPhysicsBody, positionOf position: CGPoint, directionOf direction: String) {
+    func sendCharacterState(physicsVelocityOf physicsVelocity: Dictionary<String, CGFloat>, positionOf position: Dictionary<String, CGFloat>, directionOf direction: String) {
         
-        let properties = ["Physics": physics, "Position": position, "Direction": direction] as [String : Any]
+        let properties = ["Physics": physicsVelocity, "Position": position, "Direction": direction] as [String : Any]
         let messageDict = ["Event": "propertyUpdate", "Event Value": properties] as [String : Any]
         
         sendData(OfInformation: messageDict)

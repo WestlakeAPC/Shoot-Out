@@ -221,7 +221,7 @@ class MultiplayerScene: SKScene {
     // MARK: Update the Game
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        //sendPlayerProperties()
+        sendPlayerProperties()
         
     }
     
@@ -233,9 +233,19 @@ class MultiplayerScene: SKScene {
         
         if let vc = viewController as! LocalMultiplayerGameController? {
             
-            vc.sendCharacterState(physicsOf: (self.mainCharacter?.physicsBody)!,
-                                  positionOf: (self.mainCharacter?.position)!,
-                                  directionOf: "right")
+            let velocity = ["dx": self.mainCharacter?.physicsBody?.velocity.dx, "dy": self.mainCharacter?.physicsBody?.velocity.dy] as! Dictionary<String, CGFloat>
+            let position = ["x": self.mainCharacter?.position.x, "y": self.mainCharacter?.position.y] as! Dictionary<String, CGFloat>
+            
+            switch self.mainCharacter!.facingDirection {
+                case .left:
+                    vc.sendCharacterState(physicsVelocityOf: velocity,
+                                      positionOf: position,
+                                      directionOf: "left")
+                case .right:
+                    vc.sendCharacterState(physicsVelocityOf: velocity,
+                                      positionOf: position,
+                                      directionOf: "right")
+            }
             
         } else {
             // Do casting and method calling for Game Center View Controller
@@ -243,7 +253,7 @@ class MultiplayerScene: SKScene {
     }
     
     // Process Received Character Properties
-    func receivedPlayerProperties() {
+    func receivedPlayerProperties(physicsVelocityOf physicsVelocity: Dictionary<String, CGFloat>, positionOf position: CGPoint, directionOf direction: String) {
         
     }
     

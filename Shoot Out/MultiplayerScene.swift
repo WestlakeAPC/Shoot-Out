@@ -39,8 +39,9 @@ class MultiplayerScene: SKScene {
     var aliensKilled = 0
     var score = 0
     
-    // Death
+    // Game State
     var gameIsOver = false
+    var gameIsActive = false
     
     // Sound
     var punchSoundEffect : AVAudioPlayer?
@@ -163,12 +164,12 @@ class MultiplayerScene: SKScene {
             self.mainCharacter = self.betaCharacter
             self.opposingCharacter = self.alphaCharacter
         }
-        
+        self.gameIsActive = true
     }
 
     // MARK: Character Actions
     func moveLeft() {
-        if gameIsOver {return}
+        if gameIsOver || !gameIsActive {return}
         self.mainCharacter?.physicsBody?.applyImpulse(CGVector(dx: -30, dy: 0))
         
         if (self.mainCharacter?.isEqual(to: self.alphaCharacter))! {self.mainCharacter?.texture = jimFacingLeftTexture}
@@ -176,7 +177,7 @@ class MultiplayerScene: SKScene {
     }
     
     func moveRight() {
-        if gameIsOver {return}
+        if gameIsOver || !gameIsActive {return}
         self.mainCharacter?.physicsBody?.applyImpulse(CGVector(dx: 30, dy: 0))
         self.mainCharacter?.texture = jimFacingRightTexture
         
@@ -185,7 +186,7 @@ class MultiplayerScene: SKScene {
     }
     
     func jump() {
-        if gameIsOver {return}
+        if gameIsOver || !gameIsActive {return}
         if (self.mainCharacter?.position.y)! < self.frame.size.height * 0.5 {
             self.mainCharacter?.physicsBody?.applyImpulse(CGVector(dx: 0,dy: 80))
         }
@@ -193,7 +194,7 @@ class MultiplayerScene: SKScene {
     
     // Shoot Function
     func shoot() {
-        if gameIsOver {return}
+        if gameIsOver || !gameIsActive {return}
         let bullet = SKBulletsNode(texture: bulletTexture)
         
         if self.mainCharacter?.texture == jimFacingLeftTexture {

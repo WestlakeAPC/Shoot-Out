@@ -15,7 +15,7 @@ enum GameEvent {
         case other
     }
     
-    case characterAssignment(Int)
+    case characterAssignment
     case shot
     case gameOver(playerWon: Character)
     case hit(player: Character)

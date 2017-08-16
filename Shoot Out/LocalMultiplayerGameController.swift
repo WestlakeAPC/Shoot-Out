@@ -18,6 +18,9 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     
     var appDelegate: AppDelegate!
     
+    var assignmentNumber: Int = 0
+    var receivedAssignmentNumber: Int = 0
+    
     @IBOutlet var leftButton: UIButton!
     @IBOutlet var rightButton: UIButton!
     @IBOutlet var jumpButton: UIButton!
@@ -130,10 +133,19 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         let receivedData: Data = userInfo["data"] as! Data
         
         do {
+            // Obtain Dictionary Sent Out By Other Players
             let message = try JSONSerialization.jsonObject(with: receivedData, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
             
-            let Event = message["Event"]
-            print("Received: \n\(Event)")
+            let Event = message["Event"] as! String
+            print("Received: \n\(String(describing: Event))")
+            
+            // Interpret and Process Received Information
+            switch Event {
+            case "characterAssignment":
+                print(message["Event Value"] ?? nil)
+            default:
+                print("Received Other Event Options")
+            }
             
         } catch {
             print("R.I.P. When receiving data, you encountered: " + error.localizedDescription)
@@ -148,8 +160,9 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     // MARK: Send Data to Other Players
     func sendAssignmentNumber() {
         // Send Random Number Message
-        let message = GameEvent.characterAssignment(Int(arc4random_uniform(UInt32(99999999))))
-        let messageDict = ["Event": "Your Mom"]
+        //let message = GameEvent.characterAssignment(Int(arc4random_uniform(UInt32(99999999))))
+        let messageDict = ["Event": "characterAssignment", "Event Value": Int(arc4random_uniform(UInt32(99999999)))] as [String : Any]
+        print("Sending Message: \(messageDict)")
         
         do {
             let messageData = try JSONSerialization.data(withJSONObject: messageDict, options: JSONSerialization.WritingOptions.prettyPrinted)

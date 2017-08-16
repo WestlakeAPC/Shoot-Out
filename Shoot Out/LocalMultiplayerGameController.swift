@@ -143,7 +143,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
             switch Event {
             case "characterAssignment":
                 self.receivedAssignmentNumber = message["Event Value"] as! Int
-                gameScene?.assignCharacters()
+                gameScene?.assignCharacters(localValue: self.characterAssignmentNumber, remoteValue: self.receivedAssignmentNumber)
                 
             default:
                 print("Received Other Event Options")

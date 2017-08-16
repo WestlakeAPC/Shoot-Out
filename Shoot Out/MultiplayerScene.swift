@@ -146,10 +146,16 @@ class MultiplayerScene: SKScene {
     }
     
     // Assign Characters
-    func assignCharacters() {
+    func assignCharacters(localValue localAssignment: Int, remoteValue remoteAssignemt: Int) {
         // Will be worked on later
-        self.mainCharacter = self.alphaCharacter
-        self.opposingCharacter = self.betaCharacter
+        if localAssignment > remoteAssignemt {
+            self.mainCharacter = self.alphaCharacter
+            self.opposingCharacter = self.betaCharacter
+            
+        } else {
+            self.mainCharacter = self.betaCharacter
+            self.opposingCharacter = self.alphaCharacter
+        }
         
     }
 

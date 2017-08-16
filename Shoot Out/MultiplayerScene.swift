@@ -257,6 +257,7 @@ class MultiplayerScene: SKScene {
         
         self.opposingCharacter?.physicsBody?.velocity = CGVector(dx: dx, dy: dy)
         self.opposingCharacter?.position = CGPoint(x: x, y: y)
+        //self.opposingCharacter?.run(SKAction.move(to: CGPoint(x: x, y: y), duration: 0.01))
         
         switch direction {
         case "right":
@@ -304,6 +305,7 @@ class MultiplayerScene: SKScene {
         self.removeAllActions()
         self.removeAllChildren()
         self.viewController = nil
+        self.backgroundMusic = nil
     }
     
     deinit {

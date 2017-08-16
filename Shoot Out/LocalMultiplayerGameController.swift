@@ -209,7 +209,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         sendData(OfInformation: messageDict)
     }
     
-    // Return to Menu
+    // MARK: Return to Menu
     @IBAction func exitView(_ sender: Any) {
         print("\nAttempting to deallocate \(String(describing: self.skView?.scene))\n")
         self.gameScene?.endAll()
@@ -218,6 +218,8 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         self.gameScene = nil
         self.skView = nil
         self.skView?.presentScene(nil)
+        //appDelegate.mpcHandler.browser.delegate = nil
+        //appDelegate.mpcHandler.session = nil
         
         self.dismiss(animated: true, completion: nil)
     }

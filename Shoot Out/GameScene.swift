@@ -454,6 +454,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func endAll() {
         self.backgroundMusic?.stop()
         self.punchSoundEffect?.stop()
+        self.backgroundMusic = nil
+        self.punchSoundEffect = nil
         self.textureMatrix = nil
         self.removeAllActions()
         self.removeAllChildren()

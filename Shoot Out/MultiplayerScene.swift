@@ -256,7 +256,7 @@ class MultiplayerScene: SKScene {
     func receivedPlayerProperties(velocityDx dx: CGFloat, velocityDx dy: CGFloat, positionX x: CGFloat, positionY y: CGFloat,  directionOf direction: String) {
         
         self.opposingCharacter?.physicsBody?.velocity = CGVector(dx: dx, dy: dy)
-        self.position = CGPoint(x: x, y: y)
+        self.opposingCharacter?.position = CGPoint(x: x, y: y)
         
         switch direction {
         case "right":

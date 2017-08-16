@@ -199,7 +199,7 @@ class MultiplayerScene: SKScene {
         if gameIsOver || !gameIsActive {return}
         let bullet = SKBulletsNode(texture: bulletTexture)
         
-        switch (self.mainCharacter?.facingDirection)! {
+        switch self.mainCharacter!.facingDirection {
             case .left:
                 bullet.shoot(from: self.mainCharacter!,
                          to: .left,
@@ -216,23 +216,6 @@ class MultiplayerScene: SKScene {
                          inScene: self)
             
         }
-        /*
-        if self.mainCharacter?.facingDirection == .left {
-            bullet.shoot(from: self.mainCharacter!,
-                         to: .left,
-                         fromPercentOfWidth: 0.8,
-                         fromPercentOfHeight: 0.35,
-                         toArray: playerBulletArray,
-                         inScene: self)
-            
-        } else if self.mainCharacter?.facingDirection == .right {
-            bullet.shoot(from: self.mainCharacter!,
-                         to: .right,
-                         fromPercentOfWidth: 0.8,
-                         fromPercentOfHeight: 0.35,
-                         toArray: playerBulletArray,
-                         inScene: self)
-        }*/
     }
     
     // MARK: Update the Game
@@ -250,7 +233,9 @@ class MultiplayerScene: SKScene {
         
         if let vc = viewController as! LocalMultiplayerGameController? {
             
-            vc.sendCharacterState(physicsOf: (self.mainCharacter?.physicsBody)!, positionOf: (self.mainCharacter?.position)!, directionOf: "right")
+            vc.sendCharacterState(physicsOf: (self.mainCharacter?.physicsBody)!,
+                                  positionOf: (self.mainCharacter?.position)!,
+                                  directionOf: "right")
             
         } else {
             // Do casting and method calling for Game Center View Controller

@@ -11,13 +11,13 @@ import SpriteKit
 
 class SKPlayerNode: SKSpriteNode {
     
-    enum direction {
+    enum Direction {
         case left
         case right
     }
     
-    var facingDirection: direction = .left
-    var textures: Dictionary<direction, SKTexture>?
+    var facingDirection: Direction = .left
+    var textures: Dictionary<Direction, SKTexture>?
     
     func assignTextures(left lTexture: SKTexture, right rTexture: SKTexture) {
         self.textures = [.left: lTexture, .right: rTexture]

@@ -18,6 +18,9 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     
     var appDelegate: AppDelegate!
     
+    var characterAssignmentNumber: Int = 0
+    var receivedAssignmentNumber: Int = 0
+    
     @IBOutlet var leftButton: UIButton!
     @IBOutlet var rightButton: UIButton!
     @IBOutlet var jumpButton: UIButton!
@@ -112,22 +115,38 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         switch (sessionState) {
             case .connected:
                 print("Connected")
+                sendAssignmentNumber()
+            
             case .connecting:
                 print("Connecting")
+            
             case .notConnected:
                 print("Disconnected")
+            
         }
     }
     
     // MARK: Handle received data
     func handleReceivedDataWithNotification(_ notification: NSNotification) {
-        let userInfo = notification.userInfo!  as Dictionary
-        let receivedData: NSData = userInfo["data"] as! NSData
+        let userInfo = notification.userInfo! as Dictionary
+        let receivedData: Data = userInfo["data"] as! Data
         
         do {
-            let message = try JSONSerialization.jsonObject(with: receivedData as Data, options: .allowFragments) as! NSDictionary
-            print("Received:")
-            print(message)
+            // Obtain Dictionary Sent Out By Other Players
+            let message = try JSONSerialization.jsonObject(with: receivedData, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
+            
+            let Event = message["Event"] as! String
+            print("Received Event: \n\(String(describing: Event))")
+            
+            // Interpret and Process Received Information
+            switch Event {
+            case "characterAssignment":
+                self.receivedAssignmentNumber = message["Event Value"] as! Int
+                gameScene?.assignCharacters(localValue: self.characterAssignmentNumber, remoteValue: self.receivedAssignmentNumber)
+                
+            default:
+                print("Received Other Event Options")
+            }
             
         } catch {
             print("R.I.P. When receiving data, you encountered: " + error.localizedDescription)
@@ -140,11 +159,8 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     }
     
     // MARK: Send Data to Other Players
-    func sendAssignmentNumber() {
-        // True for alpha, false for beta
-        
-        // Send Random Number Message
-        let messageDict = ["event": "Character Assigment", "Random Number": arc4random_uniform(UInt32(10000))] as [String : Any]
+    func sendData(OfInformation messageDict: Dictionary<String, Any>) {
+        //print("Sending Message: \(messageDict)")
         
         do {
             let messageData = try JSONSerialization.data(withJSONObject: messageDict, options: JSONSerialization.WritingOptions.prettyPrinted)
@@ -152,8 +168,28 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
             try appDelegate.mpcHandler.session.send(messageData, toPeers: appDelegate.mpcHandler.session.connectedPeers, with: .reliable)
             
         } catch {
-            print("R.I.P. When tapping field, you encountered: " + error.localizedDescription)
+            print("R.I.P. When sending data, you encountered: " + error.localizedDescription)
         }
+    }
+    
+    
+    // Character Assignment
+    func sendAssignmentNumber() {
+        // Send Random Number Message
+        self.characterAssignmentNumber = Int(arc4random_uniform(UInt32(99999999)))
+        
+        let messageDict = ["Event": "characterAssignment", "Event Value": self.characterAssignmentNumber] as [String : Any]
+        
+        sendData(OfInformation: messageDict)
+    }
+    
+    // Sending Character State
+    func sendCharacterState(physicsOf physics: SKPhysicsBody, positionOf position: CGPoint, directionOf direction: String) {
+        
+        let properties = ["Physics": physics, "Position": position, "Direction": direction] as [String : Any]
+        let messageDict = ["Event": "propertyUpdate", "Event Value": properties] as [String : Any]
+        
+        sendData(OfInformation: messageDict)
     }
     
     // Return to Menu

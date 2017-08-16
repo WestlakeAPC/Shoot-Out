@@ -31,8 +31,8 @@ class MultiplayerScene: SKScene {
     // Textures
     private var jimFacingRightTexture = SKTexture(imageNamed: "jimCharacR.png")
     private var jimFacingLeftTexture = SKTexture(imageNamed: "jimCharacL.png")
-    private var enemyCowboyRightTexture = SKTexture(imageNamed: "jimCharac2R.png")
-    private var enemyCowboyLeftTexture = SKTexture(imageNamed: "jimCharac2L.png")
+    private var bobFacingRightTexture = SKTexture(imageNamed: "jimCharac2R.png")
+    private var bobFacingLeftTexture = SKTexture(imageNamed: "jimCharac2L.png")
     var bulletTexture = SKTexture(imageNamed: "bullet.png")
     
     // Score
@@ -59,8 +59,7 @@ class MultiplayerScene: SKScene {
         loadBarrier()
         setUpSound()
         loadAlphaCharacter(withTexture: jimFacingRightTexture)
-        loadBetaCharacter(withTexture: enemyCowboyLeftTexture)
-        assignCharacters()
+        loadBetaCharacter(withTexture: bobFacingLeftTexture)
         
         self.backgroundColor = .clear
     }
@@ -154,10 +153,16 @@ class MultiplayerScene: SKScene {
     }
     
     // Assign Characters
-    func assignCharacters() {
+    func assignCharacters(localValue localAssignment: Int, remoteValue remoteAssignemt: Int) {
         // Will be worked on later
-        self.mainCharacter = self.alphaCharacter
-        self.opposingCharacter = self.betaCharacter
+        if localAssignment > remoteAssignemt {
+            self.mainCharacter = self.alphaCharacter
+            self.opposingCharacter = self.betaCharacter
+            
+        } else {
+            self.mainCharacter = self.betaCharacter
+            self.opposingCharacter = self.alphaCharacter
+        }
         
     }
 
@@ -165,13 +170,18 @@ class MultiplayerScene: SKScene {
     func moveLeft() {
         if gameIsOver {return}
         self.mainCharacter?.physicsBody?.applyImpulse(CGVector(dx: -30, dy: 0))
-        self.mainCharacter?.texture = jimFacingLeftTexture
+        
+        if (self.mainCharacter?.isEqual(to: self.alphaCharacter))! {self.mainCharacter?.texture = jimFacingLeftTexture}
+        else if (self.mainCharacter?.isEqual(to: self.betaCharacter))! {self.mainCharacter?.texture = bobFacingLeftTexture}
     }
     
     func moveRight() {
         if gameIsOver {return}
         self.mainCharacter?.physicsBody?.applyImpulse(CGVector(dx: 30, dy: 0))
         self.mainCharacter?.texture = jimFacingRightTexture
+        
+        if (self.mainCharacter?.isEqual(to: self.alphaCharacter))! {self.mainCharacter?.texture = jimFacingRightTexture}
+        else if (self.mainCharacter?.isEqual(to: self.betaCharacter))! {self.mainCharacter?.texture = bobFacingRightTexture}
     }
     
     func jump() {
@@ -219,7 +229,7 @@ class MultiplayerScene: SKScene {
         self.mainCharacter?.texture = jimFacingRightTexture
         
         self.opposingCharacter?.position = CGPoint(x: self.frame.size.width * 0.7, y: self.frame.size.height * 0.5)
-        self.opposingCharacter?.texture = enemyCowboyLeftTexture
+        self.opposingCharacter?.texture = bobFacingLeftTexture
         
         self.gameIsOver = false
     }

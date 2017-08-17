@@ -96,7 +96,9 @@ class LocalMultiplayerGameViewController: MultiplayerGameViewController, MCBrows
     // MARK: Return to Menu
     @IBAction func exitView(_ sender: Any) {
         super.exitView(sender, completion: {
-            self.dismiss(animated: true, completion: nil)
+            self.appDelegate.mpcHandler.adertiseSelf(advertise: false)
+            self.appDelegate.mpcHandler.session = nil
+            self.appDelegate.mpcHandler.browser.delegate = nil
         })
     }
     

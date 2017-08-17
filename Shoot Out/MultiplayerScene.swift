@@ -122,7 +122,7 @@ class MultiplayerScene: SKScene {
         self.alphaBloodParticle?.particleBirthRate = 0
         self.alphaBloodParticle?.position = characterCenter
         self.alphaBloodParticle?.zPosition = -1
-        self.alphaBloodParticle?.name = "Blood"
+        self.alphaBloodParticle?.name = "blood"
         self.alphaCharacter.addChild(alphaBloodParticle!)
     }
     
@@ -153,7 +153,7 @@ class MultiplayerScene: SKScene {
         self.betaBloodParticle?.particleBirthRate = 0
         self.betaBloodParticle?.position = characterCenter
         self.betaBloodParticle?.zPosition = -1
-        self.betaBloodParticle?.name = "Blood"
+        self.betaBloodParticle?.name = "blood"
         self.betaCharacter.addChild(betaBloodParticle!)
     }
     
@@ -212,8 +212,18 @@ class MultiplayerScene: SKScene {
     // MARK: Update the Game
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        if gameIsOver || !gameIsActive {return}
         sendPlayerProperties()
-        
+        checkCollision()
+    }
+    
+    // MARK: Check Bullet to Player Collisions
+    func checkCollision() {
+        for enemyBullets in enemyBulletArray.array! {
+            if (self.mainCharacter?.intersects(enemyBullets))! {
+                mainPlayerDidDie()
+            }
+        }
     }
     
     // MARK: Sending/Processing Character Data
@@ -250,8 +260,8 @@ class MultiplayerScene: SKScene {
     }
     
     // MARK: Game System Processing
-    func gameDidEnd(withDeathOf victim: SKSpriteNode) {
-        (victim.childNode(withName: "blood") as! SKEmitterNode).particleBirthRate = 750
+    func mainPlayerDidDie() {
+        (self.mainCharacter?.childNode(withName: "blood") as! SKEmitterNode).particleBirthRate = 750
         
         self.gameIsOver = true
     }

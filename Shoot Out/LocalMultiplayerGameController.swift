@@ -131,31 +131,29 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         let userInfo = notification.userInfo! as Dictionary
         let receivedData: Data = userInfo["data"] as! Data
         
-        do {
-            // Obtain Dictionary Sent Out By Other Players
-            guard let message = NSKeyedUnarchiver.unarchiveObject(with: receivedData) as? GameEvent else {
-                return
-            }
+        // Decode information received from other player.
+        guard let message = NSKeyedUnarchiver.unarchiveObject(with: receivedData) as? GameEvent else {
+            return
+        }
+        
+        // Act on it.
+        switch message {
+            case .characterAssignment(let randomNumber):
+                self.receivedAssignmentNumber = randomNumber
+                gameScene?.assignCharacters(localValue: self.characterAssignmentNumber, remoteValue: self.receivedAssignmentNumber)
             
-            // Interpret and Process Received Information
-            switch message {
-                case .characterAssignment(let randomNumber):
-                    self.receivedAssignmentNumber = randomNumber
-                    gameScene?.assignCharacters(localValue: self.characterAssignmentNumber, remoteValue: self.receivedAssignmentNumber)
+            case .propertyUpdate(let properties):
+                let velocity = properties.ourCharacterPhysics
+                let position = properties.ourCharacterPosition
+                let direction = properties.ourCharacterDirection
                 
-                case .propertyUpdate(let properties):
-                    let velocity = properties.ourCharacterPhysics
-                    let position = properties.ourCharacterPosition
-                    let direction = properties.ourCharacterDirection
-                    
-                    gameScene?.receivedPlayerProperties(velocity: velocity, position: position, direction: direction)
-                
-                case .shot:
-                    gameScene?.oppositionShots()
-                
-                default:
-                    print("Received Other Event Options")
-            }
+                gameScene?.receivedPlayerProperties(velocity: velocity, position: position, direction: direction)
+            
+            case .shot:
+                gameScene?.oppositionShots()
+            
+            default:
+                print("Received Other Event Options")
         }
     }
     
@@ -164,7 +162,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         self.connectToPlayers()
     }
     
-    // MARK: Send Data to Other Players
+    // MARK: Send data to other player.
     func sendData(_ message: GameEvent) {
         print("Sending Message: \n\(message)\n\n")
         
@@ -246,7 +244,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         return false
     }
     
-    // MARK: Delegate Protocal Methods
+    // MARK: MCBrowserViewControllerDelegate conformance.
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
         appDelegate.mpcHandler.browser.dismiss(animated: true, completion: nil)
     }

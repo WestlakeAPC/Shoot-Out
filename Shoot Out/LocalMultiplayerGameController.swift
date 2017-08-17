@@ -209,6 +209,12 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         sendData(OfInformation: messageDict)
     }
     
+    // Send Shoot Action
+    func sendShots() {
+        let messageDict = ["Event": "shotsFired"]
+        sendData(OfInformation: messageDict)
+    }
+    
     // MARK: Return to Menu
     @IBAction func exitView(_ sender: Any) {
         print("\nAttempting to deallocate \(String(describing: self.skView?.scene))\n")

@@ -207,6 +207,7 @@ class MultiplayerScene: SKScene {
                      fromPercentOfHeight: 0.35,
                      toArray: playerBulletArray,
                      inScene: self)
+            
         case .right:
             bullet.shoot(from: self.mainCharacter!,
                      to: .right,
@@ -216,6 +217,15 @@ class MultiplayerScene: SKScene {
                      inScene: self)
             
         }
+        
+        if let vc = viewController as! LocalMultiplayerGameController? {
+            sendPlayerProperties()
+            vc.sendShots()
+            
+        } else {
+            // Do casting and method calling for Game Center View Controller
+        }
+        
     }
     
     // MARK: Update the Game

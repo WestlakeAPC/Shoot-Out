@@ -101,6 +101,16 @@ class SKAlienNode: SKSpriteNode {
             
             self.deteriorate()
             gameScene?.jump()
+            
+            switch arc4random_uniform(999) % 3 {
+            case 0:
+                gameScene?.moveRight()
+            case 1:
+                gameScene?.moveLeft()
+            default:
+                return false
+            }
+            
             return false
             
         }

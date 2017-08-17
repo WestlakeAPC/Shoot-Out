@@ -16,7 +16,7 @@ enum GameEvent {
     }
     
     case characterAssignment(randomNumber: Int)
-    case shot(takenBy: Character)
+    case shot
     case gameOver(playerWon: Character)
     case hit(player: Character)
     case restart
@@ -63,8 +63,7 @@ extension GameEvent: Codable {
                 let value = try container.decode(Int.self, forKey: .randomNumberValue)
                 self = .characterAssignment(randomNumber: value)
             case "shot":
-                let player = try container.decode(Character.self, forKey: .characterValue)
-                self = .shot(takenBy: player)
+                self = .shot
             case "game_over":
                 let player = try container.decode(Character.self, forKey: .characterValue)
                 self = .gameOver(playerWon: player)

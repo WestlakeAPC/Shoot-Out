@@ -150,7 +150,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
                     
                     gameScene?.receivedPlayerProperties(velocity: velocity, position: position, direction: direction)
                 
-                case .shot(takenBy: .other):
+                case .shot:
                     gameScene?.oppositionShots()
                 
                 default:
@@ -203,7 +203,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     
     // Send Shoot Action
     func sendShots() {
-        let message = GameEvent.shot(takenBy: .main)
+        let message = GameEvent.shot
         
         sendData(message)
     }

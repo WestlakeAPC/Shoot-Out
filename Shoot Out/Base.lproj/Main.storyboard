@@ -31,7 +31,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qw6-74-YmC">
-                                <rect key="frame" x="20" y="1193" width="145" height="38"/>
+                                <rect key="frame" x="20" y="1205" width="94" height="32"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Singleplayer">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -41,7 +41,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dj-GH-dZb">
-                                <rect key="frame" x="20" y="1267" width="136" height="38"/>
+                                <rect key="frame" x="20" y="1273" width="84" height="32"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Multiplayer">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -226,6 +226,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" highlightedImage="background" translatesAutoresizingMaskIntoConstraints="NO" id="JVU-Gm-XXN">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ta4-Qn-vdW" userLabel="SpriteKit View" customClass="SKView">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lMJ-Y6-3h4">
                                 <rect key="frame" x="10" y="1278" width="92" height="63"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -278,16 +285,24 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
+                            <constraint firstItem="JVU-Gm-XXN" firstAttribute="leading" secondItem="ta4-Qn-vdW" secondAttribute="leading" id="A0C-Ir-yH8"/>
                             <constraint firstItem="1hR-x2-zqF" firstAttribute="top" secondItem="v3T-ud-2Am" secondAttribute="bottom" constant="25" id="Amr-O4-hz1"/>
                             <constraint firstItem="v3T-ud-2Am" firstAttribute="leading" secondItem="tDh-vY-Uyp" secondAttribute="trailing" constant="10" id="Aq6-Wt-7kY"/>
+                            <constraint firstItem="ta4-Qn-vdW" firstAttribute="leading" secondItem="D6X-d5-aQD" secondAttribute="leading" id="Daa-a9-Me7"/>
+                            <constraint firstItem="JVU-Gm-XXN" firstAttribute="top" secondItem="ta4-Qn-vdW" secondAttribute="top" id="Dhm-YW-Dtr"/>
                             <constraint firstItem="iSV-km-S5P" firstAttribute="leading" secondItem="lMJ-Y6-3h4" secondAttribute="trailing" constant="10" id="EBV-PB-s5A"/>
+                            <constraint firstAttribute="trailing" secondItem="ta4-Qn-vdW" secondAttribute="trailing" id="HZD-sR-VNu"/>
                             <constraint firstItem="1hR-x2-zqF" firstAttribute="top" secondItem="tDh-vY-Uyp" secondAttribute="bottom" constant="25" id="IDN-1C-qjn"/>
                             <constraint firstItem="KDb-yX-gEf" firstAttribute="top" secondItem="D6X-d5-aQD" secondAttribute="top" constant="4" id="fd1-Xr-AqX"/>
                             <constraint firstItem="v3T-ud-2Am" firstAttribute="trailing" secondItem="D6X-d5-aQD" secondAttribute="trailingMargin" constant="10" id="gCE-Ry-BMZ"/>
                             <constraint firstItem="KDb-yX-gEf" firstAttribute="leading" secondItem="D6X-d5-aQD" secondAttribute="leading" constant="4" id="lwu-MP-4JG"/>
+                            <constraint firstItem="JVU-Gm-XXN" firstAttribute="bottom" secondItem="1hR-x2-zqF" secondAttribute="top" id="nFH-i2-UOt"/>
                             <constraint firstItem="1hR-x2-zqF" firstAttribute="top" secondItem="iSV-km-S5P" secondAttribute="bottom" constant="25" id="nbz-Di-jys"/>
                             <constraint firstItem="1hR-x2-zqF" firstAttribute="top" secondItem="lMJ-Y6-3h4" secondAttribute="bottom" constant="25" id="qBi-x3-zS6"/>
                             <constraint firstItem="lMJ-Y6-3h4" firstAttribute="leading" secondItem="D6X-d5-aQD" secondAttribute="leading" constant="10" id="rGc-4H-4O1"/>
+                            <constraint firstItem="1hR-x2-zqF" firstAttribute="top" secondItem="ta4-Qn-vdW" secondAttribute="bottom" id="x9K-kr-fOh"/>
+                            <constraint firstItem="ta4-Qn-vdW" firstAttribute="top" secondItem="2NK-fY-dEn" secondAttribute="bottom" constant="-20" id="xQV-QO-KeW"/>
+                            <constraint firstItem="JVU-Gm-XXN" firstAttribute="trailing" secondItem="ta4-Qn-vdW" secondAttribute="trailing" id="y7s-Tu-ugj"/>
                         </constraints>
                     </view>
                     <connections>
@@ -295,11 +310,12 @@
                         <outlet property="leftButton" destination="lMJ-Y6-3h4" id="fCa-Dl-OZ8"/>
                         <outlet property="rightButton" destination="iSV-km-S5P" id="Iqt-ww-WBG"/>
                         <outlet property="shootButton" destination="v3T-ud-2Am" id="thu-JA-MOg"/>
+                        <outlet property="skView" destination="ta4-Qn-vdW" id="QGu-E2-VXI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHP-gB-oOL" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="813.60000000000002" y="1157.2713643178411"/>
+            <point key="canvasLocation" x="813.28125" y="1156.9546120058565"/>
         </scene>
         <!--Local Multiplayer Game View Controller-->
         <scene sceneID="J7I-Ll-2FB">
@@ -313,10 +329,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" highlightedImage="Background" translatesAutoresizingMaskIntoConstraints="NO" id="IBH-Xa-toi">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" highlightedImage="background" translatesAutoresizingMaskIntoConstraints="NO" id="IBH-Xa-toi">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c5S-tu-Ghh" customClass="SKView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c5S-tu-Ghh" userLabel="SpriteKit View" customClass="SKView">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -420,7 +436,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Background" width="1968" height="1476"/>
         <image name="background" width="1968" height="1476"/>
         <image name="initialBackground" width="2560" height="1521"/>
     </resources>

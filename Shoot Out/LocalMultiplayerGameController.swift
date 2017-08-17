@@ -113,17 +113,16 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         }
         
         switch (sessionState) {
-        case .connected:
-            print("Connected")
-            sendAssignmentNumber()
-            appDelegate.mpcHandler.browser.dismiss(animated: true, completion: nil)
+            case .connected:
+                print("Connected")
+                sendAssignmentNumber()
+                appDelegate.mpcHandler.browser.dismiss(animated: true, completion: nil)
             
-        case .connecting:
-            print("Connecting")
+            case .connecting:
+                print("Connecting")
             
-        case .notConnected:
-            print("Disconnected")
-            
+            case .notConnected:
+                print("Disconnected")
         }
     }
     
@@ -134,39 +133,26 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         
         do {
             // Obtain Dictionary Sent Out By Other Players
-            let message = try JSONSerialization.jsonObject(with: receivedData, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
-            
-            let event = message["Event"] as! String
-            print("Received Event: \n\(String(describing: event))")
-            
-            // Interpret and Process Received Information
-            switch event {
-            case "characterAssignment":
-                self.receivedAssignmentNumber = message["Event Value"] as! Int
-                gameScene?.assignCharacters(localValue: self.characterAssignmentNumber, remoteValue: self.receivedAssignmentNumber)
-                
-            case "propertyUpdate":
-                let receivedProperties = message["Event Value"] as! Dictionary<String, Any>
-                
-                let velocity = receivedProperties["Physics"] as! Dictionary<String, CGFloat>
-                let dx = velocity["dx"]
-                let dy = velocity["dy"]
-                
-                let position = receivedProperties["Position"] as! Dictionary<String, CGFloat>
-                let x = position["x"]
-                let y = position["y"]
-                
-                let direction = receivedProperties["Direction"] as! String
-                
-                gameScene?.receivedPlayerProperties(velocityDx: dx!, velocityDx: dy!, positionX: x!, positionY: y!, directionOf: direction)
-                
-                
-            default:
-                print("Received Other Event Options")
+            guard let message = NSKeyedUnarchiver.unarchiveObject(with: receivedData) as? GameEvent else {
+                return
             }
             
-        } catch {
-            print("R.I.P. When receiving data, you encountered: " + error.localizedDescription)
+            // Interpret and Process Received Information
+            switch message {
+                case .characterAssignment(let randomNumber):
+                    self.receivedAssignmentNumber = randomNumber
+                    gameScene?.assignCharacters(localValue: self.characterAssignmentNumber, remoteValue: self.receivedAssignmentNumber)
+                
+                case .propertyUpdate(let properties):
+                    let velocity = properties.ourCharacterPhysics
+                    let position = properties.ourCharacterPosition
+                    let direction = properties.ourCharacterDirection
+                    
+                    gameScene?.receivedPlayerProperties(velocity: velocity, position: position, direction: direction)
+                
+                default:
+                    print("Received Other Event Options")
+            }
         }
     }
     
@@ -176,14 +162,13 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     }
     
     // MARK: Send Data to Other Players
-    func sendData(OfInformation messageDict: Dictionary<String, Any>) {
-        print("Sending Message: \n\(messageDict)\n\n")
+    func sendData(_ message: GameEvent) {
+        print("Sending Message: \n\(message)\n\n")
         
         do {
-            let messageData = try JSONSerialization.data(withJSONObject: messageDict, options: JSONSerialization.WritingOptions.prettyPrinted)
+            let messageData = NSKeyedArchiver.archivedData(withRootObject: message)
             
             try appDelegate.mpcHandler.session.send(messageData, toPeers: appDelegate.mpcHandler.session.connectedPeers, with: .reliable)
-            
         } catch {
             print("R.I.P. When sending data, you encountered: " + error.localizedDescription)
         }
@@ -195,18 +180,22 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         // Send Random Number Message
         self.characterAssignmentNumber = Int(arc4random_uniform(UInt32(99999999)))
         
-        let messageDict = ["Event": "characterAssignment", "Event Value": self.characterAssignmentNumber] as [String : Any]
-        
-        sendData(OfInformation: messageDict)
+        sendData(GameEvent.characterAssignment(randomNumber: self.characterAssignmentNumber))
     }
     
     // Sending Character State
-    func sendCharacterState(physicsVelocityOf physicsVelocity: Dictionary<String, CGFloat>, positionOf position: Dictionary<String, CGFloat>, directionOf direction: String) {
+    func sendCharacterState(withPhysicsBody physics: SKPhysicsBody,
+                            at position: CGPoint,
+                            towards direction: SKPlayerNode.Direction) {
         
-        let properties = ["Physics": physicsVelocity, "Position": position, "Direction": direction] as [String : Any]
-        let messageDict = ["Event": "propertyUpdate", "Event Value": properties] as [String : Any]
+        let properties = Properties(ourCharacterPhysics: physics.velocity,
+                                    ourCharacterPosition: position,
+                                    ourCharacterDirection: direction,
+                                    playerBulletArray: [],
+                                    enemyBulletArray: [])
+        let message = GameEvent.propertyUpdate(properties)
         
-        sendData(OfInformation: messageDict)
+        sendData(message)
     }
     
     // MARK: Return to Menu

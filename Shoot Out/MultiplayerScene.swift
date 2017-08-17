@@ -231,46 +231,22 @@ class MultiplayerScene: SKScene {
         
         if gameIsOver || !gameIsActive {return}
         
-        if let vc = viewController as! LocalMultiplayerGameController? {
-            
-            let velocity = ["dx": self.mainCharacter?.physicsBody?.velocity.dx, "dy": self.mainCharacter?.physicsBody?.velocity.dy] as! Dictionary<String, CGFloat>
-            let position = ["x": self.mainCharacter?.position.x, "y": self.mainCharacter?.position.y] as! Dictionary<String, CGFloat>
-            
-            switch self.mainCharacter!.facingDirection {
-            case .left:
-                vc.sendCharacterState(physicsVelocityOf: velocity,
-                                      positionOf: position,
-                                      directionOf: "left")
-            case .right:
-                vc.sendCharacterState(physicsVelocityOf: velocity,
-                                      positionOf: position,
-                                      directionOf: "right")
-            }
-            
+        if let vc = viewController as? LocalMultiplayerGameController {
+            vc.sendCharacterState(withPhysicsBody: self.mainCharacter!.physicsBody!,
+                                  at: self.mainCharacter!.position,
+                                  towards: self.mainCharacter!.facingDirection)
         } else {
             // Do casting and method calling for Game Center View Controller
         }
     }
     
     // Process Received Character Properties
-    func receivedPlayerProperties(velocityDx dx: CGFloat, velocityDx dy: CGFloat, positionX x: CGFloat, positionY y: CGFloat,  directionOf direction: String) {
+    func receivedPlayerProperties(velocity: CGVector, position: CGPoint, direction: SKPlayerNode.Direction) {
+        self.opposingCharacter?.physicsBody?.velocity = velocity
+        self.opposingCharacter?.position = position
+        self.opposingCharacter?.facingDirection = .right
         
-        self.opposingCharacter?.physicsBody?.velocity = CGVector(dx: dx, dy: dy)
-        self.opposingCharacter?.position = CGPoint(x: x, y: y)
-        //self.opposingCharacter?.run(SKAction.move(to: CGPoint(x: x, y: y), duration: 0.01))
-        
-        switch direction {
-        case "right":
-            self.opposingCharacter?.facingDirection = .right
-            
-        case "left":
-            self.opposingCharacter?.facingDirection = .left
-            
-        default:
-            print("")
-        }
         self.opposingCharacter?.updateTexture()
-        
     }
     
     // MARK: Game System Processing

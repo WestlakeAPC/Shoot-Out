@@ -10,7 +10,7 @@
 		17124FD21F39166600C417A0 /* SKBulletsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17124FD11F39166600C417A0 /* SKBulletsNode.swift */; };
 		17124FD41F3916B600C417A0 /* SKEnemyCowboyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17124FD31F3916B600C417A0 /* SKEnemyCowboyNode.swift */; };
 		17124FD61F39171100C417A0 /* SKAlienNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17124FD51F39171100C417A0 /* SKAlienNode.swift */; };
-		179CCB5A1F42839B00AB01B6 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179CCB591F42839B00AB01B6 /* Event.swift */; };
+		179CCB5A1F42839B00AB01B6 /* GameEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179CCB591F42839B00AB01B6 /* GameEvent.swift */; };
 		17B4A03B1F429F73000DED13 /* ArrayReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B4A03A1F429F73000DED13 /* ArrayReference.swift */; };
 		22F734E01F37BC6600AA52C5 /* punch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22F734DF1F37BC6600AA52C5 /* punch.wav */; };
 		22F734E31F37C3FB00AA52C5 /* Crazy.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22F734E21F37C3FB00AA52C5 /* Crazy.wav */; };
@@ -66,7 +66,7 @@
 		17124FD31F3916B600C417A0 /* SKEnemyCowboyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKEnemyCowboyNode.swift; sourceTree = "<group>"; };
 		17124FD51F39171100C417A0 /* SKAlienNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKAlienNode.swift; sourceTree = "<group>"; };
 		1798F94B710741F60B145977 /* Pods-Shoot OutUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot OutUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot OutUITests/Pods-Shoot OutUITests.release.xcconfig"; sourceTree = "<group>"; };
-		179CCB591F42839B00AB01B6 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		179CCB591F42839B00AB01B6 /* GameEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEvent.swift; sourceTree = "<group>"; };
 		17B4A03A1F429F73000DED13 /* ArrayReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayReference.swift; sourceTree = "<group>"; };
 		18F429D1C829B5792172ECD4 /* Pods_Shoot_OutTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shoot_OutTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F734DF1F37BC6600AA52C5 /* punch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = punch.wav; sourceTree = "<group>"; };
@@ -264,7 +264,7 @@
 				73486E541F2309F7004C3333 /* MultiplayerScene.sks */,
 				73829BDE1F231050003AEF6F /* MPCHandler.swift */,
 				738D60211F44BE3400FF54C8 /* SKPlayerNode.swift */,
-				179CCB591F42839B00AB01B6 /* Event.swift */,
+				179CCB591F42839B00AB01B6 /* GameEvent.swift */,
 				73CB34B01F4150750008BA9E /* MultiplayerGameHandlerDelegate.swift */,
 			);
 			name = "Multiplayer Game Files";
@@ -374,7 +374,7 @@
 				TargetAttributes = {
 					73486E1C1F22FF05004C3333 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 9SR8L2XE3A;
+						DevelopmentTeam = M64HPXXUJF;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
@@ -623,7 +623,7 @@
 				73829BDF1F231050003AEF6F /* MPCHandler.swift in Sources */,
 				73CB34B11F4150750008BA9E /* MultiplayerGameHandlerDelegate.swift in Sources */,
 				73486E571F230A12004C3333 /* MultiplayerScene.swift in Sources */,
-				179CCB5A1F42839B00AB01B6 /* Event.swift in Sources */,
+				179CCB5A1F42839B00AB01B6 /* GameEvent.swift in Sources */,
 				738D60221F44BE3400FF54C8 /* SKPlayerNode.swift in Sources */,
 				738B0FCF1F37E0C3006D6C80 /* InitialViewController.swift in Sources */,
 			);
@@ -792,12 +792,12 @@
 			baseConfigurationReference = 47AD165EB11F34BB5286A3E0 /* Pods-Shoot Out.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9SR8L2XE3A;
+				DEVELOPMENT_TEAM = M64HPXXUJF;
 				INFOPLIST_FILE = "Shoot Out/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.westlakeapc.Shoot-Out";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -806,12 +806,12 @@
 			baseConfigurationReference = 3E81CE78F2C96F5CBEABBB35 /* Pods-Shoot Out.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9SR8L2XE3A;
+				DEVELOPMENT_TEAM = M64HPXXUJF;
 				INFOPLIST_FILE = "Shoot Out/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.westlakeapc.Shoot-Out";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

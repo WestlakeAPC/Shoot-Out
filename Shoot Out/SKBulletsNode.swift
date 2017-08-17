@@ -9,7 +9,7 @@ class SKBulletsNode: SKSpriteNode {
     var parentArray: ArrayReference<SKBulletsNode>? = ArrayReference()
     var hasRemoved = false
     
-    enum BulletDirection {
+    enum BulletDirection: String, Codable {
         case left
         case right
     }

@@ -11,7 +11,7 @@ import SpriteKit
 
 class SKPlayerNode: SKSpriteNode {
     
-    enum Direction {
+    enum Direction: String, Codable {
         case left
         case right
     }

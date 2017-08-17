@@ -218,8 +218,10 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         self.gameScene = nil
         self.skView = nil
         self.skView?.presentScene(nil)
-        //appDelegate.mpcHandler.browser.delegate = nil
-        //appDelegate.mpcHandler.session = nil
+        
+        appDelegate.mpcHandler.session = nil
+        appDelegate.mpcHandler.browser.delegate = nil
+        appDelegate.mpcHandler.adertiseSelf(advertise: false)
         
         self.dismiss(animated: true, completion: nil)
     }

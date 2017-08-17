@@ -10,6 +10,7 @@
 		17124FD21F39166600C417A0 /* SKBulletsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17124FD11F39166600C417A0 /* SKBulletsNode.swift */; };
 		17124FD41F3916B600C417A0 /* SKEnemyCowboyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17124FD31F3916B600C417A0 /* SKEnemyCowboyNode.swift */; };
 		17124FD61F39171100C417A0 /* SKAlienNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17124FD51F39171100C417A0 /* SKAlienNode.swift */; };
+		178BC2611F4607C500DB8E7F /* MultiplayerGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178BC2601F4607C500DB8E7F /* MultiplayerGameViewController.swift */; };
 		179CCB5A1F42839B00AB01B6 /* GameEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179CCB591F42839B00AB01B6 /* GameEvent.swift */; };
 		17B4A03B1F429F73000DED13 /* ArrayReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B4A03A1F429F73000DED13 /* ArrayReference.swift */; };
 		22F734E01F37BC6600AA52C5 /* punch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22F734DF1F37BC6600AA52C5 /* punch.wav */; };
@@ -34,7 +35,7 @@
 		73486E551F2309F7004C3333 /* MultiplayerScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 73486E541F2309F7004C3333 /* MultiplayerScene.sks */; };
 		73486E571F230A12004C3333 /* MultiplayerScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73486E561F230A12004C3333 /* MultiplayerScene.swift */; };
 		73486E591F230AB4004C3333 /* GlobalMultiplayerGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73486E581F230AB4004C3333 /* GlobalMultiplayerGameViewController.swift */; };
-		736F58581F3D447E00C065EE /* LocalMultiplayerGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736F58571F3D447E00C065EE /* LocalMultiplayerGameController.swift */; };
+		736F58581F3D447E00C065EE /* LocalMultiplayerGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736F58571F3D447E00C065EE /* LocalMultiplayerGameViewController.swift */; };
 		737F756D1F45F7BA00B19E8F /* GunShot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 737F756C1F45F7BA00B19E8F /* GunShot.mp3 */; };
 		73829BDC1F230DDB003AEF6F /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73829BDB1F230DDB003AEF6F /* ConnectViewController.swift */; };
 		73829BDF1F231050003AEF6F /* MPCHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73829BDE1F231050003AEF6F /* MPCHandler.swift */; };
@@ -66,6 +67,7 @@
 		17124FD11F39166600C417A0 /* SKBulletsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKBulletsNode.swift; sourceTree = "<group>"; };
 		17124FD31F3916B600C417A0 /* SKEnemyCowboyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKEnemyCowboyNode.swift; sourceTree = "<group>"; };
 		17124FD51F39171100C417A0 /* SKAlienNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKAlienNode.swift; sourceTree = "<group>"; };
+		178BC2601F4607C500DB8E7F /* MultiplayerGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerGameViewController.swift; sourceTree = "<group>"; };
 		1798F94B710741F60B145977 /* Pods-Shoot OutUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot OutUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot OutUITests/Pods-Shoot OutUITests.release.xcconfig"; sourceTree = "<group>"; };
 		179CCB591F42839B00AB01B6 /* GameEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEvent.swift; sourceTree = "<group>"; };
 		17B4A03A1F429F73000DED13 /* ArrayReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayReference.swift; sourceTree = "<group>"; };
@@ -99,7 +101,7 @@
 		73486E541F2309F7004C3333 /* MultiplayerScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MultiplayerScene.sks; sourceTree = "<group>"; };
 		73486E561F230A12004C3333 /* MultiplayerScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerScene.swift; sourceTree = "<group>"; };
 		73486E581F230AB4004C3333 /* GlobalMultiplayerGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalMultiplayerGameViewController.swift; sourceTree = "<group>"; };
-		736F58571F3D447E00C065EE /* LocalMultiplayerGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalMultiplayerGameController.swift; sourceTree = "<group>"; };
+		736F58571F3D447E00C065EE /* LocalMultiplayerGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalMultiplayerGameViewController.swift; sourceTree = "<group>"; };
 		737F756C1F45F7BA00B19E8F /* GunShot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GunShot.mp3; sourceTree = "<group>"; };
 		73829BDB1F230DDB003AEF6F /* ConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
 		73829BDE1F231050003AEF6F /* MPCHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCHandler.swift; sourceTree = "<group>"; };
@@ -261,7 +263,7 @@
 		736F58591F3E623E00C065EE /* Multiplayer Game Files */ = {
 			isa = PBXGroup;
 			children = (
-				736F58571F3D447E00C065EE /* LocalMultiplayerGameController.swift */,
+				736F58571F3D447E00C065EE /* LocalMultiplayerGameViewController.swift */,
 				73486E581F230AB4004C3333 /* GlobalMultiplayerGameViewController.swift */,
 				73486E561F230A12004C3333 /* MultiplayerScene.swift */,
 				73486E541F2309F7004C3333 /* MultiplayerScene.sks */,
@@ -269,6 +271,7 @@
 				738D60211F44BE3400FF54C8 /* SKPlayerNode.swift */,
 				179CCB591F42839B00AB01B6 /* GameEvent.swift */,
 				73CB34B01F4150750008BA9E /* MultiplayerGameHandlerDelegate.swift */,
+				178BC2601F4607C500DB8E7F /* MultiplayerGameViewController.swift */,
 			);
 			name = "Multiplayer Game Files";
 			sourceTree = "<group>";
@@ -614,12 +617,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				736F58581F3D447E00C065EE /* LocalMultiplayerGameController.swift in Sources */,
+				736F58581F3D447E00C065EE /* LocalMultiplayerGameViewController.swift in Sources */,
 				17B4A03B1F429F73000DED13 /* ArrayReference.swift in Sources */,
 				73486E271F22FF06004C3333 /* GameScene.swift in Sources */,
 				73486E291F22FF06004C3333 /* GameViewController.swift in Sources */,
 				73486E211F22FF06004C3333 /* AppDelegate.swift in Sources */,
 				73829BDC1F230DDB003AEF6F /* ConnectViewController.swift in Sources */,
+				178BC2611F4607C500DB8E7F /* MultiplayerGameViewController.swift in Sources */,
 				73486E591F230AB4004C3333 /* GlobalMultiplayerGameViewController.swift in Sources */,
 				17124FD41F3916B600C417A0 /* SKEnemyCowboyNode.swift in Sources */,
 				17124FD61F39171100C417A0 /* SKAlienNode.swift in Sources */,

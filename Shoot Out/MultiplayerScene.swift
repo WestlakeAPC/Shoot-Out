@@ -12,7 +12,7 @@ import AVFoundation
 
 class MultiplayerScene: SKScene {
     // ViewController reference
-    var viewController: UIViewController?
+    var viewController: MultiplayerGameViewController?
     
     // SpriteKit nodes
     var alphaCharacter = SKPlayerNode()
@@ -163,7 +163,6 @@ class MultiplayerScene: SKScene {
         if localAssignment > remoteAssignemt {
             self.mainCharacter = self.alphaCharacter
             self.opposingCharacter = self.betaCharacter
-            
         } else {
             self.mainCharacter = self.betaCharacter
             self.opposingCharacter = self.alphaCharacter
@@ -206,13 +205,8 @@ class MultiplayerScene: SKScene {
                      toArray: playerBulletArray,
                      inScene: self)
         
-        if let vc = viewController as? LocalMultiplayerGameController {
-            sendPlayerProperties()
-            vc.sendShots()
-            
-        } else {
-            // Do casting and method calling for Game Center View Controller
-        }
+        sendPlayerProperties()
+        viewController!.sendShots()
     }
     
     // MARK: Update the Game
@@ -228,13 +222,9 @@ class MultiplayerScene: SKScene {
         
         if gameIsOver || !gameIsActive {return}
         
-        if let vc = viewController as? LocalMultiplayerGameController {
-            vc.sendCharacterState(withPhysicsBody: self.mainCharacter!.physicsBody!,
-                                  at: self.mainCharacter!.position,
-                                  towards: self.mainCharacter!.facingDirection)
-        } else {
-            // Do casting and method calling for Game Center View Controller
-        }
+        viewController?.sendCharacterState(withPhysicsBody: self.mainCharacter!.physicsBody!,
+                                           at: self.mainCharacter!.position,
+                                           towards: self.mainCharacter!.facingDirection)
     }
     
     // Process Received Character Properties

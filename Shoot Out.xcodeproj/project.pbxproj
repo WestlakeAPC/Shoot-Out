@@ -99,6 +99,7 @@
 		73486E561F230A12004C3333 /* MultiplayerScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerScene.swift; sourceTree = "<group>"; };
 		73486E581F230AB4004C3333 /* GlobalMultiplayerGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalMultiplayerGameViewController.swift; sourceTree = "<group>"; };
 		736F58571F3D447E00C065EE /* LocalMultiplayerGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalMultiplayerGameController.swift; sourceTree = "<group>"; };
+		737F756B1F45F1FA00B19E8F /* GunShot.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = GunShot.m4a; sourceTree = "<group>"; };
 		73829BDB1F230DDB003AEF6F /* ConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
 		73829BDE1F231050003AEF6F /* MPCHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCHandler.swift; sourceTree = "<group>"; };
 		738B0FCC1F37D9AF006D6C80 /* DesertEagleShot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DesertEagleShot.mp3; sourceTree = "<group>"; };
@@ -145,6 +146,7 @@
 			children = (
 				22F734E21F37C3FB00AA52C5 /* Crazy.wav */,
 				738B0FCC1F37D9AF006D6C80 /* DesertEagleShot.mp3 */,
+				737F756B1F45F1FA00B19E8F /* GunShot.m4a */,
 				22F734DF1F37BC6600AA52C5 /* punch.wav */,
 				22F734E51F37CE4A00AA52C5 /* punch2.wav */,
 			);

@@ -35,6 +35,8 @@ class SKBulletsNode: SKSpriteNode {
         scene.addChild(self)
         parentArray!.array!.append(self)
         
+        self.run(SKAction.playSoundFileNamed("GunShot.m4a", waitForCompletion: false))
+        
         if direction == .left {
             self.run(SKAction.moveTo(x: (self.position.x - (gameScene?.frame.size.width)!), duration: 1.5), completion: {
                 if !self.hasRemoved {

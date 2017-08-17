@@ -225,7 +225,6 @@ class MultiplayerScene: SKScene {
         } else {
             // Do casting and method calling for Game Center View Controller
         }
-        
     }
     
     // MARK: Update the Game
@@ -281,6 +280,31 @@ class MultiplayerScene: SKScene {
         }
         self.opposingCharacter?.updateTexture()
         
+    }
+    
+    // Fire Shots From Opposing Character
+    func oppositionShots() {
+        if gameIsOver || !gameIsActive {return}
+        let bullet = SKBulletsNode(texture: bulletTexture)
+        
+        switch self.opposingCharacter!.facingDirection {
+        case .left:
+            bullet.shoot(from: self.opposingCharacter!,
+                         to: .left,
+                         fromPercentOfWidth: 0.8,
+                         fromPercentOfHeight: 0.35,
+                         toArray: enemyBulletArray,
+                         inScene: self)
+            
+        case .right:
+            bullet.shoot(from: self.opposingCharacter!,
+                         to: .right,
+                         fromPercentOfWidth: 0.8,
+                         fromPercentOfHeight: 0.35,
+                         toArray: enemyBulletArray,
+                         inScene: self)
+            
+        }
     }
     
     // MARK: Game System Processing

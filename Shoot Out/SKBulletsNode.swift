@@ -9,14 +9,9 @@ class SKBulletsNode: SKSpriteNode {
     var parentArray: ArrayReference<SKBulletsNode>? = ArrayReference()
     var hasRemoved = false
     
-    enum BulletDirection: String, Codable {
-        case left
-        case right
-    }
-    
     // Shoot
     func shoot(from character: SKSpriteNode,
-               to direction: BulletDirection,
+               to direction: Direction,
                fromPercentOfWidth xPercent: CGFloat,
                fromPercentOfHeight yPercent: CGFloat,
                toArray array: ArrayReference<SKBulletsNode>,
@@ -35,26 +30,23 @@ class SKBulletsNode: SKSpriteNode {
         scene.addChild(self)
         parentArray!.array!.append(self)
         
-        if direction == .left {
-            self.run(SKAction.moveTo(x: (self.position.x - (gameScene?.frame.size.width)!), duration: 1.5), completion: {
+        self.run(SKAction.playSoundFileNamed("GunShot.mp3", waitForCompletion: false))
+        
+        let translate = { (translationFunction: (CGFloat, CGFloat) -> CGFloat) in
+            self.run(SKAction.moveTo(x: translationFunction(self.position.x,
+                                                            self.gameScene!.frame.size.width), duration: 1.5), completion: {
                 if !self.hasRemoved {
                     self.remove()
                 }
             })
-        } else if direction == .right {
-            self.run(SKAction.moveTo(x: (self.position.x + (gameScene?.frame.size.width)!), duration: 1.5), completion: {
-                if !self.hasRemoved {
-                    self.remove()
-                }
-            })
-        } else {
-            print("Invalid Direction")
         }
-    }
-    
-    // Check intersection
-    func doesIntersectWith(element object: SKSpriteNode) -> Bool {
-        return self.intersects(object)
+        
+        switch direction {
+            case .left:
+                translate({ (a, b) in a - b }) // Subtract X
+            case .right:
+                translate({ (a, b) in a + b }) // Add X
+        }
     }
     
     // Remove from GameScene and bulletArray

@@ -80,19 +80,19 @@ class GameViewController: UIViewController {
     }
     
     // TODO: Replace method calls eventually
-    func moveLeft() {
+    @objc func moveLeft() {
         self.gameScene?.moveLeft()
     }
     
-    func moveRight() {
+    @objc func moveRight() {
         self.gameScene?.moveRight()
     }
     
-    func jump() {
+    @objc func jump() {
         self.gameScene?.jump()
     }
     
-    func shoot() {
+    @objc func shoot() {
         self.gameScene?.shoot()
     }
 

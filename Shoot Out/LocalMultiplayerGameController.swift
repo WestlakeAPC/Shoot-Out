@@ -93,7 +93,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     }
     
     // MARK: Display connection ViewController
-    func connectToPlayers() {
+    @objc func connectToPlayers() {
         if appDelegate.mpcHandler.session != nil {
             appDelegate.mpcHandler.setupBrowser()
             appDelegate.mpcHandler.browser.delegate = self
@@ -103,7 +103,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     }
     
     // MARK: Check peer connection
-    func peerChangedStateWithNotification(_ notification: NSNotification) {
+    @objc func peerChangedStateWithNotification(_ notification: NSNotification) {
         print("Changed State:")
         
         let userInfo = NSDictionary(dictionary: notification.userInfo!)
@@ -127,7 +127,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     }
     
     // MARK: Handle received data
-    func handleReceivedDataWithNotification(_ notification: NSNotification) {
+    @objc func handleReceivedDataWithNotification(_ notification: NSNotification) {
         let userInfo = notification.userInfo! as Dictionary
         let receivedData: Data = userInfo["data"] as! Data
         
@@ -149,6 +149,9 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
                     let direction = properties.ourCharacterDirection
                     
                     gameScene?.receivedPlayerProperties(velocity: velocity, position: position, direction: direction)
+                
+                case .shot(takenBy: .other):
+                    gameScene?.oppositionShots()
                 
                 default:
                     print("Received Other Event Options")
@@ -186,7 +189,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     // Sending Character State
     func sendCharacterState(withPhysicsBody physics: SKPhysicsBody,
                             at position: CGPoint,
-                            towards direction: SKPlayerNode.Direction) {
+                            towards direction: Direction) {
         
         let properties = Properties(ourCharacterPhysics: physics.velocity,
                                     ourCharacterPosition: position,
@@ -194,6 +197,13 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
                                     playerBulletArray: [],
                                     enemyBulletArray: [])
         let message = GameEvent.propertyUpdate(properties)
+        
+        sendData(message)
+    }
+    
+    // Send Shoot Action
+    func sendShots() {
+        let message = GameEvent.shot(takenBy: .main)
         
         sendData(message)
     }
@@ -216,19 +226,19 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     }
     
     // TODO: Replace method calls eventually
-    func moveLeft() {
+    @objc func moveLeft() {
         self.gameScene?.moveLeft()
     }
     
-    func moveRight() {
+    @objc func moveRight() {
         self.gameScene?.moveRight()
     }
     
-    func jump() {
+    @objc func jump() {
         self.gameScene?.jump()
     }
     
-    func shoot() {
+    @objc func shoot() {
         self.gameScene?.shoot()
     }
     

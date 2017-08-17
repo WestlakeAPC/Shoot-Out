@@ -28,7 +28,7 @@ struct Properties: Codable {
     // SpriteKit physics bodies
     var ourCharacterPhysics: CGVector
     var ourCharacterPosition: CGPoint
-    var ourCharacterDirection: SKPlayerNode.Direction
+    var ourCharacterDirection: Direction
     
     // Arrays
     var playerBulletArray: [BulletInformation] = []
@@ -37,7 +37,12 @@ struct Properties: Codable {
 
 struct BulletInformation: Codable {
     var position: CGPoint
-    var direction: SKBulletsNode.BulletDirection
+    var direction: Direction
+}
+
+enum Direction: String, Codable {
+    case left
+    case right
 }
 
 // MARK: Codable extensions.

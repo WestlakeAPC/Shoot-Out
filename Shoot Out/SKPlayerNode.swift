@@ -11,11 +11,6 @@ import SpriteKit
 
 class SKPlayerNode: SKSpriteNode {
     
-    enum Direction: String, Codable {
-        case left
-        case right
-    }
-    
     var facingDirection: Direction = .left
     var textures: Dictionary<Direction, SKTexture>?
     

@@ -199,22 +199,19 @@ class MultiplayerScene: SKScene {
         if gameIsOver || !gameIsActive {return}
         let bullet = SKBulletsNode(texture: bulletTexture)
         
-        switch self.mainCharacter!.facingDirection {
-        case .left:
-            bullet.shoot(from: self.mainCharacter!,
-                     to: .left,
+        bullet.shoot(from: self.mainCharacter!,
+                     to: self.mainCharacter!.facingDirection,
                      fromPercentOfWidth: 0.8,
                      fromPercentOfHeight: 0.35,
                      toArray: playerBulletArray,
                      inScene: self)
-        case .right:
-            bullet.shoot(from: self.mainCharacter!,
-                     to: .right,
-                     fromPercentOfWidth: 0.8,
-                     fromPercentOfHeight: 0.35,
-                     toArray: playerBulletArray,
-                     inScene: self)
+        
+        if let vc = viewController as? LocalMultiplayerGameController {
+            sendPlayerProperties()
+            vc.sendShots()
             
+        } else {
+            // Do casting and method calling for Game Center View Controller
         }
     }
     
@@ -241,12 +238,25 @@ class MultiplayerScene: SKScene {
     }
     
     // Process Received Character Properties
-    func receivedPlayerProperties(velocity: CGVector, position: CGPoint, direction: SKPlayerNode.Direction) {
+    func receivedPlayerProperties(velocity: CGVector, position: CGPoint, direction: Direction) {
         self.opposingCharacter?.physicsBody?.velocity = velocity
         self.opposingCharacter?.position = position
         self.opposingCharacter?.facingDirection = .right
         
         self.opposingCharacter?.updateTexture()
+    }
+    
+    // Fire Shots From Opposing Character
+    func oppositionShots() {
+        if gameIsOver || !gameIsActive {return}
+        let bullet = SKBulletsNode(texture: bulletTexture)
+        
+        bullet.shoot(from: self.opposingCharacter!,
+                     to: self.opposingCharacter!.facingDirection,
+                     fromPercentOfWidth: 0.8,
+                     fromPercentOfHeight: 0.35,
+                     toArray: enemyBulletArray,
+                     inScene: self)
     }
     
     // MARK: Game System Processing

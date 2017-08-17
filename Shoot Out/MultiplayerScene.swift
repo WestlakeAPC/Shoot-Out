@@ -171,14 +171,14 @@ class MultiplayerScene: SKScene {
     }
 
     // MARK: Character Actions
-    func moveLeft() {
+    @objc func moveLeft() {
         if gameIsOver || !gameIsActive {return}
         self.mainCharacter?.physicsBody?.applyImpulse(CGVector(dx: -30, dy: 0))
         self.mainCharacter?.facingDirection = .left
         self.mainCharacter?.updateTexture()
     }
     
-    func moveRight() {
+    @objc func moveRight() {
         if gameIsOver || !gameIsActive {return}
         self.mainCharacter?.physicsBody?.applyImpulse(CGVector(dx: 30, dy: 0))
         self.mainCharacter?.texture = jimFacingRightTexture
@@ -186,7 +186,7 @@ class MultiplayerScene: SKScene {
         self.mainCharacter?.updateTexture()
     }
     
-    func jump() {
+    @objc func jump() {
         if gameIsOver || !gameIsActive {return}
         if (self.mainCharacter?.position.y)! < self.frame.size.height * 0.5 {
             self.mainCharacter?.physicsBody?.applyImpulse(CGVector(dx: 0,dy: 80))
@@ -194,7 +194,7 @@ class MultiplayerScene: SKScene {
     }
     
     // Shoot Function
-    func shoot() {
+    @objc func shoot() {
         if gameIsOver || !gameIsActive {return}
         let bullet = SKBulletsNode(texture: bulletTexture)
         

@@ -13,55 +13,16 @@ import GCHelper
 
 class GlobalMultiplayerGameViewController: MultiplayerGameViewController, GCHelperDelegate {
     
-    weak var scene: SKScene?
-    weak var skView : SKView?
-    
-    @IBOutlet var leftButton: UIButton!
-    @IBOutlet var rightButton: UIButton!
-    @IBOutlet var jumpButton: UIButton!
-    @IBOutlet var shootButton: UIButton!
-    
     // MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
-        longPressGesture()
-        loadGameScene()
         
         GCHelper.sharedInstance.findMatchWithMinPlayers(2, maxPlayers: 2, viewController: self, delegate: self)
     }
     
-    // MARK: Load Game Scene
-    func loadGameScene() {
-        // Create GameScene object
-        scene = MultiplayerScene(fileNamed:"MultiplayerScene")
-        
-        scene?.scaleMode = .aspectFit
-        
-        // Present current scene
-        skView = (self.view as! SKView)
-        skView!.presentScene(scene)
-        
-        self.gameScene = scene as! MultiplayerScene?
-        self.gameScene?.viewController = self
-        
-        skView!.ignoresSiblingOrder = true
-        skView?.showsFPS = true
-        skView?.showsNodeCount = true
-        skView?.showsPhysics = false
-        
-    }
-    
     // Return to Menu
     @IBAction func exitView(_ sender: Any) {
-        print("\nAttempting to deallocate \(String(describing: self.skView?.scene))\n")
-        self.gameScene?.endAll()
-        self.scene = nil
-        self.gameScene?.viewController = nil
-        self.gameScene = nil
-        self.skView = nil
-        self.skView?.presentScene(nil)
-        
-        self.dismiss(animated: true, completion: nil)
+        super.exitView(sender, completion: nil)
     }
     
     /// Method called when a match has been initiated.
@@ -87,5 +48,4 @@ class GlobalMultiplayerGameViewController: MultiplayerGameViewController, GCHelp
     deinit {
         print("Deinitialized GlobalMultiplayerGameViewController")
     }
-    
 }

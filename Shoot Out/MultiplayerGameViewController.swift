@@ -17,6 +17,39 @@ class MultiplayerGameViewController: UIViewController {
     var characterAssignmentNumber = 0
     var receivedAssignmentNumber = 0
     
+    @IBOutlet var leftButton: UIButton!
+    @IBOutlet var rightButton: UIButton!
+    @IBOutlet var jumpButton: UIButton!
+    @IBOutlet var shootButton: UIButton!
+    
+    @IBOutlet var skView: SKView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadGameScene()
+        longPressGesture()
+    }
+    
+    // MARK: Load Game Scene
+    func loadGameScene() {
+        // Create GameScene object
+        gameScene = MultiplayerScene(fileNamed: "MultiplayerScene")
+        
+        gameScene?.scaleMode = .aspectFit
+        
+        // Present current scene
+        skView!.presentScene(gameScene)
+        skView?.allowsTransparency = true
+        skView?.backgroundColor = .clear
+        
+        self.gameScene?.viewController = self
+        
+        skView!.ignoresSiblingOrder = true
+        skView?.showsFPS = true
+        skView?.showsNodeCount = true
+        skView?.showsPhysics = true
+    }
+    
     func sendData(_ message: GameEvent) {
         print("Sending Message: \n\(message)\n\n")
         
@@ -93,34 +126,17 @@ class MultiplayerGameViewController: UIViewController {
     // TODO: Continue method call as long as button is held
     func longPressGesture() {
         
-        let leftButtonLPG = UITapGestureRecognizer(target: self, action: #selector(moveLeft))
+        let leftButtonLPG = UITapGestureRecognizer(target: self, action: #selector(gameScene?.moveLeft))
         leftButton.addGestureRecognizer(leftButtonLPG)
         
-        let rightButtonLPG = UITapGestureRecognizer(target: self, action: #selector(moveRight))
+        let rightButtonLPG = UITapGestureRecognizer(target: self, action: #selector(gameScene?.moveRight))
         rightButton.addGestureRecognizer(rightButtonLPG)
         
-        let jumpButtonLPG = UITapGestureRecognizer(target: self, action: #selector(jump))
+        let jumpButtonLPG = UITapGestureRecognizer(target: self, action: #selector(gameScene?.jump))
         jumpButton.addGestureRecognizer(jumpButtonLPG)
         
-        let shootButtonLPG = UITapGestureRecognizer(target: self, action: #selector(shoot))
+        let shootButtonLPG = UITapGestureRecognizer(target: self, action: #selector(gameScene?.shoot))
         shootButton.addGestureRecognizer(shootButtonLPG)
-    }
-    
-    // TODO: Replace method calls eventually
-    @objc func moveLeft() {
-        self.gameScene?.moveLeft()
-    }
-    
-    @objc func moveRight() {
-        self.gameScene?.moveRight()
-    }
-    
-    @objc func jump() {
-        self.gameScene?.jump()
-    }
-    
-    @objc func shoot() {
-        self.gameScene?.shoot()
     }
     
     override var shouldAutorotate: Bool {
@@ -142,5 +158,16 @@ class MultiplayerGameViewController: UIViewController {
     
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+    
+    func exitView(_ sender: Any, completion: (() -> Void)?) {
+        print("\nAttempting to deallocate \(String(describing: self.skView?.scene))\n")
+        self.gameScene?.endAll()
+        self.gameScene?.viewController = nil
+        self.gameScene = nil
+        self.skView = nil
+        self.skView?.presentScene(nil)
+        
+        self.dismiss(animated: true, completion: completion)
     }
 }

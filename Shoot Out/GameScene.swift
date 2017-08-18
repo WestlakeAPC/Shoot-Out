@@ -209,7 +209,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Alien Spawning
     func spawnAlien() {
         let alien = SKAlienNode()
-        alien.spawn(withTextureSeries: textureMatrix!,
+        alien.spawn(withTextureSeries: textureMatrix![Int(arc4random_uniform(3))] as [SKTexture?],
                     inArray: alienArray,
                     withWidthRatioOf: 0.1,
                     avoidingNode: self.mainCharacter,

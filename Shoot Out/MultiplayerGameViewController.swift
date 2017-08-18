@@ -88,6 +88,12 @@ class MultiplayerGameViewController: UIViewController {
             case .shot:
                 gameScene?.oppositionShots()
             
+            case .died:
+                gameScene?.victory()
+            
+            case .restart:
+                gameScene?.gameRestart()
+            
             default:
                 print("Received Other Event Options")
         }
@@ -127,6 +133,13 @@ class MultiplayerGameViewController: UIViewController {
     func sendCharacterDeath() {
         let message = GameEvent.died
 
+        sendData(message)
+    }
+    
+    // Send Game Restart
+    func sendRestart() {
+        let message = GameEvent.restart
+        
         sendData(message)
     }
 

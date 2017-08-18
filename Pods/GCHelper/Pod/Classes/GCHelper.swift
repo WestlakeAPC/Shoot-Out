@@ -116,14 +116,14 @@ public class GCHelper: NSObject, GKMatchmakerViewControllerDelegate, GKGameCente
         print("Authenticating local user...")
         
         if GKLocalPlayer.localPlayer().isAuthenticated == false {
-            GKLocalPlayer.localPlayer().authenticateHandler = { (view, error) in
-                guard error == nil else {
-                    print("Authentication error: \(String(describing: error?.localizedDescription))")
-                    return
-                }
+            //GKLocalPlayer.localPlayer().authenticateHandler = { (view, error) in
+            //    guard error == nil else {
+            //        print("Authentication error: \(String(describing: error?.localizedDescription))")
+            //        return
+            //    }
                 
                 self.authenticated = true
-            }
+            //}
         } else {
             print("Already authenticated")
         }

@@ -239,7 +239,7 @@ class MultiplayerScene: SKScene {
     func checkCollision() {
         for enemyBullets in enemyBulletArray.array! {
             if (self.mainCharacter?.intersects(enemyBullets))! {
-                mainPlayerDidDie()
+                selfDeath()
             }
         }
     }
@@ -318,9 +318,21 @@ class MultiplayerScene: SKScene {
     }
     
     // MARK: Game System Processing
-    func mainPlayerDidDie() {
-        (self.mainCharacter?.childNode(withName: "blood") as! SKEmitterNode).particleBirthRate = 750
+    func victory() {
+        playerDidDie(withDeathOf: self.opposingCharacter!)
+    }
+    
+    func selfDeath() {
+        playerDidDie(withDeathOf: self.mainCharacter!)
         
+        if let vc = viewController as! LocalMultiplayerGameController? {
+            vc.sendCharacterDeath()
+        }
+    }
+    
+    func playerDidDie(withDeathOf victim: SKSpriteNode) {
+        (victim.childNode(withName: "blood") as! SKEmitterNode).particleBirthRate = 800
+        self.punchSoundEffect?.play()
         self.gameIsOver = true
     }
     

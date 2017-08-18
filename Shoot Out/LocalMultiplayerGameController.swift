@@ -163,6 +163,9 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
             case "shotsFired":
                 gameScene?.oppositionShots()
                 
+            case "playerDidDie":
+                gameScene?.victory()
+                
             default:
                 print("Received Other Event Options")
             }
@@ -214,6 +217,13 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     // Send Shoot Action
     func sendShots() {
         let messageDict = ["Event": "shotsFired"]
+        
+        sendData(OfInformation: messageDict)
+    }
+    
+    // Send Character Death
+    func sendCharacterDeath() {
+        let messageDict = ["Event": "playerDidDie"]
         
         sendData(OfInformation: messageDict)
     }

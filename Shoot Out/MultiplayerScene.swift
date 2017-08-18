@@ -370,8 +370,9 @@ class MultiplayerScene: SKScene {
         
         if let vc = viewController as! LocalMultiplayerGameController? {
             vc.sendCharacterDeath()
+        } else {
+            
         }
-        
         
     }
     
@@ -408,11 +409,22 @@ class MultiplayerScene: SKScene {
         (self.mainCharacter?.childNode(withName: "blood") as! SKEmitterNode).particleBirthRate = 0
         (self.opposingCharacter?.childNode(withName: "blood") as! SKEmitterNode).particleBirthRate = 0
         
-        self.mainCharacter?.position = CGPoint(x: self.frame.size.width * 0.3, y: self.frame.size.height * 0.5)
-        self.mainCharacter?.texture = jimFacingRightTexture
+        self.alphaCharacter.position = CGPoint(x: self.frame.size.width * 0.3, y: self.frame.size.height * 0.5)
+        self.alphaCharacter.facingDirection = .right
+        self.alphaCharacter.updateTexture()
+        
+        self.betaCharacter.position = CGPoint(x: self.frame.size.width * 0.7, y: self.frame.size.height * 0.5)
+        self.betaCharacter.facingDirection = .left
+        self.betaCharacter.updateTexture()
         
         
+        if let vc = viewController as! LocalMultiplayerGameController? {
+            vc.sendRestart()
+        } else {
+            
+        }
         
+            
         // Hide OverScreen
         self.overScreen.run(SKAction.fadeOut(withDuration: 0.5), completion: {
             // Start Music

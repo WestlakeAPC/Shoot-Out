@@ -166,6 +166,9 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
             case "playerDidDie":
                 gameScene?.victory()
                 
+            case "restartingGame":
+                gameScene?.gameRestart()
+                
             default:
                 print("Received Other Event Options")
             }
@@ -224,6 +227,13 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     // Send Character Death
     func sendCharacterDeath() {
         let messageDict = ["Event": "playerDidDie"]
+        
+        sendData(OfInformation: messageDict)
+    }
+    
+    // Send Game Restart
+    func sendRestart() {
+        let messageDict = ["Event": "restartingGame"]
         
         sendData(OfInformation: messageDict)
     }

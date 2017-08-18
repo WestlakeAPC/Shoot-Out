@@ -347,7 +347,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         self.mainCharacter.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-        self.bloodParticle?.particleBirthRate = 750
+        self.bloodParticle?.particleBirthRate = 400
         
         self.scoreLabel.text = "Game Over"
         self.scoreLabel.fontColor = UIColor.red

@@ -18,7 +18,7 @@ enum GameEvent {
     case characterAssignment(randomNumber: Int)
     case shot
     case gameOver(playerWon: Character)
-    case hit(player: Character)
+    case died
     case restart
     case terminated
     case propertyUpdate(Properties)
@@ -67,9 +67,8 @@ extension GameEvent: Codable {
             case "game_over":
                 let player = try container.decode(Character.self, forKey: .characterValue)
                 self = .gameOver(playerWon: player)
-            case "hit":
-                let player = try container.decode(Character.self, forKey: .characterValue)
-                self = .hit(player: player)
+            case "died":
+                self = .died
             case "restart":
                 self = .restart
             case "terminated":
@@ -95,9 +94,8 @@ extension GameEvent: Codable {
             case .gameOver(let playerWon):
                 try container.encode("game_over", forKey: .messageType)
                 try container.encode(playerWon, forKey: .characterValue)
-            case .hit(let player):
-                try container.encode("hit", forKey: .messageType)
-                try container.encode(player, forKey: .characterValue)
+            case .died:
+                try container.encode("died", forKey: .messageType)
             case .restart:
                 try container.encode("restart", forKey: .messageType)
             case .terminated:

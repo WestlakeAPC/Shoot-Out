@@ -23,7 +23,7 @@ class MultiplayerScene: SKScene {
     var theGround = SKNode()
     var scoreLabel = SKLabelNode()
     var overScreen = SKShapeNode()
-    var deathScore = SKLabelNode()
+    var deathStatus = SKLabelNode()
     var alphaBloodParticle = SKEmitterNode(fileNamed: "Blood")
     var betaBloodParticle = SKEmitterNode(fileNamed: "Blood")
     
@@ -62,6 +62,7 @@ class MultiplayerScene: SKScene {
         setUpSound()
         loadAlphaCharacter(withTexture: jimFacingRightTexture)
         loadBetaCharacter(withTexture: bobFacingLeftTexture)
+        setOverScreen()
         
     }
         
@@ -137,7 +138,7 @@ class MultiplayerScene: SKScene {
         self.betaCharacter.zPosition = 3
         
         self.betaCharacter.size.width = self.frame.size.width * 0.05
-        self.betaCharacter.size.height = self.alphaCharacter.size.width * #imageLiteral(resourceName: "jimCharacR").size.height / #imageLiteral(resourceName: "jimCharacR").size.width
+        self.betaCharacter.size.height = self.betaCharacter.size.width * #imageLiteral(resourceName: "jimCharacR").size.height / #imageLiteral(resourceName: "jimCharacR").size.width
         
         let characterCenter = CGPoint(x: self.betaCharacter.size.width / 2, y: self.betaCharacter.size.height / 2)
         
@@ -155,6 +156,41 @@ class MultiplayerScene: SKScene {
         self.betaBloodParticle?.zPosition = -1
         self.betaBloodParticle?.name = "blood"
         self.betaCharacter.addChild(betaBloodParticle!)
+    }
+    
+    // Setup Death Screen
+    func setOverScreen() {
+        
+        self.overScreen = SKShapeNode(rect: CGRect(
+            origin: CGPoint(x: self.frame.size.width / 4, y: self.frame.size.height / 4),
+            size: CGSize(width: self.frame.size.width / 2, height: self.frame.height / 2)))
+        
+        self.overScreen.zPosition = 5
+        self.overScreen.fillColor = UIColor.white
+        self.overScreen.strokeColor = UIColor.black
+        self.overScreen.name = "overScreen"
+        
+        self.addChild(overScreen)
+        self.overScreen.run(SKAction.fadeOut(withDuration: 0))
+        
+        let deathLabel = SKLabelNode()
+        deathLabel.text = "Tap to Restart"
+        deathLabel.fontName = "kenpixel"
+        deathLabel.fontSize = self.frame.size.height / 20
+        deathLabel.fontColor = UIColor.black
+        deathLabel.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 3)
+        deathLabel.zPosition = 15
+        
+        self.overScreen.addChild(deathLabel)
+        
+        deathStatus.text = "Points"
+        deathStatus.fontName = "kenpixel"
+        deathStatus.fontSize = self.frame.size.height / 10
+        deathStatus.fontColor = UIColor.black
+        deathStatus.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
+        deathStatus.zPosition = 15
+        
+        self.overScreen.addChild(deathStatus)
     }
     
     // Assign Characters
@@ -221,15 +257,13 @@ class MultiplayerScene: SKScene {
     func checkCollision() {
         for enemyBullets in enemyBulletArray.array! {
             if (self.mainCharacter?.intersects(enemyBullets))! {
-                mainPlayerDidDie()
+                selfDeath()
             }
         }
     }
     
     // MARK: Sending/Processing Character Data
     func sendPlayerProperties() {
-        // Pass true if using MultipeerConnectivity, false if using Game Center
-        
         if gameIsOver || !gameIsActive {return}
         
         viewController?.sendCharacterState(withPhysicsBody: self.mainCharacter!.physicsBody!,
@@ -239,16 +273,19 @@ class MultiplayerScene: SKScene {
     
     // Process Received Character Properties
     func receivedPlayerProperties(velocity: CGVector, position: CGPoint, direction: Direction) {
+        if gameIsOver || !gameIsActive {return}
+        
         self.opposingCharacter?.physicsBody?.velocity = velocity
         self.opposingCharacter?.position = position
         self.opposingCharacter?.facingDirection = .right
-        
+
         self.opposingCharacter?.updateTexture()
     }
     
     // Fire Shots From Opposing Character
     func oppositionShots() {
         if gameIsOver || !gameIsActive {return}
+        
         let bullet = SKBulletsNode(texture: bulletTexture)
         
         bullet.shoot(from: self.opposingCharacter!,
@@ -260,10 +297,36 @@ class MultiplayerScene: SKScene {
     }
     
     // MARK: Game System Processing
-    func mainPlayerDidDie() {
-        (self.mainCharacter?.childNode(withName: "blood") as! SKEmitterNode).particleBirthRate = 750
+    func victory() {
+        if gameIsOver || !gameIsActive {return}
+        
+        self.deathStatus.text = "You Won"
+        playerDidDie(withDeathOf: self.opposingCharacter!)
+        
+        
+    }
+    
+    func selfDeath() {
+        if gameIsOver || !gameIsActive {return}
+        
+        self.deathStatus.text = "You Died"
+        playerDidDie(withDeathOf: self.mainCharacter!)
+        
+        viewController?.sendCharacterDeath()
+    }
+    
+    // When Someone Dies
+    func playerDidDie(withDeathOf victim: SKSpriteNode) {
         
         self.gameIsOver = true
+        (victim.childNode(withName: "blood") as! SKEmitterNode).particleBirthRate = 800
+        
+        backgroundMusic?.stop()
+        backgroundMusic?.currentTime = 0.0
+        
+        punchSoundEffect?.play()
+        
+        self.overScreen.run(SKAction.fadeIn(withDuration: 0.5))
     }
     
     func gameRestart() {

@@ -123,6 +123,13 @@ class MultiplayerGameViewController: UIViewController {
         sendData(message)
     }
     
+	// Send Character Death
+    func sendCharacterDeath() {
+        let message = GameEvent.died
+
+        sendData(message)
+    }
+
     // TODO: Continue method call as long as button is held
     func longPressGesture() {
         

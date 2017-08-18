@@ -56,8 +56,8 @@ class LocalMultiplayerGameViewController: MultiplayerGameViewController, MCBrows
         print("Changed State:")
         
         let userInfo = NSDictionary(dictionary: notification.userInfo!)
-        let state = userInfo.object(forKey: "state") as! Int
-        guard let sessionState = MCSessionState(rawValue: state) else {
+        let state = userInfo.object(forKey: "state")
+        guard let sessionState = state as? MCSessionState else {
             return
         }
         

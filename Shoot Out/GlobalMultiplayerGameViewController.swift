@@ -27,7 +27,7 @@ class GlobalMultiplayerGameViewController: MultiplayerGameViewController, GCHelp
     
     /// Method called when a match has been initiated.
     func matchStarted() {
-        
+        sendAssignmentNumber()
     }
     
     /// Method called when the match has ended.

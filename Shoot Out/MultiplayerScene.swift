@@ -60,8 +60,8 @@ class MultiplayerScene: SKScene {
         // Load elements
         loadBarrier()
         setUpSound()
-        loadAlphaCharacter(withTexture: jimFacingRightTexture)
-        loadBetaCharacter(withTexture: bobFacingLeftTexture)
+        loadAlphaCharacter()
+        loadBetaCharacter()
         setOverScreen()
         
     }
@@ -97,10 +97,10 @@ class MultiplayerScene: SKScene {
     }
     
     // Load Alpha Character
-    func loadAlphaCharacter(withTexture texture: SKTexture) {
-        self.alphaCharacter = SKPlayerNode(texture: texture)
-        self.alphaCharacter.facingDirection = .right
+    func loadAlphaCharacter() {
         self.alphaCharacter.assignTextures(left: jimFacingLeftTexture, right: jimFacingRightTexture)
+        self.alphaCharacter.facingDirection = .right
+        self.alphaCharacter.updateTexture()
             
         self.alphaCharacter.anchorPoint = CGPoint.zero
         self.alphaCharacter.position = CGPoint(x: self.frame.size.width * 0.3, y: self.frame.size.height / 2)
@@ -128,10 +128,10 @@ class MultiplayerScene: SKScene {
     }
     
     // Load Beta Character
-    func loadBetaCharacter(withTexture texture: SKTexture) {
-        self.betaCharacter = SKPlayerNode(texture: texture)
-        self.betaCharacter.facingDirection = .left
+    func loadBetaCharacter() {
         self.betaCharacter.assignTextures(left: bobFacingLeftTexture, right: bobFacingRightTexture)
+        self.betaCharacter.facingDirection = .left
+        self.betaCharacter.updateTexture()
         
         self.betaCharacter.anchorPoint = CGPoint.zero
         self.betaCharacter.position = CGPoint(x: self.frame.size.width * 0.7, y: self.frame.size.height / 2)
@@ -217,7 +217,6 @@ class MultiplayerScene: SKScene {
     @objc func moveRight() {
         if gameIsOver || !gameIsActive {return}
         self.mainCharacter?.physicsBody?.applyImpulse(CGVector(dx: 30, dy: 0))
-        self.mainCharacter?.texture = jimFacingRightTexture
         self.mainCharacter?.facingDirection = .right
         self.mainCharacter?.updateTexture()
     }

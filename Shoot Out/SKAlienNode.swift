@@ -25,13 +25,12 @@ class SKAlienNode: SKSpriteNode {
     // MARK: Internal enemy state
     var deteriorationStage: Deterioration = .perfectShape
     var gameScene: GameScene?
-    var fullTextureArray: [[SKTexture?]]? = []
-    var textureArray: [SKTexture]? = []
+    var textureArray: [SKTexture?]? = []
     var parentArray: ArrayReference<SKAlienNode>? = ArrayReference()
     var allowMovement: Bool = false
     
     // MARK: Spawn
-    func spawn(withTextureSeries textures: [[SKTexture?]],
+    func spawn(withTextureSeries textures: [SKTexture?]?,
                inArray array: ArrayReference<SKAlienNode>,
                withWidthRatioOf xProp: CGFloat,
                avoidingNode character: SKSpriteNode,
@@ -45,9 +44,8 @@ class SKAlienNode: SKSpriteNode {
             return
         }
         
-        self.fullTextureArray = textures
         
-        self.textureArray = textures[Int(arc4random_uniform(3))] as? [SKTexture]
+        self.textureArray = textures
         self.texture = textureArray?[0]
         self.gameScene = gameScene
         
@@ -187,10 +185,10 @@ class SKAlienNode: SKSpriteNode {
     // MARK: Delete Alien
     func remove() {
         self.parentArray!.array!.remove(at: parentArray!.array!.index(of: self)!)
-        self.fullTextureArray = nil
         self.textureArray = nil
         
         self.parentArray = nil
+        self.gameScene = nil
         
         self.removeAllActions()
         self.removeFromParent()

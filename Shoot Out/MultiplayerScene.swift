@@ -218,7 +218,6 @@ class MultiplayerScene: SKScene {
     func moveRight() {
         if gameIsOver || !gameIsActive {return}
         self.mainCharacter?.physicsBody?.applyImpulse(CGVector(dx: 30, dy: 0))
-        self.mainCharacter?.texture = jimFacingRightTexture
         self.mainCharacter?.facingDirection = .right
         self.mainCharacter?.updateTexture()
     }

@@ -387,9 +387,6 @@ class MultiplayerScene: SKScene {
         
         punchSoundEffect?.play()
         
-        self.alphaCharacter.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-        self.betaCharacter.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-        
         self.overScreen.run(SKAction.fadeIn(withDuration: 0.5))
     }
     
@@ -411,6 +408,9 @@ class MultiplayerScene: SKScene {
         
         (self.mainCharacter?.childNode(withName: "blood") as! SKEmitterNode).particleBirthRate = 0
         (self.opposingCharacter?.childNode(withName: "blood") as! SKEmitterNode).particleBirthRate = 0
+        
+        self.alphaCharacter.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        self.betaCharacter.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         
         self.alphaCharacter.position = CGPoint(x: self.frame.size.width * 0.3, y: self.frame.size.height * 0.5)
         self.alphaCharacter.facingDirection = .right

@@ -10,14 +10,8 @@ import Foundation
 import SpriteKit
 
 enum GameEvent {
-    enum Character: Int, Codable {
-        case main = 0
-        case other
-    }
-    
     case characterAssignment(randomNumber: Int)
     case shot
-    case gameOver(playerWon: Character)
     case died
     case restart
     case terminated
@@ -64,9 +58,6 @@ extension GameEvent: Codable {
                 self = .characterAssignment(randomNumber: value)
             case "shot":
                 self = .shot
-            case "game_over":
-                let player = try container.decode(Character.self, forKey: .characterValue)
-                self = .gameOver(playerWon: player)
             case "died":
                 self = .died
             case "restart":
@@ -91,9 +82,6 @@ extension GameEvent: Codable {
                 try container.encode(randomNumber, forKey: .randomNumberValue)
             case .shot:
                 try container.encode("shot", forKey: .messageType)
-            case .gameOver(let playerWon):
-                try container.encode("game_over", forKey: .messageType)
-                try container.encode(playerWon, forKey: .characterValue)
             case .died:
                 try container.encode("died", forKey: .messageType)
             case .restart:

@@ -301,8 +301,6 @@ class MultiplayerScene: SKScene {
         
         self.deathStatus.text = "You Won"
         playerDidDie(withDeathOf: self.opposingCharacter!)
-        
-        
     }
     
     func selfDeath() {

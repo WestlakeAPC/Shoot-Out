@@ -311,7 +311,6 @@ class MultiplayerScene: SKScene {
         
         self.opposingCharacter?.physicsBody?.velocity = CGVector(dx: dx, dy: dy)
         self.opposingCharacter?.position = CGPoint(x: x, y: y)
-        //self.opposingCharacter?.run(SKAction.move(to: CGPoint(x: x, y: y), duration: 0.01))
         
         switch direction {
         case "right":
@@ -391,23 +390,52 @@ class MultiplayerScene: SKScene {
     }
     
     func gameRestart() {
-        (self.alphaCharacter.childNode(withName: "blood") as! SKEmitterNode).particleBirthRate = 0
-        (self.betaCharacter.childNode(withName: "blood") as! SKEmitterNode).particleBirthRate = 0
+        if !gameIsOver {return}
+        
+        self.gameIsOver = false
+        
+        // Remove All Bullets
+        for b in playerBulletArray.array! {
+            b.remove()
+        }
+        
+        // Remove All Enemy Bullets
+        for eb in enemyBulletArray.array! {
+            eb.remove()
+        }
+        
+        
+        (self.mainCharacter?.childNode(withName: "blood") as! SKEmitterNode).particleBirthRate = 0
+        (self.opposingCharacter?.childNode(withName: "blood") as! SKEmitterNode).particleBirthRate = 0
         
         self.mainCharacter?.position = CGPoint(x: self.frame.size.width * 0.3, y: self.frame.size.height * 0.5)
         self.mainCharacter?.texture = jimFacingRightTexture
         
-        self.opposingCharacter?.position = CGPoint(x: self.frame.size.width * 0.7, y: self.frame.size.height * 0.5)
-        self.opposingCharacter?.texture = bobFacingLeftTexture
         
-        self.gameIsOver = false
+        
+        // Hide OverScreen
+        self.overScreen.run(SKAction.fadeOut(withDuration: 0.5), completion: {
+            // Start Music
+            self.backgroundMusic?.play()
+        })
+
+        
     }
     
     // MARK: When Touches Begin
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
             print("Tapped \(t.location(in: self))")
+        
+            if !gameIsOver {return}
+        
+            for i in self.nodes(at: t.location(in: self)) {
+                if i.name == "overScreen" {
+                    self.gameRestart()
+                }
+            }
         }
+        
     }
     
     // MARK: End All Activity

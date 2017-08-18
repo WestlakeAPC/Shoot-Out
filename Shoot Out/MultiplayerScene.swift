@@ -387,6 +387,9 @@ class MultiplayerScene: SKScene {
         
         punchSoundEffect?.play()
         
+        self.alphaCharacter.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        self.betaCharacter.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        
         self.overScreen.run(SKAction.fadeIn(withDuration: 0.5))
     }
     

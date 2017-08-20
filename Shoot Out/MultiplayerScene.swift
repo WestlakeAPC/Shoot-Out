@@ -409,6 +409,9 @@ class MultiplayerScene: SKScene {
         
         punchSoundEffect?.play()
         
+        self.shotsFired = 0
+        self.reloading = false
+        
         self.overScreen.run(SKAction.fadeIn(withDuration: 0.5))
     }
     

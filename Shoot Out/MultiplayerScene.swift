@@ -38,10 +38,12 @@ class MultiplayerScene: SKScene {
     // Score
     var aliensKilled = 0
     var score = 0
+    var shotsFired = 0
     
     // Game State
     var gameIsOver = false
     var gameIsActive = false
+    var reloading = false
     
     // Sound
     var punchSoundEffect : AVAudioPlayer?
@@ -231,8 +233,16 @@ class MultiplayerScene: SKScene {
     
     // Shoot Function
     func shoot() {
-        if gameIsOver || !gameIsActive {return}
+        if gameIsOver || !gameIsActive || reloading {return}
+        
+        if shotsFired >= 5 && !reloading {
+            reloadGun()
+            return
+        }
+        
         let bullet = SKBulletsNode(texture: bulletTexture)
+        
+        shotsFired += 1
         
         switch self.mainCharacter!.facingDirection {
         case .left:
@@ -260,6 +270,18 @@ class MultiplayerScene: SKScene {
         } else {
             // Do casting and method calling for Game Center View Controller
         }
+    }
+    
+    // Reload Gun
+    func reloadGun() {
+        
+        self.reloading = true
+        
+        _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: {_ in
+            self.shotsFired = 0
+            self.reloading = false
+        })
+        
     }
     
     // MARK: Update the Game

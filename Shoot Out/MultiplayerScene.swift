@@ -121,7 +121,7 @@ class MultiplayerScene: SKScene {
         self.alphaCharacter.physicsBody?.isDynamic = true
             
         self.addChild(alphaCharacter)
-            
+        
         self.alphaBloodParticle?.particleBirthRate = 0
         self.alphaBloodParticle?.position = characterCenter
         self.alphaBloodParticle?.zPosition = -1
@@ -258,6 +258,7 @@ class MultiplayerScene: SKScene {
     func reloadGun() {
         
         self.reloading = true
+        run(SKAction.playSoundFileNamed("reload.mp3", waitForCompletion: false))
         
         _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
             self.shotsFired = 0
@@ -344,6 +345,9 @@ class MultiplayerScene: SKScene {
         backgroundMusic?.currentTime = 0.0
         
         punchSoundEffect?.play()
+        
+        self.shotsFired = 0
+        self.reloading = false
         
         self.overScreen.run(SKAction.fadeIn(withDuration: 0.5))
     }

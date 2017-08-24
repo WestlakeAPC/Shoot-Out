@@ -75,10 +75,15 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     
     // MARK: Setup MPC
     func setupMPC() {
+        
         appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        if appDelegate.mpcHandler.session != nil {return}
+        
         appDelegate.mpcHandler.setupPeerWithDisplayName(displayName: UIDevice.current.name)
         appDelegate.mpcHandler.setupSession()
         appDelegate.mpcHandler.adertiseSelf(advertise: true)
+        
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(peerChangedStateWithNotification(_:)),
@@ -117,12 +122,14 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
             print("Connected")
             sendAssignmentNumber()
             appDelegate.mpcHandler.browser.dismiss(animated: true, completion: nil)
+            appDelegate.mpcHandler.adertiseSelf(advertise: false)
             
         case .connecting:
             print("Connecting")
             
         case .notConnected:
             print("Disconnected")
+            appDelegate.mpcHandler.adertiseSelf(advertise: true)
             
         }
     }
@@ -249,6 +256,7 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         self.skView?.presentScene(nil)
         
         appDelegate.mpcHandler.adertiseSelf(advertise: false)
+        appDelegate.mpcHandler.session.disconnect()
         appDelegate.mpcHandler.session = nil
         appDelegate.mpcHandler.browser.delegate = nil
         

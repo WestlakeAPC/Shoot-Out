@@ -66,12 +66,14 @@ class LocalMultiplayerGameViewController: MultiplayerGameViewController, MCBrows
                 print("Connected")
                 sendAssignmentNumber()
                 appDelegate.mpcHandler.browser.dismiss(animated: true, completion: nil)
+                appDelegate.mpcHandler.adertiseSelf(advertise: false)
             
             case .connecting:
                 print("Connecting")
             
             case .notConnected:
                 print("Disconnected")
+                appDelegate.mpcHandler.adertiseSelf(advertise: false)
         }
     }
     
@@ -97,6 +99,7 @@ class LocalMultiplayerGameViewController: MultiplayerGameViewController, MCBrows
     @IBAction func exitView(_ sender: Any) {
         super.exitView(sender, completion: {
             self.appDelegate.mpcHandler.adertiseSelf(advertise: false)
+            self.appDelegate.mpcHandler.session.disconnect()
             self.appDelegate.mpcHandler.session = nil
             self.appDelegate.mpcHandler.browser.delegate = nil
         })

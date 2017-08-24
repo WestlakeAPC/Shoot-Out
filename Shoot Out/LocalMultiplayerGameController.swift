@@ -78,8 +78,6 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         
         appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        if appDelegate.mpcHandler.session != nil {return}
-        
         appDelegate.mpcHandler.setupPeerWithDisplayName(displayName: UIDevice.current.name)
         appDelegate.mpcHandler.setupSession()
         appDelegate.mpcHandler.adertiseSelf(advertise: true)

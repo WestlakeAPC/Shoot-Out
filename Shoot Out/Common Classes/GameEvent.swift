@@ -41,7 +41,7 @@ enum Direction: String {
 
 // MARK: NSCoding wrapper classes.
 
-class EncodableGameEvent: NSCoding {
+class EncodableGameEvent: NSObject, NSCoding {
     let gameEvent: GameEvent
     
     init(_ gameEvent: GameEvent) {
@@ -89,7 +89,7 @@ class EncodableGameEvent: NSCoding {
     }
 }
 
-class EncodableProperties: NSCoding {
+class EncodableProperties: NSObject, NSCoding {
     let properties: Properties
     
     init(_ properties: Properties) {
@@ -124,7 +124,7 @@ class EncodableProperties: NSCoding {
     }
 }
 
-class EncodableBulletInformation: NSCoding {
+class EncodableBulletInformation: NSObject, NSCoding {
     let bulletInformation: BulletInformation
     
     init(_ bulletInformation: BulletInformation) {

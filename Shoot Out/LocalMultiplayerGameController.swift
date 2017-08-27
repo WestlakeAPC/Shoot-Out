@@ -54,9 +54,9 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         self.gameScene?.viewController = self
         
         skView!.ignoresSiblingOrder = true
-        skView?.showsFPS = true
-        skView?.showsNodeCount = true
-        skView?.showsPhysics = true
+        skView?.showsFPS = false
+        skView?.showsNodeCount = false
+        skView?.showsPhysics = false
         
         connectButton.layer.cornerRadius = 5
         connectButton.alpha = 0.7

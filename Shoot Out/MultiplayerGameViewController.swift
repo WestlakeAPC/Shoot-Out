@@ -45,9 +45,9 @@ class MultiplayerGameViewController: UIViewController {
         self.gameScene?.viewController = self
         
         skView!.ignoresSiblingOrder = true
-        skView?.showsFPS = true
-        skView?.showsNodeCount = true
-        skView?.showsPhysics = true
+        skView?.showsFPS = false
+        skView?.showsNodeCount = false
+        skView?.showsPhysics = false
     }
     
     func sendData(_ message: GameEvent) {

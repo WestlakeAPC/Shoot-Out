@@ -44,6 +44,10 @@ enum Direction: String {
 class EncodableGameEvent: NSCoding {
     let gameEvent: GameEvent
     
+    init(_ gameEvent: GameEvent) {
+        self.gameEvent = gameEvent
+    }
+    
     func encode(with coder: NSCoder) {
         switch (gameEvent) {
             case .characterAssignment(let randomNumber):
@@ -59,7 +63,7 @@ class EncodableGameEvent: NSCoding {
                 coder.encode("terminated", forKey: "message_type")
             case .propertyUpdate(let properties):
                 coder.encode("property_update", forKey: "message_type")
-                coder.encode(properties, forKey: "properties")
+                coder.encode(EncodableProperties(properties), forKey: "properties")
         }
     }
     
@@ -77,8 +81,8 @@ class EncodableGameEvent: NSCoding {
             case "terminated":
                 gameEvent = .terminated
             case "property_update":
-                let properties = coder.decodeObject(forKey: "properties") as! Properties
-                gameEvent = .propertyUpdate(properties)
+                let properties = coder.decodeObject(forKey: "properties") as! EncodableProperties
+                gameEvent = .propertyUpdate(properties.properties)
             default:
                 gameEvent = .died // I don't know why, this shouldn't happen anyways
         }
@@ -88,13 +92,20 @@ class EncodableGameEvent: NSCoding {
 class EncodableProperties: NSCoding {
     let properties: Properties
     
+    init(_ properties: Properties) {
+        self.properties = properties
+    }
+    
     func encode(with coder: NSCoder) {
         coder.encode(properties.ourCharacterPhysics, forKey: "physics")
         coder.encode(properties.ourCharacterPosition, forKey: "position")
         coder.encode(properties.ourCharacterDirection.rawValue, forKey: "direction")
         
-        coder.encode(properties.playerBulletArray, forKey: "player_bullets")
-        coder.encode(properties.enemyBulletArray, forKey: "enemy_bullets")
+        let playerBulletArray = properties.playerBulletArray.map { EncodableBulletInformation($0) }
+        let enemyBulletArray = properties.enemyBulletArray.map { EncodableBulletInformation($0) }
+        
+        coder.encode(playerBulletArray, forKey: "player_bullets")
+        coder.encode(enemyBulletArray, forKey: "enemy_bullets")
     }
     
     required init?(coder: NSCoder) {
@@ -102,8 +113,8 @@ class EncodableProperties: NSCoding {
         let ourCharacterPosition = coder.decodeCGPoint(forKey: "position")
         let ourCharacterDirection = Direction(rawValue: coder.decodeObject(forKey: "direction") as! String)!
         
-        let playerBulletArray = coder.decodeObject(forKey: "player_bullets") as! [BulletInformation]
-        let enemyBulletArray = coder.decodeObject(forKey: "enemy_bullets") as! [BulletInformation]
+        let playerBulletArray = (coder.decodeObject(forKey: "player_bullets") as! [EncodableBulletInformation]).map { $0.bulletInformation }
+        let enemyBulletArray = (coder.decodeObject(forKey: "enemy_bullets") as! [EncodableBulletInformation]).map { $0.bulletInformation }
         
         properties = Properties(ourCharacterPhysics: ourCharacterPhysics,
                                 ourCharacterPosition: ourCharacterPosition,
@@ -115,6 +126,10 @@ class EncodableProperties: NSCoding {
 
 class EncodableBulletInformation: NSCoding {
     let bulletInformation: BulletInformation
+    
+    init(_ bulletInformation: BulletInformation) {
+        self.bulletInformation = bulletInformation
+    }
     
     func encode(with coder: NSCoder) {
         coder.encode(bulletInformation.position, forKey: "position")

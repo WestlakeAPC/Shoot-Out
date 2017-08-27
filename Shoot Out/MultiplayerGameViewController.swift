@@ -54,7 +54,7 @@ class MultiplayerGameViewController: UIViewController {
         print("Sending Message: \n\(message)\n\n")
         
         do {
-            let messageData = NSKeyedArchiver.archivedData(withRootObject: message)
+            let messageData = NSKeyedArchiver.archivedData(withRootObject: EncodableGameEvent(message))
             
             try sendData(messageData)
         } catch {

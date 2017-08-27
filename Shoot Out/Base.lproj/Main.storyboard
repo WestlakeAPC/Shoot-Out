@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="E0U-BE-BAH">
-    <device id="ipad12_9" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -24,14 +24,14 @@
                         <viewControllerLayoutGuide type="bottom" id="LgR-Sd-QMT"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6D0-t3-YfV">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="initialBackground" translatesAutoresizingMaskIntoConstraints="NO" id="jwh-YT-TMJ">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qw6-74-YmC">
-                                <rect key="frame" x="20" y="1205" width="94" height="32"/>
+                                <rect key="frame" x="20" y="575" width="94" height="32"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Singleplayer">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -41,7 +41,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dj-GH-dZb">
-                                <rect key="frame" x="20" y="1273" width="84" height="32"/>
+                                <rect key="frame" x="20" y="643" width="84" height="32"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Multiplayer">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -77,11 +77,11 @@
                         <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>
                     </layoutGuides>
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tf9-Rq-uVn">
-                                <rect key="frame" x="10" y="1249" width="92" height="92"/>
+                                <rect key="frame" x="10" y="619" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="92" id="8OI-jm-ppK"/>
                                     <constraint firstAttribute="height" constant="92" id="Dxk-Xn-5aM"/>
@@ -90,7 +90,7 @@
                                 <state key="normal" title="&lt;" image="arrow-left"/>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWY-9m-YgD">
-                                <rect key="frame" x="112" y="1249" width="92" height="92"/>
+                                <rect key="frame" x="112" y="619" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="92" id="d2f-EY-EWx"/>
                                     <constraint firstAttribute="height" constant="92" id="nva-zV-2sK"/>
@@ -99,7 +99,7 @@
                                 <state key="normal" title="&gt;" image="arrow-right"/>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvY-KD-C8D">
-                                <rect key="frame" x="820" y="1249" width="92" height="92"/>
+                                <rect key="frame" x="210" y="619" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="92" id="dyG-Ni-Kgx"/>
                                     <constraint firstAttribute="height" constant="92" id="lJT-rz-o0L"/>
@@ -108,7 +108,7 @@
                                 <state key="normal" title="^" image="arrow-jump"/>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gFE-qR-YL1">
-                                <rect key="frame" x="922" y="1249" width="92" height="92"/>
+                                <rect key="frame" x="312" y="619" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="92" id="37I-pk-c4G"/>
                                     <constraint firstAttribute="width" constant="92" id="rcv-Qu-DVr"/>
@@ -163,11 +163,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Gvw-Kc-QVZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nfL-jN-VJW">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BxW-UH-Hef">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Connect" id="dwZ-ly-Ly5">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="AUS-Cm-9Pz">
@@ -179,7 +179,7 @@
                                 </items>
                             </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSJ-No-sV9">
-                                <rect key="frame" x="20" y="232" width="984" height="38"/>
+                                <rect key="frame" x="20" y="232" width="374" height="38"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Global"/>
                                 <connections>
@@ -187,7 +187,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrK-PK-TNJ">
-                                <rect key="frame" x="20" y="144" width="984" height="38"/>
+                                <rect key="frame" x="20" y="144" width="374" height="38"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Local"/>
                                 <connections>
@@ -226,18 +226,18 @@
                         <viewControllerLayoutGuide type="bottom" id="1hR-x2-zqF"/>
                     </layoutGuides>
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="D6X-d5-aQD" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" highlightedImage="background" translatesAutoresizingMaskIntoConstraints="NO" id="JVU-Gm-XXN">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ta4-Qn-vdW" userLabel="SpriteKit View" customClass="SKView">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lMJ-Y6-3h4">
-                                <rect key="frame" x="10" y="1249" width="92" height="92"/>
+                                <rect key="frame" x="10" y="619" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="92" id="MVA-XU-cUn"/>
                                     <constraint firstAttribute="width" constant="92" id="u81-ec-58S"/>
@@ -246,7 +246,7 @@
                                 <state key="normal" title="&lt;" image="arrow-left"/>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSV-km-S5P">
-                                <rect key="frame" x="112" y="1249" width="92" height="92"/>
+                                <rect key="frame" x="112" y="619" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="92" id="FIC-kj-lIR"/>
                                     <constraint firstAttribute="height" constant="92" id="FiP-2s-wQM"/>
@@ -255,7 +255,7 @@
                                 <state key="normal" title="&gt;" image="arrow-right"/>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3T-ud-2Am">
-                                <rect key="frame" x="922" y="1249" width="92" height="92"/>
+                                <rect key="frame" x="312" y="619" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="92" id="95J-WA-AKG"/>
                                     <constraint firstAttribute="width" constant="92" id="pHb-F1-udv"/>
@@ -264,7 +264,7 @@
                                 <state key="normal" title=" ︻┳═一" image="icon-shoot"/>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDh-vY-Uyp">
-                                <rect key="frame" x="820" y="1249" width="92" height="92"/>
+                                <rect key="frame" x="210" y="619" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="92" id="BBq-m7-IUp"/>
                                     <constraint firstAttribute="height" constant="92" id="Nb0-Fx-nD1"/>
@@ -328,18 +328,18 @@
                         <viewControllerLayoutGuide type="bottom" id="kog-hf-FOL"/>
                     </layoutGuides>
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ybf-Ar-Ay3">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" highlightedImage="background" translatesAutoresizingMaskIntoConstraints="NO" id="IBH-Xa-toi">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c5S-tu-Ghh" userLabel="SpriteKit View" customClass="SKView">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rpt-E1-38V">
-                                <rect key="frame" x="10" y="1249" width="92" height="92"/>
+                                <rect key="frame" x="10" y="619" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="92" id="2m2-4O-9Uj"/>
                                     <constraint firstAttribute="width" constant="92" id="lfG-cB-F0S"/>
@@ -348,7 +348,7 @@
                                 <state key="normal" title="&lt;" image="arrow-left"/>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Voy-uQ-W7y">
-                                <rect key="frame" x="112" y="1249" width="92" height="92"/>
+                                <rect key="frame" x="112" y="619" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="92" id="JDG-dz-5To"/>
                                     <constraint firstAttribute="width" constant="92" id="U10-d8-Amk"/>
@@ -357,7 +357,7 @@
                                 <state key="normal" title="&gt;" image="arrow-right"/>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZU-eO-0Ka">
-                                <rect key="frame" x="922" y="1249" width="92" height="92"/>
+                                <rect key="frame" x="312" y="619" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="92" id="BGq-gq-zd4"/>
                                     <constraint firstAttribute="height" constant="92" id="VsX-OB-U0j"/>
@@ -366,7 +366,7 @@
                                 <state key="normal" title=" ︻┳═一" image="icon-shoot"/>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shz-r4-cPq">
-                                <rect key="frame" x="820" y="1249" width="92" height="92"/>
+                                <rect key="frame" x="210" y="619" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="92" id="63m-Wf-Eq4"/>
                                     <constraint firstAttribute="width" constant="92" id="LeH-gA-Rai"/>
@@ -387,12 +387,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abm-6m-rpn">
-                                <rect key="frame" x="950" y="4" width="70" height="30"/>
+                                <rect key="frame" x="295" y="4" width="115" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="6gR-1X-zDV"/>
-                                    <constraint firstAttribute="width" constant="70" id="VQh-7n-XLy"/>
+                                    <constraint firstAttribute="height" constant="35" id="fiJ-Ps-mJE"/>
+                                    <constraint firstAttribute="width" constant="115" id="hXW-LU-fRn"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Connect"/>
                                 <connections>
                                     <action selector="connectWithPlayers:" destination="TgT-ZV-HBA" eventType="touchUpInside" id="oYh-4A-5ge"/>
@@ -406,16 +407,16 @@
                             <constraint firstItem="kog-hf-FOL" firstAttribute="top" secondItem="Voy-uQ-W7y" secondAttribute="bottom" constant="25" id="5EY-nA-3Y9"/>
                             <constraint firstItem="IBH-Xa-toi" firstAttribute="leading" secondItem="ybf-Ar-Ay3" secondAttribute="leading" id="6vc-R4-2O6"/>
                             <constraint firstItem="kog-hf-FOL" firstAttribute="top" secondItem="aZU-eO-0Ka" secondAttribute="bottom" constant="25" id="9FU-fR-frk"/>
-                            <constraint firstAttribute="trailing" secondItem="abm-6m-rpn" secondAttribute="trailing" constant="4" id="C5q-TM-pee"/>
                             <constraint firstAttribute="trailing" secondItem="c5S-tu-Ghh" secondAttribute="trailing" id="Gtd-Rq-TxK"/>
                             <constraint firstItem="kog-hf-FOL" firstAttribute="top" secondItem="Rpt-E1-38V" secondAttribute="bottom" constant="25" id="HBO-ls-c6v"/>
+                            <constraint firstItem="abm-6m-rpn" firstAttribute="top" secondItem="ybf-Ar-Ay3" secondAttribute="top" constant="4" id="MXA-bz-hAQ"/>
                             <constraint firstItem="kog-hf-FOL" firstAttribute="top" secondItem="shz-r4-cPq" secondAttribute="bottom" constant="25" id="Ouy-7J-fxY"/>
                             <constraint firstItem="aZU-eO-0Ka" firstAttribute="trailing" secondItem="ybf-Ar-Ay3" secondAttribute="trailingMargin" constant="10" id="Pt9-1T-bua"/>
                             <constraint firstItem="aZU-eO-0Ka" firstAttribute="leading" secondItem="shz-r4-cPq" secondAttribute="trailing" constant="10" id="Q5c-Ty-utZ"/>
                             <constraint firstItem="c5S-tu-Ghh" firstAttribute="leading" secondItem="ybf-Ar-Ay3" secondAttribute="leading" id="ZCk-G1-cp2"/>
                             <constraint firstAttribute="bottom" secondItem="IBH-Xa-toi" secondAttribute="bottom" id="ZRz-q3-Xzs"/>
                             <constraint firstItem="IBH-Xa-toi" firstAttribute="top" secondItem="ybf-Ar-Ay3" secondAttribute="top" id="as4-Ll-eWZ"/>
-                            <constraint firstItem="abm-6m-rpn" firstAttribute="top" secondItem="ybf-Ar-Ay3" secondAttribute="top" constant="4" id="b7V-nN-lY2"/>
+                            <constraint firstAttribute="trailing" secondItem="abm-6m-rpn" secondAttribute="trailing" constant="4" id="cLH-3Z-mNW"/>
                             <constraint firstItem="kog-hf-FOL" firstAttribute="top" secondItem="c5S-tu-Ghh" secondAttribute="bottom" id="cfS-yr-sVP"/>
                             <constraint firstItem="daE-s6-WW3" firstAttribute="top" secondItem="ybf-Ar-Ay3" secondAttribute="top" constant="4" id="fga-dj-fe8"/>
                             <constraint firstItem="Rpt-E1-38V" firstAttribute="leading" secondItem="ybf-Ar-Ay3" secondAttribute="leading" constant="10" id="nWt-q5-5AP"/>
@@ -424,6 +425,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="connectButton" destination="abm-6m-rpn" id="1cH-XX-wrN"/>
                         <outlet property="jumpButton" destination="shz-r4-cPq" id="CGV-dx-oSy"/>
                         <outlet property="leftButton" destination="Rpt-E1-38V" id="HDo-a7-bcU"/>
                         <outlet property="rightButton" destination="Voy-uQ-W7y" id="1pD-Up-MPC"/>
@@ -433,7 +435,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xrF-la-dHf" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="813.60000000000002" y="444.82758620689657"/>
+            <point key="canvasLocation" x="813.28125" y="444.50951683748167"/>
         </scene>
     </scenes>
     <resources>

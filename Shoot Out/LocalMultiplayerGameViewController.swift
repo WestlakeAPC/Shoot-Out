@@ -15,11 +15,20 @@ class LocalMultiplayerGameViewController: MultiplayerGameViewController, MCBrows
 
     var appDelegate: AppDelegate!
     
+    @IBOutlet var connectButton: UIButton!
+    
     // MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupMPC()
+    }
+    
+    override func loadGameScene() {
+        super.loadGameScene()
+        
+        connectButton.layer.cornerRadius = 5
+        connectButton.alpha = 0.7
     }
     
     // MARK: Setup MPC
@@ -66,7 +75,6 @@ class LocalMultiplayerGameViewController: MultiplayerGameViewController, MCBrows
                 print("Connected")
                 sendAssignmentNumber()
                 appDelegate.mpcHandler.browser.dismiss(animated: true, completion: nil)
-                appDelegate.mpcHandler.adertiseSelf(advertise: false)
             
             case .connecting:
                 print("Connecting")

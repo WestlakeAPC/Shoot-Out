@@ -81,7 +81,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tf9-Rq-uVn">
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tf9-Rq-uVn">
                                 <rect key="frame" x="10" y="1249" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="92" id="8OI-jm-ppK"/>
@@ -90,7 +90,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="&lt;" image="arrow-left"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWY-9m-YgD">
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWY-9m-YgD">
                                 <rect key="frame" x="112" y="1249" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="92" id="d2f-EY-EWx"/>
@@ -99,7 +99,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="&gt;" image="arrow-right"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvY-KD-C8D">
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvY-KD-C8D">
                                 <rect key="frame" x="820" y="1249" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="92" id="dyG-Ni-Kgx"/>
@@ -108,7 +108,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="^" image="arrow-jump"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gFE-qR-YL1">
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gFE-qR-YL1">
                                 <rect key="frame" x="922" y="1249" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="92" id="37I-pk-c4G"/>
@@ -117,10 +117,14 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="icon-shoot"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uIf-oL-VAf">
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uIf-oL-VAf">
                                 <rect key="frame" x="4" y="4" width="30" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="&lt;-"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="QJw-87-cqe"/>
+                                    <constraint firstAttribute="width" constant="30" id="baJ-I9-ndB"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="&lt;-" image="icon-return"/>
                                 <connections>
                                     <action selector="exitView:" destination="BV1-FR-VrT" eventType="touchUpInside" id="BXH-bj-x2Q"/>
                                 </connections>
@@ -226,7 +230,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lMJ-Y6-3h4">
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lMJ-Y6-3h4">
                                 <rect key="frame" x="10" y="1249" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="92" id="MVA-XU-cUn"/>
@@ -235,7 +239,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="&lt;" image="arrow-left"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSV-km-S5P">
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSV-km-S5P">
                                 <rect key="frame" x="112" y="1249" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="92" id="FIC-kj-lIR"/>
@@ -244,7 +248,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="&gt;" image="arrow-right"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3T-ud-2Am">
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3T-ud-2Am">
                                 <rect key="frame" x="922" y="1249" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="92" id="95J-WA-AKG"/>
@@ -253,7 +257,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title=" ︻┳═一" image="icon-shoot"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDh-vY-Uyp">
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDh-vY-Uyp">
                                 <rect key="frame" x="820" y="1249" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="92" id="BBq-m7-IUp"/>
@@ -262,14 +266,14 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="^" image="arrow-jump"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDb-yX-gEf">
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDb-yX-gEf">
                                 <rect key="frame" x="4" y="4" width="30" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="a3x-eQ-7ws"/>
                                     <constraint firstAttribute="height" constant="30" id="kD8-XG-0O0"/>
                                 </constraints>
-                                <state key="normal" title="&lt;-"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="&lt;-" image="icon-return"/>
                                 <connections>
                                     <action selector="exitView:" destination="2Ww-N4-jw2" eventType="touchUpInside" id="mNn-Zo-ck5"/>
                                 </connections>
@@ -319,7 +323,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rpt-E1-38V">
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rpt-E1-38V">
                                 <rect key="frame" x="10" y="1249" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="92" id="2m2-4O-9Uj"/>
@@ -328,7 +332,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="&lt;" image="arrow-left"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Voy-uQ-W7y">
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Voy-uQ-W7y">
                                 <rect key="frame" x="112" y="1249" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="92" id="JDG-dz-5To"/>
@@ -337,7 +341,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="&gt;" image="arrow-right"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZU-eO-0Ka">
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZU-eO-0Ka">
                                 <rect key="frame" x="922" y="1249" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="92" id="BGq-gq-zd4"/>
@@ -346,7 +350,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title=" ︻┳═一" image="icon-shoot"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shz-r4-cPq">
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shz-r4-cPq">
                                 <rect key="frame" x="820" y="1249" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="92" id="63m-Wf-Eq4"/>
@@ -355,14 +359,14 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="^" image="arrow-jump"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="daE-s6-WW3">
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="daE-s6-WW3">
                                 <rect key="frame" x="4" y="4" width="30" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="bw4-bK-gBr"/>
                                     <constraint firstAttribute="height" constant="30" id="lpM-Z4-5k9"/>
                                 </constraints>
-                                <state key="normal" title="&lt;-"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="&lt;-" image="icon-return"/>
                                 <connections>
                                     <action selector="exitView:" destination="TgT-ZV-HBA" eventType="touchUpInside" id="ans-pG-ir5"/>
                                 </connections>
@@ -423,6 +427,7 @@
         <image name="arrow-left" width="512" height="512"/>
         <image name="arrow-right" width="512" height="512"/>
         <image name="background" width="900" height="504"/>
+        <image name="icon-return" width="512" height="512"/>
         <image name="icon-shoot" width="512" height="512"/>
         <image name="initialBackground" width="2560" height="1521"/>
     </resources>

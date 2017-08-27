@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="E0U-BE-BAH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="E0U-BE-BAH">
     <device id="ipad12_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <development version="8000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -88,7 +87,7 @@
                                     <constraint firstAttribute="height" constant="92" id="Dxk-Xn-5aM"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="&lt;" image="arrow-left"/>
+                                <state key="normal" image="arrow-left"/>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWY-9m-YgD">
                                 <rect key="frame" x="112" y="1249" width="92" height="92"/>
@@ -97,7 +96,7 @@
                                     <constraint firstAttribute="height" constant="92" id="nva-zV-2sK"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="&gt;" image="arrow-right"/>
+                                <state key="normal" image="arrow-right"/>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvY-KD-C8D">
                                 <rect key="frame" x="820" y="1249" width="92" height="92"/>
@@ -106,7 +105,7 @@
                                     <constraint firstAttribute="height" constant="92" id="lJT-rz-o0L"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="^" image="arrow-jump"/>
+                                <state key="normal" image="arrow-jump"/>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gFE-qR-YL1">
                                 <rect key="frame" x="922" y="1249" width="92" height="92"/>
@@ -118,13 +117,13 @@
                                 <state key="normal" image="icon-shoot"/>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uIf-oL-VAf">
-                                <rect key="frame" x="4" y="4" width="30" height="30"/>
+                                <rect key="frame" x="4" y="4" width="92" height="92"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="QJw-87-cqe"/>
-                                    <constraint firstAttribute="width" constant="30" id="baJ-I9-ndB"/>
+                                    <constraint firstAttribute="height" constant="92" id="QJw-87-cqe"/>
+                                    <constraint firstAttribute="width" constant="92" id="baJ-I9-ndB"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="&lt;-" image="icon-return"/>
+                                <state key="normal" image="icon-return"/>
                                 <connections>
                                     <action selector="exitView:" destination="BV1-FR-VrT" eventType="touchUpInside" id="BXH-bj-x2Q"/>
                                 </connections>
@@ -255,7 +254,7 @@
                                     <constraint firstAttribute="width" constant="92" id="pHb-F1-udv"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title=" ︻┳═一" image="icon-shoot"/>
+                                <state key="normal" image="icon-shoot"/>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDh-vY-Uyp">
                                 <rect key="frame" x="820" y="1249" width="92" height="92"/>
@@ -264,16 +263,16 @@
                                     <constraint firstAttribute="height" constant="92" id="Nb0-Fx-nD1"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="^" image="arrow-jump"/>
+                                <state key="normal" image="arrow-jump"/>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDb-yX-gEf">
-                                <rect key="frame" x="4" y="4" width="30" height="30"/>
+                                <rect key="frame" x="4" y="4" width="92" height="92"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="a3x-eQ-7ws"/>
-                                    <constraint firstAttribute="height" constant="30" id="kD8-XG-0O0"/>
+                                    <constraint firstAttribute="width" constant="92" id="a3x-eQ-7ws"/>
+                                    <constraint firstAttribute="height" constant="92" id="kD8-XG-0O0"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="&lt;-" image="icon-return"/>
+                                <state key="normal" image="icon-return"/>
                                 <connections>
                                     <action selector="exitView:" destination="2Ww-N4-jw2" eventType="touchUpInside" id="mNn-Zo-ck5"/>
                                 </connections>
@@ -330,7 +329,7 @@
                                     <constraint firstAttribute="width" constant="92" id="lfG-cB-F0S"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="&lt;" image="arrow-left"/>
+                                <state key="normal" image="arrow-left"/>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Voy-uQ-W7y">
                                 <rect key="frame" x="112" y="1249" width="92" height="92"/>
@@ -339,7 +338,7 @@
                                     <constraint firstAttribute="width" constant="92" id="U10-d8-Amk"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="&gt;" image="arrow-right"/>
+                                <state key="normal" image="arrow-right"/>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZU-eO-0Ka">
                                 <rect key="frame" x="922" y="1249" width="92" height="92"/>
@@ -348,7 +347,7 @@
                                     <constraint firstAttribute="height" constant="92" id="VsX-OB-U0j"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title=" ︻┳═一" image="icon-shoot"/>
+                                <state key="normal" image="icon-shoot"/>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shz-r4-cPq">
                                 <rect key="frame" x="820" y="1249" width="92" height="92"/>
@@ -357,16 +356,16 @@
                                     <constraint firstAttribute="width" constant="92" id="LeH-gA-Rai"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="^" image="arrow-jump"/>
+                                <state key="normal" image="arrow-jump"/>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="daE-s6-WW3">
-                                <rect key="frame" x="4" y="4" width="30" height="30"/>
+                                <rect key="frame" x="4" y="4" width="92" height="92"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="bw4-bK-gBr"/>
-                                    <constraint firstAttribute="height" constant="30" id="lpM-Z4-5k9"/>
+                                    <constraint firstAttribute="width" constant="92" id="bw4-bK-gBr"/>
+                                    <constraint firstAttribute="height" constant="92" id="lpM-Z4-5k9"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="&lt;-" image="icon-return"/>
+                                <state key="normal" image="icon-return"/>
                                 <connections>
                                     <action selector="exitView:" destination="TgT-ZV-HBA" eventType="touchUpInside" id="ans-pG-ir5"/>
                                 </connections>
@@ -425,12 +424,12 @@
     </scenes>
     <resources>
         <image name="Background" width="1968" height="1476"/>
-        <image name="arrow-jump" width="512" height="512"/>
-        <image name="arrow-left" width="512" height="512"/>
-        <image name="arrow-right" width="512" height="512"/>
+        <image name="arrow-jump" width="48" height="48"/>
+        <image name="arrow-left" width="48" height="48"/>
+        <image name="arrow-right" width="48" height="48"/>
         <image name="background" width="900" height="504"/>
-        <image name="icon-return" width="512" height="512"/>
-        <image name="icon-shoot" width="512" height="512"/>
+        <image name="icon-return" width="48" height="48"/>
+        <image name="icon-shoot" width="48" height="48"/>
         <image name="initialBackground" width="2560" height="1521"/>
     </resources>
 </document>

@@ -146,19 +146,36 @@ class MultiplayerGameViewController: UIViewController {
     // TODO: Continue method call as long as button is held
     func longPressGesture() {
         
-        let leftButtonLPG = UITapGestureRecognizer(target: self, action: #selector(gameScene?.moveLeft))
+        let leftButtonLPG = UITapGestureRecognizer(target: self, action: #selector(moveLeft))
         leftButton.addGestureRecognizer(leftButtonLPG)
         
-        let rightButtonLPG = UITapGestureRecognizer(target: self, action: #selector(gameScene?.moveRight))
+        let rightButtonLPG = UITapGestureRecognizer(target: self, action: #selector(moveRight))
         rightButton.addGestureRecognizer(rightButtonLPG)
         
-        let jumpButtonLPG = UITapGestureRecognizer(target: self, action: #selector(gameScene?.jump))
+        let jumpButtonLPG = UITapGestureRecognizer(target: self, action: #selector(jump))
         jumpButton.addGestureRecognizer(jumpButtonLPG)
         
-        let shootButtonLPG = UITapGestureRecognizer(target: self, action: #selector(gameScene?.shoot))
+        let shootButtonLPG = UITapGestureRecognizer(target: self, action: #selector(shoot))
         shootButton.addGestureRecognizer(shootButtonLPG)
     }
     
+    // TODO: Replace method calls eventually
+    @objc func moveLeft() {
+        self.gameScene?.moveLeft()
+    }
+    
+    @objc func moveRight() {
+        self.gameScene?.moveRight()
+    }
+    
+    @objc func jump() {
+        self.gameScene?.jump()
+    }
+    
+    @objc func shoot() {
+        self.gameScene?.shoot()
+    }
+
     override var shouldAutorotate: Bool {
         return false
     }

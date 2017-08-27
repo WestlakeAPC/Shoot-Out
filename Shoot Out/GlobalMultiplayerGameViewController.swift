@@ -17,7 +17,6 @@ class GlobalMultiplayerGameViewController: MultiplayerGameViewController, GCHelp
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
             GCHelper.sharedInstance.findMatchWithMinPlayers(2, maxPlayers: 2, viewController: self, delegate: self)
         }

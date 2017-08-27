@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="E0U-BE-BAH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="E0U-BE-BAH">
     <device id="ipad12_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,7 +31,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qw6-74-YmC">
-                                <rect key="frame" x="20" y="1205" width="94" height="32"/>
+                                <rect key="frame" x="20" y="1193" width="145" height="38"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Singleplayer">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -41,7 +41,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dj-GH-dZb">
-                                <rect key="frame" x="20" y="1273" width="84" height="32"/>
+                                <rect key="frame" x="20" y="1267" width="136" height="38"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Multiplayer">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -53,14 +53,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="LgR-Sd-QMT" firstAttribute="top" secondItem="6dj-GH-dZb" secondAttribute="bottom" constant="61" id="1aK-12-vVI"/>
                             <constraint firstAttribute="trailing" secondItem="jwh-YT-TMJ" secondAttribute="trailing" id="7Wt-1F-JTB"/>
-                            <constraint firstItem="6dj-GH-dZb" firstAttribute="leading" secondItem="6D0-t3-YfV" secondAttribute="leadingMargin" id="872-R7-fJm"/>
                             <constraint firstItem="jwh-YT-TMJ" firstAttribute="leading" secondItem="6D0-t3-YfV" secondAttribute="leading" id="CQN-pk-inR"/>
                             <constraint firstItem="LgR-Sd-QMT" firstAttribute="top" secondItem="jwh-YT-TMJ" secondAttribute="bottom" id="FcK-Th-750"/>
+                            <constraint firstItem="6dj-GH-dZb" firstAttribute="top" secondItem="Qw6-74-YmC" secondAttribute="bottom" constant="36" id="HKt-M2-VXl"/>
                             <constraint firstItem="jwh-YT-TMJ" firstAttribute="top" secondItem="6D0-t3-YfV" secondAttribute="top" id="KAK-Db-El5"/>
-                            <constraint firstItem="6dj-GH-dZb" firstAttribute="top" secondItem="Qw6-74-YmC" secondAttribute="bottom" constant="36" id="eOT-dq-DDL"/>
+                            <constraint firstItem="6dj-GH-dZb" firstAttribute="leading" secondItem="Qw6-74-YmC" secondAttribute="leading" id="NrK-f1-b6D"/>
                             <constraint firstItem="Qw6-74-YmC" firstAttribute="leading" secondItem="6D0-t3-YfV" secondAttribute="leadingMargin" id="epi-SW-xkJ"/>
+                            <constraint firstItem="LgR-Sd-QMT" firstAttribute="top" secondItem="6dj-GH-dZb" secondAttribute="bottom" constant="61" id="iVN-kG-cmQ"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -179,7 +179,7 @@
                                 </items>
                             </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSJ-No-sV9">
-                                <rect key="frame" x="20" y="226" width="984" height="32"/>
+                                <rect key="frame" x="20" y="232" width="984" height="38"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Global"/>
                                 <connections>
@@ -187,7 +187,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrK-PK-TNJ">
-                                <rect key="frame" x="20" y="144" width="984" height="32"/>
+                                <rect key="frame" x="20" y="144" width="984" height="38"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Local"/>
                                 <connections>
@@ -234,7 +234,26 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ta4-Qn-vdW" userLabel="SpriteKit View" customClass="SKView">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWd-fI-Up7">
+                                        <rect key="frame" x="901" y="28" width="115" height="35"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="Skw-Ve-Yuw"/>
+                                            <constraint firstAttribute="width" constant="115" id="wl9-r9-GEX"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
+                                        <state key="normal" title="Connect"/>
+                                        <connections>
+                                            <action selector="connectToPlayers:" destination="2Ww-N4-jw2" eventType="touchUpInside" id="Akf-8o-AaQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="DWd-fI-Up7" firstAttribute="top" secondItem="ta4-Qn-vdW" secondAttribute="topMargin" id="15W-q9-CxO"/>
+                                    <constraint firstItem="DWd-fI-Up7" firstAttribute="trailing" secondItem="ta4-Qn-vdW" secondAttribute="trailingMargin" id="jzg-va-nQO"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lMJ-Y6-3h4">
                                 <rect key="frame" x="10" y="1249" width="92" height="92"/>
@@ -308,6 +327,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="connectButton" destination="DWd-fI-Up7" id="5ZY-Ug-3gY"/>
                         <outlet property="jumpButton" destination="tDh-vY-Uyp" id="zTB-lw-2bN"/>
                         <outlet property="leftButton" destination="lMJ-Y6-3h4" id="fCa-Dl-OZ8"/>
                         <outlet property="rightButton" destination="iSV-km-S5P" id="Iqt-ww-WBG"/>
@@ -336,7 +356,26 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c5S-tu-Ghh" userLabel="SpriteKit View" customClass="SKView">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abm-6m-rpn">
+                                        <rect key="frame" x="901" y="28" width="115" height="35"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="SQr-bp-HX5"/>
+                                            <constraint firstAttribute="width" constant="115" id="n2j-nC-zvC"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
+                                        <state key="normal" title="Connect"/>
+                                        <connections>
+                                            <action selector="connectToPlayers:" destination="TgT-ZV-HBA" eventType="touchUpInside" id="kxY-j5-slG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="abm-6m-rpn" firstAttribute="trailing" secondItem="c5S-tu-Ghh" secondAttribute="trailingMargin" id="J61-7U-YWX"/>
+                                    <constraint firstItem="abm-6m-rpn" firstAttribute="top" secondItem="c5S-tu-Ghh" secondAttribute="topMargin" id="Xb6-QQ-c6e"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rpt-E1-38V">
                                 <rect key="frame" x="10" y="1249" width="92" height="92"/>
@@ -386,19 +425,6 @@
                                     <action selector="exitView:" destination="TgT-ZV-HBA" eventType="touchUpInside" id="ans-pG-ir5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abm-6m-rpn">
-                                <rect key="frame" x="905" y="4" width="115" height="35"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="fiJ-Ps-mJE"/>
-                                    <constraint firstAttribute="width" constant="115" id="hXW-LU-fRn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
-                                <state key="normal" title="Connect"/>
-                                <connections>
-                                    <action selector="connectWithPlayers:" destination="TgT-ZV-HBA" eventType="touchUpInside" id="oYh-4A-5ge"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
@@ -409,14 +435,12 @@
                             <constraint firstItem="kog-hf-FOL" firstAttribute="top" secondItem="aZU-eO-0Ka" secondAttribute="bottom" constant="25" id="9FU-fR-frk"/>
                             <constraint firstAttribute="trailing" secondItem="c5S-tu-Ghh" secondAttribute="trailing" id="Gtd-Rq-TxK"/>
                             <constraint firstItem="kog-hf-FOL" firstAttribute="top" secondItem="Rpt-E1-38V" secondAttribute="bottom" constant="25" id="HBO-ls-c6v"/>
-                            <constraint firstItem="abm-6m-rpn" firstAttribute="top" secondItem="ybf-Ar-Ay3" secondAttribute="top" constant="4" id="MXA-bz-hAQ"/>
                             <constraint firstItem="kog-hf-FOL" firstAttribute="top" secondItem="shz-r4-cPq" secondAttribute="bottom" constant="25" id="Ouy-7J-fxY"/>
                             <constraint firstItem="aZU-eO-0Ka" firstAttribute="trailing" secondItem="ybf-Ar-Ay3" secondAttribute="trailingMargin" constant="10" id="Pt9-1T-bua"/>
                             <constraint firstItem="aZU-eO-0Ka" firstAttribute="leading" secondItem="shz-r4-cPq" secondAttribute="trailing" constant="10" id="Q5c-Ty-utZ"/>
                             <constraint firstItem="c5S-tu-Ghh" firstAttribute="leading" secondItem="ybf-Ar-Ay3" secondAttribute="leading" id="ZCk-G1-cp2"/>
                             <constraint firstAttribute="bottom" secondItem="IBH-Xa-toi" secondAttribute="bottom" id="ZRz-q3-Xzs"/>
                             <constraint firstItem="IBH-Xa-toi" firstAttribute="top" secondItem="ybf-Ar-Ay3" secondAttribute="top" id="as4-Ll-eWZ"/>
-                            <constraint firstAttribute="trailing" secondItem="abm-6m-rpn" secondAttribute="trailing" constant="4" id="cLH-3Z-mNW"/>
                             <constraint firstItem="kog-hf-FOL" firstAttribute="top" secondItem="c5S-tu-Ghh" secondAttribute="bottom" id="cfS-yr-sVP"/>
                             <constraint firstItem="daE-s6-WW3" firstAttribute="top" secondItem="ybf-Ar-Ay3" secondAttribute="top" constant="4" id="fga-dj-fe8"/>
                             <constraint firstItem="Rpt-E1-38V" firstAttribute="leading" secondItem="ybf-Ar-Ay3" secondAttribute="leading" constant="10" id="nWt-q5-5AP"/>

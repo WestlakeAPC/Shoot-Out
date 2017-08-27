@@ -82,41 +82,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tf9-Rq-uVn">
-                                <rect key="frame" x="10" y="1278" width="92" height="63"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="10" y="1249" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="92" id="8OI-jm-ppK"/>
-                                    <constraint firstAttribute="height" constant="63" id="IJa-T0-WMM"/>
+                                    <constraint firstAttribute="height" constant="92" id="Dxk-Xn-5aM"/>
                                 </constraints>
-                                <state key="normal" title="&lt;"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="&lt;" image="arrow-left"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWY-9m-YgD">
-                                <rect key="frame" x="112" y="1278" width="92" height="63"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="112" y="1249" width="92" height="92"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="63" id="Kn4-tn-2hb"/>
                                     <constraint firstAttribute="width" constant="92" id="d2f-EY-EWx"/>
+                                    <constraint firstAttribute="height" constant="92" id="nva-zV-2sK"/>
                                 </constraints>
-                                <state key="normal" title="&gt;"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="&gt;" image="arrow-right"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvY-KD-C8D">
-                                <rect key="frame" x="820" y="1278" width="92" height="63"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="820" y="1249" width="92" height="92"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="63" id="5wo-1c-Vey"/>
                                     <constraint firstAttribute="width" constant="92" id="dyG-Ni-Kgx"/>
+                                    <constraint firstAttribute="height" constant="92" id="lJT-rz-o0L"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <state key="normal" title="^"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="^" image="arrow-jump"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gFE-qR-YL1">
-                                <rect key="frame" x="922" y="1278" width="92" height="63"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="922" y="1249" width="92" height="92"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="63" id="kzM-9m-faA"/>
+                                    <constraint firstAttribute="height" constant="92" id="37I-pk-c4G"/>
                                     <constraint firstAttribute="width" constant="92" id="rcv-Qu-DVr"/>
                                 </constraints>
-                                <state key="normal" title=" ︻┳═一"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="icon-shoot"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uIf-oL-VAf">
                                 <rect key="frame" x="4" y="4" width="30" height="30"/>
@@ -228,41 +227,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lMJ-Y6-3h4">
-                                <rect key="frame" x="10" y="1278" width="92" height="63"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="10" y="1249" width="92" height="92"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="63" id="XKo-R5-Nqk"/>
+                                    <constraint firstAttribute="height" constant="92" id="MVA-XU-cUn"/>
                                     <constraint firstAttribute="width" constant="92" id="u81-ec-58S"/>
                                 </constraints>
-                                <state key="normal" title="&lt;"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="&lt;" image="arrow-left"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSV-km-S5P">
-                                <rect key="frame" x="112" y="1278" width="92" height="63"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="112" y="1249" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="92" id="FIC-kj-lIR"/>
-                                    <constraint firstAttribute="height" constant="63" id="pQk-Jt-rQ3"/>
+                                    <constraint firstAttribute="height" constant="92" id="FiP-2s-wQM"/>
                                 </constraints>
-                                <state key="normal" title="&gt;"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="&gt;" image="arrow-right"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3T-ud-2Am">
-                                <rect key="frame" x="922" y="1278" width="92" height="63"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="922" y="1249" width="92" height="92"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="63" id="XNX-QA-erg"/>
+                                    <constraint firstAttribute="height" constant="92" id="95J-WA-AKG"/>
                                     <constraint firstAttribute="width" constant="92" id="pHb-F1-udv"/>
                                 </constraints>
-                                <state key="normal" title=" ︻┳═一"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title=" ︻┳═一" image="icon-shoot"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDh-vY-Uyp">
-                                <rect key="frame" x="820" y="1278" width="92" height="63"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="820" y="1249" width="92" height="92"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="63" id="5HJ-ob-Jbm"/>
                                     <constraint firstAttribute="width" constant="92" id="BBq-m7-IUp"/>
+                                    <constraint firstAttribute="height" constant="92" id="Nb0-Fx-nD1"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <state key="normal" title="^"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="^" image="arrow-jump"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDb-yX-gEf">
                                 <rect key="frame" x="4" y="4" width="30" height="30"/>
@@ -319,44 +317,43 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c5S-tu-Ghh" customClass="SKView">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rpt-E1-38V">
-                                <rect key="frame" x="10" y="1278" width="92" height="63"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="10" y="1249" width="92" height="92"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="63" id="hRr-6d-2OP"/>
+                                    <constraint firstAttribute="height" constant="92" id="2m2-4O-9Uj"/>
                                     <constraint firstAttribute="width" constant="92" id="lfG-cB-F0S"/>
                                 </constraints>
-                                <state key="normal" title="&lt;"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="&lt;" image="arrow-left"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Voy-uQ-W7y">
-                                <rect key="frame" x="112" y="1278" width="92" height="63"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="112" y="1249" width="92" height="92"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="63" id="GPe-ls-rjr"/>
+                                    <constraint firstAttribute="height" constant="92" id="JDG-dz-5To"/>
                                     <constraint firstAttribute="width" constant="92" id="U10-d8-Amk"/>
                                 </constraints>
-                                <state key="normal" title="&gt;"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="&gt;" image="arrow-right"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZU-eO-0Ka">
-                                <rect key="frame" x="922" y="1278" width="92" height="63"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="922" y="1249" width="92" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="92" id="BGq-gq-zd4"/>
-                                    <constraint firstAttribute="height" constant="63" id="u84-4c-Xy5"/>
+                                    <constraint firstAttribute="height" constant="92" id="VsX-OB-U0j"/>
                                 </constraints>
-                                <state key="normal" title=" ︻┳═一"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title=" ︻┳═一" image="icon-shoot"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shz-r4-cPq">
-                                <rect key="frame" x="820" y="1278" width="92" height="63"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="820" y="1249" width="92" height="92"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="63" id="GbE-wE-rpp"/>
+                                    <constraint firstAttribute="height" constant="92" id="63m-Wf-Eq4"/>
                                     <constraint firstAttribute="width" constant="92" id="LeH-gA-Rai"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <state key="normal" title="^"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="^" image="arrow-jump"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="daE-s6-WW3">
                                 <rect key="frame" x="4" y="4" width="30" height="30"/>
@@ -422,7 +419,11 @@
     </scenes>
     <resources>
         <image name="Background" width="1968" height="1476"/>
+        <image name="arrow-jump" width="512" height="512"/>
+        <image name="arrow-left" width="512" height="512"/>
+        <image name="arrow-right" width="512" height="512"/>
         <image name="background" width="900" height="504"/>
+        <image name="icon-shoot" width="512" height="512"/>
         <image name="initialBackground" width="2560" height="1521"/>
     </resources>
 </document>

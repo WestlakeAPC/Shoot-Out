@@ -18,7 +18,7 @@ enum GameEvent {
     case propertyUpdate(Properties)
 }
 
-struct Properties: Codable {
+struct Properties {
     // SpriteKit physics bodies
     var ourCharacterPhysics: CGVector
     var ourCharacterPosition: CGPoint
@@ -29,68 +29,102 @@ struct Properties: Codable {
     var enemyBulletArray: [BulletInformation] = []
 }
 
-struct BulletInformation: Codable {
+struct BulletInformation {
     var position: CGPoint
     var direction: Direction
 }
 
-enum Direction: String, Codable {
+enum Direction: String {
     case left
     case right
 }
 
-// MARK: Codable extensions.
+// MARK: NSCoding wrapper classes.
 
-extension GameEvent: Codable {
-    enum CodingKeys: CodingKey {
-        case messageType
-        case randomNumberValue
-        case characterValue
-        case properties
-    }
+class EncodableGameEvent: NSCoding {
+    let gameEvent: GameEvent
     
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        
-        switch (try container.decode(String.self, forKey: .messageType)) {
-            case "character_assignment":
-                let value = try container.decode(Int.self, forKey: .randomNumberValue)
-                self = .characterAssignment(randomNumber: value)
-            case "shot":
-                self = .shot
-            case "died":
-                self = .died
-            case "restart":
-                self = .restart
-            case "terminated":
-                self = .terminated
-            case "property_update":
-                let properties = try container.decode(Properties.self, forKey: .properties)
-                self = .propertyUpdate(properties)
-            default:
-                throw DecodingError.typeMismatch(type(of: self), DecodingError.Context(codingPath: [],
-                                                                                       debugDescription: "Invalid MessageType specified."))
-        }
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        
-        switch (self) {
+    func encode(with coder: NSCoder) {
+        switch (gameEvent) {
             case .characterAssignment(let randomNumber):
-                try container.encode("character_assignment", forKey: .messageType)
-                try container.encode(randomNumber, forKey: .randomNumberValue)
+                coder.encode("character_assignment", forKey: "message_type")
+                coder.encode(randomNumber, forKey: "random_number_value")
             case .shot:
-                try container.encode("shot", forKey: .messageType)
+                coder.encode("shot", forKey: "message_type")
             case .died:
-                try container.encode("died", forKey: .messageType)
+                coder.encode("died", forKey: "message_type")
             case .restart:
-                try container.encode("restart", forKey: .messageType)
+                coder.encode("restart", forKey: "message_type")
             case .terminated:
-                try container.encode("terminated", forKey: .messageType)
+                coder.encode("terminated", forKey: "message_type")
             case .propertyUpdate(let properties):
-                try container.encode("property_update", forKey: .messageType)
-                try container.encode(properties, forKey: .properties)
+                coder.encode("property_update", forKey: "message_type")
+                coder.encode(properties, forKey: "properties")
         }
+    }
+    
+    required init?(coder: NSCoder) {
+        switch (coder.decodeObject(forKey: "message_type") as! String) {
+            case "character_assignment":
+                let value = coder.decodeInteger(forKey: "random_number_value")
+                gameEvent = .characterAssignment(randomNumber: value)
+            case "shot":
+                gameEvent = .shot
+            case "died":
+                gameEvent = .died
+            case "restart":
+                gameEvent = .restart
+            case "terminated":
+                gameEvent = .terminated
+            case "property_update":
+                let properties = coder.decodeObject(forKey: "properties") as! Properties
+                gameEvent = .propertyUpdate(properties)
+            default:
+                gameEvent = .died // I don't know why, this shouldn't happen anyways
+        }
+    }
+}
+
+class EncodableProperties: NSCoding {
+    let properties: Properties
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(properties.ourCharacterPhysics, forKey: "physics")
+        coder.encode(properties.ourCharacterPosition, forKey: "position")
+        coder.encode(properties.ourCharacterDirection.rawValue, forKey: "direction")
+        
+        coder.encode(properties.playerBulletArray, forKey: "player_bullets")
+        coder.encode(properties.enemyBulletArray, forKey: "enemy_bullets")
+    }
+    
+    required init?(coder: NSCoder) {
+        let ourCharacterPhysics = coder.decodeCGVector(forKey: "physics")
+        let ourCharacterPosition = coder.decodeCGPoint(forKey: "position")
+        let ourCharacterDirection = Direction(rawValue: coder.decodeObject(forKey: "direction") as! String)!
+        
+        let playerBulletArray = coder.decodeObject(forKey: "player_bullets") as! [BulletInformation]
+        let enemyBulletArray = coder.decodeObject(forKey: "enemy_bullets") as! [BulletInformation]
+        
+        properties = Properties(ourCharacterPhysics: ourCharacterPhysics,
+                                ourCharacterPosition: ourCharacterPosition,
+                                ourCharacterDirection: ourCharacterDirection,
+                                playerBulletArray: playerBulletArray,
+                                enemyBulletArray: enemyBulletArray)
+    }
+}
+
+class EncodableBulletInformation: NSCoding {
+    let bulletInformation: BulletInformation
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(bulletInformation.position, forKey: "position")
+        coder.encode(bulletInformation.direction.rawValue, forKey: "direction")
+    }
+    
+    required init?(coder: NSCoder) {
+        let position = coder.decodeCGPoint(forKey: "position")
+        let direction = Direction(rawValue: coder.decodeObject(forKey: "direction") as! String)!
+        
+        bulletInformation = BulletInformation(position: position, direction: direction)
     }
 }

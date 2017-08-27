@@ -68,9 +68,11 @@ class MultiplayerGameViewController: UIViewController {
     
     func didReceiveData(_ data: Data) {
         // Decode information received from other player.
-        guard let message = NSKeyedUnarchiver.unarchiveObject(with: data) as? GameEvent else {
+        guard let wrappedMessage = NSKeyedUnarchiver.unarchiveObject(with: data) as? EncodableGameEvent else {
             return
         }
+        
+        let message = wrappedMessage.gameEvent
         
         // Act on it.
         switch message {

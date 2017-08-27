@@ -299,7 +299,7 @@ class MultiplayerScene: SKScene {
         
         self.opposingCharacter?.physicsBody?.velocity = velocity
         self.opposingCharacter?.position = position
-        self.opposingCharacter?.facingDirection = .right
+        self.opposingCharacter?.facingDirection = direction
 
         self.opposingCharacter?.updateTexture()
     }

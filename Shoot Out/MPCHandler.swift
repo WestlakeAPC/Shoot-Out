@@ -36,7 +36,7 @@ class MPCHandler: NSObject, MCSessionDelegate {
             advertiser = MCAdvertiserAssistant(serviceType: "my-game", discoveryInfo: nil, session: session)
             advertiser!.start()
         } else {
-            advertiser!.stop()
+            advertiser?.stop()
             advertiser = nil
         }
     }

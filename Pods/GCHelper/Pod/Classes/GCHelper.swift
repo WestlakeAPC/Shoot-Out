@@ -116,14 +116,14 @@ public class GCHelper: NSObject, GKMatchmakerViewControllerDelegate, GKGameCente
         print("Authenticating local user...")
         
         if GKLocalPlayer.localPlayer().isAuthenticated == false {
-            //GKLocalPlayer.localPlayer().authenticateHandler = { (view, error) in
-            //    guard error == nil else {
-            //        print("Authentication error: \(String(describing: error?.localizedDescription))")
-            //        return
-            //    }
+            GKLocalPlayer.localPlayer().authenticateHandler = { (view, error) in
+                guard error == nil else {
+                    print("Authentication error: \(String(describing: error?.localizedDescription))")
+                    return
+                }
                 
                 self.authenticated = true
-            //}
+            }
         } else {
             print("Already authenticated")
         }
@@ -142,7 +142,7 @@ public class GCHelper: NSObject, GKMatchmakerViewControllerDelegate, GKGameCente
         match = nil
         presentingViewController = viewController
         delegate = theDelegate
-        //presentingViewController.dismiss(animated: false, completion: nil)
+        // presentingViewController.dismiss(animated: false, completion: nil)
         
         let request = GKMatchRequest()
         request.minPlayers = minPlayers

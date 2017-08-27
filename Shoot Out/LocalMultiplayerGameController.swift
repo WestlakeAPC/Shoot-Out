@@ -25,12 +25,14 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
     @IBOutlet var rightButton: UIButton!
     @IBOutlet var jumpButton: UIButton!
     @IBOutlet var shootButton: UIButton!
+    @IBOutlet var connectButton: UIButton!
     
     @IBOutlet var skView: SKView!
     
     // MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadGameScene()
         longPressGesture()
         setupMPC()
@@ -55,6 +57,9 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
         skView?.showsFPS = true
         skView?.showsNodeCount = true
         skView?.showsPhysics = true
+        
+        connectButton.layer.cornerRadius = 5
+        connectButton.alpha = 0.7
     }
     
     // TODO: Continue method call as long as button is held

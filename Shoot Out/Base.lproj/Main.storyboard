@@ -422,7 +422,7 @@
     </scenes>
     <resources>
         <image name="Background" width="1968" height="1476"/>
-        <image name="background" width="1968" height="1476"/>
+        <image name="background" width="900" height="504"/>
         <image name="initialBackground" width="2560" height="1521"/>
     </resources>
 </document>

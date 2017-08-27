@@ -120,7 +120,6 @@ class LocalMultiplayerGameController: UIViewController, MCBrowserViewControllerD
             print("Connected")
             sendAssignmentNumber()
             appDelegate.mpcHandler.browser.dismiss(animated: true, completion: nil)
-            appDelegate.mpcHandler.adertiseSelf(advertise: false)
             
         case .connecting:
             print("Connecting")

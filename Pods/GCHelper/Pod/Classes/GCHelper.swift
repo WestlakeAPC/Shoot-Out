@@ -142,7 +142,7 @@ public class GCHelper: NSObject, GKMatchmakerViewControllerDelegate, GKGameCente
         match = nil
         presentingViewController = viewController
         delegate = theDelegate
-        //presentingViewController.dismiss(animated: false, completion: nil)
+        // presentingViewController.dismiss(animated: false, completion: nil)
         
         let request = GKMatchRequest()
         request.minPlayers = minPlayers

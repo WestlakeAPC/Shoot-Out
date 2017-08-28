@@ -21,6 +21,7 @@ class MultiplayerGameViewController: UIViewController {
     @IBOutlet var rightButton: UIButton!
     @IBOutlet var jumpButton: UIButton!
     @IBOutlet var shootButton: UIButton!
+    @IBOutlet var connectButton: UIButton!
     
     @IBOutlet var skView: SKView!
     
@@ -28,6 +29,8 @@ class MultiplayerGameViewController: UIViewController {
         super.viewDidLoad()
         loadGameScene()
         longPressGesture()
+        
+        _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: connectToPlayers(_:))
     }
     
     // MARK: Load Game Scene
@@ -48,6 +51,13 @@ class MultiplayerGameViewController: UIViewController {
         skView?.showsFPS = false
         skView?.showsNodeCount = false
         skView?.showsPhysics = false
+        
+        connectButton.layer.cornerRadius = 5
+        connectButton.alpha = 0.7
+    }
+    
+    @IBAction func connectToPlayers(_ sender: Any) {
+        preconditionFailure("Method must be overridden.")
     }
     
     func sendData(_ message: GameEvent) {

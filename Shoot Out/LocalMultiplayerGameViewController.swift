@@ -15,20 +15,11 @@ class LocalMultiplayerGameViewController: MultiplayerGameViewController, MCBrows
 
     var appDelegate: AppDelegate!
     
-    @IBOutlet var connectButton: UIButton!
-    
     // MARK: View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupMPC()
-    }
-    
-    override func loadGameScene() {
-        super.loadGameScene()
-        
-        connectButton.layer.cornerRadius = 5
-        connectButton.alpha = 0.7
     }
     
     // MARK: Setup MPC
@@ -47,11 +38,10 @@ class LocalMultiplayerGameViewController: MultiplayerGameViewController, MCBrows
                                                selector: #selector(handleReceivedDataWithNotification(_:)),
                                                name: NSNotification.Name(rawValue: "MPC_DidReceiveDataNotification"),
                                                object: nil)
-        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(connectToPlayers), userInfo: nil, repeats: false)
     }
     
     // MARK: Display connection ViewController
-    @objc func connectToPlayers() {
+    @IBAction override func connectToPlayers(_ sender: Any) {
         if appDelegate.mpcHandler.session != nil {
             appDelegate.mpcHandler.setupBrowser()
             appDelegate.mpcHandler.browser.delegate = self
@@ -91,11 +81,6 @@ class LocalMultiplayerGameViewController: MultiplayerGameViewController, MCBrows
         let receivedData: Data = userInfo["data"] as! Data
         
         didReceiveData(receivedData)
-    }
-    
-    // Connect
-    @IBAction func connectWithPlayers(_ sender: Any) {
-        self.connectToPlayers()
     }
     
     // MARK: Send data to other player.

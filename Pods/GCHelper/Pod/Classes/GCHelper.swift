@@ -43,6 +43,7 @@ public class GCHelper: NSObject, GKMatchmakerViewControllerDelegate, GKGameCente
     
     /// The match object provided by GameKit.
     public var match: GKMatch!
+    public var recipientResponseHandler: ((GKPlayer, GKInviteRecipientResponse) -> Void)? = nil
     
     fileprivate weak var delegate: GCHelperDelegate?
     fileprivate var invite: GKInvite!
@@ -147,6 +148,8 @@ public class GCHelper: NSObject, GKMatchmakerViewControllerDelegate, GKGameCente
         let request = GKMatchRequest()
         request.minPlayers = minPlayers
         request.maxPlayers = maxPlayers
+        
+        request.recipientResponseHandler = recipientResponseHandler
         
         let mmvc = GKMatchmakerViewController(matchRequest: request)!
         mmvc.matchmakerDelegate = self

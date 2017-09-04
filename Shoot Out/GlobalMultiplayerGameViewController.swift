@@ -19,6 +19,10 @@ class GlobalMultiplayerGameViewController: MultiplayerGameViewController, GCHelp
     }
     
     @IBAction override func connectToPlayers(_ sender: Any) {
+        GCHelper.sharedInstance.recipientResponseHandler = { (player, response) in
+            self.matchStarted()
+        }
+        
         GCHelper.sharedInstance.findMatchWithMinPlayers(2, maxPlayers: 2, viewController: self, delegate: self)
     }
     

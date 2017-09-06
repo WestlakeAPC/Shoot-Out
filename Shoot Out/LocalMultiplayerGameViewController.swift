@@ -71,7 +71,6 @@ class LocalMultiplayerGameViewController: MultiplayerGameViewController, MCBrows
             
             case .notConnected:
                 print("Disconnected")
-                appDelegate.mpcHandler.adertiseSelf(advertise: false)
         }
     }
     

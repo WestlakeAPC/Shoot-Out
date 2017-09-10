@@ -47,7 +47,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="2Ww-N4-jw2" kind="show" id="6lU-UB-BLs"/>
+                                    <segue destination="TgT-ZV-HBA" kind="show" id="ohB-sr-19i"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -472,6 +472,6 @@
         <image name="initialBackground" width="900" height="504"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="b6s-2c-jh3"/>
+        <segue reference="ohB-sr-19i"/>
     </inferredMetricsTieBreakers>
 </document>

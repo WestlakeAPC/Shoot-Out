@@ -31,7 +31,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qw6-74-YmC">
-                                <rect key="frame" x="20" y="1205" width="94" height="32"/>
+                                <rect key="frame" x="20" y="1193" width="145" height="38"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Singleplayer">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -41,13 +41,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dj-GH-dZb">
-                                <rect key="frame" x="20" y="1273" width="84" height="32"/>
+                                <rect key="frame" x="20" y="1267" width="136" height="38"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Multiplayer">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="L7j-cs-WYg" kind="show" id="VFg-bd-bHL"/>
+                                    <segue destination="2Ww-N4-jw2" kind="show" id="6lU-UB-BLs"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -471,4 +471,7 @@
         <image name="icon-shoot" width="48" height="48"/>
         <image name="initialBackground" width="900" height="504"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="b6s-2c-jh3"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -112,8 +112,8 @@
 		738D60211F44BE3400FF54C8 /* SKPlayerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKPlayerNode.swift; sourceTree = "<group>"; };
 		73ADDAF41F3A98E600563B6F /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		73CB34B01F4150750008BA9E /* MultiplayerGameHandlerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerGameHandlerDelegate.swift; sourceTree = "<group>"; };
-		73CF68F71F6A318500E6366B /* Movement Proposition.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Movement Proposition.mp3"; sourceTree = "<group>"; };
-		73CF68F81F6A319200E6366B /* Five Armies.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Five Armies.mp3"; sourceTree = "<group>"; };
+		73CF68F91F6A327E00E6366B /* MovementProposition.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MovementProposition.mp3; sourceTree = "<group>"; };
+		73CF68FA1F6A327E00E6366B /* FiveArmies.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FiveArmies.mp3; sourceTree = "<group>"; };
 		94F576C725E3FE6496540B8E /* Pods-Shoot OutUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot OutUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot OutUITests/Pods-Shoot OutUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8B79C560DDD5275858FAE3A /* Pods-Shoot OutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot OutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot OutTests/Pods-Shoot OutTests.release.xcconfig"; sourceTree = "<group>"; };
 		F5B01B9EC0F8E179B8CBEEA9 /* Pods_Shoot_OutUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shoot_OutUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,8 +162,8 @@
 			isa = PBXGroup;
 			children = (
 				22F734E21F37C3FB00AA52C5 /* Crazy.wav */,
-				73CF68F81F6A319200E6366B /* Five Armies.mp3 */,
-				73CF68F71F6A318500E6366B /* Movement Proposition.mp3 */,
+				73CF68FA1F6A327E00E6366B /* FiveArmies.mp3 */,
+				73CF68F91F6A327E00E6366B /* MovementProposition.mp3 */,
 				738B0FCC1F37D9AF006D6C80 /* DesertEagleShot.mp3 */,
 				737F756C1F45F7BA00B19E8F /* GunShot.mp3 */,
 				22F734DF1F37BC6600AA52C5 /* punch.wav */,

@@ -81,7 +81,7 @@ class MultiplayerScene: SKScene {
     // Audio Components
     func setUpSound() {
         let punchSound = URL(fileURLWithPath: Bundle.main.path(forResource: "punch", ofType: "wav")!)
-        let music = URL(fileURLWithPath: Bundle.main.path(forResource: "Crazy", ofType: "wav")!)
+        let music = URL(fileURLWithPath: Bundle.main.path(forResource: "Movement Proposition", ofType: "mp3")!)
         
         bulletSoundEffect = try! AVAudioPlayer.init(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "DesertEagleShot",
                                                                                                       ofType: "mp3")!))

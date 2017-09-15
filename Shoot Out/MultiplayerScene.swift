@@ -234,12 +234,8 @@ class MultiplayerScene: SKScene {
     @objc func shoot() {
         if gameIsOver || !gameIsActive || reloading {return}
         
-        if shotsFired >= 5 && !reloading {
-            reloadGun()
-            return
-        }
-        
         let bullet = SKBulletsNode(texture: bulletTexture)
+        self.run(SKAction.playSoundFileNamed("GunShot.mp3", waitForCompletion: false))
         
         shotsFired += 1
         
@@ -252,6 +248,11 @@ class MultiplayerScene: SKScene {
         
         sendPlayerProperties()
         viewController!.sendShots()
+        
+        if shotsFired >= 5 && !reloading {
+            reloadGun()
+            return
+        }
     }
     
     // Reload Gun
@@ -260,7 +261,7 @@ class MultiplayerScene: SKScene {
         self.reloading = true
         run(SKAction.playSoundFileNamed("reload.mp3", waitForCompletion: false))
         
-        _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+        _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
             self.shotsFired = 0
             self.reloading = false
         }
@@ -309,6 +310,7 @@ class MultiplayerScene: SKScene {
         if gameIsOver || !gameIsActive {return}
         
         let bullet = SKBulletsNode(texture: bulletTexture)
+        self.run(SKAction.playSoundFileNamed("GunShot.mp3", waitForCompletion: false))
         
         bullet.shoot(from: self.opposingCharacter!,
                      to: self.opposingCharacter!.facingDirection,

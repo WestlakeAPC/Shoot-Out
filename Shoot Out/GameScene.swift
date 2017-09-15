@@ -321,12 +321,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func shoot() {
         if playerIsDead || reloading {return}
         
-        if shotsFired >= 5 && !reloading {
-            reloadGun()
-            return
-        }
-        
         let bullet = SKBulletsNode(texture: bulletTexture)
+        self.run(SKAction.playSoundFileNamed("GunShot.mp3", waitForCompletion: false))
         
         shotsFired += 1
         
@@ -346,6 +342,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                          toArray: playerBulletArray,
                          inScene: self)
         }
+        
+        if shotsFired >= 5 && !reloading {
+            reloadGun()
+            return
+        }
+        
     }
     
     // Reload Gun
@@ -354,7 +356,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.reloading = true
         run(SKAction.playSoundFileNamed("reload.mp3", waitForCompletion: false))
         
-        _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+        _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
             self.shotsFired = 0
             self.reloading = false
         }

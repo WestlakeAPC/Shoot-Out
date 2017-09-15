@@ -76,6 +76,7 @@ class SKEnemyCowboyNode: SKSpriteNode {
         if !canShoot || gameScene!.playerIsDead {return}
         
         let enemyBullet = SKBulletsNode(texture: gameScene?.bulletTexture)
+        self.run(SKAction.playSoundFileNamed("GunShot.mp3", waitForCompletion: false))
         
         if self.texture == self.leftTexture {
             enemyBullet.shoot(from: self,

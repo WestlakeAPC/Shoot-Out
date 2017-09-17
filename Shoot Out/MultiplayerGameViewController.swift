@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import SpriteKit
-import Toast_Swift
 
 class MultiplayerGameViewController: UIViewController {
     
@@ -30,8 +29,6 @@ class MultiplayerGameViewController: UIViewController {
         super.viewDidLoad()
         loadGameScene()
         longPressGesture()
-        
-        self.view.makeToast("Please keep devices close together for optimal connection.", duration: 3.0, position: .bottom)
 
         _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: connectToPlayers(_:))
     }

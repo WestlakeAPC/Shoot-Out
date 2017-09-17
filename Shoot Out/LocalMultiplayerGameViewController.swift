@@ -10,6 +10,7 @@ import UIKit
 import SpriteKit
 import GameKit
 import MultipeerConnectivity
+import Toast_Swift
 
 class LocalMultiplayerGameViewController: MultiplayerGameViewController, MCBrowserViewControllerDelegate {
 
@@ -47,6 +48,8 @@ class LocalMultiplayerGameViewController: MultiplayerGameViewController, MCBrows
             appDelegate.mpcHandler.browser.delegate = self
             
             self.present(appDelegate.mpcHandler.browser, animated: true, completion: nil)
+            
+            appDelegate.mpcHandler.browser.view.makeToast("Please keep devices close together for optimal connection.", duration: 3.0, position: .bottom)
         }
     }
     

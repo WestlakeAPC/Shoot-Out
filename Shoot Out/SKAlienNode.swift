@@ -154,27 +154,27 @@ class SKAlienNode: SKSpriteNode {
         
         switch (parentArray!.array!.count) {
         case 1:
-            if (gameScene?.aliensKilled)! >= 5 {
+            if (gameScene?.aliensKilled)! >= 3 {
                 gameScene?.spawnAlien()
             }
         case 2:
-            if (gameScene?.aliensKilled)! >= 15 {
+            if (gameScene?.aliensKilled)! >= 12 {
                 gameScene?.spawnAlien()
             }
         case 3:
-            if (gameScene?.aliensKilled)! >= 25 {
+            if (gameScene?.aliensKilled)! >= 22 {
                 gameScene?.spawnAlien()
             }
         case 4:
-            if (gameScene?.aliensKilled)! >= 40 {
+            if (gameScene?.aliensKilled)! >= 37 {
                 gameScene?.spawnAlien()
             }
         case 5:
-            if (gameScene?.aliensKilled)! >= 55 {
+            if (gameScene?.aliensKilled)! >= 52 {
                 gameScene?.spawnAlien()
             }
         case 6:
-            if (gameScene?.aliensKilled)! >= 75 {
+            if (gameScene?.aliensKilled)! >= 72 {
                 gameScene?.spawnAlien()
             }
         default:

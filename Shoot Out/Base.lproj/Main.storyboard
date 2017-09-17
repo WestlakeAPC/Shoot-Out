@@ -31,7 +31,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qw6-74-YmC">
-                                <rect key="frame" x="20" y="1205" width="94" height="32"/>
+                                <rect key="frame" x="20" y="1193" width="145" height="38"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Singleplayer">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -41,13 +41,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dj-GH-dZb">
-                                <rect key="frame" x="20" y="1273" width="84" height="32"/>
+                                <rect key="frame" x="20" y="1267" width="136" height="38"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Multiplayer">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="L7j-cs-WYg" kind="show" id="VFg-bd-bHL"/>
+                                    <segue destination="TgT-ZV-HBA" kind="show" id="ohB-sr-19i"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -63,6 +63,9 @@
                             <constraint firstItem="LgR-Sd-QMT" firstAttribute="top" secondItem="6dj-GH-dZb" secondAttribute="bottom" constant="61" id="iVN-kG-cmQ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="jwh-YT-TMJ" id="OhC-Zu-fMc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Euk-Hw-fIE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -178,7 +181,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSJ-No-sV9">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSJ-No-sV9">
                                 <rect key="frame" x="20" y="226" width="984" height="32"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Global"/>
@@ -469,6 +472,9 @@
         <image name="background" width="900" height="504"/>
         <image name="icon-return" width="48" height="48"/>
         <image name="icon-shoot" width="48" height="48"/>
-        <image name="initialBackground" width="2560" height="1521"/>
+        <image name="initialBackground" width="900" height="504"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ohB-sr-19i"/>
+    </inferredMetricsTieBreakers>
 </document>

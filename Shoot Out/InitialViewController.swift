@@ -9,9 +9,15 @@
 import UIKit
 
 class InitialViewController: UIViewController {
+    
+    let backgroundArray = [#imageLiteral(resourceName: "initialBackground"), #imageLiteral(resourceName: "initialBackground-2"), #imageLiteral(resourceName: "initialBackground-3"), #imageLiteral(resourceName: "initialBackground-4"), #imageLiteral(resourceName: "initialBackground-5"), #imageLiteral(resourceName: "initialBackground-6"), #imageLiteral(resourceName: "initialBackground-7")]
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBOutlet var backgroundView: UIImageView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        backgroundView.image = backgroundArray[Int(arc4random_uniform(UInt32(backgroundArray.count)))]
 
         // Do any additional setup after loading the view.
     }

@@ -30,8 +30,6 @@ class SKBulletsNode: SKSpriteNode {
         scene.addChild(self)
         parentArray!.array!.append(self)
         
-        self.run(SKAction.playSoundFileNamed("GunShot.mp3", waitForCompletion: false))
-        
         let translate = { (translationFunction: (CGFloat, CGFloat) -> CGFloat) in
             self.run(SKAction.moveTo(x: translationFunction(self.position.x,
                                                             self.gameScene!.frame.size.width), duration: 1.5), completion: {

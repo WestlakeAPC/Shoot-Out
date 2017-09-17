@@ -44,6 +44,8 @@
 		738B0FCF1F37E0C3006D6C80 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738B0FCE1F37E0C3006D6C80 /* InitialViewController.swift */; };
 		738D60221F44BE3400FF54C8 /* SKPlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D60211F44BE3400FF54C8 /* SKPlayerNode.swift */; };
 		73ADDAF51F3A98E600563B6F /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73ADDAF41F3A98E600563B6F /* GameKit.framework */; };
+		73B93AF91F6A34FD00D71830 /* FiveArmies.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 73B93AF71F6A34FD00D71830 /* FiveArmies.mp3 */; };
+		73B93AFA1F6A34FD00D71830 /* MovementProposition.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 73B93AF81F6A34FD00D71830 /* MovementProposition.mp3 */; };
 		73CB34B11F4150750008BA9E /* MultiplayerGameHandlerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CB34B01F4150750008BA9E /* MultiplayerGameHandlerDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +113,8 @@
 		738B0FCE1F37E0C3006D6C80 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		738D60211F44BE3400FF54C8 /* SKPlayerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKPlayerNode.swift; sourceTree = "<group>"; };
 		73ADDAF41F3A98E600563B6F /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		73B93AF71F6A34FD00D71830 /* FiveArmies.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FiveArmies.mp3; sourceTree = "<group>"; };
+		73B93AF81F6A34FD00D71830 /* MovementProposition.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MovementProposition.mp3; sourceTree = "<group>"; };
 		73CB34B01F4150750008BA9E /* MultiplayerGameHandlerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerGameHandlerDelegate.swift; sourceTree = "<group>"; };
 		94F576C725E3FE6496540B8E /* Pods-Shoot OutUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot OutUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot OutUITests/Pods-Shoot OutUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8B79C560DDD5275858FAE3A /* Pods-Shoot OutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoot OutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shoot OutTests/Pods-Shoot OutTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 			isa = PBXGroup;
 			children = (
 				22F734E21F37C3FB00AA52C5 /* Crazy.wav */,
+				73B93AF71F6A34FD00D71830 /* FiveArmies.mp3 */,
+				73B93AF81F6A34FD00D71830 /* MovementProposition.mp3 */,
 				738B0FCC1F37D9AF006D6C80 /* DesertEagleShot.mp3 */,
 				737F756C1F45F7BA00B19E8F /* GunShot.mp3 */,
 				22F734DF1F37BC6600AA52C5 /* punch.wav */,
@@ -391,7 +397,7 @@
 				TargetAttributes = {
 					73486E1C1F22FF05004C3333 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = M64HPXXUJF;
+						DevelopmentTeam = 9SR8L2XE3A;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
@@ -445,6 +451,8 @@
 				737F75711F4A1E2900B19E8F /* reload.mp3 in Resources */,
 				730D8CD81F36B2D1002072EE /* justAWhiteCube.png in Resources */,
 				73486E2C1F22FF06004C3333 /* Main.storyboard in Resources */,
+				73B93AF91F6A34FD00D71830 /* FiveArmies.mp3 in Resources */,
+				73B93AFA1F6A34FD00D71830 /* MovementProposition.mp3 in Resources */,
 				73486E231F22FF06004C3333 /* GameScene.sks in Resources */,
 				22F734E61F37CE4A00AA52C5 /* punch2.wav in Resources */,
 				73486E2E1F22FF06004C3333 /* Assets.xcassets in Resources */,
@@ -812,10 +820,10 @@
 			baseConfigurationReference = 47AD165EB11F34BB5286A3E0 /* Pods-Shoot Out.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = M64HPXXUJF;
+				DEVELOPMENT_TEAM = 9SR8L2XE3A;
 				INFOPLIST_FILE = "Shoot Out/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.westlakeapc.Shoot-Out";
+				PRODUCT_BUNDLE_IDENTIFIER = com.westlakeapc.SniperSkirmishes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -826,10 +834,10 @@
 			baseConfigurationReference = 3E81CE78F2C96F5CBEABBB35 /* Pods-Shoot Out.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = M64HPXXUJF;
+				DEVELOPMENT_TEAM = 9SR8L2XE3A;
 				INFOPLIST_FILE = "Shoot Out/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.westlakeapc.Shoot-Out";
+				PRODUCT_BUNDLE_IDENTIFIER = com.westlakeapc.SniperSkirmishes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

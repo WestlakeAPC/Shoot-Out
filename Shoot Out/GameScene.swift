@@ -45,9 +45,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Score
     var aliensKilled = 0
     var score = 0
+    var shotsFired = 0
     
     // Death
     var playerIsDead = false
+    var reloading = false
     
     // Sound
     var punchSoundEffect : AVAudioPlayer?
@@ -145,7 +147,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Audio Components
     func setUpSound() {
         let punchSound = URL(fileURLWithPath: Bundle.main.path(forResource: "punch", ofType: "wav")!)
-        let music = URL(fileURLWithPath: Bundle.main.path(forResource: "Crazy", ofType: "wav")!)
+        let music = URL(fileURLWithPath: Bundle.main.path(forResource: "FiveArmies", ofType: "mp3")!)
         
         bulletSoundEffect = try! AVAudioPlayer.init(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "DesertEagleShot", ofType: "mp3")!))
         bulletSoundEffect?.prepareToPlay()
@@ -317,8 +319,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Shoot Function
     func shoot() {
-        if playerIsDead {return}
+        if playerIsDead || reloading {return}
+        
         let bullet = SKBulletsNode(texture: bulletTexture)
+        self.run(SKAction.playSoundFileNamed("GunShot.mp3", waitForCompletion: false))
+        
+        shotsFired += 1
         
         if self.mainCharacter.texture == jimFacingLeftTexture {
             bullet.shoot(from: self.mainCharacter,
@@ -336,12 +342,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                          toArray: playerBulletArray,
                          inScene: self)
         }
+        
+        if shotsFired >= 5 && !reloading {
+            reloadGun()
+            return
+        }
+        
+    }
+    
+    // Reload Gun
+    func reloadGun() {
+        
+        self.reloading = true
+        run(SKAction.playSoundFileNamed("reload.mp3", waitForCompletion: false))
+        
+        _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.shotsFired = 0
+            self.reloading = false
+        }
+        
     }
     
     // MARK: Player Did Die
     func playerDidDie() {
         backgroundMusic?.stop()
         backgroundMusic?.currentTime = 0.0
+        shotsFired = 0
         
         punchSoundEffect?.play()
         
@@ -353,6 +379,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.scoreLabel.fontColor = UIColor.red
         
         self.playerIsDead = true
+        self.reloading = false
         
         self.deathScore.text = "\(self.score) points"
         if self.score == 1 {self.deathScore.text = "1 point"}

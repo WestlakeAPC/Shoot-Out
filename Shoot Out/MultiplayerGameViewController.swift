@@ -61,7 +61,8 @@ class MultiplayerGameViewController: UIViewController {
     }
     
     func sendData(_ message: GameEvent) {
-        print("Sending Message: \n\(message)\n\n")
+        print("Sending data at \(Date())")
+        //print("Sending Message: \n\(message)\n\n")
         
         do {
             let messageData = NSKeyedArchiver.archivedData(withRootObject: EncodableGameEvent(message))
@@ -83,7 +84,7 @@ class MultiplayerGameViewController: UIViewController {
         }
         
         let message = wrappedMessage.gameEvent
-        
+        print("Received data at \(Date())")
         // Act on it.
         switch message {
             case .characterAssignment(let randomNumber):

@@ -27,6 +27,7 @@ class MultiplayerScene: SKScene {
     var alphaBloodParticle = SKEmitterNode(fileNamed: "Blood")
     var betaBloodParticle = SKEmitterNode(fileNamed: "Blood")
     
+    var lastSent = Date()
     
     // Textures
     private var jimFacingRightTexture = SKTexture(imageNamed: "jimCharacR.png")
@@ -287,7 +288,11 @@ class MultiplayerScene: SKScene {
     
     // MARK: Sending/Processing Character Data
     func sendPlayerProperties() {
-        if gameIsOver || !gameIsActive {return}
+        guard !gameIsOver, gameIsActive, Date() > lastSent.addingTimeInterval(0.1) else {
+            return
+        }
+        
+        lastSent = Date()
         
         viewController?.sendCharacterState(withPhysicsBody: self.mainCharacter!.physicsBody!,
                                            at: self.mainCharacter!.position,

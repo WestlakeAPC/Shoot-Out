@@ -288,7 +288,7 @@ class MultiplayerScene: SKScene {
     
     // MARK: Sending/Processing Character Data
     func sendPlayerProperties() {
-        guard !gameIsOver, gameIsActive, Date() > lastSent.addingTimeInterval(0.1) else {
+        guard !gameIsOver, gameIsActive, Date() > lastSent.addingTimeInterval(0.05) else {
             return
         }
         

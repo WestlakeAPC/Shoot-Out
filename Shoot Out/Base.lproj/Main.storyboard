@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="E0U-BE-BAH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="E0U-BE-BAH">
     <device id="ipad12_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,7 +31,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qw6-74-YmC">
-                                <rect key="frame" x="20" y="1193" width="145" height="38"/>
+                                <rect key="frame" x="20" y="1205" width="94" height="32"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Singleplayer">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -41,7 +41,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dj-GH-dZb">
-                                <rect key="frame" x="20" y="1267" width="136" height="38"/>
+                                <rect key="frame" x="20" y="1273" width="84" height="32"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Multiplayer">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -170,7 +170,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BxW-UH-Hef">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="48"/>
                                 <items>
                                     <navigationItem title="Connect" id="dwZ-ly-Ly5">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="AUS-Cm-9Pz">
@@ -182,7 +182,7 @@
                                 </items>
                             </navigationBar>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSJ-No-sV9">
-                                <rect key="frame" x="20" y="226" width="984" height="32"/>
+                                <rect key="frame" x="20" y="236" width="984" height="38"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Global"/>
                                 <connections>
@@ -190,7 +190,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrK-PK-TNJ">
-                                <rect key="frame" x="20" y="144" width="984" height="32"/>
+                                <rect key="frame" x="20" y="148" width="984" height="38"/>
                                 <fontDescription key="fontDescription" name="KenPixel" family="KenPixel" pointSize="17"/>
                                 <state key="normal" title="Local"/>
                                 <connections>
@@ -361,7 +361,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abm-6m-rpn">
-                                        <rect key="frame" x="901" y="8" width="115" height="35"/>
+                                        <rect key="frame" x="901" y="28" width="115" height="35"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="SQr-bp-HX5"/>
